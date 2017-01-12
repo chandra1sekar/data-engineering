@@ -1,16 +1,13 @@
 
 ---
-title: "A Pandoc Markdown Article Starter"
-author:
-- name: Kieran Healy
-  affiliation: Duke University
-  email: kjhealy@soc.duke.edu
-- name: Joe Bloggs
-  affiliation: University of North Carolina, Chapel Hill
-  email: joebloggs@unc.edu
-date: January 2014
-abstract: "Lorem ipsum dolor sit amet."
+title: "Just Enough Data Engineering"
+date: MIDS - Fall 2017
 ...
+
+#
+Lecture 01
+
+Introduction
 
 # Introduction
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
