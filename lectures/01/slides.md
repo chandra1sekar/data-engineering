@@ -260,8 +260,9 @@ We're storing data in a format that makes for efficient queries.
 
 ## What do we need?
 
-- Support structured query languages because they're common
+- Support structured query languages... they're common
 - enable more advanced queries that include transformations
+- enable queries against raw data
 - enable query caching
 - ... [todo]
 
@@ -283,8 +284,7 @@ take action from stream
 
 - support low-latency decisions
 - decoupled from storage, ingestion, transformation, etc
-- stateless
-- the ability to read state (update?)
+- stateless, yet have the ability to read state (update?)
 - the ability to take action
 - scaling
 - ordering
