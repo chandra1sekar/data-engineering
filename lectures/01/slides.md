@@ -79,9 +79,34 @@ but we'll be sure to motivate all examples and activities with concrete business
 
 Technology
 
+## Topics 
+
+- Sourcing and Ingesting
+- Storing
+    - Encoding
+    - Evolving
+- Transforming
+    - Batch Processing
+    - Stream Processing
+- Querying
+    - Accessing
+    - Languages and Tools
+    - Planning
+    - Optimizing
+    - Productionalizing
+- Understanding and Acting
+    - Modeling
+    - Analyzing
+    - Tracking and Auditing
+    - Monitoring
+- Visualizing and Communicating
+
 
 # Data Pipelines
 ##
+<div class="notes">
+What do we mean by data pipeline here?
+</div>
 
 ## What do we actually need?
 
@@ -111,6 +136,10 @@ A common pattern for managing data
 
 <div class="notes">
 You see lots of data-centric solutions as a consultant.
+
+A lot of them end up looking similar after a while.
+
+Extract a "Data Pipeline" pattern.
 </div>
 
 ## { data-background="images/classifying-with-state.svg" }
@@ -118,6 +147,9 @@ You see lots of data-centric solutions as a consultant.
 
 # Events
 ##
+<div class="notes">
+What flows around in these "pipes?"  Events.
+</div>
 
 ## Device Events
 - location
@@ -126,16 +158,12 @@ You see lots of data-centric solutions as a consultant.
 - presence
 - status (disk is full)
 - ...
-<div class="notes">
-</div>
 
 ## User Events
 - login
 - checkout
 - add friend
 - ...
-<div class="notes">
-</div>
 
 ## Device Event
 <pre><code>
@@ -147,10 +175,6 @@ You see lots of data-centric solutions as a consultant.
   ...
 }
 </code></pre>
-
-<div class="notes">
-there are device events
-</div>
 
 ## User Event
 <pre><code>
@@ -211,9 +235,10 @@ There are great formats and tools, but the state of the
 art is pretty shoddy... adaptation/munging is often required
 </div>
 
-## Logs of Events
+## Event Streams
 
-The _raw_ data is just streams of events
+The _raw_ data for a large class of problems is streams or sequences of these events.
+We'll assemble data science pipelines by connecting, munging, transforming, etc these _event streams_.
 
 ## { data-background="images/classifying-with-state.svg" }
 
@@ -228,7 +253,9 @@ pipe these streams of logs around
 ## { data-background="images/classifying-with-state.svg" }
 
 <div class="notes">
-query data stores
+query data stores.
+
+We're storing data in a format that makes for efficient queries.
 </div>
 
 ## What do we need?
@@ -303,8 +330,8 @@ We'll maintain context along the way using a common pipeline pattern
 - Visualizing and Communicating
 
 
-
 # Scratch
+
 
 #
 ## Are our solutions:
