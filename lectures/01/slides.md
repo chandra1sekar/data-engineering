@@ -87,9 +87,10 @@ Technology
 
 - a way to interact with data
 - analytical capabilities
-- consistent & testable results
 - available
+- reliable (consistent & testable results)
 - scalable
+- maintainable
 - flexible
 - affordable
 - ...
@@ -275,11 +276,27 @@ Based on data pipeline patterns
 
 ## { data-background="images/classifying-with-state.svg" }
 
-## Topics
+<div class="notes">
+We'll maintain context along the way using a common pipeline pattern
+</div>
 
-- Ingest
-- Batch Queries
-- Stream Processing
+## Topics 
+
+- Sourcing
+- Ingesting
+- Storing
+    - Encoding and Evolving
+- Transforming
+    - Batch Processing
+    - Stream Processing
+- Querying and Retrieving 
+- Understanding and Acting
+    - Modeling
+    - Analyzing
+    - Tracking and Auditing
+    - Monitoring
+- Presenting / Visualizing / Communicating
+
 
 
 # Scratch
