@@ -282,20 +282,25 @@ We'll maintain context along the way using a common pipeline pattern
 
 ## Topics 
 
-- Sourcing
-- Ingesting
+- Sourcing and Ingesting
 - Storing
-    - Encoding and Evolving
+    - Encoding
+    - Evolving
 - Transforming
     - Batch Processing
     - Stream Processing
-- Querying and Retrieving 
+- Querying
+    - Accessing
+    - Languages and Tools
+    - Planning
+    - Optimizing
+    - Productionalizing
 - Understanding and Acting
     - Modeling
     - Analyzing
     - Tracking and Auditing
     - Monitoring
-- Presenting / Visualizing / Communicating
+- Visualizing and Communicating
 
 
 
