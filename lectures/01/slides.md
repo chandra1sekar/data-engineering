@@ -268,7 +268,11 @@ We're storing data in a format that makes for efficient queries.
 
 ## Common approach
 
-[ athena or bigquery exmple here ]
+BigQuery/Athena examples:
+
+- Most popular bike routes by day of week?
+- Return users -vs- new users
+- Most popular destinations from each station?
 
 
 # Action
@@ -293,6 +297,10 @@ take action from stream
 
 [ kafka ]
 [ spark streaming or lambda exmple here ]
+
+<div class="notes">
+Just-in-time or just-in-place couponing
+</div>
 
 
 # This Course
