@@ -1,21 +1,27 @@
 
-Same google BQ account as before
+# Problem
 
-install the `bq` cli client
+[state the business problem]
 
-perform exploratory queries
 
-perform CLI cursory analytics
+Start with the same google BQ account as before
 
-Bonus:
+- install the `bq` cli client
 
-set up google apps api account
+- perform exploratory queries
 
-pipe results of `bq` queries to google sheets
+- perform CLI cursory analytics
 
-create visualization in google sheets
+# Bonus:
 
-more bonus:
+- set up google apps api account
 
-add some other processing in the middle of the pipe
+- pipe results of `bq` queries to google sheets
+
+- create visualization in google sheets
+
+# More Bonus:
+
+- pull down from `bq`, then add some other processing in the middle of the pipe, then push up to google sheets
+
 
