@@ -7,12 +7,66 @@ date: MIDS - Fall 2017
 ---
 
 # Why Do I Care?
+##
+
+<div class="notes">
+Let's talk about.. actual datasets
+</div>
+
+## 
+
+"I emailed you the data... take a look and see what you think"
+
+<div class="notes">
+boss emails you some random csv file
+
+or worse, xls
+</div>
+
+##
+
+"I shared it in dropbox..."
+
+<div class="notes">
+coworker slacks you a dropbox or s3 bucket url
+
+usually world readable
+</div>
+
+## 
+
+"Have Julie get you access to the marketing database... just tell her I said it's ok"
+
+<div class="notes">
+boss blows you off
+</div>
+
+## 
+
+"Just google around for an API that'll give you what you need for that analysis..."
+
+<div class="notes">
+coworker blows you off too
+</div>
+
+## 
+
+..._Now_ What?
+
+
+# Agenda
 
 - Data about data
 - Tools
 
 <div class="notes">
-Let's talk about.. Data
+This series will cover two things:
+
+- practical metadata
+
+- tools you can use to extract that metadata
+
+Along the way, we'll get our feet wet in using the command line
 </div>
 
 # Data
