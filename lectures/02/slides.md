@@ -53,29 +53,84 @@ and varies from dataset to dataset
 - avro
 - ...
 
+<div class="notes">
+There're tons of file formats around
+
+We'll go into more detail of lots of these formats later in the course
+
+Focus for now on two common text-based formats: csv and json
+</div>
+
 #
 ## Schema
+
+<div class="notes">
+example using jq
+</div>
 
 #
 ## Types
 
+<div class="notes">
+example using jq
+</div>
+
 #
 ## Presence
 
-#
-## Count
+<div class="notes">
+example using jq and grep
+</div>
 
 #
-## Ranges
+## Data Count
+
+<div class="notes">
+example using jq, grep, and wc
+</div>
+
 
 #
-## Integrity
+## Data Ranges
+
+<div class="notes">
+example using jq, grep, uniq, and sort
+
+how does this differ for really large datasets?
+</div>
+
 
 #
-## Lineage
+## Data Integrity
+
+<div class="notes">
+example using jq
+</div>
+
 
 #
-## Access
+## Data Lineage
+
+<div class="notes">
+what is the history of fields in this dataset?
+
+dunno really what to show here
+</div>
+
+
+#
+## Data Access
+
+<div class="notes">
+does it contain private data?
+
+should access to this be restricted?
+
+if so, how will users access this dataset?
+
+dunno really what to show here
+</div>
+
 
 
 
@@ -95,11 +150,36 @@ and varies from dataset to dataset
 #
 ## The Command Line
 
+<div class="notes">
+surprise!  what we've been doing
+</div>
+
+
 #
 ## Jupyter
 
+<div class="notes">
+notebooks are great for data exploration
+
+excellent way to take things to the next level
+
+don't forget zeppelin!
+</div>
+
+
 #
 ## Shells
+
+<div class="notes">
+spark / pyspark
+impala
+beeline
+hbase
+etc
+
+maybe even mention ipython here?
+</div>
+
 
 ---
 
