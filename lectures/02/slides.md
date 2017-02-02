@@ -67,6 +67,11 @@ This series will cover two things:
 - tools you can use to extract that metadata
 
 Along the way, we'll get our feet wet in using the command line
+
+Note that we'll gloss over some topics and allude to others here.
+Don't worry, we'll cover _all_ of this material in a lot more
+detail throughout the course.  This is meant to give you a feel
+for the power of some of the tools involved.
 </div>
 
 # Data
@@ -89,7 +94,7 @@ data about data
 
 some of the many dimensions of metadata
 
-the list keeps going
+the list keeps going...
 - Durability
 - Availability
 - Access/Authorization
@@ -115,40 +120,55 @@ We'll go into more detail of lots of these formats later in the course
 Focus for now on two common text-based formats: csv and json
 </div>
 
+## Format
+
+[screencast on file format exploration from the command-line]
+
 #
 ## Schema
 
+[screencast on schema exploration from the command-line]
+
 <div class="notes">
-example using jq
+show screencast example using jq
 </div>
+
 
 #
 ## Types
 
+[screencast on schema-types exploration from the command-line]
+
 <div class="notes">
-example using jq
+show screencast example using jq
 </div>
 
 #
 ## Presence
 
+[screencast on content exploration from the command-line]
+
 <div class="notes">
-example using jq and grep
+show screencast example using jq and grep
 </div>
 
 #
 ## Data Count
 
+[screencast on counting content from the command-line]
+
 <div class="notes">
-example using jq, grep, and wc
+show screencast example using jq, grep, and wc
 </div>
 
 
 #
 ## Data Ranges
 
+[screencast on finding ranges of types from the command-line]
+
 <div class="notes">
-example using jq, grep, uniq, and sort
+show screencast example using jq, grep, uniq, and sort
 
 how does this differ for really large datasets?
 </div>
@@ -157,13 +177,17 @@ how does this differ for really large datasets?
 #
 ## Data Integrity
 
+[screencast on integrity from the command-line]
+
 <div class="notes">
-example using jq
+show screencast example using jq
 </div>
 
 
 #
 ## Data Lineage
+
+[screencast on data lineage from the command-line]
 
 <div class="notes">
 what is the history of fields in this dataset?
@@ -175,6 +199,8 @@ dunno really what to show here
 #
 ## Data Access
 
+[screencast on accessing data from the command-line]
+
 <div class="notes">
 does it contain private data?
 
@@ -182,7 +208,7 @@ should access to this be restricted?
 
 if so, how will users access this dataset?
 
-dunno really what to show here
+this feeds directly into activity02
 </div>
 
 
@@ -235,32 +261,29 @@ maybe even mention ipython here?
 </div>
 
 
+# In Summary
+
+- Data about data
+- Tools
+
+<div class="notes">
+We covered two things:
+
+- practical metadata
+
+- tools you can use to extract that metadata
+
+We saw some of the power of the command line in our examples
+and associated activities.
+
+Data exploration is really important, so we'll
+revisit all of this material in greater detail
+using various different tools throughout the course.
+</div>
+
 ---
 
 # scratch
-
-
-# Why do I care?
-
-## What Does a Data Scientist Actually Do?
-
-<div class="notes">
-There are lots of common misconceptions.
-
-It's fun to walk through a few
-</div>
-
-##
-![](images/what-i-do-machine-learning.jpg)
-
-##
-![](images/what-i-do-data-scientist-2.jpg)
-
-##
-![](images/what-i-do-data-scientist-1.jpg)
-
-##
-![](images/what-i-do-deep-learning.jpg)
 
 
 # This Course
@@ -303,42 +326,4 @@ We'll maintain context along the way using a common pipeline pattern
     - Tracking and Auditing
     - Monitoring
 - Visualizing and Communicating
-
-
-#
-## Are our solutions:
-
-- correct?
-- tractable?
-- stable?
-- robust?
-- reproducible?
-- comprehensible?
-- relevant?
-- efficient?
-- performant?
-
-## Data Science
-
-- correctness
-- cardinality
-- comparisons to external models
-- invariants / symmetry
-- intuition / geometry / wetware
-
-## Engineering
-
-- connectivity
-- correctness
-- performance
-
-## Community
-
-- pipeline patterns and tools
-- failure modes
-- sanity checks
-- testing patterns in DS pipelines
-- creative uses of simian army for data
-- caching patterns in DS pipelines
-- other places to steal ideas from?
 
