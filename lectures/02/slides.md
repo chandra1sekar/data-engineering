@@ -122,7 +122,7 @@ Focus for now on two common text-based formats: csv and json
 
 ## Format
 
-[screencast on file format exploration from the command-line]
+[screencast exploring file formats from the command-line]
 
 #
 ## Schema
@@ -261,7 +261,7 @@ maybe even mention ipython here?
 </div>
 
 
-# In Summary
+# Summary
 
 - Data about data
 - Tools
