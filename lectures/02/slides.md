@@ -230,22 +230,53 @@ this feeds directly into activity02
 #
 ## The Command Line
 
+![](images/terminal.png)
+
 <div class="notes">
 surprise!  what we've been doing
 </div>
 
+## The Command Line - pros
+
+- flexible
+- powerful
+- everywhere
+- quick-n-dirty
+
+## The Command Line - cons
+
+- steep learning curve
+- too flexible?
+- not inherently scalable
 
 #
-## Jupyter
+## Jupyter Notebooks
+
+![](images/jupyter-notebook.png)
 
 <div class="notes">
-notebooks are great for data exploration
+notebooks are great for data exploration.
 
-excellent way to take things to the next level
+This is where you will likely spend most of your working
+days as a data scientist
+
+excellent way to take things to the next level.
 
 don't forget zeppelin!
 </div>
 
+## Jupyter Notebooks - pros
+
+- flexible
+- powerful
+- real programming languages
+- collaborative
+
+## Jupyter Notebooks - cons
+
+- not always available
+- not inherently scalable
+- requires programming expertise
 
 #
 ## Shells
