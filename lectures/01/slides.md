@@ -1,7 +1,7 @@
 
 ---
-title: "Just Enough Data Engineering"
-date: MIDS - Fall 2017
+title: "Storing and Retrieving Data"
+author: MIDS w205 - Fall 2017
 ...
 
 ---
@@ -343,6 +343,11 @@ We'll maintain context along the way using a common pipeline pattern
     - Tracking and Auditing
     - Monitoring
 - Visualizing and Communicating
+
+
+#
+
+<img class="logo" src="images/berkeley-school-of-information-logo.png"/>
 
 
 # Scratch

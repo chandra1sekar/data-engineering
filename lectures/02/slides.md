@@ -1,7 +1,7 @@
 
 ---
 title: "Working With Data"
-date: MIDS - Fall 2017
+author: MIDS 205 - Fall 2017
 ...
 
 ---
@@ -312,7 +312,11 @@ revisit all of this material in greater detail
 using various different tools throughout the course.
 </div>
 
----
+
+#
+
+<img class="logo" src="images/berkeley-school-of-information-logo.png"/>
+
 
 # scratch
 
