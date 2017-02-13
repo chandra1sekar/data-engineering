@@ -1,0 +1,118 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 38px;
+$mainFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
+$headingFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 500;
+$linkColor: #2a76dd;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2em;
+$heading2Size: 1.4em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+/*$heading1Size: 1.6em;*/
+/*$heading2Size: 1.2em;*/
+/*$heading3Size: 1.0em;*/
+/*$heading4Size: 1.0em;*/
+
+.title,.author,.date {
+  text-align: left;
+}
+
+h1.title {
+  border-bottom: 4px solid #ddd;
+  padding-bottom: 0.2em;
+}
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+//#frontPage {
+//  margin-top: 6em;
+//  h1.title {
+//    color: #26c5ed;
+//  }
+//}
+
+.reveal:before {
+  content: url(../../../images/datascience-at-berkeley-header.png);
+  padding: 0.2em 0 0 75%;
+  width: 100%;
+  height: 1.2em;
+  position: fixed;
+  top: 0em;
+  left: 0em;
+  background-color: #003252;
+}
+
+/*.reveal:after {*/
+  /*content: url(../../../images/datascience-at-berkeley.png);*/
+  /*position: fixed;*/
+  /*bottom: 2em;*/
+  /*left: 10em;*/
+/*}*/
+
+.reveal:after {
+  content: "";
+  width: 100%;
+  height: 0.3em;
+  position: fixed;
+  bottom: 0em;
+  left: 0em;
+  background-color: #003252;
+}
+
+/*.reveal {*/
+  /*padding-top: 4em;*/
+/*}*/
+
+.reveal section img.frontPageSlogan {
+  border: none;
+  box-shadow: none;
+  height: 2.2em;
+  padding-top: 4em;
+  padding-left: 8em;
+}
+
+.reveal h1 {
+  padding-top: 1em;
+}
+
+.reveal section img.logo {
+  border: none;
+  box-shadow: none;
+}
