@@ -5,7 +5,7 @@
 
 - [01	- intro](lectures/01/slides.html) (pipeline patterns, basic queries)
 
-- [02	- Working with Data](lectures/01/slides.html) (datametadata, cli basics)
+- [02	- Working with Data](lectures/02/slides.html) (datametadata, cli basics)
 
 - [03 -]() querying (first pass, athena, big query, caching, sql)
 
