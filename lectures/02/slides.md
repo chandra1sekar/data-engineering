@@ -80,14 +80,12 @@ for the power of some of the tools involved.
 ##
 
 - Format
-- Schema
-- Types
-- Presence
+- Schema / Types
 - Count
-- Ranges
-- Integrity
-- Lineage
+- Presence
 - Versioning
+- Lineage
+- ...
 
 <div class="notes">
 data about data
@@ -122,10 +120,25 @@ Focus for now on two common text-based formats: csv and json
 
 ## Format
 
+- text (csv, tsv, json, xml, ...)
+- binary (avro, parquet, xls, ...)
+
+<div class="notes">
+don't forget to consider zipped up text!
+</div>
+
+## Format
+
 [screencast exploring file formats from the command-line]
 
+<div class="notes">
+show `cat views.json | jq -C . | more`
+
+show `cat views.xml | xmllint --format - | pygmentize -l xml | more`
+</div>
+
 #
-## Schema
+## Schema / Types
 
 [screencast on schema exploration from the command-line]
 
@@ -133,24 +146,6 @@ Focus for now on two common text-based formats: csv and json
 show screencast example using jq
 </div>
 
-
-#
-## Types
-
-[screencast on schema-types exploration from the command-line]
-
-<div class="notes">
-show screencast example using jq
-</div>
-
-#
-## Presence
-
-[screencast on content exploration from the command-line]
-
-<div class="notes">
-show screencast example using jq and grep
-</div>
 
 #
 ## Data Count
@@ -163,6 +158,16 @@ show screencast example using jq, grep, and wc
 
 
 #
+## Presence
+
+[screencast on content exploration from the command-line]
+
+<div class="notes">
+show screencast example using jq and grep
+</div>
+
+
+#
 ## Data Ranges
 
 [screencast on finding ranges of types from the command-line]
@@ -171,16 +176,6 @@ show screencast example using jq, grep, and wc
 show screencast example using jq, grep, uniq, and sort
 
 how does this differ for really large datasets?
-</div>
-
-
-#
-## Data Integrity
-
-[screencast on integrity from the command-line]
-
-<div class="notes">
-show screencast example using jq
 </div>
 
 
