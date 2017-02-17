@@ -1,6 +1,7 @@
 default: slides
 
-DEPLOY_TARGET = elias:/opt/mirrors/box/talks/2017-02-02-data-engineering/
+DEPLOY_TARGET = "mark.mims@ischool.berkeley.edu:~/public_html/course-development/2017-mids-w205/"
+MEDIA_TARGET = "elias:/opt/mirrors/box/course-development/2017-mids-w205/"
 
 slides:
 	@for lecture in lectures/*; do \
@@ -11,6 +12,9 @@ publish: slides
 	rsync -azvP lectures $(DEPLOY_TARGET)
 
 deploy: publish
+
+capture:
+	bin/start-capture.sh
 
 clean:
 	@for lecture in lectures/*; do \
