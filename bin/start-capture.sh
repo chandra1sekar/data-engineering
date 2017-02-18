@@ -1,7 +1,8 @@
 #!/bin/bash
 
-FR=24
+TS=`date +%Y-%m-%d-%H%M`
 OUTPUT_DIR="capture-$TS"
+FR=24
 
 ##################
 
@@ -13,6 +14,7 @@ capture_slides() {
     -vcodec libx264 \
     -preset ultrafast \
     $output_dir/slides.mkv > $output_dir/slides.log 2>&1
+  echo "slides done"
 }
 
 capture_terminal() {
@@ -23,6 +25,7 @@ capture_terminal() {
     -vcodec libx264 \
     -preset ultrafast \
     $output_dir/terminal.mkv > $output_dir/terminal.log 2>&1
+  echo "terminal done"
 }
 
 capture_webcam() {
@@ -33,25 +36,21 @@ capture_webcam() {
     -f v4l2 -framerate ${FR} -input_format h264 -video_size hd1080 -i /dev/video0 \
     -c copy \
     $output_dir/webcam.mkv > $output_dir/webcam.log 2>&1
+  echo "webcam done"
 }
-
-TS=`date +%Y-%m-%d-%H%M`
-
-mkdir -p $OUTPUT_DIR
 
 echo "starting run at $TS"
 
+mkdir -p $OUTPUT_DIR
+
 echo "capturing slides"
 capture_slides $OUTPUT_DIR &
-echo "slides done"
 
 echo "capturing terminal"
 capture_terminal $OUTPUT_DIR &
-echo "terminal done"
 
 echo "capturing webcam"
 capture_webcam $OUTPUT_DIR &
-echo "webcam done"
 
 for job in `jobs -p`; do
   wait $job
