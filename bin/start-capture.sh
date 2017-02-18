@@ -1,7 +1,5 @@
 #!/bin/bash
 
-exit 1
-
 FR=24
 OUTPUT_DIR="capture-$TS"
 
@@ -37,7 +35,7 @@ capture_webcam() {
     $output_dir/webcam.mkv > $output_dir/webcam.log 2>&1
 }
 
-TS=`date +%Y%m%d%H%M`
+TS=`date +%Y-%m-%d-%H%M`
 
 mkdir -p $OUTPUT_DIR
 
@@ -58,8 +56,6 @@ echo "webcam done"
 for job in `jobs -p`; do
   wait $job
 done
-
-echo "done with primary captures"
 
 echo "done"
 
