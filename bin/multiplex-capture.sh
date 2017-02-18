@@ -37,6 +37,7 @@ EOS
     -i terminal.mkv \
     -i testpattern.mkv \
     -filter_complex "$combine_filter" \
+    -r ${FR} \
     -c:v libx264 \
     composite.mkv > composite.log 2>&1
 }
