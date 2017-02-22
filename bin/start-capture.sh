@@ -2,7 +2,7 @@
 
 TS=`date +%Y-%m-%d-%H%M`
 OUTPUT_DIR="capture-$TS"
-FR=24
+FR=30
 
 ##################
 
