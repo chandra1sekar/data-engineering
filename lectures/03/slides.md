@@ -17,10 +17,37 @@ Notes here
 
 Back to the pipeline
 
+## 
+
+A common pattern for managing data
+
 <div class="notes">
-Point out on pipellne diagram
+
+remember... What do we actually need?
+
+- a way to interact with data
+- analytical capabilities
+- available
+- reliable (consistent & testable results)
+- scalable
+- maintainable
+- flexible
+- affordable
+- etc
+
+This is an open problem.
+
+This is a continuous problem... always improving.
+
+We need to consider many aspects to this problem.
+
+Keep this as a laundry-list in the back of your mind when learning about new tools.
 
 </div>
+
+##
+
+![](images/classifying-with-state.svg)
 
 ##
 

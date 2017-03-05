@@ -142,7 +142,9 @@ A lot of them end up looking similar after a while.
 Extract a "Data Pipeline" pattern.
 </div>
 
-## { data-background="images/classifying-with-state.svg" }
+##
+
+![](images/classifying-with-state.svg)
 
 
 # Events
