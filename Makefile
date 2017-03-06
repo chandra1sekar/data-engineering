@@ -4,6 +4,7 @@ DEPLOY_TARGET = "mark.mims@ischool.berkeley.edu:~/public_html/course-development
 MEDIA_TARGET = "elias:/opt/mirrors/box/course-development/2017-mids-w205/"
 
 slides:
+	$(MAKE) -C syllabus;
 	@for lecture in lectures/*; do \
 	  $(MAKE) -C $$lecture; \
 	done
