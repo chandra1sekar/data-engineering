@@ -16,11 +16,13 @@ first pass, athena, big query, caching, sql
 quick discussion, point at pipeline, we're doing storage
 
 distinction b/t sql and nosql
+
 intro to cloud
     virtualization
     round table: VMs to containers
     cluster computing, non commodity hardware, 
     fault tolerant
+
 distributed and parallel computing
 
 blank slate about where data are from

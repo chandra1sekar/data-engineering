@@ -6,15 +6,15 @@ author: MIDS 205 - Fall 2017
 
 ---
 
-# storing data
+# Storing Data
+##
 
 <div class="notes">
 -first pass, sql & nosql, partioning I, hadoop, cloud
 </div>
 
-#
-##
 
+##
 ![](images/classifying-with-state.svg)
 
 
@@ -23,13 +23,20 @@ quick discussion, point at pipeline, we're doing storage
 </div>
 
 
-# 
+# Storage Model
+##
+
 ## SQL
 
 ## NoSQL
 
 
-# Cloud and Virtualization
+# Storage Platform
+##
+
+## Database Servers
+
+## Cloud and Virtualization
 
 intro to cloud
     virtualization
@@ -37,11 +44,32 @@ intro to cloud
     cluster computing, non commodity hardware, 
     fault tolerant
 
-# Computing Models
+# Execution Models
+##
 
+<div class="notes">
 distributed and parallel computing
+</div>
+
+## serial
+
+## parallel
+
+## distributed
+
+
+
+# what do we actually need?
+
+what is a data store?
+
+distributed (highly available, etc)
+data store
+
 
 blank slate about where data are from
-what is a data store?
+independent of source
+
+independ of format
 
 
