@@ -17,7 +17,7 @@ quick discussion, point at pipeline, we're doing storage
 
 distinction b/t sql and nosql
 
-intro to cloud
+intro to cloud - first pass
     virtualization
     round table: VMs to containers
     cluster computing, non commodity hardware, 
@@ -32,6 +32,18 @@ what is a data store?
 
 # transforming data
 first pass, etl & data munging, cloud, containers
+
+you don't always get what you want
+you need to transform it
+not just where from / going, but how it's used
+etl
+
+cloud n containers - second pass
+  support distributed execution models
+  intro to schedulers
+
+
+
 
 # sourcing data
 cloud & containers
