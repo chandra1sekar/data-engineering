@@ -1,4 +1,3 @@
-
 ---
 title: "Working With Data"
 author: MIDS 205 - Fall 2017

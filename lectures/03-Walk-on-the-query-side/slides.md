@@ -1,4 +1,3 @@
-
 ---
 title: "Walk on the Queryside"
 author: MIDS 205 - Fall 2017

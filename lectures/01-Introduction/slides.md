@@ -1,4 +1,3 @@
-
 ---
 title: "Storing and Retrieving Data"
 author: MIDS w205 - Fall 2017
