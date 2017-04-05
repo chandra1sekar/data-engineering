@@ -123,7 +123,9 @@ streaming queries, caching vs stream queries
 
 Caching and the web
 
+datamarts, data warehouses, and data lakes, oh my!
 A walk down memory lane - old-school data warehousing
+and data mining
 
 Replay in an immutable pipeline
 
@@ -143,3 +145,22 @@ architectural patterns for taking action
 # pipeline patterns revisited
 some kind of project walkthrough - all screencast
 
+
+
+
+---
+
+# power clips
+
+- cli
+- notebooks
+- programming (python)
+- clouds and virtualization
+- containers
+- devops
+- git and revision control
+- serverless architectures
+- web technologies ("Cache is King!")
+- sql
+- datamarts, data warehouses, and data lakes
+- parallel -vs- distributed processing ("scientific programming")
