@@ -94,17 +94,51 @@ batch (oozie, airflow, kron, sqoop etc)
 
 understanding data - microbatch window is too small - introduction to sessionization & state
 
+
 # in memory storing data
 streaming & spark
+
+dedicated stream processing -vs- shared architecture.  When is it time to give
+stream processing its own resources?
+
+distributed in-memory storage - alluxio and friends
+
+distributed -vs- parallel... what's the deal?
+
 
 # querying data
 querying with partition keys
 
+use the tools - `explain` and query profiling
+
+take advantage of partitions when they're available
+
+query planning for hive, impala, drill, presto, sparkSQL
+
+use the tools - query planning
+
+
 # querying data
 streaming queries, caching vs stream queries
 
+Caching and the web
+
+A walk down memory lane - old-school data warehousing
+
+Replay in an immutable pipeline
+
+Caching queries
+
+
 # querying data
 understanding data - microbatch window is too small -  sessionization & state for action
+
+understanding ingested events
+
+understanding ingested events with lower latency
+
+architectural patterns for taking action
+
 
 # pipeline patterns revisited
 some kind of project walkthrough - all screencast
