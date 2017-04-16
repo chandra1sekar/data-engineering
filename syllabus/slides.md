@@ -8,38 +8,38 @@
 pipeline patterns, basic queries
 
 1.1 Welcome to MIDS s205
-  - Context Problem (text page)
-  - What is Data Engineering to you? (question)
-  - What is Data Engineering? (lecture)
-  - Why do I need Data Engineering for Data Science? (lecture)
-  - What will you know and be able to do after this course? (lecture)
+  - Context Problem [text page]
+  - What is Data Engineering to you? [question]
+  - What is Data Engineering? [lecture]
+  - Why do I need Data Engineering for Data Science? [lecture]
+  - What will you know and be able to do after this course? [lecture]
 
 1.2 Course Topics
-  - Business or Technology? (lecture)
-  - Sourcing and Ingesting Data (lecture)
-  - Storing Data (lecture)
-  - Transforming Data (lecture)
-  - Querying Data (lecture)
-  - Understanding and Acting on Data (lecture)
-  - Visualizing and Communicating about Data (lecture)
-  - Explain briefly how Data Engineering is... (question)
-  - Answer to prededing question (text page)
+  - Business or Technology? [lecture]
+  - Sourcing and Ingesting Data [lecture]
+  - Storing Data [lecture]
+  - Transforming Data [lecture]
+  - Querying Data [lecture]
+  - Understanding and Acting on Data [lecture]
+  - Visualizing and Communicating about Data [lecture]
+  - Explain briefly how Data Engineering is... [question]
+  - Answer to prededing question [text page]
 
 1.3 Data Pipelines
-  - Unpacking a data pipeline (lecture)
-  - Patterns (lecture)
+  - Unpacking a data pipeline [lecture]
+  - Patterns [lecture]
 
 1.4 Events
-  - Take a moment to think about... (question)
-  - Device Events (lecture)
-  - User Events (lecture)
-  - Event Streams (lecture)
+  - Take a moment to think about... [question]
+  - Device Events [lecture]
+  - User Events [lecture]
+  - Event Streams [lecture]
 
 1.5 Querying
-  - How to set up Google Big Query (text page)
-  - Breaking down querying (lecture)
-  - Requirements for taking action (lecture)
-  - Walkthrough (context problem) query on NYC Bike Data
+  - How to set up Google Big Query [text page]
+  - Breaking down querying [lecture]
+  - Requirements for taking action [lecture]
+  - Walkthrough [context problem] query on NYC Bike Data
 
 
 # Data Dive
@@ -49,8 +49,8 @@ was "Working with Data"
 datametadata, cli basics
 
 2.1 Working with Data
-  - Brainstorm 3-5 ways you've received data... (question)
-  - Introduction (lecture)
+  - Brainstorm 3-5 ways you've received data... [question]
+  - Introduction [lecture]
   - Schema/Types
   - Data Count
   - Data Ranges
@@ -58,11 +58,11 @@ datametadata, cli basics
   - Data Access
 
 2.2 Tools for Working with Data
-  - Introduction to Tools (lecture)
-  - The Command Line
-  - Jupyter Notebooks
+  - Introduction to Tools [lecture]
+  - The Command Line [tutorial]
+  - Jupyter Notebooks [tutorial]
   - Shells
-  - Wrap Up (lecture)
+  - Wrap Up [lecture]
 
 
 # Welcome to the Queryside
@@ -72,19 +72,19 @@ was "A Walk on the Query Side"
 first pass, athena, big query, caching, sql
 
 3.1 What is the queryside?
-  - Revisiting Pipelines (lecture)
-  - Immutability (lecture)
+  - Revisiting Pipelines [lecture]
+  - Immutability [lecture]
   - Event logs
 
 3.2 Query Tools
-  - Queryside World (lecture)
+  - Queryside World [lecture]
   - SQL
   - Athena
   - BigQuery
 
 3.3 Sneak Peek
-  - Caching (lecture)
-  - Query Planning (lecture)
+  - Caching [lecture]
+  - Query Planning [lecture]
   - Resource Scheduling
 
 
@@ -109,29 +109,29 @@ what is a data store?
 
 
 4.1 Introduction
-  - Where are we in the Pipeline? (lecture)
+  - Where are we in the Pipeline? [lecture]
 
 4.2 SQL vs NoSQL
-  - Relational Data Stores (lecture)
-  - NoSQL Data Stores (lecture)
-  - NoSQL and Relational (question)
+  - Relational Data Stores [lecture]
+  - NoSQL Data Stores [lecture]
+  - NoSQL and Relational [question]
 
 4.3 Introduction to the Cloud
-  - Virtuatlization (lecture)
-  - Virtual Machines vs Containers (skype interview)
+  - Virtuatlization [lecture]
+  - Virtual Machines vs Containers [skype interview]
 
 4.4 Distributed and Parallel Computing
   - Distributed vs Parallel
-  - Distributed vs Parallel (question)
+  - Distributed vs Parallel [question]
   - In Memory Computing
-  - In Memory Computing (question)
+  - In Memory Computing [question]
   - Cluster Computing
-  - Fault Tolerance (lecture)
-  - Fault Tolerance (question)
+  - Fault Tolerance [lecture]
+  - Fault Tolerance [question]
   
 4.5 What is a Data Store?
-  - Data Store in Pipeline (lecture)
-  - Hadoop (lecture)
+  - Data Store in Pipeline [lecture]
+  - Hadoop [lecture]
   - Hadoop and HDFS
 
 
@@ -142,15 +142,15 @@ partioning II, Hadoop
 
 
 5.1 Partitioning
-  - Partitioning (lecture)
+  - Partitioning [lecture]
   - Partitioning Live
-  - Parittioning Question (question)
+  - Parittioning Question [question]
 
 5.2 Hadoop
-  - Hadoop and HDFS (lecture)
-  - Hadoop Question (question)
+  - Hadoop and HDFS [lecture]
+  - Hadoop Question [question]
   - The Hadoop Stack
-  - HDFS Question (question)
+  - HDFS Question [question]
 
 
 # Transforming Data
@@ -175,21 +175,21 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
 6.1 Introduction
-  - Transform Section of Pipeline (lecture)
+  - Transform Section of Pipeline [lecture]
 
 6.2 ETL
   - You don't always (aka usually) get what you want
 
 6.3 Hadoop ETL
-  - Revisiting Distributed Stores (lecture)
+  - Revisiting Distributed Stores [lecture]
   - Hadoop ETL
-  - ETL - traditional vs big data (question)
+  - ETL - traditional vs big data [question]
 
 6.4 Container Management
-  - Introduction to YARN (lecture)
-  - Distributed Execution Models (lecture)
+  - Introduction to YARN [lecture]
+  - Distributed Execution Models [lecture]
   - Introduction to Schedulers
-  - Schedulers Question (question)
+  - Schedulers Question [question]
   - Using a Scheduler
 
 
@@ -209,21 +209,21 @@ planning transformations based on in what state do you need the data to be in ba
 	full pass of tying it all together = query
 
 7.1 Pipeline Context
-  - Pipeline Context (lecture)
+  - Pipeline Context [lecture]
 
 7.2 Where did the data come from?
-  - Context setting question (question)
-  - Lineage (lecture)
+  - Context setting question [question]
+  - Lineage [lecture]
   - Metadata
   - Version
   - Schema
   - Tying it all together - Build a pipeline
 
 7.3 Planning Transformations
-  - Base decisions on queries (lecture)
+  - Base decisions on queries [lecture]
   - Query Walthrough
   - Transformations
-  - Transformation Question (question)
+  - Transformation Question [question]
 
 
 # Ingesting Data
@@ -243,13 +243,13 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
 
 
 8.1 Pipeline Context
-  - Where are we in the Pipeline? (lecture)
+  - Where are we in the Pipeline? [lecture]
 
 8.2 Kafka
-  - Distributed Messaging (lecture)
+  - Distributed Messaging [lecture]
   - Kafka Walkthrough
   - Where are the data coming from?
-  - Latency (lecture)
+  - Latency [lecture]
   - Batch vs. Real Time
   - Driven by Queries
   - Problems with Latency
@@ -269,7 +269,7 @@ batch (oozie, airflow, kron, sqoop etc)
 understanding data - microbatch window is too small - introduction to sessionization & state
 
 9.1 NoETL
-  - Pipeline Context (lecture)
+  - Pipeline Context [lecture]
   - Grabbing data you need as it streams by
 
 9.2 Modes of Execution
@@ -279,7 +279,7 @@ understanding data - microbatch window is too small - introduction to sessioniza
   - Handling Batch and Streaming Data in the Same System
 
 9.3 Sessionization and State
-  - Sessionization and State (lecture)
+  - Sessionization and State [lecture]
   - Issues with Microbatch
 
 
@@ -296,7 +296,7 @@ distributed in-memory storage - alluxio and friends
 distributed -vs- parallel... what's the deal?
 
 10.1 Pipeline Context
-  - Pipeline Context (lecture)
+  - Pipeline Context [lecture]
 
 10.2 In Memory
   - Streaming and Spark
@@ -326,13 +326,13 @@ query planning for hive, impala, drill, presto, sparkSQL
 use the tools - query planning
 
 11.1 Querying with Partition Keys
-  - Pipeline Context (lecture)
+  - Pipeline Context [lecture]
 
 11.2 Tools
   - Tools
  
 11.3 Partitions
-  - Querying with Partition Keys (lecture)
+  - Querying with Partition Keys [lecture]
   - How to take advantage of partitions
 
 11.4 Query Planning
@@ -376,7 +376,7 @@ understanding ingested events with lower latency
 architectural patterns for taking action
 
 13.1 Sessionization and State
-  - Sessionization and state for action (lecture)
+  - Sessionization and state for action [lecture]
   - Ingested Events
   - Low Latency Ingested Events
   - Architectural Patterns for Action
@@ -396,17 +396,114 @@ some kind of project walkthrough - all screencast
 
 ---
 
-# power clips
+# Tutorials
 
-- cli
-- notebooks
-- programming (python)
-- clouds and virtualization
-- containers
-- devops
-- git and revision control
-- serverless architectures
-- web technologies ("Cache is King!")
-- sql
-- datamarts, data warehouses, and data lakes
-- parallel -vs- distributed processing ("scientific programming")
+## The Command Line
+
+- Just enough cli to manipulate data
+- overcome command-line-anxiety
+
+
+## Jupyter Notebooks
+
+- Just enough python to work in a notebook
+
+
+## Intro to Programming (in Python)
+
+- Just enough python to manage datasets
+- How to approach learning more python
+- other languages
+
+
+## Clouds and Virtualization
+
+- What is the Cloud?
+- what is a VM?
+- How does DropBox et al work?
+
+
+## APIs and Web Services
+
+- what's an API?
+
+
+## Containers
+
+- Docker FTW
+- little bit of history
+- docker on your laptop
+- docker on your server
+- docker in the cloud
+
+
+## Schedulers
+
+- generic -vs- application-specific schedulers
+- why do I care?
+- execution context
+- managing cluster load
+
+
+## Revision Control using git
+
+- intro to revision control
+- text -vs- other formats
+- working together
+- first pass at CI/CD
+
+
+## DevOps
+(is this necessary?)
+
+- infrastructure as code
+- logging and monitoring
+- automation
+- CI/CD
+
+
+## Serverless Architectures
+
+- AWS Kool-aid stack
+- GCP Kool-aid stack
+- Tensorflow and the future of Data Engineering
+
+
+## How the Web Works ("Cache is King!")
+
+- useful to know this from a source ingestion perspective
+- useful to know how cache works in general
+- useful to see how this applies to pipeline concepts and query caches
+
+
+## SQL
+
+- Just enough sql to get by
+- various flavors and extensions to sql
+- Advanced sql
+- Where to go for more?
+
+
+## Database Normalization
+
+- relational databases
+- normalization
+- oltp -vs- olap
+
+
+## Datamarts, Data Warehouses, and Data Lakes
+
+- usage
+- necessary evil
+- olap and star-shaped schema
+
+
+## parallel -vs- distributed processing ("scientific programming")
+
+- operator algebras... some linear algebra
+- diagonal, sparse, etc
+- serial, vector, parallel compute models
+- distributed computation
+- gpus -vs- cpus
+
+
