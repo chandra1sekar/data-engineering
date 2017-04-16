@@ -296,20 +296,20 @@ distributed in-memory storage - alluxio and friends
 distributed -vs- parallel... what's the deal?
 
 10.1 Pipeline Context
-10.1.1 Pipeline Context (lecture)
+  - Pipeline Context (lecture)
 
 10.2 In Memory
-10.2.1 Streaming and Spark
-10.2.2 Structured Streaming
+  - Streaming and Spark
+  - Structured Streaming
 
 10.3 Resource Selections
-10.3.1 Dedicated Stream Processing?
+  - Dedicated Stream Processing?
 
 10.4 Distributed In-memory Storage
-10.4.1 Distributed In-memory Storage
+  - Distributed In-memory Storage
 
 10.5 Distributed vs. Parallel
-10.5.1 Distributed vs. Parallel
+  - Distributed vs. Parallel
 
 
 # Querying Data
@@ -326,18 +326,18 @@ query planning for hive, impala, drill, presto, sparkSQL
 use the tools - query planning
 
 11.1 Querying with Partition Keys
-11.1.1 Pipeline Context (lecture)
+  - Pipeline Context (lecture)
 
 11.2 Tools
-11.2.1 Tools
+  - Tools
  
 11.3 Partitions
-11.3.1 Querying with Partition Keys (lecture)
-11.3.2 How to take advantage of partitions
+  - Querying with Partition Keys (lecture)
+  - How to take advantage of partitions
 
 11.4 Query Planning
-11.4.1 Planning Queries for Hive, Impala, and other tools
-11.4.2 Using the Tools
+  - Planning Queries for Hive, Impala, and other tools
+  - Using the Tools
 
 
 
@@ -357,13 +357,11 @@ Replay in an immutable pipeline
 Caching queries
 
 12.1 Queries
-
-12.1.1 Caching -vs- Stream Queries
-12.1.2 Caching and the Web12.1 Queries
-12.1.3 A walk down memory lane - data mining
-12.1.4 Replay
-12.1.5 Caching queries
-
+  - Caching -vs- Stream Queries
+  - Caching and the Web12.1 Queries
+  - A walk down memory lane - data mining
+  - Replay
+  - Caching queries
 
 
 # Querying Data III
@@ -377,26 +375,20 @@ understanding ingested events with lower latency
 
 architectural patterns for taking action
 
-## Sessionization and State
-13.1
-
-### Sessionization and state for action (lecture)
-13.1.1
-
-### Ingested Events
-13.1.2
-
-### Low Latency Ingested Events
-13.1.3
-
-### Architectural Patterns for Action
-13.1.4
-
+13.1 Sessionization and State
+  - Sessionization and state for action (lecture)
+  - Ingested Events
+  - Low Latency Ingested Events
+  - Architectural Patterns for Action
 
 
 # Pipeline Patterns Revisited
+14
 
 some kind of project walkthrough - all screencast
+
+14.1 Project
+  - Project Walkthrough
 
 
 
