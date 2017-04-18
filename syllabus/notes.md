@@ -68,3 +68,31 @@
 - caching patterns in DS pipelines
 - other places to steal ideas from?
 
+
+
+---
+
+
+missing bits atm:
+
+- "Thinking about Data Systems"
+
+- Modes of Failure to drive motivations for reliability, scalability, maintainability
+
+- tensorflow and cloudML
+- dataflow/Beam
+
+- What does it mean to be in "production"
+
+- simple MapReduce examples
+
+- the infrastructure requirements for deep learning
+
+- general structured -vs- unstructured as a way to think of data
+  I generally don't like this but it's common
+
+- Oh, overall _Scope_ of the course... i.e., "what this course is _not_ going to do"
+  walk you through installations, etc etc
+
+
+
