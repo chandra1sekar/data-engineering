@@ -70,6 +70,7 @@ datametadata, cli basics
 was "A Walk on the Query Side"
 
 first pass, athena, big query, caching, sql
+google datalab
 
 3.1 What is the queryside?
   - Revisiting Pipelines [lecture]
@@ -86,6 +87,19 @@ first pass, athena, big query, caching, sql
   - Caching [lecture]
   - Query Planning [lecture]
   - Resource Scheduling
+
+
+Welcome to the modern datalab.
+
+What do you need?
+
+You need a safe platform to perform ad-hoc experimentation on data
+The standard approach is that your experimentation will be productionized
+over time and locked into a solid ETL pipeline.  We're moving away
+from this approach and towards one that empowers the decision-makers
+to do the experimentation directly.
+
+How do do solve this?
 
 
 # Storing Data
@@ -483,6 +497,8 @@ some kind of project walkthrough - all screencast
 - Advanced sql
 - Where to go for more?
 
+check out Kleppmann's book for some decent examples for this
+
 
 ## Database Normalization
 
@@ -500,7 +516,7 @@ some kind of project walkthrough - all screencast
 
 ## parallel -vs- distributed processing ("scientific programming")
 
-- operator algebras... some linear algebra
+- operator algebras... some linear algebra (no)
 - diagonal, sparse, etc
 - serial, vector, parallel compute models
 - distributed computation
