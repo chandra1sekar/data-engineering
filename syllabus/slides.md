@@ -132,39 +132,36 @@ what is a data store?
 
 4.3 Introduction to the Cloud
   - Virtuatlization [lecture]
+  - Containers - what are they [lecture]
   - Virtual Machines vs Containers [skype interview]
-
-4.4 Distributed and Parallel Computing
-  - Distributed vs Parallel
-  - Distributed vs Parallel [question]
-  - In Memory Computing
-  - In Memory Computing [question]
   - Cluster Computing
-  - Fault Tolerance [lecture]
-  - Fault Tolerance [question]
   
-4.5 What is a Data Store?
-  - Data Store in Pipeline [lecture]
-  - Hadoop [lecture]
-  - Hadoop and HDFS
-
 
 # Storing Data II
 5
 was "more storing data"
 partioning II, Hadoop
 
+5.1 What is a Data Store?
+  - Data Store in Pipeline [lecture]
+  - Hadoop and HDFS [lecture]
+  - Hadoop Question [question]
 
-5.1 Partitioning
+5.2 Distributed Computation
+  - Distributed  
+  - Distributed [question]
+  - Fault Tolerance [lecture]
+  - Fault Tolerance [question]
+
+5.3 Partitioning
   - Partitioning [lecture]
   - Partitioning Live
   - Parittioning Question [question]
 
-5.2 Hadoop
-  - Hadoop and HDFS [lecture]
-  - Hadoop Question [question]
-  - The Hadoop Stack
-  - HDFS Question [question]
+5.3 Hadoop
+  - Hadoop Walkthrough
+  - The Hadoop Ecosystem [screencast - go through e.g. Kafka project webpage etc, then put logos on pipeline]
+  - Hadoop Ecosystem Question [question]
 
 
 # Transforming Data
@@ -226,6 +223,13 @@ planning transformations based on in what state do you need the data to be in ba
   - Pipeline Context [lecture]
 
 7.2 Where did the data come from?
+  - APIs
+  - Web scraping
+  - Stuff gets emailed to you in .xlsx files
+  - BI interfaces
+  - Datastore (static vs dyanmic)
+
+7.3 What do you want to know about the data you get?
   - Context setting question [question]
   - Lineage [lecture]
   - Metadata
@@ -233,15 +237,39 @@ planning transformations based on in what state do you need the data to be in ba
   - Schema
   - Tying it all together - Build a pipeline
 
-7.3 Planning Transformations
+#Querying I
+8
+
+querying with partition keys
+
+use the tools - `explain` and query profiling
+
+take advantage of partitions when they're available
+
+query planning for hive, impala, drill, presto, sparkSQL
+
+use the tools - query planning
+
+
+8.1 Querying with Partition Keys
+  - Pipeline Context [lecture]
   - Base decisions on queries [lecture]
   - Query Walthrough
-  - Transformations
-  - Transformation Question [question]
+
+8.2 Tools
+  - Tools
+ 
+8.3 Partitions
+  - Querying with Partition Keys [lecture]
+  - How to take advantage of partitions
+
+8.4 Query Planning
+  - Planning Queries for Hive, Impala, and other tools
+  - Using the Tools
 
 
-# Ingesting Data
-8
+# Streaming: Ingesting Data
+9
 kafka aka messaging, cloud & containers
 
 what kind of data are we talking about? - parallel of someone emails you data
@@ -256,10 +284,10 @@ glue
 unix pipeline paradigm (kafka is like pipes in unix commands)
 
 
-8.1 Pipeline Context
+9.1 Pipeline Context
   - Where are we in the Pipeline? [lecture]
 
-8.2 Kafka
+9.2 Kafka
   - Distributed Messaging [lecture]
   - Kafka Walkthrough
   - Where are the data coming from?
@@ -270,7 +298,7 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
   - Glue
 
 # Streaming: Transforming Data
-9
+10
 was "transforming / streaming data"
 (Like no sql, no ETL - aka etl vs noetl) [not about transform but grab the piece of data you need]
 
@@ -282,23 +310,27 @@ batch (oozie, airflow, kron, sqoop etc)
 
 understanding data - microbatch window is too small - introduction to sessionization & state
 
-9.1 NoETL
+10.1 NoETL
   - Pipeline Context [lecture]
   - Grabbing data you need as it streams by
 
-9.2 Modes of Execution
+10.2 Modes of Execution
   - Batch -vs- Streaming
   - Single Event Processing
   - Microbatch
   - Handling Batch and Streaming Data in the Same System
 
-9.3 Sessionization and State
+10.3
+  - In Memory Computing
+  - In Memory Computing [question]
+
+10.3 Sessionization and State
   - Sessionization and State [lecture]
   - Issues with Microbatch
 
 
 # Streaming: Storing Data
-10
+11
 was "in memory storing data"
 streaming & spark
 
@@ -309,53 +341,25 @@ distributed in-memory storage - alluxio and friends
 
 distributed -vs- parallel... what's the deal?
 
-10.1 Pipeline Context
+11.1 Pipeline Context
   - Pipeline Context [lecture]
 
 10.2 In Memory
   - Streaming and Spark
   - Structured Streaming
 
-10.3 Resource Selections
+11.3 Resource Selections
   - Dedicated Stream Processing?
 
-10.4 Distributed In-memory Storage
+11.4 Distributed In-memory Storage
   - Distributed In-memory Storage
 
-10.5 Distributed vs. Parallel
+11.5 Distributed vs. Parallel
   - Distributed vs. Parallel
 
 
-# Querying Data
-11
 
-querying with partition keys
-
-use the tools - `explain` and query profiling
-
-take advantage of partitions when they're available
-
-query planning for hive, impala, drill, presto, sparkSQL
-
-use the tools - query planning
-
-11.1 Querying with Partition Keys
-  - Pipeline Context [lecture]
-
-11.2 Tools
-  - Tools
- 
-11.3 Partitions
-  - Querying with Partition Keys [lecture]
-  - How to take advantage of partitions
-
-11.4 Query Planning
-  - Planning Queries for Hive, Impala, and other tools
-  - Using the Tools
-
-
-
-# Querying Data II
+# Querying Data 
 12
 
 streaming queries, caching vs stream queries
@@ -378,7 +382,7 @@ Caching queries
   - Caching queries
 
 
-# Querying Data III
+# Querying Data II
 13
 
 understanding data - microbatch window is too small -  sessionization & state for action
@@ -412,37 +416,28 @@ some kind of project walkthrough - all screencast
 
 # Tutorials
 
-## The Command Line
+## The Command Line (in Week 1 or 2 of Synch Section)
 
 - Just enough cli to manipulate data
 - overcome command-line-anxiety
 
 
-## Jupyter Notebooks
+## Jupyter Notebooks (in Week 1 or 2 of Synch Section)
 
 - Just enough python to work in a notebook
-
-
-## Intro to Programming (in Python)
-
 - Just enough python to manage datasets
 - How to approach learning more python
 - other languages
 
 
-## Clouds and Virtualization
+
+## Clouds and Virtualization (in Week 4 of Synch Section)
 
 - What is the Cloud?
 - what is a VM?
 - How does DropBox et al work?
 
-
-## APIs and Web Services
-
-- what's an API?
-
-
-## Containers
+## Containers (in Week 4 of Synch Section)
 
 - Docker FTW
 - little bit of history
@@ -451,7 +446,15 @@ some kind of project walkthrough - all screencast
 - docker in the cloud
 
 
-## Schedulers
+## APIs and Web Services
+
+- what's an API?
+
+
+
+
+
+## Schedulers (in Week 7 with YARN)
 
 - generic -vs- application-specific schedulers
 - why do I care?
