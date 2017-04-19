@@ -19,6 +19,7 @@ capture:
 	bin/start-capture.sh
 
 clean:
+	$(MAKE) -C syllabus $@;
 	@for lecture in lectures/*; do \
 	  $(MAKE) -C $$lecture $@; \
 	done
