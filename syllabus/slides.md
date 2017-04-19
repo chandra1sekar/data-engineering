@@ -344,7 +344,7 @@ distributed -vs- parallel... what's the deal?
 11.1 Pipeline Context
   - Pipeline Context [lecture]
 
-10.2 In Memory
+11.2 In Memory
   - Streaming and Spark
   - Structured Streaming
 
@@ -359,8 +359,10 @@ distributed -vs- parallel... what's the deal?
 
 
 
-# Querying Data 
+# Streaming: Querying Data 
 12
+
+structured streaming
 
 streaming queries, caching vs stream queries
 
@@ -376,13 +378,13 @@ Caching queries
 
 12.1 Queries
   - Caching -vs- Stream Queries
-  - Caching and the Web12.1 Queries
+  - Caching and the Web
   - A walk down memory lane - data mining
   - Replay
   - Caching queries
 
 
-# Querying Data II
+# Understanding Data
 13
 
 understanding data - microbatch window is too small -  sessionization & state for action
@@ -405,10 +407,19 @@ architectural patterns for taking action
 
 some kind of project walkthrough - all screencast
 
-14.1 Project
-  - Project Walkthrough
+14.1 DevOps
+- infrastructure as code [lecture]
+- testing [lecture]
+- CI/CD 
+- logging and monitoring
+- automation
+- walk through a development process
 
-
+14.2 Serverless Architectures
+[lecture - what Lak from google said]
+- AWS Kool-aid stack
+- GCP Kool-aid stack
+- Tensorflow and the future of Data Engineering
 
 
 
@@ -446,15 +457,11 @@ some kind of project walkthrough - all screencast
 - docker in the cloud
 
 
-## APIs and Web Services
+## APIs and Web Services (in Week 7 of Synch Section)
 
 - what's an API?
 
-
-
-
-
-## Schedulers (in Week 7 with YARN)
+## Schedulers (in Week 6 of Synch Section)
 
 - generic -vs- application-specific schedulers
 - why do I care?
@@ -462,7 +469,7 @@ some kind of project walkthrough - all screencast
 - managing cluster load
 
 
-## Revision Control using git
+## Revision Control using git (Prereq - TM get tutorial from Markham)
 
 - intro to revision control
 - text -vs- other formats
@@ -470,30 +477,15 @@ some kind of project walkthrough - all screencast
 - first pass at CI/CD
 
 
-## DevOps
-(is this necessary?)
 
-- infrastructure as code
-- logging and monitoring
-- automation
-- CI/CD
-
-
-## Serverless Architectures
-
-- AWS Kool-aid stack
-- GCP Kool-aid stack
-- Tensorflow and the future of Data Engineering
-
-
-## How the Web Works ("Cache is King!")
+## How the Web Works ("Cache is King!") (in Week 12 of Synch Section)
 
 - useful to know this from a source ingestion perspective
 - useful to know how cache works in general
 - useful to see how this applies to pipeline concepts and query caches
 
 
-## SQL
+## SQL (in Week 3 of Synch Section)
 
 - Just enough sql to get by
 - various flavors and extensions to sql
@@ -503,14 +495,14 @@ some kind of project walkthrough - all screencast
 check out Kleppmann's book for some decent examples for this
 
 
-## Database Normalization
+## Database Normalization (in Week 3 with rdb lecture)
 
 - relational databases
 - normalization
 - oltp -vs- olap
 
 
-## Datamarts, Data Warehouses, and Data Lakes
+## Datamarts, Data Warehouses, and Data Lakes (in Week 12 lecture on this stuff)
 
 - usage
 - necessary evil
