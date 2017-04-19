@@ -1,7 +1,5 @@
+## Welcome to the Queryside
 
-# Welcome to the Queryside
-
-3
 was "A Walk on the Query Side"
 
 first pass, athena, big query, caching, sql
@@ -35,3 +33,5 @@ from this approach and towards one that empowers the decision-makers
 to do the experimentation directly.
 
 How do do solve this?
+
+
