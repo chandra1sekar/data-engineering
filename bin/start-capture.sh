@@ -39,13 +39,16 @@ capture_webcam() {
   local output_dir=$1
   ffmpeg \
     -hide_banner -nostats -loglevel warning \
-    -f pulse  -itsoffset -0.2 -i default \
-    -f v4l2 -framerate $framerate -input_format h264 -video_size hd1080 -i /dev/video0 \
-    -c copy \
+    -f pulse -i default \
+    -f v4l2 -framerate $framerate -input_format h264 -video_size hd1080 -ts mono2abs -i /dev/video0 \
+    -c copy -copyts \
     $output_dir/webcam.mkv > $output_dir/webcam.log 2>&1
   echo "webcam done"
 }
 
+    #-itsoffset -1.5 -f pulse -i default \
+    #-c copy -copyts \
+    #-f v4l2 -framerate $framerate -input_format h264 -video_size hd1080 -ts mono2abs -i /dev/video0 \
 
 ##################
 
