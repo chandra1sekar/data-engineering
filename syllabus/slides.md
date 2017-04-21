@@ -10,9 +10,9 @@ pipeline patterns, basic queries
 1.1 Welcome to MIDS s205
   - Context Problem [text page]
   - What is Data Engineering to you? [question]
-  - What is Data Engineering? [lecture]
+  - What is Data Engineering? [lecture] [TM]
   - Why do I need Data Engineering for Data Science? [lecture]
-  - What will you know and be able to do after this course? [lecture]
+  - What will you know and be able to do after this course? [lecture] [TM]
 
 1.2 Course Topics
   - Business or Technology? [lecture]
@@ -31,9 +31,9 @@ pipeline patterns, basic queries
 
 1.4 Events
   - Take a moment to think about... [question]
-  - Device Events [lecture]
-  - User Events [lecture]
-  - Event Streams [lecture]
+  - Device Events [lecture] [TM]
+  - User Events [lecture] [TM]
+  - Event Streams [lecture] [TM]
 
 1.5 Querying
   - How to set up Google Big Query [text page]
@@ -126,7 +126,7 @@ what is a data store?
   - Where are we in the Pipeline? [lecture]
 
 4.2 SQL vs NoSQL
-  - Relational Data Stores [lecture]
+  - Relational Data Stores [lecture] [TM]
   - NoSQL Data Stores [lecture]
   - NoSQL and Relational [question]
 
@@ -144,13 +144,13 @@ partioning II, Hadoop
 
 5.1 What is a Data Store?
   - Data Store in Pipeline [lecture]
-  - Hadoop and HDFS [lecture]
+  - Hadoop and HDFS [lecture] [TM]
   - Hadoop Question [question]
 
 5.2 Distributed Computation
   - Distributed  
   - Distributed [question]
-  - Fault Tolerance [lecture]
+  - Fault Tolerance [lecture] [TM]
   - Fault Tolerance [question]
 
 5.3 Partitioning
