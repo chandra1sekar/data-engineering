@@ -6,12 +6,13 @@ FR=30
 
 probe_duration() {
   local file_name=$1
-  ffprobe -i $file_name -show_entries format=duration -v quiet -of csv="p=0"
+  #~/bin/ffprobe -i $file_name -show_entries format=duration -v quiet -of csv="p=0"
+  ~/bin/ffprobe -i webcam.mkv 2>&1 | grep DURATION | awk -F: '{ print $4;}'  | tail -1
 }
 
 generate_test_pattern() {
   local duration=$1
-  ffmpeg \
+  ~/bin/ffmpeg \
     -hide_banner -nostats -loglevel warning \
     -f lavfi -i testsrc=duration=${duration}:size=hd1080:rate=${FR}:decimals=2 \
     testpattern.mkv > testpattern.log 2>&1
@@ -30,7 +31,7 @@ create_composite() {
     [tmp3][lowerright] overlay=shortest=1:x=960:y=540
 EOS
 
-  ffmpeg \
+  ~/bin/ffmpeg \
     -hide_banner -nostats -loglevel warning \
     -i webcam.mkv \
     -i slides.mkv \
