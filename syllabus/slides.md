@@ -3,7 +3,7 @@
 
 <div class = "notes">Overall view of pipeline, basic query, all the way through in basic case (STIQ), all the way back through for streaming (ITSQ), wrap up whole pipeline</div>
 
-# Introduction
+# 01 Introduction
 1
 pipeline patterns, basic queries
 
@@ -42,7 +42,7 @@ pipeline patterns, basic queries
   - Walkthrough [context problem] query on NYC Bike Data
 
 
-# Data Dive
+# 02 Data Dive
 2
 was "Working with Data"
 
@@ -65,7 +65,7 @@ datametadata, cli basics
   - Wrap Up [lecture]
 
 
-# Welcome to the Queryside
+# 03 Welcome to the Queryside
 3
 was "A Walk on the Query Side"
 
@@ -102,7 +102,7 @@ to do the experimentation directly.
 How do do solve this?
 
 
-# Storing Data
+# 04 Storing Data
 -first pass, sql & nosql, partioning I, hadoop, cloud
 quick discussion, point at pipeline, we're doing storage
 
@@ -137,7 +137,7 @@ what is a data store?
   - Cluster Computing
   
 
-# Storing Data II
+# 05 Storing Data II
 5
 was "more storing data"
 partioning II, Hadoop
@@ -164,7 +164,7 @@ partioning II, Hadoop
   - Hadoop Ecosystem Question [question]
 
 
-# Transforming Data
+# 06 Transforming Data
 6
 first pass, etl & data munging, cloud, containers ()
 
@@ -205,7 +205,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
 
-# Sourcing Data
+# 07 Sourcing Data
 7
 
 -pipeline for context (sourcing section)
@@ -237,7 +237,7 @@ planning transformations based on in what state do you need the data to be in ba
   - Schema
   - Tying it all together - Build a pipeline
 
-#Querying I
+# 08 Querying I
 8
 
 querying with partition keys
@@ -268,7 +268,7 @@ use the tools - query planning
   - Using the Tools
 
 
-# Streaming: Ingesting Data
+# 09 Streaming: Ingesting Data
 9
 kafka aka messaging, cloud & containers
 
@@ -297,7 +297,7 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
   - Problems with Latency
   - Glue
 
-# Streaming: Transforming Data
+# 10 Streaming: Transforming Data
 10
 was "transforming / streaming data"
 (Like no sql, no ETL - aka etl vs noetl) [not about transform but grab the piece of data you need]
@@ -329,7 +329,7 @@ understanding data - microbatch window is too small - introduction to sessioniza
   - Issues with Microbatch
 
 
-# Streaming: Storing Data
+# 11 Streaming: Storing Data
 11
 was "in memory storing data"
 streaming & spark
@@ -359,7 +359,7 @@ distributed -vs- parallel... what's the deal?
 
 
 
-# Streaming: Querying Data 
+# 12 Streaming: Querying Data 
 12
 
 structured streaming
@@ -384,7 +384,7 @@ Caching queries
   - Caching queries
 
 
-# Understanding Data
+# 13 Understanding Data
 13
 
 understanding data - microbatch window is too small -  sessionization & state for action
@@ -402,7 +402,7 @@ architectural patterns for taking action
   - Architectural Patterns for Action
 
 
-# Pipeline Patterns Revisited
+# 14 Pipeline Patterns Revisited
 14
 
 some kind of project walkthrough - all screencast
