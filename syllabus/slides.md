@@ -10,35 +10,35 @@ pipeline patterns, basic queries
 1.1 Welcome to MIDS s205
   - Context Problem [text page]
   - What is Data Engineering to you? [question]
-  - What is Data Engineering? [lecture] [TM]
-  - Why do I need Data Engineering for Data Science? [lecture]
-  - What will you know and be able to do after this course? [lecture] [TM]
+1.1.3  - What is Data Engineering? [lecture] [TM]
+1.1.4  - Why do I need Data Engineering for Data Science? [lecture]
+1.1.5  - What will you know and be able to do after this course? [lecture] [TM]
 
 1.2 Course Topics
-  - Business or Technology? [lecture]
-  - Sourcing and Ingesting Data [lecture]
-  - Storing Data [lecture]
-  - Transforming Data [lecture]
-  - Querying Data [lecture]
-  - Understanding and Acting on Data [lecture]
-  - Visualizing and Communicating about Data [lecture]
+1.2.1  - Business or Technology? [lecture]
+1.2.2  - Sourcing and Ingesting Data [lecture]
+1.2.3  - Storing Data [lecture]
+1.2.4  - Transforming Data [lecture]
+1.2.5  - Querying Data [lecture]
+1.2.6  - Understanding and Acting on Data [lecture]
+1.2.7  - Visualizing and Communicating about Data [lecture]
   - Explain briefly how Data Engineering is... [question]
   - Answer to prededing question [text page]
 
 1.3 Data Pipelines
-  - Unpacking a data pipeline [lecture]
-  - Patterns [lecture]
+1.3.1  - Unpacking a data pipeline [lecture]
+1.3.1  - Patterns [lecture]
 
 1.4 Events
   - Take a moment to think about... [question]
-  - Device Events [lecture] [TM]
-  - User Events [lecture] [TM]
-  - Event Streams [lecture] [TM]
+1.4.2  - Device Events [lecture] [TM]
+1.4.3  - User Events [lecture] [TM]
+1.4.4  - Event Streams [lecture] [TM]
 
 1.5 Querying
   - How to set up Google Big Query [text page]
-  - Breaking down querying [lecture]
-  - Requirements for taking action [lecture]
+1.5.2  - Breaking down querying [lecture]
+1.5.3  - Requirements for taking action [lecture]
   - Walkthrough [context problem] query on NYC Bike Data
 
 
@@ -50,7 +50,7 @@ datametadata, cli basics
 
 2.1 Working with Data
   - Brainstorm 3-5 ways you've received data... [question]
-  - Introduction [lecture]
+2.1.2  - Introduction [lecture]
   - Schema/Types
   - Data Count
   - Data Ranges
@@ -58,11 +58,11 @@ datametadata, cli basics
   - Data Access
 
 2.2 Tools for Working with Data
-  - Introduction to Tools [lecture]
+2.2.1  - Introduction to Tools [lecture]
   - The Command Line [tutorial]
   - Jupyter Notebooks [tutorial]
   - Shells
-  - Wrap Up [lecture]
+2.2.5  - Wrap Up [lecture]
 
 
 # 03 Welcome to the Queryside
@@ -73,19 +73,19 @@ first pass, athena, big query, caching, sql
 google datalab
 
 3.1 What is the queryside?
-  - Revisiting Pipelines [lecture]
-  - Immutability [lecture]
+3.1.1  - Revisiting Pipelines [lecture]
+3.1.2  - Immutability [lecture]
   - Event logs
 
 3.2 Query Tools
-  - Queryside World [lecture]
+3.2.1  - Queryside World [lecture]
   - SQL
   - Athena
   - BigQuery
 
 3.3 Sneak Peek
-  - Caching [lecture]
-  - Query Planning [lecture]
+3.3.1  - Caching [lecture]
+3.3.2  - Query Planning [lecture]
   - Resource Scheduling
 
 
@@ -123,16 +123,16 @@ what is a data store?
 
 
 4.1 Introduction
-  - Where are we in the Pipeline? [lecture]
+4.1.1  - Where are we in the Pipeline? [lecture]
 
 4.2 SQL vs NoSQL
-  - Relational Data Stores [lecture] [TM]
-  - NoSQL Data Stores [lecture]
+4.2.1  - Relational Data Stores [lecture] [TM]
+4.2.2  - NoSQL Data Stores [lecture]
   - NoSQL and Relational [question]
 
 4.3 Introduction to the Cloud
-  - Virtuatlization [lecture]
-  - Containers - what are they [lecture]
+4.3.1  - Virtuatlization [lecture]
+4.3.2  - Containers - what are they [lecture]
   - Virtual Machines vs Containers [skype interview]
   - Cluster Computing
   
@@ -143,18 +143,18 @@ was "more storing data"
 partioning II, Hadoop
 
 5.1 What is a Data Store?
-  - Data Store in Pipeline [lecture]
-  - Hadoop and HDFS [lecture] [TM]
+5.1.1  - Data Store in Pipeline [lecture]
+5.1.2  - Hadoop and HDFS [lecture] [TM]
   - Hadoop Question [question]
 
 5.2 Distributed Computation
   - Distributed  
   - Distributed [question]
-  - Fault Tolerance [lecture] [TM]
+5.2.3  - Fault Tolerance [lecture] [TM]
   - Fault Tolerance [question]
 
 5.3 Partitioning
-  - Partitioning [lecture]
+5.3.1  - Partitioning [lecture]
   - Partitioning Live
   - Parittioning Question [question]
 
@@ -186,19 +186,19 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
 6.1 Introduction
-  - Transform Section of Pipeline [lecture]
+6.1.1  - Transform Section of Pipeline [lecture]
 
 6.2 ETL
   - You don't always (aka usually) get what you want
 
 6.3 Hadoop ETL
-  - Revisiting Distributed Stores [lecture]
+6.3.1  - Revisiting Distributed Stores [lecture]
   - Hadoop ETL
   - ETL - traditional vs big data [question]
 
 6.4 Container Management
-  - Introduction to YARN [lecture]
-  - Distributed Execution Models [lecture]
+6.4.1  - Introduction to YARN [lecture]
+6.4.2  - Distributed Execution Models [lecture]
   - Introduction to Schedulers
   - Schedulers Question [question]
   - Using a Scheduler
@@ -220,7 +220,7 @@ planning transformations based on in what state do you need the data to be in ba
 	full pass of tying it all together = query
 
 7.1 Pipeline Context
-  - Pipeline Context [lecture]
+7.1.1  - Pipeline Context [lecture]
 
 7.2 Where did the data come from?
   - APIs
@@ -231,7 +231,7 @@ planning transformations based on in what state do you need the data to be in ba
 
 7.3 What do you want to know about the data you get?
   - Context setting question [question]
-  - Lineage [lecture]
+7.3.2  - Lineage [lecture]
   - Metadata
   - Version
   - Schema
@@ -252,15 +252,15 @@ use the tools - query planning
 
 
 8.1 Querying with Partition Keys
-  - Pipeline Context [lecture]
-  - Base decisions on queries [lecture]
+8.1.1  - Pipeline Context [lecture]
+8.1.2  - Base decisions on queries [lecture]
   - Query Walthrough
 
 8.2 Tools
   - Tools
  
 8.3 Partitions
-  - Querying with Partition Keys [lecture]
+8.3.1  - Querying with Partition Keys [lecture]
   - How to take advantage of partitions
 
 8.4 Query Planning
@@ -285,13 +285,13 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
 
 
 9.1 Pipeline Context
-  - Where are we in the Pipeline? [lecture]
+9.1.1  - Where are we in the Pipeline? [lecture]
 
 9.2 Kafka
-  - Distributed Messaging [lecture]
+9.2.1  - Distributed Messaging [lecture]
   - Kafka Walkthrough
   - Where are the data coming from?
-  - Latency [lecture]
+9.2.4  - Latency [lecture]
   - Batch vs. Real Time
   - Driven by Queries
   - Problems with Latency
@@ -311,7 +311,7 @@ batch (oozie, airflow, kron, sqoop etc)
 understanding data - microbatch window is too small - introduction to sessionization & state
 
 10.1 NoETL
-  - Pipeline Context [lecture]
+10.1.1  - Pipeline Context [lecture]
   - Grabbing data you need as it streams by
 
 10.2 Modes of Execution
@@ -325,7 +325,7 @@ understanding data - microbatch window is too small - introduction to sessioniza
   - In Memory Computing [question]
 
 10.3 Sessionization and State
-  - Sessionization and State [lecture]
+10.3.1  - Sessionization and State [lecture]
   - Issues with Microbatch
 
 
@@ -342,7 +342,7 @@ distributed in-memory storage - alluxio and friends
 distributed -vs- parallel... what's the deal?
 
 11.1 Pipeline Context
-  - Pipeline Context [lecture]
+11.1.1  - Pipeline Context [lecture]
 
 11.2 In Memory
   - Streaming and Spark
@@ -396,7 +396,7 @@ understanding ingested events with lower latency
 architectural patterns for taking action
 
 13.1 Sessionization and State
-  - Sessionization and state for action [lecture]
+13.1.1  - Sessionization and state for action [lecture]
   - Ingested Events
   - Low Latency Ingested Events
   - Architectural Patterns for Action
@@ -408,15 +408,15 @@ architectural patterns for taking action
 some kind of project walkthrough - all screencast
 
 14.1 DevOps
-- infrastructure as code [lecture]
-- testing [lecture]
+14.1.1 - infrastructure as code [lecture]
+14.1.2 - testing [lecture]
 - CI/CD 
 - logging and monitoring
 - automation
 - walk through a development process
 
 14.2 Serverless Architectures
-[lecture - what Lak from google said]
+14.2.1 - [lecture - what Lak from google said]
 - AWS Kool-aid stack
 - GCP Kool-aid stack
 - Tensorflow and the future of Data Engineering
