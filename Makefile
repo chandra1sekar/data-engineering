@@ -11,6 +11,7 @@ slides:
 
 publish: slides
 	rsync -azvP lectures $(DEPLOY_TARGET)
+	rsync -azvP media $(DEPLOY_TARGET)
 	rsync -azvP syllabus $(DEPLOY_TARGET)
 
 deploy: publish
