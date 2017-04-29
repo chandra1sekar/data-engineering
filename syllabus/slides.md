@@ -237,7 +237,7 @@ planning transformations based on in what state do you need the data to be in ba
   - Schema
   - Tying it all together - Build a pipeline
 
-# 08 Querying I
+# 08 Querying Data
 8
 
 querying with partition keys
