@@ -144,7 +144,7 @@ partioning II, Hadoop
 
 5.1 What is a Data Store?
 5.1.1  - Data Store in Pipeline [lecture]
-5.1.2  - Hadoop and HDFS [lecture] [TM]
+5.1.2  - Hadoop [lecture] [TM]
   - Hadoop Question [question]
 
 5.2 Distributed Computation
