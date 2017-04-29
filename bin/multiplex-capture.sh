@@ -7,7 +7,10 @@ FR=30
 probe_duration() {
   local file_name=$1
   #~/bin/ffprobe -i $file_name -show_entries format=duration -v quiet -of csv="p=0"
-  ~/bin/ffprobe -i webcam.mkv 2>&1 | grep DURATION | awk -F: '{ print $4;}'  | tail -1
+  #~/bin/ffprobe -i slides.mkv 2>&1 | grep DURATION | awk -F: '{ print $4;}'  | tail -1
+  minutes=`~/bin/ffprobe -i slides.mkv 2>&1 | grep DURATION | head -1 | awk '{ print $3 }' | awk -F: '{ print $2 }'`
+  seconds=`~/bin/ffprobe -i slides.mkv 2>&1 | grep DURATION | head -1 | awk '{ print $3 }' | awk -F: '{ print $3 }'`
+  echo "$minutes * 60 + $seconds" | bc
 }
 
 generate_test_pattern() {
