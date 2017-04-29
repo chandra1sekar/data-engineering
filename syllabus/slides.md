@@ -11,8 +11,8 @@ pipeline patterns, basic queries
   - Context Problem [text page]
   - What is Data Engineering to you? [question]
 1.1.3  - What is Data Engineering? [lecture] [TM]
-1.1.4  - Why do I need Data Engineering for Data Science? [lecture]
-1.1.5  - What will you know and be able to do after this course? [lecture] [TM]
+1.1.4  - Why do I need Data Engineering for Data Science? [question]
+1.1.5  - What will I be able to do after this course? [lecture] [TM]
 
 1.2 Course Topics
 1.2.1  - Business or Technology? [lecture]
