@@ -1,10 +1,7 @@
-%MIDS w205 - Storing and Retrieving Data
-%Fall 2017
+# Lectures
 
-<div class = "notes">Overall view of pipeline, basic query, all the way through in basic case (STIQ), all the way back through for streaming (ITSQ), wrap up whole pipeline</div>
-
-# 01 Introduction
-1
+## 01 Introduction
+ 
 pipeline patterns, basic queries
 
 1.1 Welcome to MIDS s205
@@ -42,8 +39,8 @@ pipeline patterns, basic queries
   - Walkthrough [context problem] query on NYC Bike Data
 
 
-# 02 Data Dive
-2
+## 02 Data Dive
+ 
 was "Working with Data"
 
 datametadata, cli basics
@@ -65,8 +62,8 @@ datametadata, cli basics
 2.2.5  - Wrap Up [lecture]
 
 
-# 03 Welcome to the Queryside
-3
+## 03 Welcome to the Queryside
+ 
 was "A Walk on the Query Side"
 
 first pass, athena, big query, caching, sql
@@ -102,7 +99,8 @@ to do the experimentation directly.
 How do do solve this?
 
 
-# 04 Storing Data
+## 04 Storing Data
+
 -first pass, sql & nosql, partioning I, hadoop, cloud
 quick discussion, point at pipeline, we're doing storage
 
@@ -137,8 +135,8 @@ what is a data store?
   - Cluster Computing
   
 
-# 05 Storing Data II
-5
+## 05 Storing Data II
+ 
 was "more storing data"
 partioning II, Hadoop
 
@@ -164,8 +162,8 @@ partioning II, Hadoop
   - Hadoop Ecosystem Question [question]
 
 
-# 06 Transforming Data
-6
+## 06 Transforming Data
+ 
 first pass, etl & data munging, cloud, containers ()
 
 -pipeline for context - transform section
@@ -205,8 +203,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
 
-# 07 Sourcing Data
-7
+## 07 Sourcing Data
 
 -pipeline for context (sourcing section)
 
@@ -237,8 +234,8 @@ planning transformations based on in what state do you need the data to be in ba
   - Schema
   - Tying it all together - Build a pipeline
 
-# 08 Querying Data
-8
+## 08 Querying Data
+ 
 
 querying with partition keys
 
@@ -268,8 +265,8 @@ use the tools - query planning
   - Using the Tools
 
 
-# 09 Streaming: Ingesting Data
-9
+## 09 Streaming: Ingesting Data
+ 
 kafka aka messaging, cloud & containers
 
 what kind of data are we talking about? - parallel of someone emails you data
@@ -297,8 +294,8 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
   - Problems with Latency
   - Glue
 
-# 10 Streaming: Transforming Data
-10
+## 10 Streaming: Transforming Data
+
 was "transforming / streaming data"
 (Like no sql, no ETL - aka etl vs noetl) [not about transform but grab the piece of data you need]
 
@@ -329,8 +326,8 @@ understanding data - microbatch window is too small - introduction to sessioniza
   - Issues with Microbatch
 
 
-# 11 Streaming: Storing Data
-11
+## 11 Streaming: Storing Data
+
 was "in memory storing data"
 streaming & spark
 
@@ -359,8 +356,7 @@ distributed -vs- parallel... what's the deal?
 
 
 
-# 12 Streaming: Querying Data 
-12
+## 12 Streaming: Querying Data 
 
 structured streaming
 
@@ -384,8 +380,7 @@ Caching queries
   - Caching queries
 
 
-# 13 Understanding Data
-13
+## 13 Understanding Data
 
 understanding data - microbatch window is too small -  sessionization & state for action
 
@@ -402,8 +397,7 @@ architectural patterns for taking action
   - Architectural Patterns for Action
 
 
-# 14 Pipeline Patterns Revisited
-14
+## 14 Pipeline Patterns Revisited
 
 some kind of project walkthrough - all screencast
 
