@@ -19,9 +19,8 @@ pipeline patterns, basic queries
       1.2.4 - Transforming Data [lecture]
       1.2.5 - Querying Data [lecture]
       1.2.6 - Understanding and Acting on Data [lecture]
-      1.2.7 - Visualizing and Communicating about Data [lecture]
-      1.2.8 - Explain briefly how Data Engineering is... [question]
-      1.2.9 - Answer to prededing question [text page]
+      1.2.7 - Explain briefly how Data Engineering is... [question]
+      1.2.8 - Answer to prededing question [text page]
 
     1.3 - Data Pipelines
       1.3.1  - Unpacking a data pipeline [lecture]
@@ -375,6 +374,8 @@ and data mining
 
 Replay in an immutable pipeline
 
+ML integration points
+
 Caching queries
 
     12.1 Queries
@@ -403,6 +404,19 @@ architectural patterns for taking action
 
 
 ## 14 - Pipeline Patterns Revisited
+
+security / privacy?
+    
+    - remove pii
+    - right to be forgotten
+    - access control for pii data
+    - audits
+    - even part of move-fast agile approach
+    - define levels of PII
+    - tag datasets and jobs that relate to pii
+    - enhanced logging/auditing for pii-related jobs
+    - container-based security easier than 
+      bolt-on-after-the-fact security for big data tools 
 
 some kind of project walkthrough - all screencast
 
