@@ -159,7 +159,8 @@ partioning II, Hadoop
 
     5.3 Hadoop
       - Hadoop Walkthrough
-      - The Hadoop Ecosystem [screencast - go through e.g. Kafka project webpage etc, then put logos on pipeline]
+      - The Hadoop Ecosystem [screencast]
+        (upstream project webpages etc, with logos on pipeline)
       - Hadoop Ecosystem Question [question]
 
 
@@ -359,6 +360,8 @@ distributed -vs- parallel... what's the deal?
 
 
 ## 12 - Streaming: Querying Data 
+wanna change this to like "Streaming: Immediate Results"
+"Streaming: Latency and Results"
 
 structured streaming
 
@@ -404,15 +407,15 @@ architectural patterns for taking action
 some kind of project walkthrough - all screencast
 
     14.1 DevOps
-    14.1.1 - infrastructure as code [lecture]
-    14.1.2 - testing [lecture]
+    14.1.1 - infrastructure as code [lecture(?)]
+    14.1.2 - testing [lecture(?)]
     - CI/CD 
     - logging and monitoring
     - automation
     - walk through a development process
 
     14.2 Serverless Architectures
-    14.2.1 - [lecture - what Lak from google said]
+    14.2.1 - The Future of Data Engineering [lecture(?) - what Lak from google said]
     - AWS Kool-aid stack
     - GCP Kool-aid stack
     - Tensorflow and the future of Data Engineering
