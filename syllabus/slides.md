@@ -123,14 +123,21 @@ what is a data store?
     4.1 Introduction
     4.1.1  - Where are we in the Pipeline? [lecture]
 
-    4.2 SQL vs NoSQL
-    4.2.1  - Relational Data Stores [lecture] [TM]
-    4.2.2  - NoSQL Data Stores [lecture]
-      - NoSQL and Relational [question]
+    4.2 Relational Data Stores
+    4.2.1  - Relational Databases [lecture] [TM]
+    4.2.2  - Relational DBs - Relationships [lecture] [TM]
+    4.2.3  - Relational DBs - Normalization [lecture] [TM]
+      - SQL [question]
 
-    4.3 Introduction to the Cloud
-    4.3.1  - Virtuatlization [lecture]
-    4.3.2  - Containers - what are they [lecture]
+    4.3 NoSQL Data Stores
+    4.3.1  - NoSQL Data Stores [lecture]
+    4.3.2  - NoSQL - Document Store [lecture]
+    4.3.3  - NoSQL - Key-Value Store [lecture]
+      - SQL -vs- NoSQL [question]
+
+    4.4 Introduction to the Cloud
+    4.4.1  - Virtuatlization [lecture]
+    4.4.2  - Containers - what are they [lecture]
       - Virtual Machines vs Containers [skype interview]
       - Cluster Computing
   
