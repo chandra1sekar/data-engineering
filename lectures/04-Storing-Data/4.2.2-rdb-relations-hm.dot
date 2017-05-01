@@ -1,0 +1,46 @@
+
+digraph g {
+node [
+fontsize = "16"
+shape = "ellipse"
+];
+edge [
+];
+"users" [
+label =<
+<table border="0" cellborder="1" cellspacing="0">
+  <tr><td colspan="3"><b>users</b></td></tr>
+  <tr><td port="f0">id</td><td port="f1">first</td><td port="f2">last</td></tr>
+  <tr><td>002</td><td port="f1">Mary</td><td port="f2">Koker</td></tr>
+  </table>>
+shape = "none"
+];
+"addresses" [
+label =<
+<table border="0" cellborder="1" cellspacing="0">
+  <tr><td colspan="4"><b>addresses</b></td></tr>
+  <tr>
+    <td port="f0">id</td>
+    <td port="f1">street address</td>
+    <td port="f2">postal code</td>
+    <td port="f3"><b>user_id</b></td>
+  </tr>
+  <tr>
+    <td port="f0">27</td>
+    <td port="f1">123 Park Ln</td>
+    <td port="f2">12345</td>
+    <td port="f3">002</td>
+  </tr>
+  <tr>
+    <td port="f0">324</td>
+    <td port="f1">456 Bike St</td>
+    <td port="f2">56789</td>
+    <td port="f3">002</td>
+  </tr>
+  </table>>
+shape = "none"
+];
+"users" -> "addresses" [
+id = 0
+];
+}
