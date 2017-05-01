@@ -44,7 +44,7 @@
 <text text-anchor="start" x="128.131" y="-12.2" font-family="Times,serif" font-size="16.00">124</text>
 </g>
 <!-- users&#45;&gt;user_products -->
-<g id="0" class="edge"><title>users:f0&#45;&gt;user_products:f1</title>
+<g id="edge1" class="edge"><title>users:f0&#45;&gt;user_products:f1</title>
 <path fill="none" stroke="black" d="M16.1311,-156C-26.6899,-156 27.1122,-92.0997 57.281,-59.5646"/>
 <polygon fill="black" stroke="black" points="60.0683,-61.7096 64.3687,-52.0267 54.9686,-56.9144 60.0683,-61.7096"/>
 </g>
@@ -66,7 +66,7 @@
 <text text-anchor="start" x="318.131" y="-128.2" font-family="Times,serif" font-size="16.00">$123.45</text>
 </g>
 <!-- products&#45;&gt;user_products -->
-<g id="1" class="edge"><title>products:f0&#45;&gt;user_products:f2</title>
+<g id="edge2" class="edge"><title>products:f0&#45;&gt;user_products:f2</title>
 <path fill="none" stroke="black" d="M169.131,-156C121.795,-156 213.454,-59.0808 190.008,-42.4228"/>
 <polygon fill="black" stroke="black" points="190.677,-38.9833 180.131,-40 189.009,-45.7817 190.677,-38.9833"/>
 </g>

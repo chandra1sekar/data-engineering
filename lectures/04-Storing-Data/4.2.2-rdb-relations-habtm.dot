@@ -34,9 +34,7 @@ label =<
 shape = "none"
 ];
 "users":f0 -> "user_products":f1 [
-id = 0
 ];
 "products":f0 -> "user_products":f2 [
-id = 1
 ];
 }
