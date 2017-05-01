@@ -38,6 +38,6 @@ From a lecture's folder (e.g., `lectures/04/`), you can:
 
 - view slides locally
 
-    open slides.html
+    open <lecture-component>.html
 
 
