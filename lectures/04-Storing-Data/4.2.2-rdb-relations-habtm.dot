@@ -28,13 +28,13 @@ shape = "none"
 label =<
 <table border="0" cellborder="1" cellspacing="0">
   <tr><td colspan="3"><b>user_products</b></td></tr>
-  <tr><td port="f0">id</td><td port="f1">user_id</td><td port="f2">product_id</td></tr>
-  <tr><td>001</td><td port="f1">002</td><td port="f2">124</td></tr>
+  <tr><td port="f0">user_id</td><td port="f1">product_id</td></tr>
+  <tr><td port="f0">002</td><td port="f1">124</td></tr>
   </table>>
 shape = "none"
 ];
-"users":f0 -> "user_products":f1 [
+"users":f0 -> "user_products":f0 [
 ];
-"products":f0 -> "user_products":f2 [
+"products":f0 -> "user_products":f1 [
 ];
 }
