@@ -80,8 +80,8 @@ google datalab
       - BigQuery
 
     3.3 Sneak Peek
-    3.3.1  - Caching [lecture]
-    3.3.2  - Query Planning [lecture]
+    3.3.1 - Caching [lecture]
+    3.3.2 - Query Planning [lecture]
       - Resource Scheduling
 
 
