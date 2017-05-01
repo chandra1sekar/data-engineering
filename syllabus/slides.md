@@ -39,7 +39,7 @@ pipeline patterns, basic queries
       1.5.4 - Walkthrough [context problem] query on NYC Bike Data
 
 
-## 02 - Data Dive
+## 02 - Working with Data
  
 was "Working with Data"
 
@@ -64,7 +64,6 @@ data, metadata, cli basics
 
 ## 03 - Welcome to the Queryside
  
-was "A Walk on the Query Side"
 
 first pass, athena, big query, caching, sql
 google datalab
@@ -121,6 +120,7 @@ blank slate about where data are from
 what is a data store?
 	introduce hadoop
 
+Encoding & Evolving
 
     4.1 Introduction
     4.1.1  - Where are we in the Pipeline? [lecture]
@@ -223,6 +223,19 @@ when it's time to build the pipeline, where did the data come from?
 	metadata - hits the road
 	version
 	schema
+
+security / privacy / audits
+    
+    - remove pii
+    - right to be forgotten
+    - access control for pii data
+    - audits
+    - even part of move-fast agile approach
+    - define levels of PII
+    - tag datasets and jobs that relate to pii
+    - enhanced logging/auditing for pii-related jobs
+    - container-based security easier than 
+      bolt-on-after-the-fact security for big data tools 
 
 planning transformations based on in what state do you need the data to be in based on queryside
 	full pass of tying it all together = query
@@ -410,6 +423,12 @@ understanding ingested events with lower latency
 
 architectural patterns for taking action
 
+Understanding and Acting
+- Modeling
+- Analyzing
+- Tracking and Auditing
+- Monitoring
+
     13.1 Context
     13.1.1 - Pipeline Context
 
@@ -422,18 +441,7 @@ architectural patterns for taking action
 
 ## 14 - Pipeline Patterns Revisited
 
-security / privacy?
-    
-    - remove pii
-    - right to be forgotten
-    - access control for pii data
-    - audits
-    - even part of move-fast agile approach
-    - define levels of PII
-    - tag datasets and jobs that relate to pii
-    - enhanced logging/auditing for pii-related jobs
-    - container-based security easier than 
-      bolt-on-after-the-fact security for big data tools 
+Productionalizing
 
 some kind of project walkthrough - all screencast
 
