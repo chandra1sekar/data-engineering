@@ -36,19 +36,19 @@ Course intro, pipelines, events, and some basic queries.
 Data, metadata, some basic tools.
 
     2.1 Working with Data
-      - Brainstorm 3-5 ways you've received data... [question]
+      2.1.1 - Brainstorm 3-5 ways you've received data... [question]
       2.1.2 - Introduction [lecture]
-      - Schema/Types
-      - Data Count
-      - Data Ranges
-      - Data Lineage
-      - Data Access
+      2.1.3 - Formats
+      2.1.4 - Schema/Types
+      2.1.5 - Data Count / Range
+      2.1.6 - Data Lineage
+      2.1.7 - Data Access
 
     2.2 Tools for Working with Data
       2.2.1 - Introduction to Tools [lecture]
-      - The Command Line [tutorial]
-      - Jupyter Notebooks [tutorial]
-      - Shells
+      2.2.2 - The Command Line [tutorial]
+      2.2.3 - Jupyter Notebooks [tutorial]
+      2.2.4 - Shells
 
 
 ## 03 - Welcome to the Queryside
@@ -58,18 +58,16 @@ Getting our feet wet with tools for querying data.
     3.1 What is the queryside?
       3.1.1 - Revisiting Pipelines [lecture]
       3.1.2 - Immutability [lecture]
-      - Event logs
 
     3.2 Query Tools
       3.2.1 - Queryside World [lecture]
-      - SQL
-      - Athena
-      - BigQuery
+      3.2.2 - SQL [Tutorial]
+      3.2.3 - Athena
+      3.2.4 - BigQuery
 
     3.3 Sneak Peek
       3.3.1 - Caching
       3.3.2 - Query Planning
-      - Resource Scheduling
 
 
 # The Basics
