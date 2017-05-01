@@ -400,7 +400,7 @@ Understanding ingested events.
       13.1.1 - Pipeline Context
 
     13.2 Sessionization and State
-      13.2.1 - Sessionization and state for action [lecture]
+      13.2.1 x Sessionization and state for action [lecture]
       - Ingested Events
       - Low Latency Ingested Events
       - Architectural Patterns for Action
