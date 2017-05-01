@@ -125,7 +125,7 @@ what is a data store?
 
     4.2 Relational Data Stores
     4.2.1  - Relational Databases [lecture] [TM]
-    4.2.2  - Relational DBs - Relationships [lecture] [TM]
+    4.2.2  - Relational DBs - Relations [lecture] [TM]
     4.2.3  - Relational DBs - Normalization [lecture] [TM]
       - SQL [question]
 
