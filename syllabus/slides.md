@@ -139,7 +139,7 @@ Encoding & Evolving
 
     4.4 Introduction to the Cloud
     4.4.1  - Virtuatlization and Containers [lecture?]
-    4.4.1  - Infrastructure Encapsulation and Isolation [lecture?]
+    4.4.2  - Infrastructure Encapsulation and Isolation [lecture?]
     4.4.3  - Using Containers
       - Virtual Machines and Containers [skype interview]
       - Cluster Computing
