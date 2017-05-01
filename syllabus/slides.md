@@ -95,7 +95,7 @@ what is a data store?
 Encoding & Evolving
 
     4.1 Introduction
-      4.1.1 - Where are we in the Pipeline? [lecture]
+      4.1.1 x Where are we in the Pipeline? [lecture]
 
     4.2 Relational Data Stores
       4.2.1 x Relational Databases [lecture] [TM]
@@ -123,7 +123,7 @@ was "more storing data"
 partioning II, Hadoop
 
     5.1 What is a Data Store?
-      5.1.1 - Data Store in Pipeline [lecture]
+      5.1.1 - What is a Data Store? [question]
       5.1.2 x Hadoop [lecture] [TM]
       - Hadoop Question [question]
 
@@ -167,7 +167,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
     6.1 Introduction
-      6.1.1 - Transform Section of Pipeline [lecture]
+      6.1.1 x Transform Section of Pipeline [lecture]
 
     6.2 ETL
       - You don't always (aka usually) get what you want
@@ -213,7 +213,7 @@ planning transformations based on in what state do you need the data to be in ba
 	full pass of tying it all together = query
 
     7.1 Pipeline Context
-      7.1.1 - Pipeline Context [lecture]
+      7.1.1 x Pipeline Context [lecture]
 
     7.2 Where did the data come from?
       - APIs
@@ -246,7 +246,7 @@ use the tools - query planning
 
 
     8.1 Querying with Partition Keys
-      8.1.1 - Pipeline Context [lecture]
+      8.1.1 x Pipeline Context [lecture]
       8.1.2 - Base decisions on queries [lecture]
       - Query Walthrough
 
@@ -281,7 +281,7 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
 
 
     9.1 Pipeline Context
-      9.1.1 - Where are we in the Pipeline? [lecture]
+      9.1.1 x Where are we in the Pipeline? [lecture]
 
     9.2 Kafka
       9.2.1 - Distributed Messaging [lecture]
@@ -311,7 +311,7 @@ architectural patterns for taking action
 
 
     10.1 NoETL
-      10.1.1 - Pipeline Context [lecture]
+      10.1.1 x Pipeline Context [lecture]
       - Grabbing data you need as it streams by
 
     10.2 Modes of Execution
@@ -345,7 +345,7 @@ distributed in-memory storage - alluxio and friends
 distributed -vs- parallel... what's the deal?
 
     11.1 Pipeline Context
-      11.1.1 - Pipeline Context [lecture]
+      11.1.1 x Pipeline Context [lecture]
 
     11.2 In Memory
       - Streaming and Spark
