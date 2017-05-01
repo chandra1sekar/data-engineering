@@ -2,8 +2,7 @@
 
 ## 01 - Introduction
  
-pipeline patterns, basic queries
-
+Course intro, pipelines, events, and some basic queries.
 
     1.1 - Welcome
       1.1.1 - Context Problem [text page]
@@ -34,9 +33,7 @@ pipeline patterns, basic queries
 
 ## 02 - Working with Data
  
-was "Working with Data"
-
-data, metadata, cli basics
+Data, metadata, some basic tools.
 
     2.1 Working with Data
       - Brainstorm 3-5 ways you've received data... [question]
@@ -56,9 +53,7 @@ data, metadata, cli basics
 
 ## 03 - Welcome to the Queryside
  
-
-first pass, athena, big query, caching, sql
-google datalab
+Getting our feet wet with tools for querying data.
 
     3.1 What is the queryside?
       3.1.1 - Revisiting Pipelines [lecture]
@@ -75,19 +70,6 @@ google datalab
       3.3.1 - Caching
       3.3.2 - Query Planning
       - Resource Scheduling
-
-
-Welcome to the modern datalab.
-
-What do you need?
-
-You need a safe platform to perform ad-hoc experimentation on data
-The standard approach is that your experimentation will be productionized
-over time and locked into a solid ETL pipeline.  We're moving away
-from this approach and towards one that empowers the decision-makers
-to do the experimentation directly.
-
-How do do solve this?
 
 
 # The Basics
@@ -327,6 +309,9 @@ batch (oozie, airflow, kron, sqoop etc)
 
 understanding data - microbatch window is too small - introduction to sessionization & state
 
+architectural patterns for taking action
+
+
     10.1 NoETL
       10.1.1 - Pipeline Context [lecture]
       - Grabbing data you need as it streams by
@@ -411,19 +396,7 @@ Caching queries
 
 ## 13 - Understanding Data
 
-understanding data - microbatch window is too small -  sessionization & state for action
-
-understanding ingested events
-
-understanding ingested events with lower latency
-
-architectural patterns for taking action
-
-Understanding and Acting
-- Modeling
-- Analyzing
-- Tracking and Auditing
-- Monitoring
+Understanding ingested events.
 
     13.1 Context
       13.1.1 - Pipeline Context
@@ -434,24 +407,27 @@ Understanding and Acting
       - Low Latency Ingested Events
       - Architectural Patterns for Action
 
+    13.3 Models
+      - Model Validation
+      - Model Management
 
-## 14 - Pipeline Patterns Revisited
 
-Productionalizing
+## 14 - Productionalizing Data Pipelines
+
+Productionalizing data pipelines.
 
     14.1 DevOps
-      14.1.1 - infrastructure as code [lecture(?)]
-      14.1.2 - testing [lecture(?)]
+      14.1.1 - Infrastructure as Code [lecture5]
+      14.1.2 - Testing [lecture5]
       - CI/CD 
-      - logging and monitoring
-      - automation
-      - walk through a development process
+      - Logging and Monitoring
+      - Automation
+      - The Development Process
 
     14.2 Serverless Architectures
-      14.2.1 - The Future of Data Engineering [lecture(?) - what Lak from google said]
+      14.2.1 - The Future of Data Engineering [lecture3]
       - AWS Kool-aid stack
       - GCP Kool-aid stack
-      - Tensorflow and the future of Data Engineering
 
 
 
