@@ -12,31 +12,30 @@ pipeline patterns, basic queries
       1.1.4 - Why do I need Data Engineering for Data Science? [question]
       1.1.5 - What will I be able to do after this course? [lecture] [TM]
 
-    1.2 - Course Topics
-      1.2.1 - Business or Technology? [lecture]
-      1.2.2 - Sourcing and Ingesting Data [lecture]
-      1.2.3 - Storing Data [lecture]
-      1.2.4 - Transforming Data [lecture]
-      1.2.5 - Querying Data [lecture]
-      1.2.6 - Understanding and Acting on Data [lecture]
-      1.2.7 - Explain briefly how Data Engineering is... [question]
-      1.2.8 - Answer to prededing question [text page]
+    1.2 - This Course
+      1.2.1 - Organization and Approach [lecture]
 
     1.3 - Data Pipelines
-      1.3.1  - Unpacking a data pipeline [lecture]
-      1.3.2  - Patterns [lecture]
+      1.3.1 - What's a Data Pipeline? [lecture]
+      1.3.2 - Typical Pipeline Components [lecture]
+      1.3.3 - Explain briefly how Data Engineering is... [question]
+      1.3.4 - Answer to prededing question [text page]
 
-    1.4 | Events
+              1.3.2 - Sourcing and Ingesting Data
+              1.3.3 - Storing Data
+              1.3.4 - Transforming Data
+              1.3.5 - Querying Data
+              1.3.6 - Understanding and Acting on Data
+        
+    1.4 - Events Everywhere
       1.4.1 - Take a moment to think about... [question]
       1.4.2 - Device Events [lecture] [TM]
       1.4.3 - User Events [lecture] [TM]
       1.4.4 - Event Streams [lecture] [TM]
 
-    1.5 | Querying
-      1.5.1 - How to set up Google Big Query [text page]
-      1.5.2 - Breaking down querying [lecture]
-      1.5.3 - Requirements for taking action [lecture]
-      1.5.4 - Walkthrough [context problem] query on NYC Bike Data
+    1.5 - Answer Questions about Data
+      1.5.1 - Getting started with tools for queries [text page]
+      1.5.2 - query on NYC Bike Data [context problem]
 
 
 ## 02 - Working with Data
@@ -319,6 +318,7 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
       - Driven by Queries
       - Problems with Latency
       - Glue
+ 
 
 ## 10 - Transforming Streaming Data
 
@@ -346,6 +346,8 @@ understanding data - microbatch window is too small - introduction to sessioniza
     10.3
       - In Memory Computing
       - In Memory Computing [question]
+
+    - Requirements for taking action [lecture]
 
     10.3 State
     10.3.1  - Sessionization [lecture]
@@ -441,8 +443,6 @@ Understanding and Acting
 ## 14 - Pipeline Patterns Revisited
 
 Productionalizing
-
-some kind of project walkthrough - all screencast
 
     14.1 DevOps
     14.1.1 - infrastructure as code [lecture(?)]
