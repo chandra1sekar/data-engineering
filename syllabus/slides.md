@@ -40,7 +40,7 @@ data, metadata, cli basics
 
     2.1 Working with Data
       - Brainstorm 3-5 ways you've received data... [question]
-    2.1.2  - Introduction [lecture]
+      2.1.2 - Introduction [lecture]
       - Schema/Types
       - Data Count
       - Data Ranges
@@ -48,7 +48,7 @@ data, metadata, cli basics
       - Data Access
 
     2.2 Tools for Working with Data
-    2.2.1  - Introduction to Tools [lecture]
+      2.2.1 - Introduction to Tools [lecture]
       - The Command Line [tutorial]
       - Jupyter Notebooks [tutorial]
       - Shells
@@ -61,19 +61,19 @@ first pass, athena, big query, caching, sql
 google datalab
 
     3.1 What is the queryside?
-    3.1.1  - Revisiting Pipelines [lecture]
-    3.1.2  - Immutability [lecture]
+      3.1.1 - Revisiting Pipelines [lecture]
+      3.1.2 - Immutability [lecture]
       - Event logs
 
     3.2 Query Tools
-    3.2.1  - Queryside World [lecture]
+      3.2.1 - Queryside World [lecture]
       - SQL
       - Athena
       - BigQuery
 
     3.3 Sneak Peek
-    3.3.1 - Caching
-    3.3.2 - Query Planning
+      3.3.1 - Caching
+      3.3.2 - Query Planning
       - Resource Scheduling
 
 
@@ -115,24 +115,24 @@ what is a data store?
 Encoding & Evolving
 
     4.1 Introduction
-    4.1.1  - Where are we in the Pipeline? [lecture]
+      4.1.1 - Where are we in the Pipeline? [lecture]
 
     4.2 Relational Data Stores
-    4.2.1  - Relational Databases [lecture] [TM]
-    4.2.2  - Relational DBs - Relations [lecture] [TM]
-    4.2.3  - Relational DBs - Normalization [lecture] [TM]
+      4.2.1 - Relational Databases [lecture] [TM]
+      4.2.2 - Relational DBs - Relations [lecture] [TM]
+      4.2.3 - Relational DBs - Normalization [lecture] [TM]
       - SQL [question]
 
     4.3 NoSQL Data Stores
-    4.3.1  - NoSQL Data Stores [lecture]
-    4.3.2  - NoSQL - Document Store [lecture]
-    4.3.3  - NoSQL - Key-Value Store [lecture]
+      4.3.1 - NoSQL Data Stores [lecture]
+      4.3.2 - NoSQL - Document Store [lecture]
+      4.3.3 - NoSQL - Key-Value Store [lecture]
       - SQL -vs- NoSQL [question]
 
     4.4 Introduction to the Cloud
-    4.4.1  - Virtuatlization and Containers [lecture?]
-    4.4.2  - Infrastructure Encapsulation and Isolation [lecture?]
-    4.4.3  - Using Containers
+      4.4.1 - Virtuatlization and Containers [lecture?]
+      4.4.2 - Infrastructure Encapsulation and Isolation [lecture?]
+      4.4.3 - Using Containers
       - Virtual Machines and Containers [skype interview]
       - Cluster Computing
   
@@ -143,18 +143,18 @@ was "more storing data"
 partioning II, Hadoop
 
     5.1 What is a Data Store?
-    5.1.1  - Data Store in Pipeline [lecture]
-    5.1.2  - Hadoop [lecture] [TM]
+      5.1.1 - Data Store in Pipeline [lecture]
+      5.1.2 - Hadoop [lecture] [TM]
       - Hadoop Question [question]
 
     5.2 Distributed Computation
       - Distributed  
       - Distributed [question]
-    5.2.3  - Fault Tolerance [lecture] [TM]
+      5.2.3 - Fault Tolerance [lecture] [TM]
       - Fault Tolerance [question]
 
     5.3 Partitioning
-    5.3.1  - Partitioning [lecture]
+      5.3.1 - Partitioning [lecture]
       - Partitioning Live
       - Parittioning Question [question]
 
@@ -187,19 +187,19 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
     6.1 Introduction
-    6.1.1  - Transform Section of Pipeline [lecture]
+      6.1.1 - Transform Section of Pipeline [lecture]
 
     6.2 ETL
       - You don't always (aka usually) get what you want
 
     6.3 Hadoop ETL
-    6.3.1  - Revisiting Distributed Stores [lecture]
+      6.3.1 - Revisiting Distributed Stores [lecture]
       - Hadoop ETL
       - ETL - traditional vs big data [question]
 
     6.4 Container Management
-    6.4.1  - Introduction to YARN [lecture]
-    6.4.2  - Distributed Execution Models [lecture]
+      6.4.1 - Introduction to YARN [lecture]
+      6.4.2 - Distributed Execution Models [lecture]
       - Introduction to Schedulers
       - Schedulers Question [question]
       - Using a Scheduler
@@ -233,7 +233,7 @@ planning transformations based on in what state do you need the data to be in ba
 	full pass of tying it all together = query
 
     7.1 Pipeline Context
-    7.1.1  - Pipeline Context [lecture]
+      7.1.1 - Pipeline Context [lecture]
 
     7.2 Where did the data come from?
       - APIs
@@ -244,7 +244,7 @@ planning transformations based on in what state do you need the data to be in ba
 
     7.3 What do you want to know about the data you get?
       - Context setting question [question]
-    7.3.2  - Lineage [lecture]
+      7.3.2 - Lineage [lecture]
       - Metadata
       - Version
       - Schema
@@ -266,15 +266,15 @@ use the tools - query planning
 
 
     8.1 Querying with Partition Keys
-    8.1.1  - Pipeline Context [lecture]
-    8.1.2  - Base decisions on queries [lecture]
+      8.1.1 - Pipeline Context [lecture]
+      8.1.2 - Base decisions on queries [lecture]
       - Query Walthrough
 
     8.2 Tools
       - Tools
      
     8.3 Partitions
-    8.3.1  - Querying with Partition Keys [lecture]
+      8.3.1 - Querying with Partition Keys [lecture]
       - How to take advantage of partitions
 
     8.4 Query Planning
@@ -301,13 +301,13 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
 
 
     9.1 Pipeline Context
-    9.1.1  - Where are we in the Pipeline? [lecture]
+      9.1.1 - Where are we in the Pipeline? [lecture]
 
     9.2 Kafka
-    9.2.1  - Distributed Messaging [lecture]
+      9.2.1 - Distributed Messaging [lecture]
       - Kafka Walkthrough
       - Where are the data coming from?
-    9.2.4  - Latency [lecture]
+      9.2.4 - Latency [lecture]
       - Batch vs. Real Time
       - Driven by Queries
       - Problems with Latency
@@ -328,7 +328,7 @@ batch (oozie, airflow, kron, sqoop etc)
 understanding data - microbatch window is too small - introduction to sessionization & state
 
     10.1 NoETL
-    10.1.1  - Pipeline Context [lecture]
+      10.1.1 - Pipeline Context [lecture]
       - Grabbing data you need as it streams by
 
     10.2 Modes of Execution
@@ -342,10 +342,10 @@ understanding data - microbatch window is too small - introduction to sessioniza
       - In Memory Computing [question]
 
     10.4 Take Action!
-    10.4.1 - Requirements for taking action [lecture]
+      10.4.1 - Requirements for taking action [lecture]
 
     10.5 State
-    10.5.1  - Sessionization [lecture]
+      10.5.1 - Sessionization [lecture]
       - Issues with Microbatch
 
 
@@ -362,7 +362,7 @@ distributed in-memory storage - alluxio and friends
 distributed -vs- parallel... what's the deal?
 
     11.1 Pipeline Context
-    11.1.1  - Pipeline Context [lecture]
+      11.1.1 - Pipeline Context [lecture]
 
     11.2 In Memory
       - Streaming and Spark
@@ -426,10 +426,10 @@ Understanding and Acting
 - Monitoring
 
     13.1 Context
-    13.1.1 - Pipeline Context
+      13.1.1 - Pipeline Context
 
     13.2 Sessionization and State
-    13.2.1  - Sessionization and state for action [lecture]
+      13.2.1 - Sessionization and state for action [lecture]
       - Ingested Events
       - Low Latency Ingested Events
       - Architectural Patterns for Action
@@ -440,18 +440,18 @@ Understanding and Acting
 Productionalizing
 
     14.1 DevOps
-    14.1.1 - infrastructure as code [lecture(?)]
-    14.1.2 - testing [lecture(?)]
-    - CI/CD 
-    - logging and monitoring
-    - automation
-    - walk through a development process
+      14.1.1 - infrastructure as code [lecture(?)]
+      14.1.2 - testing [lecture(?)]
+      - CI/CD 
+      - logging and monitoring
+      - automation
+      - walk through a development process
 
     14.2 Serverless Architectures
-    14.2.1 - The Future of Data Engineering [lecture(?) - what Lak from google said]
-    - AWS Kool-aid stack
-    - GCP Kool-aid stack
-    - Tensorflow and the future of Data Engineering
+      14.2.1 - The Future of Data Engineering [lecture(?) - what Lak from google said]
+      - AWS Kool-aid stack
+      - GCP Kool-aid stack
+      - Tensorflow and the future of Data Engineering
 
 
 
