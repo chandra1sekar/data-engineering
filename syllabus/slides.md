@@ -21,12 +21,6 @@ pipeline patterns, basic queries
       1.3.3 - Explain briefly how Data Engineering is... [question]
       1.3.4 - Answer to prededing question [text page]
 
-              1.3.2 - Sourcing and Ingesting Data
-              1.3.3 - Storing Data
-              1.3.4 - Transforming Data
-              1.3.5 - Querying Data
-              1.3.6 - Understanding and Acting on Data
-        
     1.4 - Events Everywhere
       1.4.1 - Take a moment to think about... [question]
       1.4.2 - Device Events [lecture] [TM]
@@ -347,10 +341,11 @@ understanding data - microbatch window is too small - introduction to sessioniza
       - In Memory Computing
       - In Memory Computing [question]
 
-    - Requirements for taking action [lecture]
+    10.4 Take Action!
+    10.4.1 - Requirements for taking action [lecture]
 
-    10.3 State
-    10.3.1  - Sessionization [lecture]
+    10.5 State
+    10.5.1  - Sessionization [lecture]
       - Issues with Microbatch
 
 
