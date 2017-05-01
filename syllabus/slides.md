@@ -1,4 +1,4 @@
-# Lectures
+# Intro
 
 ## 01 - Introduction
  
@@ -99,6 +99,8 @@ to do the experimentation directly.
 How do do solve this?
 
 
+# The Basics
+
 ## 04 - Storing Data
 
 -first pass, sql & nosql, partioning I, hadoop, cloud
@@ -136,9 +138,10 @@ what is a data store?
       - SQL -vs- NoSQL [question]
 
     4.4 Introduction to the Cloud
-    4.4.1  - Virtuatlization [lecture]
-    4.4.2  - Containers - what are they [lecture]
-      - Virtual Machines vs Containers [skype interview]
+    4.4.1  - Virtuatlization and Containers [lecture?]
+    4.4.1  - Infrastructure Encapsulation and Isolation [lecture?]
+    4.4.3  - Using Containers
+      - Virtual Machines and Containers [skype interview]
       - Cluster Computing
   
 
@@ -274,7 +277,9 @@ use the tools - query planning
       - Using the Tools
 
 
-## 09 - Streaming: Ingesting Data
+# Streaming
+
+## 09 - Ingesting Data
  
 kafka aka messaging, cloud & containers
 
@@ -303,7 +308,7 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
       - Problems with Latency
       - Glue
 
-## 10 - Streaming: Transforming Data
+## 10 - Transforming Streaming Data
 
 was "transforming / streaming data"
 (Like no sql, no ETL - aka etl vs noetl) [not about transform but grab the piece of data you need]
@@ -330,12 +335,12 @@ understanding data - microbatch window is too small - introduction to sessioniza
       - In Memory Computing
       - In Memory Computing [question]
 
-    10.3 Sessionization and State
-    10.3.1  - Sessionization and State [lecture]
+    10.3 State
+    10.3.1  - Sessionization [lecture]
       - Issues with Microbatch
 
 
-## 11 - Streaming: Storing Data
+## 11 - Faster Data Stores
 
 was "in memory storing data"
 streaming & spark
@@ -365,7 +370,7 @@ distributed -vs- parallel... what's the deal?
 
 
 
-## 12 - Streaming: Querying Data 
+## 12 - Faster Queries
 wanna change this to like "Streaming: Immediate Results"
 "Streaming: Latency and Results"
 
@@ -392,6 +397,8 @@ Caching queries
       - Replay
       - Caching queries
 
+
+# Putting it All Together
 
 ## 13 - Understanding Data
 
