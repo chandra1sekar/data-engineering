@@ -7,9 +7,9 @@ Course intro, pipelines, events, and some basic queries.
     1.1 - Welcome
       1.1.1 - Context Problem [text page]
       1.1.2 - What is Data Engineering to you? [question]
-      1.1.3 - What is Data Engineering? [lecture] [TM]
+      1.1.3 x What is Data Engineering? [lecture] [TM]
       1.1.4 - Why do I need Data Engineering for Data Science? [question]
-      1.1.5 - What will I be able to do after this course? [lecture] [TM]
+      1.1.5 x What will I be able to do after this course? [lecture] [TM]
 
     1.2 - This Course
       1.2.1 - Organization and Approach [lecture]
@@ -22,9 +22,9 @@ Course intro, pipelines, events, and some basic queries.
 
     1.4 - Events Everywhere
       1.4.1 - Take a moment to think about... [question]
-      1.4.2 - Device Events [lecture] [TM]
-      1.4.3 - User Events [lecture] [TM]
-      1.4.4 - Event Streams [lecture] [TM]
+      1.4.2 x Device Events [lecture] [TM]
+      1.4.3 x User Events [lecture] [TM]
+      1.4.4 x Event Streams [lecture] [TM]
 
     1.5 - Answer Questions about Data
       1.5.1 - Getting started with tools for queries [text page]
@@ -37,7 +37,7 @@ Data, metadata, some basic tools.
 
     2.1 Working with Data
       2.1.1 - Brainstorm 3-5 ways you've received data... [question]
-      2.1.2 - Introduction [lecture]
+      2.1.2 x Introduction [lecture]
       2.1.3 - Formats
       2.1.4 - Schema/Types
       2.1.5 - Data Count / Range
@@ -52,7 +52,7 @@ Data, metadata, some basic tools.
 
 
 ## 03 - Welcome to the Queryside
- 
+
 Getting our feet wet with tools for querying data.
 
     3.1 What is the queryside?
@@ -98,9 +98,9 @@ Encoding & Evolving
       4.1.1 - Where are we in the Pipeline? [lecture]
 
     4.2 Relational Data Stores
-      4.2.1 - Relational Databases [lecture] [TM]
-      4.2.2 - Relational DBs - Relations [lecture] [TM]
-      4.2.3 - Relational DBs - Normalization [lecture] [TM]
+      4.2.1 x Relational Databases [lecture] [TM]
+      4.2.2 x Relational DBs - Relations [lecture] [TM]
+      4.2.3 x Relational DBs - Normalization [lecture] [TM]
       - SQL [question]
 
     4.3 NoSQL Data Stores
@@ -124,7 +124,7 @@ partioning II, Hadoop
 
     5.1 What is a Data Store?
       5.1.1 - Data Store in Pipeline [lecture]
-      5.1.2 - Hadoop [lecture] [TM]
+      5.1.2 x Hadoop [lecture] [TM]
       - Hadoop Question [question]
 
     5.2 Distributed Computation
@@ -410,9 +410,9 @@ Understanding ingested events.
       - Model Management
 
 
-## 14 - Productionalizing Data Pipelines
+## 14 - Patterns for Data Pipelines
 
-Productionalizing data pipelines.
+Patterns and productionizing data pipelines.
 
     14.1 DevOps
       14.1.1 - Infrastructure as Code [lecture5]
