@@ -1,0 +1,34 @@
+
+digraph g {
+node [
+fontsize = "16"
+shape = "ellipse"
+];
+edge [
+];
+"user_purchases" [
+label =<
+<table border="0" cellborder="1" cellspacing="0">
+  <tr><td colspan="7"><b>user_purchases</b></td></tr>
+  <tr>
+    <td>first</td>
+    <td>last</td>
+    <td>address</td>
+    <td>postal_code</td>
+    <td>product_desc</td>
+    <td>list_price</td>
+    <td>purchase_price</td>
+  </tr>
+  <tr>
+    <td>Mary</td>
+    <td>Koker</td>
+    <td>123 Park Ln</td>
+    <td>12345</td>
+    <td>Cherry Red Bike</td>
+    <td>$123.45</td>
+    <td>$104.95</td>
+  </tr>
+  </table>>
+shape = "none"
+];
+}
