@@ -59,7 +59,6 @@ data, metadata, cli basics
       - The Command Line [tutorial]
       - Jupyter Notebooks [tutorial]
       - Shells
-    2.2.5  - Wrap Up [lecture]
 
 
 ## 03 - Welcome to the Queryside
