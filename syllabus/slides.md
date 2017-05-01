@@ -403,8 +403,11 @@ understanding ingested events with lower latency
 
 architectural patterns for taking action
 
-    13.1 Sessionization and State
-    13.1.1  - Sessionization and state for action [lecture]
+    13.1 Context
+    13.1.1 - Pipeline Context
+
+    13.2 Sessionization and State
+    13.2.1  - Sessionization and state for action [lecture]
       - Ingested Events
       - Low Latency Ingested Events
       - Architectural Patterns for Action
@@ -461,12 +464,12 @@ some kind of project walkthrough - all screencast
 - other languages
 
 
-
 ## Clouds and Virtualization (in Week 4 of Synch Section)
 
 - What is the Cloud?
 - what is a VM?
 - How does DropBox et al work?
+
 
 ## Containers (in Week 4 of Synch Section)
 
@@ -480,6 +483,7 @@ some kind of project walkthrough - all screencast
 ## APIs and Web Services (in Week 7 of Synch Section)
 
 - what's an API?
+
 
 ## Schedulers (in Week 6 of Synch Section)
 
@@ -495,7 +499,6 @@ some kind of project walkthrough - all screencast
 - text -vs- other formats
 - working together
 - first pass at CI/CD
-
 
 
 ## How the Web Works ("Cache is King!") (in Week 12 of Synch Section)
