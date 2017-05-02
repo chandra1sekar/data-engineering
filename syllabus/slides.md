@@ -285,10 +285,10 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
       9.1.1 x Where are we in the Pipeline? [lecture]
 
     9.2 Kafka
-      9.2.1 - Distributed Messaging [lecture]
+      9.2.1 x Distributed Messaging [lecture]
       - Kafka Walkthrough
       - Where are the data coming from?
-      9.2.4 - Latency [lecture]
+      9.2.4 x Latency [lecture]
       - Batch vs. Real Time
       - Driven by Queries
       - Problems with Latency
