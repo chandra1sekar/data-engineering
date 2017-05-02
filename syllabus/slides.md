@@ -174,12 +174,12 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
       - You don't always (aka usually) get what you want
 
     6.3 Hadoop ETL
-      6.3.1 - Revisiting Distributed Stores [lecture]
+      6.3.1 - Running Hadoop Jobs [lecture]
       - Hadoop ETL
       - ETL - traditional vs big data [question]
 
     6.4 Container Management
-      6.4.1 - Introduction to YARN [lecture]
+      6.4.1 - Working with YARN
       6.4.2 - Distributed Execution Models [lecture]
       - Introduction to Schedulers
       - Schedulers Question [question]
