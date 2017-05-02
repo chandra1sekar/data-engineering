@@ -20,7 +20,7 @@ label =<
 <table border="0" cellborder="1" cellspacing="0">
   <tr><td colspan="3"><b>products</b></td></tr>
   <tr><td port="f0">id</td><td port="f1">description</td><td port="f2">price</td></tr>
-  <tr><td>123</td><td port="f1">Cherry Red Bike</td><td port="f2">$123.45</td></tr>
+  <tr><td>124</td><td port="f1">Cherry Red Bike</td><td port="f2">$123.45</td></tr>
   </table>>
 shape = "none"
 ];
