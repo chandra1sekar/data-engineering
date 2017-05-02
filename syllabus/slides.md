@@ -105,8 +105,9 @@ Encoding & Evolving
 
     4.3 NoSQL Data Stores
       4.3.1 - NoSQL Data Stores [lecture]
-      4.3.2 - NoSQL - Document Store [lecture]
-      4.3.3 - NoSQL - Key-Value Store [lecture]
+      4.3.2 - NoSQL - Relational Model [activity]
+      4.3.3 - NoSQL - Document Store [activity]
+      4.3.4 - NoSQL - Key-Value Store [activity]
       - SQL -vs- NoSQL [question]
 
     4.4 Introduction to the Cloud
