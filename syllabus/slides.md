@@ -12,11 +12,11 @@ Course intro, pipelines, events, and some basic queries.
       1.1.5 x What will I be able to do after this course? [lecture] [TM]
 
     1.2 - This Course
-      1.2.1 - Organization and Approach [lecture]
+      1.2.1 x Organization and Approach [lecture]
 
     1.3 - Data Pipelines
-      1.3.1 - What's a Data Pipeline? [lecture]
-      1.3.2 - Typical Pipeline Components [lecture]
+      1.3.1 x What's a Data Pipeline? [lecture]
+      1.3.2 x Typical Pipeline Components [lecture]
       1.3.3 - Explain briefly how Data Engineering is... [question]
       1.3.4 - Answer to prededing question [text page]
 
