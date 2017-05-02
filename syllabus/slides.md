@@ -104,7 +104,7 @@ Encoding & Evolving
       - SQL [question]
 
     4.3 NoSQL Data Stores
-      4.3.1 - NoSQL Data Stores [lecture]
+      4.3.1 x NoSQL Data Stores [lecture]
       4.3.2 - NoSQL - Relational Model [activity]
       4.3.3 - NoSQL - Document Store [activity]
       4.3.4 - NoSQL - Key-Value Store [activity]
