@@ -111,8 +111,8 @@ Encoding & Evolving
       - SQL -vs- NoSQL [question]
 
     4.4 Introduction to the Cloud
-      4.4.1 - Virtuatlization and Containers [lecture?]
-      4.4.2 - Infrastructure Encapsulation and Isolation [lecture?]
+      4.4.1 - Virtuatlization and Containers
+      4.4.2 - Infrastructure Encapsulation and Isolation
       4.4.3 - Using Containers
       - Virtual Machines and Containers [skype interview]
       - Cluster Computing
@@ -416,15 +416,15 @@ Understanding ingested events.
 Patterns and productionizing data pipelines.
 
     14.1 DevOps
-      14.1.1 - Infrastructure as Code [lecture5]
-      14.1.2 - Testing [lecture5]
+      14.1.1 - Infrastructure as Code
+      14.1.2 - Testing
       - CI/CD 
       - Logging and Monitoring
       - Automation
       - The Development Process
 
     14.2 Serverless Architectures
-      14.2.1 - The Future of Data Engineering [lecture3]
+      14.2.1 - The Future of Data Engineering
       - AWS Kool-aid stack
       - GCP Kool-aid stack
 
