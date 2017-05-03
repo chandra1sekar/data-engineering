@@ -56,7 +56,7 @@ Data, metadata, some basic tools.
 Getting our feet wet with tools for querying data.
 
     3.1 What is the queryside?
-      3.1.1 x Revisiting Pipelines [lecture]
+      3.1.1 * Revisiting Pipelines [lecture]
       3.1.2 - Immutability [lecture]
 
     3.2 Query Tools
@@ -95,7 +95,7 @@ what is a data store?
 Encoding & Evolving
 
     4.1 Introduction
-      4.1.1 x Where are we in the Pipeline? [lecture]
+      4.1.1 * Where are we in the Pipeline? [lecture]
 
     4.2 Relational Data Stores
       4.2.1 * Relational Databases [lecture] [TM]
@@ -168,7 +168,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
     6.1 Introduction
-      6.1.1 x Transform Section of Pipeline [lecture]
+      6.1.1 * Transform Section of Pipeline [lecture]
 
     6.2 ETL
       - You don't always (aka usually) get what you want
@@ -214,7 +214,7 @@ planning transformations based on in what state do you need the data to be in ba
 	full pass of tying it all together = query
 
     7.1 Pipeline Context
-      7.1.1 x Pipeline Context [lecture]
+      7.1.1 * Pipeline Context [lecture]
 
     7.2 Where did the data come from?
       - APIs
@@ -247,7 +247,7 @@ use the tools - query planning
 
 
     8.1 Querying with Partition Keys
-      8.1.1 x Pipeline Context [lecture]
+      8.1.1 * Pipeline Context [lecture]
       8.1.2 - Base decisions on queries 
       - Query Walthrough
 
@@ -282,7 +282,7 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
 
 
     9.1 Pipeline Context
-      9.1.1 x Where are we in the Pipeline? [lecture]
+      9.1.1 * Where are we in the Pipeline? [lecture]
 
     9.2 Kafka
       9.2.1 * Distributed Messaging [lecture]
@@ -312,7 +312,7 @@ architectural patterns for taking action
 
 
     10.1 NoETL
-      10.1.1 x Pipeline Context [lecture]
+      10.1.1 * Pipeline Context [lecture]
       - Grabbing data you need as it streams by
 
     10.2 Modes of Execution
@@ -346,7 +346,7 @@ distributed in-memory storage - alluxio and friends
 distributed -vs- parallel... what's the deal?
 
     11.1 Pipeline Context
-      11.1.1 x Pipeline Context [lecture]
+      11.1.1 * Pipeline Context [lecture]
 
     11.2 In Memory
       - Streaming and Spark
@@ -398,10 +398,10 @@ Caching queries
 Understanding ingested events.
 
     13.1 Context
-      13.1.1 - Pipeline Context [lecture]
+      13.1.1 * Pipeline Context [lecture]
 
     13.2 Sessionization and State
-      13.2.1 x Sessionization and state for action [lecture]
+      13.2.1 * Sessionization and state for action [lecture]
       - Ingested Events
       - Low Latency Ingested Events
       - Architectural Patterns for Action
