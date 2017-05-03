@@ -326,11 +326,8 @@ architectural patterns for taking action
       - In Memory Computing [question]
 
     10.4 Take Action!
-      10.4.1 - Requirements for taking action [lecture]
-
-    10.5 State
-      10.5.1 - Sessionization [lecture]
-      - Issues with Microbatch
+      10.4.1 - Take Action! [lecture]
+      10.4.2 - Act! (pyspark watching kafka) [activity]
 
 
 ## 11 - Faster Data Stores
@@ -358,8 +355,10 @@ distributed -vs- parallel... what's the deal?
     11.4 Distributed In-memory Storage
       - Distributed In-memory Storage
 
-    11.5 Distributed vs. Parallel
-      - Distributed vs. Parallel
+    11.5 State
+      11.5.1 - Issues with Microbatch [question]
+      11.5.2 - Sessionization [lecture]
+      11.5.3 - Sessionize [activity]
 
 
 
