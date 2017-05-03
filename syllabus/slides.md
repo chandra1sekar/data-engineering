@@ -45,7 +45,7 @@ Data, metadata, some basic tools.
       2.1.7 - Data Access
 
     2.2 Tools for Working with Data
-      2.2.1 - Introduction to Tools [lecture]
+      2.2.1 - Introduction to Tools 
       2.2.2 - The Command Line [tutorial]
       2.2.3 - Jupyter Notebooks [tutorial]
       2.2.4 - Shells
@@ -60,7 +60,7 @@ Getting our feet wet with tools for querying data.
       3.1.2 - Immutability [lecture]
 
     3.2 Query Tools
-      3.2.1 - Queryside World [lecture]
+      3.2.1 - Queryside World 
       3.2.2 - SQL [Tutorial]
       3.2.3 - Athena
       3.2.4 - BigQuery
@@ -180,7 +180,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
     6.4 Container Management
       6.4.1 - Working with YARN
-      6.4.2 - Distributed Execution Models [lecture]
+      6.4.2 - Distributed Execution Models
       - Introduction to Schedulers
       - Schedulers Question [question]
       - Using a Scheduler
@@ -248,14 +248,14 @@ use the tools - query planning
 
     8.1 Querying with Partition Keys
       8.1.1 x Pipeline Context [lecture]
-      8.1.2 - Base decisions on queries [lecture]
+      8.1.2 - Base decisions on queries 
       - Query Walthrough
 
     8.2 Tools
       - Tools
      
     8.3 Partitions
-      8.3.1 - Querying with Partition Keys [lecture]
+      8.3.1 - Querying with Partition Keys 
       - How to take advantage of partitions
 
     8.4 Query Planning
@@ -398,7 +398,7 @@ Caching queries
 Understanding ingested events.
 
     13.1 Context
-      13.1.1 - Pipeline Context
+      13.1.1 - Pipeline Context [lecture]
 
     13.2 Sessionization and State
       13.2.1 x Sessionization and state for action [lecture]
