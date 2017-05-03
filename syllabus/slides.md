@@ -131,7 +131,7 @@ partioning II, Hadoop
     5.2 Distributed Computation
       - Distributed  
       - Distributed [question]
-      5.2.3 - Failure in Distributed Systems [lecture] [TM]
+      5.2.3 - Failure in Distributed Systems [lecture]
       - Fault Tolerance [question]
 
     5.3 Partitioning
