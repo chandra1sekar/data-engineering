@@ -99,8 +99,8 @@ Encoding & Evolving
 
     4.2 Relational Data Stores
       4.2.1 * Relational Databases [lecture] [TM]
-      4.2.2 x Relational DBs - Relations [lecture] [TM]
-      4.2.3 x Relational DBs - Normalization [lecture] [TM]
+      4.2.2 * Relational DBs - Relations [lecture] [TM]
+      4.2.3 * Relational DBs - Normalization [lecture] [TM]
       - SQL [question]
 
     4.3 NoSQL Data Stores
@@ -125,7 +125,7 @@ partioning II, Hadoop
 
     5.1 What is a Data Store?
       5.1.1 - What is a Data Store? [question]
-      5.1.2 x Hadoop [lecture] [TM]
+      5.1.2 * Hadoop [lecture] [TM]
       - Hadoop Question [question]
 
     5.2 Distributed Computation
