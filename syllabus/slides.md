@@ -12,11 +12,11 @@ Course intro, pipelines, events, and some basic queries.
       1.1.5 * What will I be able to do after this course? [lecture] [TM]
 
     1.2 - This Course
-      1.2.1 x Organization and Approach [lecture]
+      1.2.1 * Organization and Approach [lecture]
 
     1.3 - Data Pipelines
-      1.3.1 x What's a Data Pipeline? [lecture]
-      1.3.2 x Typical Pipeline Components [lecture]
+      1.3.1 * What's a Data Pipeline? [lecture]
+      1.3.2 * Typical Pipeline Components [lecture]
       1.3.3 - Explain briefly how Data Engineering is... [question]
       1.3.4 - Answer to prededing question [text page]
 
@@ -285,10 +285,10 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
       9.1.1 x Where are we in the Pipeline? [lecture]
 
     9.2 Kafka
-      9.2.1 x Distributed Messaging [lecture]
+      9.2.1 * Distributed Messaging [lecture]
       - Kafka Walkthrough
       - Where are the data coming from?
-      9.2.4 x Latency [lecture]
+      9.2.4 * Latency [lecture]
       - Batch vs. Real Time
       - Driven by Queries
       - Problems with Latency
