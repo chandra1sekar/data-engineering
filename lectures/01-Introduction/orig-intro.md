@@ -1,6 +1,6 @@
 ---
 title: "Storing and Retrieving Data"
-author: MIDS
+author:
 ...
 
 ---
