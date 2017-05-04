@@ -192,6 +192,8 @@ when it's time to build the pipeline, where did the data come from?
 	version
 	schema
 
+	chain of evidence/custody
+
 security / privacy / audits
     
     - remove pii
@@ -220,11 +222,14 @@ planning transformations based on in what state do you need the data to be in ba
 
     7.3 What do you want to know about the data you get?
       - Context setting question [question]
-      7.3.2 - Lineage [lecture]
+      - Lineage
       - Metadata
       - Version
       - Schema
       - Tying it all together - Build a pipeline
+
+    7.4 Security and Privacy
+      7.4.1 - Security and Privacy [lecture]
 
 
 ## 08 - Querying Data
