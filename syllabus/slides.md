@@ -326,7 +326,7 @@ architectural patterns for taking action
       - In Memory Computing [question]
 
     10.4 Take Action!
-      10.4.1 - Take Action! [lecture]
+      10.4.1 x Take Action! [lecture]
       10.4.2 - Act! (pyspark watching kafka) [activity]
 
 
