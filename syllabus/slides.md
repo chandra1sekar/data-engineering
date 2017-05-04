@@ -169,7 +169,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
       - You don't always (aka usually) get what you want
 
     6.3 Hadoop ETL
-      6.3.1 - Running Hadoop Jobs [lecture]
+      6.3.1 x Running Hadoop Jobs [lecture]
       - Hadoop ETL
       - ETL - traditional vs big data [question]
 
