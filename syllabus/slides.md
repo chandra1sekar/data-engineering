@@ -357,7 +357,7 @@ distributed -vs- parallel... what's the deal?
 
     11.5 Activity
       11.5.1 - Issues with Microbatch [question]
-      11.5.2 - User Activity [lecture]
+      11.5.2 x User Activity [lecture]
       11.5.3 - Defining User Activity [activity]
 
 
