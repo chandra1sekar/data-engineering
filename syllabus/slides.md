@@ -134,14 +134,9 @@ partioning II, Hadoop
       5.2.3 - Failure in Distributed Systems [lecture]
       - Fault Tolerance [question]
 
-    5.3 Partitioning
-      5.3.1 - Partitioning [lecture]
-      - Partitioning Live
-      - Parittioning Question [question]
-
     5.3 Hadoop
       - Hadoop Walkthrough
-      - The Hadoop Ecosystem [screencast]
+      - The Hadoop Ecosystem
         (upstream project webpages etc, with logos on pipeline)
       - Hadoop Ecosystem Question [question]
 
