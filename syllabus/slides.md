@@ -57,7 +57,7 @@ Getting our feet wet with tools for querying data.
 
     3.1 What is the queryside?
       3.1.1 * Revisiting Pipelines [lecture]
-      3.1.2 x Immutability [lecture]
+      3.1.2 * Immutability [lecture]
 
     3.2 Query Tools
       3.2.1 - Queryside World 
@@ -104,7 +104,7 @@ Encoding & Evolving
       - SQL [question]
 
     4.3 NoSQL Data Stores
-      4.3.1 *x NoSQL Data Stores [lecture] [redo?]
+      4.3.1 * NoSQL Data Stores [lecture] [redo?]
       4.3.2 - NoSQL - Relational Model [activity]
       4.3.3 - NoSQL - Document Store [activity]
       4.3.4 - NoSQL - Key-Value Store [activity]
@@ -131,7 +131,7 @@ partioning II, Hadoop
     5.2 Distributed Computation
       - Distributed  
       - Distributed [question]
-      5.2.3 x Failure in Distributed Systems [lecture]
+      5.2.3 * Failure in Distributed Systems [lecture]
       - Fault Tolerance [question]
 
     5.3 Hadoop
@@ -169,7 +169,7 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
       - You don't always (aka usually) get what you want
 
     6.3 Hadoop ETL
-      6.3.1 x Running Hadoop Jobs [lecture]
+      6.3.1 * Running Hadoop Jobs [lecture]
       - Hadoop ETL
       - ETL - traditional vs big data [question]
 
@@ -229,7 +229,7 @@ planning transformations based on in what state do you need the data to be in ba
       - Tying it all together - Build a pipeline
 
     7.4 Security and Privacy
-      7.4.1 x Security and Privacy [lecture]
+      7.4.1 * Security and Privacy [lecture]
 
 
 ## 08 - Querying Data
@@ -326,7 +326,7 @@ architectural patterns for taking action
       - In Memory Computing [question]
 
     10.4 Take Action!
-      10.4.1 x Take Action! [lecture]
+      10.4.1 * Take Action! [lecture]
       10.4.2 - Act! (pyspark watching kafka) [activity]
 
 
@@ -357,7 +357,7 @@ distributed -vs- parallel... what's the deal?
 
     11.5 Activity
       11.5.1 - Issues with Microbatch [question]
-      11.5.2 x User Activity [lecture]
+      11.5.2 * User Activity [lecture]
       11.5.3 - Defining User Activity [activity]
 
 
