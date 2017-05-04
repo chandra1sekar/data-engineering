@@ -355,10 +355,10 @@ distributed -vs- parallel... what's the deal?
     11.4 Distributed In-memory Storage
       - Distributed In-memory Storage
 
-    11.5 State
+    11.5 Activity
       11.5.1 - Issues with Microbatch [question]
-      11.5.2 - Sessionization [lecture]
-      11.5.3 - Sessionize [activity]
+      11.5.2 - User Activity [lecture]
+      11.5.3 - Defining User Activity [activity]
 
 
 
