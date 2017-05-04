@@ -57,7 +57,7 @@ Getting our feet wet with tools for querying data.
 
     3.1 What is the queryside?
       3.1.1 * Revisiting Pipelines [lecture]
-      3.1.2 - Immutability [lecture]
+      3.1.2 x Immutability [lecture]
 
     3.2 Query Tools
       3.2.1 - Queryside World 
