@@ -229,7 +229,7 @@ planning transformations based on in what state do you need the data to be in ba
       - Tying it all together - Build a pipeline
 
     7.4 Security and Privacy
-      7.4.1 - Security and Privacy [lecture]
+      7.4.1 x Security and Privacy [lecture]
 
 
 ## 08 - Querying Data
