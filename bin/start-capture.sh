@@ -41,7 +41,7 @@ capture_webcam() {
     -hide_banner -nostats -loglevel warning \
     -f alsa -i default \
     -f v4l2 -framerate $framerate -input_format h264 -video_size hd1080 -ts mono2abs -i /dev/video0 \
-    -c copy -copyts \
+    -c copy -copyts -start_at_zero \
     $output_dir/webcam.mkv > $output_dir/webcam.log 2>&1
   echo "webcam done"
 }
