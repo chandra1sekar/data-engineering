@@ -9,6 +9,11 @@ slides:
 	  $(MAKE) -C $$lecture; \
 	done
 
+pdfs:
+	@for lecture in lectures/*; do \
+	  $(MAKE) -C $$lecture $@; \
+	done
+
 publish: slides
 	rsync -azvP lectures $(DEPLOY_TARGET)
 	rsync -azvP media $(DEPLOY_TARGET)
