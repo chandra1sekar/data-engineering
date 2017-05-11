@@ -1,6 +1,7 @@
 
 slides = $(wildcard *-*.md)
 default: $(slides:.md=.html)
+pdfs: $(slides:.md=.pdf)
 
 %.html : %.md
 	@echo "---" $@ "---"
@@ -10,12 +11,13 @@ default: $(slides:.md=.html)
 	@echo "---" $@ "---"
 	dot -T svg $< -o $@ 
 
-#%.pdf : %.html
-	#@echo "---" $@ "---"
-	#~/bin/phantomjs decktape.js $< $@
+%.pdf : %.html
+	@echo "---" $@ "---"
+	phantomjs ../../lib/decktape/decktape.js $< $@
 
 clean:
 	rm -f *.html
+	rm -f *.pdf
 
 clobber: clean
 
