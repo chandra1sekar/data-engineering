@@ -1,15 +1,4 @@
 
-# set up google cloud account, look at bike data
-  *through console, pretty straightforward
-  *do they have them from UCB?
-# look at bike data from cli
-  *set up Google cloud SDK
-  *set up account
-  *set up project
-  *bq, gsutil, gcloud (other?)
-# repeat in athena
-
-
 # Synthesis of Basics Project
 ## Identify the most popular commute
 - what's a commute (ie session)
@@ -18,8 +7,21 @@
 - how to write queries
 
 
-#Set up a docker container
-#Python? TensorFlow?
+## Set up a docker container
+## Python? TensorFlow?
+
+## set up google cloud account, look at bike data
+  * through console, pretty straightforward
+  * do they have them from UCB?
+## look at bike data from cli
+  * set up Google cloud SDK
+  * set up account
+  * set up project
+  * bq, gsutil, gcloud (other?)
+## repeat in athena
+
+
+
 
 # Deep Learning (image rec)
 ##http://deeplearning.net/datasets/
