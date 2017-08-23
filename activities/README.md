@@ -18,6 +18,7 @@
   * set up account
   * set up project
   * bq, gsutil, gcloud (other?)
+  * how to do sql from cli here?
 ### repeat in athena
 
 
