@@ -7,9 +7,6 @@
 - how to write queries
 
 
-### Set up a docker container
-### Python? TensorFlow?
-
 ### set up google cloud account, look at bike data
   * through console, pretty straightforward
   * do they have them from UCB?
