@@ -67,8 +67,20 @@ We want to start getting our analysis tools to the data itself, not copying data
 ### look at BQ bike data from cli
   * set up Google cloud SDK
   * set up project
-  * bq, gsutil, gcloud (other?)
+  * bq, gsutil, gcloud
   * how to do sql from cli here?
+  General example:
+  bq query --use_legacy_sql=false '
+SELECT
+  EXTRACT(YEAR FROM start_date) AS year,
+  ROUND(AVG(duration_sec/60), 2) AS avg_duration_min,
+  COUNT(*) AS yearly_trips
+FROM
+  `bigquery-public-data.san_francisco.bikeshare_trips`
+GROUP BY
+  YEAR
+ORDER BY
+  YEAR DESC'
 
 ### repeat in athena (both clicky box and cli)
 (write their own queries this round)
