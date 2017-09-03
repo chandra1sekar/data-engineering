@@ -38,17 +38,17 @@ Data, metadata, some basic tools.
     2.1 Working with Data
       2.1.1 - Brainstorm 3-5 ways you've received data... [question]
       2.1.2 * Introduction [lecture] [TM]
-      2.1.3 - Formats
-      2.1.4 - Schema/Types
-      2.1.5 - Data Count / Range
-      2.1.6 - Data Lineage
-      2.1.7 - Data Access
+      2.1.3 - Formats [screencast]
+      2.1.4 - Schema/Types [screencast]
+      2.1.5 - Data Count / Range [screencast]
+      2.1.6 - Data Lineage [screencast]
+      2.1.7 - Data Access [screencast]
 
     2.2 Tools for Working with Data
-      2.2.1 - Introduction to Tools 
+      2.2.1 - Introduction to Tools  [screencast]
       2.2.2 - The Command Line [tutorial]
       2.2.3 - Jupyter Notebooks [tutorial]
-      2.2.4 - Shells
+      2.2.4 - Shells [screencast]
 
 
 ## 03 - Welcome to the Queryside
@@ -60,14 +60,14 @@ Getting our feet wet with tools for querying data.
       3.1.2 * Immutability [lecture]
 
     3.2 Query Tools
-      3.2.1 - Queryside World 
+      3.2.1 - Queryside World  [screencast]
       3.2.2 - SQL [Tutorial]
-      3.2.3 - Athena
-      3.2.4 - BigQuery
+      3.2.3 - Athena [screencast]
+      3.2.4 - BigQuery [screencast]
 
     3.3 Sneak Peek
-      3.3.1 - Caching
-      3.3.2 - Query Planning
+      3.3.1 - Caching [screencast]
+      3.3.2 - Query Planning [screencast]
 
 
 # The Basics
@@ -111,11 +111,11 @@ Encoding & Evolving
       - SQL -vs- NoSQL [question]
 
     4.4 Introduction to the Cloud
-      4.4.1 - Virtuatlization and Containers
-      4.4.2 - Infrastructure Encapsulation and Isolation
-      4.4.3 - Using Containers
+      4.4.1 - Virtuatlization and Containers [screencast]
+      4.4.2 - Infrastructure Encapsulation and Isolation [screencast]
+      4.4.3 - Using Containers [screencast]
       - Virtual Machines and Containers [skype interview]
-      - Cluster Computing
+      - Cluster Computing [screencast]
   
 
 ## 05 - Storing Data II
@@ -129,14 +129,14 @@ partioning II, Hadoop
       - Hadoop Question [question]
 
     5.2 Distributed Computation
-      - Distributed  
+      - Distributed   [screencast]
       - Distributed [question]
       5.2.3 * Failure in Distributed Systems [lecture]
       - Fault Tolerance [question]
 
     5.3 Hadoop
-      - Hadoop Walkthrough
-      - The Hadoop Ecosystem
+      - Hadoop Walkthrough [screencast]
+      - The Hadoop Ecosystem [screencast]
         (upstream project webpages etc, with logos on pipeline)
       - Hadoop Ecosystem Question [question]
 
@@ -166,19 +166,19 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
       6.1.1 * Transform Section of Pipeline [lecture]
 
     6.2 ETL
-      - You don't always (aka usually) get what you want
+      - You don't always (aka usually) get what you want [screencast]
 
     6.3 Hadoop ETL
       6.3.1 * Running Hadoop Jobs [lecture]
-      - Hadoop ETL
+      - Hadoop ETL [screencast]
       - ETL - traditional vs big data [question]
 
     6.4 Container Management
-      6.4.1 - Working with YARN
+      6.4.1 - Working with YARN [screencast]
       6.4.2 - Distributed Execution Models
-      - Introduction to Schedulers
+      - Introduction to Schedulers [screencast]
       - Schedulers Question [question]
-      - Using a Scheduler
+      - Using a Scheduler [screencast]
 
 
 
@@ -214,18 +214,18 @@ planning transformations based on in what state do you need the data to be in ba
       7.1.1 * Pipeline Context [lecture]
 
     7.2 Where did the data come from?
-      - APIs
-      - Web scraping
-      - Stuff gets emailed to you in .xlsx files
-      - BI interfaces
-      - Datastore (static vs dyanmic)
+      - APIs [screencast]
+      - Web scraping [screencast]
+      - Stuff gets emailed to you in .xlsx files [screencast]
+      - BI interfaces [screencast]
+      - Datastore (static vs dyanmic) [screencast]
 
     7.3 What do you want to know about the data you get?
       - Context setting question [question]
-      - Lineage
-      - Metadata
+      - Lineage [screencast]
+      - Metadata [screencast]
       - Version
-      - Schema
+      - Schema [screencast]
       - Tying it all together - Build a pipeline
 
     7.4 Security and Privacy
@@ -286,13 +286,13 @@ unix pipeline paradigm (kafka is like pipes in unix commands)
 
     9.2 Kafka
       9.2.1 * Distributed Messaging [lecture]
-      - Kafka Walkthrough
+      - Kafka Walkthrough [screencast]
       - Where are the data coming from?
       9.2.4 * Latency [lecture]
       - Batch vs. Real Time
       - Driven by Queries
-      - Problems with Latency
-      - Glue
+      - Problems with Latency [screencast]
+      - Glue [screencast]
  
 
 ## 10 - Transforming Streaming Data
@@ -316,13 +316,13 @@ architectural patterns for taking action
       - Grabbing data you need as it streams by
 
     10.2 Modes of Execution
-      - Batch -vs- Streaming
-      - Single Event Processing
-      - Microbatch
-      - Handling Batch and Streaming Data in the Same System
+      - Batch -vs- Streaming [screencast]
+      - Single Event Processing [screencast]
+      - Microbatch [screencast]
+      - Continuous Applications - Handling Batch and Streaming Data in the Same System [screencast]
 
     10.3
-      - In Memory Computing
+      - In Memory Computing [screencast]
       - In Memory Computing [question]
 
     10.4 Take Action!
@@ -346,14 +346,14 @@ distributed -vs- parallel... what's the deal?
       11.1.1 * Pipeline Context [lecture]
 
     11.2 In Memory
-      - Streaming and Spark
-      - Structured Streaming
+      - Streaming and Spark [screencast]
+      - Structured Streaming [screencast]
 
     11.3 Resource Selections
-      - Dedicated Stream Processing?
+      - Dedicated Stream Processing? [screencast]
 
     11.4 Distributed In-memory Storage
-      - Distributed In-memory Storage
+      - Distributed In-memory Storage [screencast]
 
     11.5 Activity
       11.5.1 - Issues with Microbatch [question]
@@ -383,11 +383,11 @@ ML integration points
 Caching queries
 
     12.1 Queries
-      - Caching -vs- Stream Queries
-      - Caching and the Web
-      - A walk down memory lane - data mining
-      - Replay
-      - Caching queries
+      - Caching -vs- Stream Queries [screencast]
+      - Caching and the Web [screencast]
+      - A walk down memory lane - data mining [screencast]
+      - Replay [screencast]
+      - Caching queries [screencast]
 
 
 # Putting it All Together
@@ -401,13 +401,13 @@ Understanding ingested events.
 
     13.2 Sessionization and State
       13.2.1 * Sessionization and state for action [lecture]
-      - Ingested Events
-      - Low Latency Ingested Events
-      - Architectural Patterns for Action
+      - Ingested Events [screencast]
+      - Low Latency Ingested Events [screencast]
+      - Architectural Patterns for Action [screencast]
 
     13.3 Models
-      - Model Validation
-      - Model Management
+      - Model Validation [screencast]
+      - Model Management [screencast]
 
 
 ## 14 - Patterns for Data Pipelines
@@ -415,17 +415,17 @@ Understanding ingested events.
 Patterns and productionizing data pipelines.
 
     14.1 DevOps
-      14.1.1 - Infrastructure as Code
-      14.1.2 - Testing
-      - CI/CD 
-      - Logging and Monitoring
-      - Automation
-      - The Development Process
+      14.1.1 - Infrastructure as Code [screencast]
+      14.1.2 - Testing [screencast]
+      - CI/CD  [screencast]
+      - Logging and Monitoring [screencast]
+      - Automation [screencast]
+      - The Development Process [screencast]
 
     14.2 Serverless Architectures
       14.2.1 - The Future of Data Engineering
-      - AWS Kool-aid stack
-      - GCP Kool-aid stack
+      - AWS Kool-aid stack [screencast]
+      - GCP Kool-aid stack [screencast]
 
 
 
