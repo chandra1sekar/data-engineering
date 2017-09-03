@@ -35,11 +35,21 @@ capture_terminal() {
   echo "terminal done"
 }
 
-capture_webcam() {
+capture_audio() {
   local output_dir=$1
   ~/bin/ffmpeg \
     -hide_banner -nostats -loglevel warning \
     -f alsa -i default \
+    -c copy -copyts -start_at_zero \
+    $output_dir/audio.wav > $output_dir/webcam.log 2>&1
+  echo "webcam done"
+}
+
+#    -f alsa -i default \
+capture_webcam() {
+  local output_dir=$1
+  ~/bin/ffmpeg \
+    -hide_banner -nostats -loglevel warning \
     -f v4l2 -framerate $framerate -input_format h264 -video_size hd1080 -ts mono2abs -i /dev/video0 \
     -c copy -copyts -start_at_zero \
     $output_dir/webcam.mkv > $output_dir/webcam.log 2>&1
@@ -82,6 +92,9 @@ capture_terminal $output_dir &
 
 echo "capturing webcam"
 capture_webcam $output_dir &
+
+echo "capturing audio"
+capture_audio $output_dir &
 
 for job in `jobs -p`; do
   wait $job
