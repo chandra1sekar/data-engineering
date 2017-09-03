@@ -40,9 +40,11 @@ EOS
     -i slides.mkv \
     -i terminal.mkv \
     -i testpattern.mkv \
+    -i audio.wav \
     -filter_complex "$combine_filter" \
     -r ${FR} \
     -c:v libx264 \
+    -c:a mp3 \
     composite.mkv > composite.log 2>&1
 }
 
