@@ -1,0 +1,9 @@
+https://www.the-swamp.info/blog/configuring-gcloud-multiple-projects/
+
+
+gcloud config configurations list
+
+#for a second config
+gcloud config configurations create test-config
+
+gcloud config configurations create data-eng-config
