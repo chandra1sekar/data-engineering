@@ -1,5 +1,6 @@
-http://www.sqlite.org/lang.html
+sqlite
 
 https://www.w3schools.com/sql/default.asp
 
 https://www.youtube.com/watch?v=o-vsdfCBpsU&feature=youtu.be
+

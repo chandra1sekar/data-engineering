@@ -69,18 +69,42 @@ We want to start getting our analysis tools to the data itself, not copying data
   * set up project
   * bq, gsutil, gcloud
   * how to do sql from cli here?
-  General example:
+
+  https://cloud.google.com/bigquery/bq-command-line-tool
+
+
+General example:
   bq query --use_legacy_sql=false '
 SELECT
   EXTRACT(YEAR FROM start_date) AS year,
   ROUND(AVG(duration_sec/60), 2) AS avg_duration_min,
   COUNT(*) AS yearly_trips
 FROM
-  `bigquery-public-data.san_francisco.bikeshare_trips`
+  
 GROUP BY
   YEAR
 ORDER BY
   YEAR DESC'
+
+
+bq query "SELECT word, SUM(word_count) as count FROM publicdata:samples.shakespeare WHERE word CONTAINS 'raisin' GROUP BY word"
+
+bq show bigquery-public-data:san_francisco.bikeshare_trips
+
+
+How big is this spreadsheet - 983K rows?
+
+bq query --use_legacy_sql=false '
+    SELECT count(*)
+    FROM
+       `bigquery-public-data.san_francisco.bikeshare_trips`'
+
+
+
+
+
+
+
 
 ### repeat in athena (both clicky box and cli)
 (write their own queries this round)
