@@ -7,10 +7,16 @@ If you feel you're not where you'd like to be with these technologies/tools, use
 
 ##Python
 
+##Docker
+Using Docker
+by Adrian Mouat
+https://www.safaribooksonline.com/library/view/using-docker/9781491915752/
+
 ##General Introductions:
 Spark
 Kafka
 RDBs
+
 
 
 
