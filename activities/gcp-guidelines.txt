@@ -1,3 +1,4 @@
+setting up for multiple projects:
 https://www.the-swamp.info/blog/configuring-gcloud-multiple-projects/
 
 
