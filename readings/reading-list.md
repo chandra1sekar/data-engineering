@@ -4,10 +4,22 @@ If you feel you're not where you'd like to be with these technologies/tools, use
 ##SQL
 
 ##The Command Line
+Learning the Shell
+by William E. Shotts, Jr.
+http://linuxcommand.org/lc3_learning_the_shell.php
+
+##Git
+Pro Git book
+by Scott Chacon and Ben Straub 
+https://git-scm.com/book/en/v2
 
 ##Python
 
 ##Docker
+Getting Started with Docker
+https://docs.docker.com/get-started/
+
+
 Using Docker
 by Adrian Mouat
 https://www.safaribooksonline.com/library/view/using-docker/9781491915752/
@@ -29,7 +41,19 @@ RDBs
 
 https://cloud.google.com/docs/overview/
 
- 
+      1.1.2 - What is Data Engineering to you? [question]
+Google 'data engineering' - check out definitions, write your own.
+
+      1.1.4 - Why do I need Data Engineering for Data Science? [question]
+???
+
+      1.3.3 - Explain briefly how Data Engineering is... [question]
+
+
+      1.4.1 - Take a moment to think about... [question]
+
+
+
 Course intro, pipelines, events, and some basic queries.
 
     1.1 - Welcome
