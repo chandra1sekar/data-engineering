@@ -41,3 +41,32 @@ From a lecture's folder (e.g., `lectures/04/`), you can:
     open <lecture-component>.html
 
 
+# TODO
+
+shit-ton of easy screencasts
+- docker intro
+- working with data - file formats n schema n stuff
+- virtualization and cloud
+- hadoop walkthrough
+- hadoop ecosystem
+
+- ETL (you don't always get what you want)
+
+then gets harder...
+- schedulers
+- dags
+
+then easier
+sourcing data
+
+- apis
+- web scraping
+- bi interfaces
+
+metadata
+
+- lineage
+- schema
+
+
+
