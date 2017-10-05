@@ -61,7 +61,7 @@ Getting our feet wet with tools for querying data.
 
     3.2 Query Tools
       3.2.1 - Queryside World  [screencast]
-      3.2.2 - SQL [Tutorial]
+      3.2.2 - SQL [tutorial]
       3.2.3 - Athena [screencast]
       3.2.4 - BigQuery [screencast]
 
