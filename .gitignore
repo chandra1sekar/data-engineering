@@ -1,5 +1,12 @@
 tmp
+
 lectures/**/*.html
+screencasts/**/*.html
+tutorials/**/*.html
+
 lectures/**/*.pdf
+screencasts/**/*.pdf
+tutorials/**/*.pdf
+
 captures
 *.mkv
