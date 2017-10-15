@@ -1,9 +1,9 @@
 
-default: syllabus.pdf
+default: syllabus.pdf syllabus.html
 
-%.html : %.md
+syllabus.html: syllabus-header.md slides.md syllabus-footer.md
 	@echo "---" $@ "---"
-	pandoc $< -o $@ -s -t revealjs --template=../templates/mids-revealjs-template.html --section-divs -V theme=mids -V transition=linear
+	pandoc $^ -o $@ --toc -s --section-divs
 
 syllabus.pdf: syllabus-header.md slides.md syllabus-footer.md
 	@echo "---" $@ "---"
@@ -11,6 +11,7 @@ syllabus.pdf: syllabus-header.md slides.md syllabus-footer.md
 
 clean:
 	rm -f syllabus.pdf
+	rm -f syllabus.html
 
 clobber: clean
 
