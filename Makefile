@@ -8,10 +8,22 @@ slides:
 	@for lecture in lectures/*; do \
 	  $(MAKE) -C $$lecture; \
 	done
+	@for screencast in screencasts/*; do \
+	  $(MAKE) -C $$screencast; \
+	done
+	@for tutorial in tutorials/*; do \
+	  $(MAKE) -C $$tutorial; \
+	done
 
 pdfs:
 	@for lecture in lectures/*; do \
 	  $(MAKE) -C $$lecture $@; \
+	done
+	@for screencast in screencasts/*; do \
+	  $(MAKE) -C $$screencast $@; \
+	done
+	@for tutorial in tutorials/*; do \
+	  $(MAKE) -C $$tutorial $@; \
 	done
 
 publish: slides
@@ -29,5 +41,11 @@ clean:
 	$(MAKE) -C syllabus $@;
 	@for lecture in lectures/*; do \
 	  $(MAKE) -C $$lecture $@; \
+	done
+	@for screencast in screencasts/*; do \
+	  $(MAKE) -C $$screencast $@; \
+	done
+	@for tutorial in tutorials/*; do \
+	  $(MAKE) -C $$tutorial $@; \
 	done
 
