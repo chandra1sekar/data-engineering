@@ -11,5 +11,14 @@ author: "Using Containers"
 
 
 #
+## Using Docker
+
+- run services
+- create/use reproducible environments
+- run commands
+
+
+
+#
 
 <img class="logo" src="images/berkeley-school-of-information-logo.png"/>
