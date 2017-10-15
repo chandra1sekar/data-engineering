@@ -46,9 +46,9 @@ Data, metadata, some basic tools.
 
     2.2 Tools for Working with Data
       2.2.1 - Introduction to Tools  [screencast]
-      2.2.2 - The Command Line [tutorial]
-      2.2.3 - Jupyter Notebooks [tutorial]
-      2.2.4 - Shells [screencast]
+      2.2.2 - The Command Line [tutorial] (Intro + Using)
+      2.2.3 - Jupyter Notebooks [tutorial] (Intro + Using)
+      2.2.4 - Docker [tutorial] (Intro + Using)
 
 
 ## 03 - Welcome to the Queryside
@@ -62,7 +62,7 @@ Getting our feet wet with tools for querying data.
     3.2 Query Tools
       3.2.1 - Queryside World  [screencast]
       3.2.2 - SQL [tutorial]
-      3.2.3 - Athena [screencast]
+      3.2.3 - Presto/Athena [screencast]
       3.2.4 - BigQuery [screencast]
 
     3.3 Sneak Peek
