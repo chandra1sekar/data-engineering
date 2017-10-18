@@ -64,6 +64,7 @@ Getting our feet wet with tools for querying data.
       3.2.2 - SQL [tutorial]
       3.2.3 - Presto/Athena [screencast]
       3.2.4 - BigQuery [screencast]
+      add DataFrame intro screencast here
 
     3.3 Sneak Peek
       3.3.1 - Caching [screencast]
