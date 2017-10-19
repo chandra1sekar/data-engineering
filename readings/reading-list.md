@@ -2,6 +2,13 @@
 If you feel you're not where you'd like to be with these technologies/tools, use these resources to get up to speed. There are options, pick which one best suits your needs.
 
 ##SQL
+SQL Tutorial
+w3schools.com
+https://www.w3schools.com/sql/default.asp
+
+Learning SQL, 2nd Edition
+by Alan Beaulieu
+https://www.safaribooksonline.com/library/view/learning-sql-2nd/9780596801847/
 
 ##The Command Line
 Learning the Shell
@@ -14,6 +21,9 @@ by Scott Chacon and Ben Straub
 https://git-scm.com/book/en/v2
 
 ##Python
+Python for Data Analysis, 2nd Edition
+by William Wesley McKinney
+https://www.safaribooksonline.com/library/view/python-for-data/9781491957653/
 
 ##Docker
 Getting Started with Docker
@@ -40,6 +50,15 @@ RDBs
 ## 01 - Introduction
 
 https://cloud.google.com/docs/overview/
+
+Data Science vs. Data Engineering
+Insight Data Science blog
+https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
+
+Watch the preview video for Google's Coursera course:
+https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+
+Google data engineer jobs & read ads (between 5&10)
 
       1.1.2 - What is Data Engineering to you? [question]
 Google 'data engineering' - check out definitions, write your own.
@@ -84,6 +103,12 @@ Course intro, pipelines, events, and some basic queries.
 
 
 ## 02 - Working with Data
+
+Readings:
+Python for Data Analysis, 2nd Edition
+by William Wesley McKinney
+Chapter 2.2 IPython Basics
+https://www.safaribooksonline.com/library/view/python-for-data/9781491957653/ch02.html#ipython_basics
  
 Data, metadata, some basic tools.
 
@@ -104,6 +129,18 @@ Data, metadata, some basic tools.
 
 
 ## 03 - Welcome to the Queryside
+
+Designing Data-Intensive Applications, 1st Edition
+Martin Kleppmann
+Chapter 2. Data Models and Query Languages
+https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html#ch_datamodels
+
+Learning SQL, 2nd Edition
+by Alan Beaulieu
+Chapter 3. Query Primer
+https://www.safaribooksonline.com/library/view/learning-sql-2nd/9780596801847/ch03.html
+
+
 
 Getting our feet wet with tools for querying data.
 
