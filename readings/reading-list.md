@@ -36,7 +36,13 @@ https://www.safaribooksonline.com/library/view/using-docker/9781491915752/
 
 ##General Introductions:
 Spark
+Spark: The Definitive Guide
+by Bill Chambers, Matei Zaharia
+
 Kafka
+Kafka: The Definitive Guide
+by Gwen Shapira, Neha Narkhede, Todd Palino
+
 RDBs
 
 
@@ -49,6 +55,7 @@ RDBs
 
 ## 01 - Introduction
 
+Readings:
 https://cloud.google.com/docs/overview/
 
 Data Science vs. Data Engineering
@@ -59,6 +66,15 @@ Watch the preview video for Google's Coursera course:
 https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
 
 Google data engineer jobs & read ads (between 5&10)
+
+Git & Docker:
+
+Network Programmability and Automation
+by Jason Edelman, Matt Oswalt, Scott S. Lowe
+Chapter 8. Source Control with Git
+https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch08.html#sourcecontrol
+
+
 
       1.1.2 - What is Data Engineering to you? [question]
 Google 'data engineering' - check out definitions, write your own.
@@ -105,6 +121,12 @@ Course intro, pipelines, events, and some basic queries.
 ## 02 - Working with Data
 
 Readings:
+
+Network Programmability and Automation
+by Jason Edelman, Matt Oswalt, Scott S. Lowe
+Chapter 5. Data Formats and Data Models
+https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch05.html#dataformats
+
 Python for Data Analysis, 2nd Edition
 by William Wesley McKinney
 Chapter 2.2 IPython Basics
@@ -162,6 +184,18 @@ Getting our feet wet with tools for querying data.
 # The Basics
 
 ## 04 - Storing Data
+
+Readings:
+
+Using Docker
+by Adrian Mouat
+Chapter 1. The What and Why of Containers
+https://www.safaribooksonline.com/library/view/using-docker/9781491915752/ch01.html#what_and_why
+
+Infrastructure as Code
+by Kief Morris
+Chapter 1. Challenges and Principles
+https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
 
 -first pass, sql & nosql, partioning I, hadoop, cloud
 quick discussion, point at pipeline, we're doing storage
@@ -520,6 +554,28 @@ Understanding ingested events.
 
 
 ## 14 - Patterns for Data Pipelines
+
+Readings:
+Infrastructure as Code
+by Kief Morris
+Chapter 1. Challenges and Principles
+https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
+
+Network Programmability and Automation
+by Jason Edelman, Matt Oswalt, Scott S. Lowe
+Chapter 10. Continuous Integration (covers ci/cd, tdd, etc)
+https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch10.html#cicd
+
+Serverless Architectures on AWS
+by Peter Sbarski
+Chapter 1. Going serverless
+https://www.safaribooksonline.com/library/view/serverless-architectures-on/9781617293825/kindle_split_013.html
+
+Case Study Video:
+Continuous deployment: How Facebook deploys to millions
+Michael Gorven
+Production Engineer, Facebook (Instagram)
+https://www.safaribooksonline.com/case-studies/continuous-deployment/continuous-deployment-how-fac/9781491991336-video307610/
 
 Patterns and productionizing data pipelines.
 
