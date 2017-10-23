@@ -140,6 +140,7 @@ partioning II, Hadoop
       - The Hadoop Ecosystem [screencast]
         (upstream project webpages etc, with logos on pipeline)
       - Hadoop Ecosystem Question [question]
+      - Using Hadoop [screencast]
 
 
 ## 06 - Transforming Data
