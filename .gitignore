@@ -10,3 +10,6 @@ tutorials/**/*.pdf
 
 captures
 *.mkv
+*.avi
+*.mov
+*.mp4
