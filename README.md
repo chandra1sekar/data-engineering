@@ -1,8 +1,8 @@
-# MIDS w205 Fundamentals of Data Engineering
+# MIDS w205 - Fundamentals of Data Engineering
 
-data engineering course material
+course material
 
-## Using the tools
+## Building the course content
 
 ### top-level
 
