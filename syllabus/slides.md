@@ -53,7 +53,7 @@ Data, metadata, some basic tools.
 
 ## 03 - Welcome to the Queryside
 
-Getting our feet wet with tools for querying data.
+Getting our feet wet with tools for querying and interacting with data.
 
     3.1 What is the queryside?
       3.1.1 * Revisiting Pipelines [lecture]
@@ -430,8 +430,8 @@ Patterns and productionizing data pipelines.
       - GCP Kool-aid stack [screencast]
 
 
+\pagebreak
 
----
 
 # Tutorials
 
@@ -498,9 +498,7 @@ Patterns and productionizing data pipelines.
 - Just enough sql to get by
 - various flavors and extensions to sql
 - Advanced sql
-- Where to go for more?
-
-check out Kleppmann's book for some decent examples for this
+- Where to go for more? (Kleppmann, ...)
 
 
 ## Database Normalization (in Week 3 with rdb lecture)
