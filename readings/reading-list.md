@@ -197,6 +197,11 @@ by Kief Morris
 Chapter 1. Challenges and Principles
 https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
 
+Modern Linux Administration
+by Sam R. Alapati
+Chapter 1. Modern Linux System Administration
+https://www.safaribooksonline.com/library/view/modern-linux-administration/9781491935941/ch01.html#idm139918689681584
+
 -first pass, sql & nosql, partioning I, hadoop, cloud
 quick discussion, point at pipeline, we're doing storage
 
@@ -242,7 +247,13 @@ Encoding & Evolving
   
 
 ## 05 - Storing Data II
- 
+
+Readings:
+Hadoop: The Definitive Guide, 4th Edition
+by Tom White
+https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/
+Chapters 1-3
+
 was "more storing data"
 partioning II, Hadoop
 
@@ -265,7 +276,25 @@ partioning II, Hadoop
 
 
 ## 06 - Transforming Data
- 
+
+
+Readings:
+Designing Data-Intensive Applications, 1st Edition
+Martin Kleppmann
+Chapter 10. Batch Processing
+https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html#ch_batch
+
+Designing Data-Intensive Applications, 1st Edition
+Martin Kleppmann
+Chapter 11. Stream Processing
+https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html#ch_stream
+
+Readings:
+Hadoop: The Definitive Guide, 4th Edition
+by Tom White
+Chapter 4. YARN
+https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html
+
 first pass, etl & data munging, cloud, containers ()
 
 -pipeline for context - transform section
@@ -306,6 +335,11 @@ cloud n containers - second pass (because how hadoop etl works requires schedule
 
 
 ## 07 - Sourcing Data
+
+Modern Linux Administration
+by Sam R. Alapati
+Chapter 15. Security and Compliance in the Modern Systems Environment
+https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html
 
 -pipeline for context (sourcing section)
 
@@ -356,7 +390,12 @@ planning transformations based on in what state do you need the data to be in ba
 
 
 ## 08 - Querying Data
- 
+
+Readings:
+Designing Data-Intensive Applications, 1st Edition
+Martin Kleppmann
+Chapter 6. Partitioning
+
 
 querying with partition keys
 
@@ -475,6 +514,12 @@ architectural patterns for taking action
 
 ## 11 - Faster Data Stores
 
+Readings:
+Structured Streaming Programming Guide
+Apache Foundation
+https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
+Through "Operations on streaming DataFrames/Datasets" section
+
 was "in memory storing data"
 streaming & spark
 
@@ -506,6 +551,14 @@ distributed -vs- parallel... what's the deal?
 
 
 ## 12 - Faster Queries
+
+Readings:
+Structured Streaming Programming Guide
+Apache Foundation
+https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
+From "Streaming Queries" section to end
+
+
 wanna change this to like "Streaming: Immediate Results"
 "Streaming: Latency and Results"
 
@@ -536,6 +589,17 @@ Caching queries
 # Putting it All Together
 
 ## 13 - Understanding Data
+
+Readings:
+Scala:Applied Machine Learning
+by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
+Sessionization (in Chapter 6. Working with Unstructured Data)
+https://www.safaribooksonline.com/library/view/scalaapplied-machine-learning/9781787126640/ch32s04.html
+
+Advanced Analytics with Spark, 2nd Edition
+by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills
+Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data)
+https://www.safaribooksonline.com/library/view/Advanced+Analytics+with+Spark,+2nd+Edition/9781491972946/ch08.html#idm140398878264880
 
 Understanding ingested events.
 
