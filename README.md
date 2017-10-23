@@ -1,4 +1,5 @@
-# data-engineering
+# MIDS w205 Fundamentals of Data Engineering
+
 data engineering course material
 
 ## Using the tools
@@ -43,7 +44,7 @@ From a lecture's folder (e.g., `lectures/04/`), you can:
 
 # TODO
 
-shit-ton of easy screencasts
+ton of easy screencasts
 - docker intro
 - working with data - file formats n schema n stuff
 - virtualization and cloud
