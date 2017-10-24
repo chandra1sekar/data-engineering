@@ -5,7 +5,7 @@ pdfs: $(slides:.md=.pdf)
 
 %.html : %.md
 	@echo "---" $@ "---"
-	pandoc $< -o $@ -s -t revealjs --template=../templates/mids-revealjs-template.html --section-divs -V theme=mids -V transition=linear
+	pandoc $< -o $@ -s -t revealjs --template=../../templates/mids-revealjs-template.html --section-divs -V theme=mids -V transition=linear
 
 %.svg : %.dot
 	@echo "---" $@ "---"
@@ -13,7 +13,7 @@ pdfs: $(slides:.md=.pdf)
 
 %.pdf : %.html
 	@echo "---" $@ "---"
-	phantomjs ../lib/decktape/decktape.js $< $@
+	phantomjs ../../lib/decktape/decktape.js $< $@
 
 clean:
 	rm -f *.html

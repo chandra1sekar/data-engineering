@@ -1,1 +1,1 @@
-../../templates/Makefile
+../../templates/tutorial_Makefile
