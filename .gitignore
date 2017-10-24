@@ -1,11 +1,9 @@
 tmp
 
-lectures/**/*.html
-screencasts/**/*.html
+**/*.html
 tutorials/**/*.html
 
-lectures/**/*.pdf
-screencasts/**/*.pdf
+**/*.pdf
 tutorials/**/*.pdf
 
 captures
