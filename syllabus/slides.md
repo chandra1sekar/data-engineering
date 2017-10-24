@@ -61,10 +61,11 @@ Getting our feet wet with tools for querying and interacting with data.
 
     3.2 Query Tools
       3.2.1 - Queryside World  [screencast]
-      3.2.2 - SQL [tutorial]
-      3.2.3 - Presto/Athena [screencast]
-      3.2.4 - BigQuery [screencast]
-      add DataFrame intro screencast here
+      3.2.2 - SQL [screencast] (Contextualized intro to why modern sql)
+              (run through initial tutorial series on your own)
+      3.2.3 - Presto/Athena [screencast] (Setup + Using Athena)
+      3.2.4 - BigQuery [screencast] (Setup + Using BQ)
+      3.2.5 - DataFrames in Notebooks [screencast] (Jupyter tutorial #3)
 
     3.3 Sneak Peek
       3.3.1 - Caching [screencast]
