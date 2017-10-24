@@ -1,11 +1,18 @@
-default: slides
+default: slides syllabus.pdf syllabus.html
 
 DEPLOY_TARGET = "mark.mims@ischool.berkeley.edu:~/public_html/course-development/2017-mids-w205/"
 MEDIA_TARGET = "elias:/opt/mirrors/box/course-development/2017-mids-w205/raw-media/lectures/"
 weeks = $(wildcard *-*)
 
+syllabus.html: templates/syllabus-header.md README.md templates/syllabus-footer.md
+	@echo "---" $@ "---"
+	pandoc $^ -o $@ --toc -s --section-divs
+
+syllabus.pdf: templates/syllabus-header.md README.md templates/syllabus-footer.md
+	@echo "---" $@ "---"
+	pandoc $^ -o $@ --toc
+
 slides:
-	$(MAKE) -C syllabus;
 	@for lecture in $(weeks); do \
 	  $(MAKE) -C $$lecture; \
 	done
@@ -26,7 +33,6 @@ publish: slides
 	rsync -azvP lectures $(DEPLOY_TARGET)
 	rsync -azvP media $(DEPLOY_TARGET)
 	rsync -azvP readings $(DEPLOY_TARGET)
-	rsync -azvP syllabus $(DEPLOY_TARGET)
 	rsync -azvP templates $(DEPLOY_TARGET)
 	rsync -azvP tutorials $(DEPLOY_TARGET)
 	rsync -azvP --exclude=tmp captures/ $(MEDIA_TARGET)
@@ -37,11 +43,12 @@ capture:
 	bin/start-capture.sh
 
 clean:
-	$(MAKE) -C syllabus $@;
 	@for lecture in $(weeks); do \
 	  $(MAKE) -C $$lecture $@; \
 	done
 	@for tutorial in tutorials/*; do \
 	  $(MAKE) -C $$tutorial $@; \
 	done
+	rm -f syllabus.pdf
+	rm -f syllabus.html
 
