@@ -2,7 +2,7 @@
 
 course material
 
-## Building the course content
+## Building the course content (slides and docs atm)
 
 ### top-level
 
@@ -40,6 +40,33 @@ From a week's folder (e.g., `02-Working-with-Data`), you can:
 - view slides locally
 
     open <lecture-component>.html
+
+
+
+# Screencasts
+
+## Editing Audio
+
+### Reducing Noise
+
+Using Audacity,
+
+- open audio file
+- select noise range
+- go to `Effects -> Noise Reduction -> Get Noise Profile`
+- select entire audio capture
+- go to `Effects -> Repeat Noise Reduction`
+- save audio project
+- export audio.  Not sure the best format yet.  I've been using AAC in m4a
+  container, but it might be better to use pcm or wav or something for
+  nonlinear video edits
+
+This is all from ["Noise Removal" Audacity (Step-By-Step
+Tutorial)](https://www.youtube.com/watch?v=tAJ4Sg-nO6A).
+
+## Editing Video
+
+BlenderVSE ftw
 
 
 # TODO
