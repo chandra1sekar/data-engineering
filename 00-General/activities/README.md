@@ -1,3 +1,28 @@
+# Assignments
+
+## Week 01
+
+1. Set up your git repo.
+
+- Info to clone?
+
+2. What is Google Cloud?
+Read 
+https://cloud.google.com/docs/overview/
+
+- Do...
+
+3. Watch the preview video for Google's Coursera course:
+https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+
+- What surprised you about the points X makes?
+
+4. Google data engineering jobs & read ads (between 5&10).
+- What are companies looking for in skills, experience, competencies?
+- How 
+
+n. Docker base image?
+
 
 # Synthesis of Basics Project
 ## Identify the most popular commute

@@ -22,25 +22,21 @@ processing architectures that underpin data science applications.
 ## Intro
 
 ### Week 01 - Introduction
-
-Readings:
-https://cloud.google.com/docs/overview/
+#### General Topic for week: 
+#### Readings:
 
 Data Science vs. Data Engineering
 Insight Data Science blog
 https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
 
-Watch the preview video for Google's Coursera course:
-https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
-
-Google data engineer jobs & read ads (between 5&10)
-
-Git & Docker:
-
 Network Programmability and Automation
 by Jason Edelman, Matt Oswalt, Scott S. Lowe
 Chapter 8. Source Control with Git
 https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch08.html#sourcecontrol
+
+
+#### Assignments:
+
 
 
 
