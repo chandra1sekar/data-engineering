@@ -1,8 +1,10 @@
 #MIDS w205 - Fundamentals of Data Engineering 
+
 #Mark Mims and Taylor Martin
+
 #Spring 2018
 
-# Course Description
+## Course Description
 
 Storing, managing, and processing datasets are foundational processes in data
 science. This course introduces the fundamental knowledge and skills of data
@@ -19,9 +21,9 @@ processing architectures that underpin data science applications.
 
 
 
-# Intro
+## Intro
 
-## 01 - Introduction
+### Week 01 - Introduction
 
 Readings:
 https://cloud.google.com/docs/overview/
