@@ -1,8 +1,8 @@
-#MIDS w205 - Fundamentals of Data Engineering 
+# MIDS w205 - Fundamentals of Data Engineering 
 
-#Mark Mims and Taylor Martin
+# Mark Mims and Taylor Martin
 
-#Spring 2018
+# Spring 2018
 
 ## Course Description
 
