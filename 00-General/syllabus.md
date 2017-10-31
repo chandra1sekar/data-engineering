@@ -34,6 +34,9 @@ by Jason Edelman, Matt Oswalt, Scott S. Lowe
 Chapter 8. Source Control with Git
 https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch08.html#sourcecontrol
 
+Analytics For Hackers: How To Think About Event Data
+by Michelle Wetzler
+https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data-cabeefe1f3d9
 
 #### Assignments:
 

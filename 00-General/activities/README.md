@@ -25,6 +25,7 @@ n. Docker base image?
 
 
 # Synthesis of Basics Project
+## Week 02
 ## Identify the most popular commute
 - what's a commute (ie session)
 - what communtes don't count ()
@@ -34,7 +35,7 @@ n. Docker base image?
 
 ### set up google cloud account, look at bike data
  
-
+## Week 03
 ### look at BQ bike data from cli
   * set up Google cloud SDK
   * set up project
@@ -44,21 +45,39 @@ n. Docker base image?
   https://cloud.google.com/bigquery/bq-command-line-tool
 
 
-
+## Week 04
 ### repeat in athena (both clicky box and cli)
 (write their own queries this round)
 
+## Week 05
 ### look at BQ bike data from notebooks
 
 
 # Deep Learning (image rec)
-##http://deeplearning.net/datasets/
--python
--docker
--model dev/training (canned model?)
--more cli
--data sources
+## Week 06 - Week 09
+## http://deeplearning.net/datasets/
+- python
+- docker
+- model dev/training (canned model?)
+- more cli
+- data sources
 
+### Possible Breakdown over weeks
+- get and clean data
+- pipeline set up
+- train model
+- test on new data
+
+## Week 10 - Week14
 # Recommender Project
 ##https://github.com/fluxcapacitor/pipeline/blob/master/zeppelin/Dockerfile
--for example
+- for example
+- simple web app where you make a few choices and it gives you recommendations
+
+### Possible Breakdown over weeks
+- take each piece of pipeline, set up a few each week
+- "lab" assignment where you explain how it all goes together
+
+
+
+
