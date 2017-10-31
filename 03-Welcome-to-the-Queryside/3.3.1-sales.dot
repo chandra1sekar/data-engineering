@@ -1,0 +1,43 @@
+
+digraph g {
+node [
+fontsize = "16"
+shape = "ellipse"
+];
+edge [
+];
+"users" [
+label =<
+<table border="0" cellborder="1" cellspacing="0">
+  <tr><td colspan="8"><b>sales</b></td></tr>
+  <tr>
+    <td port="f0">id</td>
+    <td port="f1">timstamp_utc</td>
+    <td port="f2">product_id</td>
+    <td port="f2">list_price_usd</td>
+    <td port="f3">discount_price_usd</td>
+    <td port="f4">closing_price_usd</td>
+    <td port="f4">tax, etc...</td>
+  </tr>
+  <tr>
+    <td>001</td>
+    <td port="f2">1509385009636</td>
+    <td port="f2">1f9c39d6-ed46-4d87-bc24-691d4273b50b</td>
+    <td port="f2">123.45</td>
+    <td port="f2">123.45</td>
+    <td port="f2">123.45</td>
+    <td port="f2">...</td>
+  </tr>
+  <tr>
+    <td>002</td>
+    <td port="f2">1509385069724</td>
+    <td port="f2">c20d69d9-ae3b-4afe-af46-e33c366e0d2c</td>
+    <td port="f2">47.45</td>
+    <td port="f2">42.74</td>
+    <td port="f2">42.74</td>
+    <td port="f2">...</td>
+  </tr>
+  </table>>
+shape = "none"
+];
+}
