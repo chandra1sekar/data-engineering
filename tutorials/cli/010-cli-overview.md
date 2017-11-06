@@ -1,5 +1,5 @@
 ---
-title: "Tutorial - `docker`"
+title: "Tutorial - The Command Line"
 author: "Overview"
 ...
 
@@ -13,33 +13,54 @@ author: "Overview"
 #
 ## Practical
 
-- _using_ docker containers
-
-- installing / setting up docker
-    - on your machine
-    - on a cloud instance
-
 
 #
 ## Conceptual
 
-- what _is_ a container?
 
-- how do they related to virtual machines?
+- console
+- terminal
+- cli
+- dos prompt
+- cmd window
+- shell
+- tui
 
-- containers in the cloud
 
+- interpreter
+
+- support various programming languages 
+- scripting / automation
+
+control:
+- processes
+- filesystem
+
+
+typical syntax
+prompt
+command
+arguments
+(syntax description for optional args, etc)
+
+built-in help
+man
+-?
+-h
+--help
+
+
+philosophy of simple tools piped together
+
+repl
+
+interpreter directive (?)
 
 #
 ## Advanced
 
-- building your own docker images
 
-- clusters of containers
-
-- container schedulers
-
-- production workloads using containers
+[wikipedia](https://en.wikipedia.org/wiki/Command-line_interface)
 
 
 #

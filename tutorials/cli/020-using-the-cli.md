@@ -1,6 +1,6 @@
 ---
-title: "Tutorial - `docker`"
-author: "Using Containers"
+title: "Tutorial - The Command Line"
+author: "Using the CLI"
 ...
 
 ---
