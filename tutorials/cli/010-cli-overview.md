@@ -1,66 +1,108 @@
 ---
-title: "Tutorial - The Command Line"
+title: "Tutorial - The CLI"
 author: "Overview"
-...
 
 ---
 
 #
+## Agenda { data-background="images/watch-faded.png" }
 
-<p><img width="400px" src="images/docker-logo.png"/></p>
+- What _is_ a CLI?
+- What can I _do_ with it?
+- Different types of CLIs
+- Different names for CLIs
+- What you'll need to know
 
 
 #
-## Practical
+## Command-Line Interface
 
+...to software (usually an OS)
 
-#
-## Conceptual
+## Control a computer's
 
-
-- console
-- terminal
-- cli
-- dos prompt
-- cmd window
-- shell
-- tui
-
-
-- interpreter
-
-- support various programming languages 
-- scripting / automation
-
-control:
 - processes
 - filesystem
+- ...
 
-
-typical syntax
-prompt
-command
-arguments
-(syntax description for optional args, etc)
-
-built-in help
-man
--?
--h
---help
-
-
-philosophy of simple tools piped together
-
-repl
-
-interpreter directive (?)
 
 #
-## Advanced
+## Human-Computer Interfaces
+
+For Operating Systems,
+
+- GUI
+- Web
+- CLI
+- API
+- Voice
+- Video
+- ...
+
+## Human-Computer Interfaces
+
+- (Mind?)
+- Video
+- Voice
+- Web
+- GUI
+- CLI
+- API
 
 
-[wikipedia](https://en.wikipedia.org/wiki/Command-line_interface)
+#
+## What can I do with a CLI?
+
+- run interactive commands
+- script / automate tasks
+
+##
+
+- extend / combine commands
+- install / write new commands
+- access remote computers
+- integrate with GUI/web interfaces
+- keep history of commands
+- use built-in help
+- ...
+
+
+#
+## What types of CLIs are there?
+
+- console shell
+- application shell
+
+<div class="notes">
+awscli
+
+maya/blender
+
+...
+</div>
+
+
+#
+## What's in a name?
+
+- console
+- shell
+- terminal
+- interpreter
+- command prompt
+- cmd window
+- tui
+- dos prompt
+- powershell
+- ...
+
+
+#
+## What do I need to know _now_?
+
+- starting up a terminal
+- filesystem manipulation (situational awareness)
+- running basic commands
 
 
 #
