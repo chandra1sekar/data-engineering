@@ -63,10 +63,10 @@ Students will:
 
 - There are 10 assignments, each of which is 10% of your grade.
 
-## Prerequisites:
+## Prerequisites
 
--Previous experience with Python.
--Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.
+- Previous experience with Python.
+- Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.
 
 ## Course Outline
 The course consists of 4 sections: A 3-week Introduction that covers the basics of storage and retrieval concepts and tools; a 5-week Basics section that provides a deeper exploration of working with data and data pipelines; a 4-week section that focuses on Streaming Data; and a concluding section, Putting it All Together, that integrates concepts and skills from the entire course into a cohesive model of the data pipeline. 
@@ -78,7 +78,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: What is Data Engineering? Gathering event data. Get started with queries.
 
-#### Readings:
+#### Readings
 
     Data Science vs. Data Engineering   
     Insight Data Science blog 
@@ -99,7 +99,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Intro to data, metadata, and some basic tools for working with data.
 
-#### Readings:
+#### Readings
 
     Network Programmability and Automation
     by Jason Edelman, Matt Oswalt, Scott S. Lowe
@@ -114,9 +114,9 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 ## Week 03 - Welcome to the Queryside
 
-#### Themes: 
+#### Themes
 
-#### Readings:
+#### Readings
 
     Designing Data-Intensive Applications, 1st Edition
     Martin Kleppmann
@@ -137,7 +137,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Relational and NoSQL datastores, introduction to cloud concepts
 
-#### Readings:
+#### Readings
 
     Using Docker
     by Adrian Mouat
@@ -156,7 +156,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Distributed Computation and Hadoop
 
-#### Readings:
+#### Readings
 
     Hadoop: The Definitive Guide, 4th Edition
     by Tom White
@@ -170,7 +170,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: ETL and its discontents, more Hadoop, and container management
 
-#### Readings:
+#### Readings
 
     Designing Data-Intensive Applications, 1st Edition
     Martin Kleppmann
@@ -190,7 +190,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Data and its provenance, security and privacy
 
-#### Readings:
+#### Readings
 
     Modern Linux Administration
     by Sam R. Alapati
@@ -203,7 +203,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Querying with partition keys and query planning
 
-#### Readings:
+#### Readings
 
     Designing Data-Intensive Applications, 1st Edition
     by Martin Kleppmann
@@ -216,7 +216,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Ingesting streaming data, using Kafka, considerations of latency.
 
-#### Readings:
+#### Readings
 
     Kafka: The Definitive Guide, 1st Edition
     by Gwen Shapira, Neha Narkhede, Todd Palino
@@ -230,7 +230,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: NoETL, batch vs streaming, in-memory computing.
 
-#### Readings:
+#### Readings
 
     High Performance Spark, 1st Edition
     by Holden Karau, Rachel Warren
@@ -248,7 +248,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Distributed in-memory storage and Spark.
 
-#### Readings:
+#### Readings
 
     Structured Streaming Programming Guide
     Apache Foundation
@@ -263,7 +263,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Structured streaming, streaming queries, caching vs. stream queries
 
-#### Readings:
+#### Readings
 
     Structured Streaming Programming Guide
     Apache Foundation
@@ -280,7 +280,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Sessionization and state and model validation and management
 
-#### Readings:
+#### Readings
 
     Scala:Applied Machine Learning
     by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
@@ -297,7 +297,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Themes: Conceptual DevOps and serverless architectures
 
-#### Readings:
+#### Readings
 
     Infrastructure as Code
     by Kief Morris
@@ -324,9 +324,9 @@ In addition to the sequenced material covered, the course also includes Tutorial
 - How the Web Works: “Cache is King!” (in Week 12)
 
 
-## Academic Integrity:
+## Academic Integrity
 Please read UC Berkeley’s policies around academic integrity:
 http://sa.berkeley.edu/conduct/integrity
 
-## Avoiding Plagiarism:
+## Avoiding Plagiarism
 Plagiarism is a serious academic offense, and students must take care not to copy code written by others. Beginning students sometimes have trouble identifying exactly when plagiarism takes place. Remember that it is generally fine to search for examples of code (for example, on forums like stackexchange). This is a normal part of programming and can help you learn. However, it is important that you understand the code you find and use what you learn to write your own statements. It is ok if a single line of code happens to match an example found on the internet, but you should not copy multiple lines at once. If in doubt, simply document the place you found your example code and ask your instructors for further guidance.
