@@ -80,16 +80,16 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Data Science vs. Data Engineering   
-    Insight Data Science blog 
-    https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
+>   Data Science vs. Data Engineering   
+>   Insight Data Science blog 
+>   https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
 
-    Network Programmability and Automation 
-    by Jason Edelman, Matt Oswalt, Scott S. Lowe
-    Chapter 8. Source Control with Git
+>   Network Programmability and Automation 
+>   by Jason Edelman, Matt Oswalt, Scott S. Lowe
+>   Chapter 8. Source Control with Git
 
-    Analytics For Hackers: How To Think About Event Data
-    by Michelle Wetzler
+>   Analytics For Hackers: How To Think About Event Data
+>   by Michelle Wetzler
 
 #### Assignment 01: Set up and prerequisites
 
@@ -101,13 +101,13 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Network Programmability and Automation
-    by Jason Edelman, Matt Oswalt, Scott S. Lowe
-    Chapter 5. Data Formats and Data Models
+>   Network Programmability and Automation
+>   by Jason Edelman, Matt Oswalt, Scott S. Lowe
+>   Chapter 5. Data Formats and Data Models
 
-    Python for Data Analysis, 2nd Edition
-    by William Wesley McKinney
-    Chapter 2.2 IPython Basics
+>   Python for Data Analysis, 2nd Edition
+>   by William Wesley McKinney
+>   Chapter 2.2 IPython Basics
  
 #### Assignment 02: Querying data with BigQuery
 
@@ -118,13 +118,13 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Designing Data-Intensive Applications, 1st Edition
-    Martin Kleppmann
-    Chapter 2. Data Models and Query Languages
+>   Designing Data-Intensive Applications, 1st Edition
+>   Martin Kleppmann
+>   Chapter 2. Data Models and Query Languages
 
-    Learning SQL, 2nd Edition
-    by Alan Beaulieu
-    Chapter 3. Query Primer
+>   Learning SQL, 2nd Edition
+>   by Alan Beaulieu
+>   Chapter 3. Query Primer
 
 
 #### Assignment 03: Querying data from the command line
@@ -139,17 +139,17 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Using Docker
-    by Adrian Mouat
-    Chapter 1. The What and Why of Containers
+>   Using Docker
+>   by Adrian Mouat
+>   Chapter 1. The What and Why of Containers
 
-    Infrastructure as Code
-    by Kief Morris
-    Chapter 1. Challenges and Principles
+>   Infrastructure as Code
+>   by Kief Morris
+>   Chapter 1. Challenges and Principles
 
-    Modern Linux Administration
-    by Sam R. Alapati
-    Chapter 1. Modern Linux System Administration
+>   Modern Linux Administration
+>   by Sam R. Alapati
+>   Chapter 1. Modern Linux System Administration
 
 
 ## Week 05 - Storing Data II
@@ -158,9 +158,9 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Hadoop: The Definitive Guide, 4th Edition
-    by Tom White
-    Chapters 1-3
+>   Hadoop: The Definitive Guide, 4th Edition
+>   by Tom White
+>   Chapters 1-3
 
 #### Assignment 04 - Employ notebooks to synthesize query project results (Query Project)
 
@@ -172,17 +172,17 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Designing Data-Intensive Applications, 1st Edition
-    Martin Kleppmann
-    Chapter 10. Batch Processing
+>   Designing Data-Intensive Applications, 1st Edition
+>   Martin Kleppmann
+>   Chapter 10. Batch Processing
 
-    Designing Data-Intensive Applications, 1st Edition
-    Martin Kleppmann
-    Chapter 11. Stream Processing
+>   Designing Data-Intensive Applications, 1st Edition
+>   Martin Kleppmann
+>   Chapter 11. Stream Processing
 
-    Hadoop: The Definitive Guide, 4th Edition
-    by Tom White
-    Chapter 4. YARN
+>   Hadoop: The Definitive Guide, 4th Edition
+>   by Tom White
+>   Chapter 4. YARN
 
 
 
@@ -192,9 +192,9 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Modern Linux Administration
-    by Sam R. Alapati
-    Chapter 15. Security and Compliance in the Modern Systems Environment
+>   Modern Linux Administration
+>   by Sam R. Alapati
+>   Chapter 15. Security and Compliance in the Modern Systems Environment
 
 #### Assignment 05 - Get and clean data (Deep Learning Project)
 
@@ -205,9 +205,9 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Designing Data-Intensive Applications, 1st Edition
-    by Martin Kleppmann
-    Chapter 6. Partitioning
+>   Designing Data-Intensive Applications, 1st Edition
+>   by Martin Kleppmann
+>   Chapter 6. Partitioning
 
 
 # Streaming
@@ -218,9 +218,9 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Kafka: The Definitive Guide, 1st Edition
-    by Gwen Shapira, Neha Narkhede, Todd Palino
-    Chapter 7. Building Data Pipelines
+>   Kafka: The Definitive Guide, 1st Edition
+>   by Gwen Shapira, Neha Narkhede, Todd Palino
+>   Chapter 7. Building Data Pipelines
  
 #### Assignment 06 - Set up pipeline (Deep Learning Project)
 
@@ -232,13 +232,13 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    High Performance Spark, 1st Edition
-    by Holden Karau, Rachel Warren
-    Chapter 2. How Spark Works
+>   High Performance Spark, 1st Edition
+>   by Holden Karau, Rachel Warren
+>   Chapter 2. How Spark Works
 
-    Learning Spark
-    by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell
-    Chapter 10. Spark Streaming
+>   Learning Spark
+>   by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell
+>   Chapter 10. Spark Streaming
 
 #### Assignment 07 - Train model and test on new data (Deep Learning Project)
 
@@ -250,10 +250,10 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Structured Streaming Programming Guide
-    Apache Foundation
-    https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
-    Through "Operations on streaming DataFrames/Datasets" section
+>   Structured Streaming Programming Guide
+>   Apache Foundation
+>   https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
+>   Through "Operations on streaming DataFrames/Datasets" section
 
 #### Assignment 08 - Set up pipeline, Part 1 (Recommender Project)
 
@@ -265,10 +265,10 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Structured Streaming Programming Guide
-    Apache Foundation
-    https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
-    From "Streaming Queries" section to end
+>   Structured Streaming Programming Guide
+>   Apache Foundation
+>   https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
+>   From "Streaming Queries" section to end
 
 #### Assignment 09 - Set up pipeline, Part 2 (Recommender Project)
 
@@ -282,13 +282,13 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Scala:Applied Machine Learning
-    by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
-    Sessionization (in Chapter 6. Working with Unstructured Data)
+>   Scala:Applied Machine Learning
+>   by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
+>   Sessionization (in Chapter 6. Working with Unstructured Data)
 
-    Advanced Analytics with Spark, 2nd Edition
-    by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills
-    Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data)
+>   Advanced Analytics with Spark, 2nd Edition
+>   by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills
+>   Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data)
 
 #### Assignment 10 - Synthesis Assignment (Recommender Project)
 
@@ -299,17 +299,17 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings
 
-    Infrastructure as Code
-    by Kief Morris
-    Chapter 1. Challenges and Principles
+>   Infrastructure as Code
+>   by Kief Morris
+>   Chapter 1. Challenges and Principles
 
-    Network Programmability and Automation
-    by Jason Edelman, Matt Oswalt, Scott S. Lowe
-    Chapter 10. Continuous Integration (covers ci/cd, tdd, etc)
+>   Network Programmability and Automation
+>   by Jason Edelman, Matt Oswalt, Scott S. Lowe
+>   Chapter 10. Continuous Integration (covers ci/cd, tdd, etc)
 
-    Serverless Architectures on AWS
-    by Peter Sbarski
-    Chapter 1. Going serverless
+>   Serverless Architectures on AWS
+>   by Peter Sbarski
+>   Chapter 1. Going serverless
 
 ## Tutorials
 
