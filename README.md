@@ -15,7 +15,7 @@ pipeline, understand key data engineering tools and platforms, and use and
 connect critical technologies through which one can construct storage and
 processing architectures that underpin data science applications.
 
-##Course Format
+## Course Format
 
 The course is organized as an online inverted classroom. During each week, students first
 work through a set of asynchronous materials, including video lectures, readings, and other
@@ -26,7 +26,7 @@ asynchronous material before the scheduled live session begins.
 
 ## Course Objectives
 
-###Tools and Technologies
+### Tools and Technologies
 Students will:
 - Build practical experience building data pipelines.
 - Build practical experience cleaning, anonymizing, and plumbing data.
@@ -39,7 +39,7 @@ Students will:
 - Build practical experience consuming data and services from APIs.
 - Get exposure to events and event-log based analytics.
 
-###Concepts
+### Concepts
 Students will:
 - Learn to keep their analysis grounded in busines relevence.
 - Get exposure to some basic distributed storage and compute concepts.
@@ -59,26 +59,26 @@ Students will:
 - There are 10 assignments, each of which is 10% of your grade.
 
 ## Prerequisites:
-Previous experience with Python.
-Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.
+-Previous experience with Python.
+-Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.
 
 ## Course Outline
 The course consists of 4 sections: A 3-week Introduction that covers the basics of storage and retrieval concepts and tools; a 5-week Basics section that provides a deeper exploration of working with data and data pipelines; a 4-week section that focuses on Streaming Data; and a concluding section, Putting it All Together, that integrates concepts and skills from the entire course into a cohesive model of the data pipeline. 
 
 In addition to the sequenced material covered, the course also includes Tutorial materials that focus on technical skills associated with data engineering technologies, tools, and platforms. These tutorials also provide a practical foundation for the discussions and activities that will take place in the live classroom for specific weeks in the term.
 
-
+# Introduction
 ## Week 01 - Introduction
 
 #### Themes: What is Data Engineering? Gathering event data. Get started with queries.
 
 #### Readings:
 
-Data Science vs. Data Engineering
-Insight Data Science blog
+Data Science vs. Data Engineering 
+Insight Data Science blog 
 https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
 
-Network Programmability and Automation
+Network Programmability and Automation 
 by Jason Edelman, Matt Oswalt, Scott S. Lowe
 Chapter 8. Source Control with Git
 
