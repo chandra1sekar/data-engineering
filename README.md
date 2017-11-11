@@ -27,7 +27,9 @@ asynchronous material before the scheduled live session begins.
 ## Course Objectives
 
 ### Tools and Technologies
+
 Students will:
+
 - Build practical experience building data pipelines.
 - Build practical experience cleaning, anonymizing, and plumbing data.
 - Learn tooling for queries and query management (e.g., BigQuery, SQL).
@@ -40,7 +42,9 @@ Students will:
 - Get exposure to events and event-log based analytics.
 
 ### Concepts
+
 Students will:
+
 - Learn to keep their analysis grounded in busines relevence.
 - Get exposure to some basic distributed storage and compute concepts.
 - Get exposure to some basic RDBMS concepts.
@@ -56,9 +60,11 @@ Students will:
 
 
 ## Evaluation & Grading
+
 - There are 10 assignments, each of which is 10% of your grade.
 
 ## Prerequisites:
+
 -Previous experience with Python.
 -Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.
 
@@ -74,16 +80,16 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings:
 
-Data Science vs. Data Engineering   
-Insight Data Science blog 
-https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
+    Data Science vs. Data Engineering   
+    Insight Data Science blog 
+    https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
 
-Network Programmability and Automation 
-by Jason Edelman, Matt Oswalt, Scott S. Lowe
-Chapter 8. Source Control with Git
+    Network Programmability and Automation 
+    by Jason Edelman, Matt Oswalt, Scott S. Lowe
+    Chapter 8. Source Control with Git
 
-Analytics For Hackers: How To Think About Event Data
-by Michelle Wetzler
+    Analytics For Hackers: How To Think About Event Data
+    by Michelle Wetzler
 
 #### Assignment 01: Set up and prerequisites
 
@@ -95,13 +101,13 @@ by Michelle Wetzler
 
 #### Readings:
 
-Network Programmability and Automation
-by Jason Edelman, Matt Oswalt, Scott S. Lowe
-Chapter 5. Data Formats and Data Models
+    Network Programmability and Automation
+    by Jason Edelman, Matt Oswalt, Scott S. Lowe
+    Chapter 5. Data Formats and Data Models
 
-Python for Data Analysis, 2nd Edition
-by William Wesley McKinney
-Chapter 2.2 IPython Basics
+    Python for Data Analysis, 2nd Edition
+    by William Wesley McKinney
+    Chapter 2.2 IPython Basics
  
 #### Assignment 02: Querying data with BigQuery
 
@@ -112,13 +118,13 @@ Chapter 2.2 IPython Basics
 
 #### Readings:
 
-Designing Data-Intensive Applications, 1st Edition
-Martin Kleppmann
-Chapter 2. Data Models and Query Languages
+    Designing Data-Intensive Applications, 1st Edition
+    Martin Kleppmann
+    Chapter 2. Data Models and Query Languages
 
-Learning SQL, 2nd Edition
-by Alan Beaulieu
-Chapter 3. Query Primer
+    Learning SQL, 2nd Edition
+    by Alan Beaulieu
+    Chapter 3. Query Primer
 
 
 #### Assignment 03: Querying data from the command line
@@ -132,17 +138,18 @@ Chapter 3. Query Primer
 #### Themes: Relational and NoSQL datastores, introduction to cloud concepts
 
 #### Readings:
-Using Docker
-by Adrian Mouat
-Chapter 1. The What and Why of Containers
 
-Infrastructure as Code
-by Kief Morris
-Chapter 1. Challenges and Principles
+    Using Docker
+    by Adrian Mouat
+    Chapter 1. The What and Why of Containers
 
-Modern Linux Administration
-by Sam R. Alapati
-Chapter 1. Modern Linux System Administration
+    Infrastructure as Code
+    by Kief Morris
+    Chapter 1. Challenges and Principles
+
+    Modern Linux Administration
+    by Sam R. Alapati
+    Chapter 1. Modern Linux System Administration
 
 
 ## Week 05 - Storing Data II
@@ -150,9 +157,10 @@ Chapter 1. Modern Linux System Administration
 #### Themes: Distributed Computation and Hadoop
 
 #### Readings:
-Hadoop: The Definitive Guide, 4th Edition
-by Tom White
-Chapters 1-3
+
+    Hadoop: The Definitive Guide, 4th Edition
+    by Tom White
+    Chapters 1-3
 
 #### Assignment 04 - Employ notebooks to synthesize query project results (Query Project)
 
@@ -163,17 +171,18 @@ Chapters 1-3
 #### Themes: ETL and its discontents, more Hadoop, and container management
 
 #### Readings:
-Designing Data-Intensive Applications, 1st Edition
-Martin Kleppmann
-Chapter 10. Batch Processing
 
-Designing Data-Intensive Applications, 1st Edition
-Martin Kleppmann
-Chapter 11. Stream Processing
+    Designing Data-Intensive Applications, 1st Edition
+    Martin Kleppmann
+    Chapter 10. Batch Processing
 
-Hadoop: The Definitive Guide, 4th Edition
-by Tom White
-Chapter 4. YARN
+    Designing Data-Intensive Applications, 1st Edition
+    Martin Kleppmann
+    Chapter 11. Stream Processing
+
+    Hadoop: The Definitive Guide, 4th Edition
+    by Tom White
+    Chapter 4. YARN
 
 
 
@@ -182,9 +191,10 @@ Chapter 4. YARN
 #### Themes: Data and its provenance, security and privacy
 
 #### Readings:
-Modern Linux Administration
-by Sam R. Alapati
-Chapter 15. Security and Compliance in the Modern Systems Environment
+
+    Modern Linux Administration
+    by Sam R. Alapati
+    Chapter 15. Security and Compliance in the Modern Systems Environment
 
 #### Assignment 05 - Get and clean data (Deep Learning Project)
 
@@ -194,9 +204,10 @@ Chapter 15. Security and Compliance in the Modern Systems Environment
 #### Themes: Querying with partition keys and query planning
 
 #### Readings:
-Designing Data-Intensive Applications, 1st Edition
-by Martin Kleppmann
-Chapter 6. Partitioning
+
+    Designing Data-Intensive Applications, 1st Edition
+    by Martin Kleppmann
+    Chapter 6. Partitioning
 
 
 # Streaming
@@ -206,9 +217,10 @@ Chapter 6. Partitioning
 #### Themes: Ingesting streaming data, using Kafka, considerations of latency.
 
 #### Readings:
-Kafka: The Definitive Guide, 1st Edition
-by Gwen Shapira, Neha Narkhede, Todd Palino
-Chapter 7. Building Data Pipelines
+
+    Kafka: The Definitive Guide, 1st Edition
+    by Gwen Shapira, Neha Narkhede, Todd Palino
+    Chapter 7. Building Data Pipelines
  
 #### Assignment 06 - Set up pipeline (Deep Learning Project)
 
@@ -219,13 +231,14 @@ Chapter 7. Building Data Pipelines
 #### Themes: NoETL, batch vs streaming, in-memory computing.
 
 #### Readings:
-High Performance Spark, 1st Edition
-by Holden Karau, Rachel Warren
-Chapter 2. How Spark Works
 
-Learning Spark
-by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell
-Chapter 10. Spark Streaming
+    High Performance Spark, 1st Edition
+    by Holden Karau, Rachel Warren
+    Chapter 2. How Spark Works
+
+    Learning Spark
+    by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell
+    Chapter 10. Spark Streaming
 
 #### Assignment 07 - Train model and test on new data (Deep Learning Project)
 
@@ -236,10 +249,11 @@ Chapter 10. Spark Streaming
 #### Themes: Distributed in-memory storage and Spark.
 
 #### Readings:
-Structured Streaming Programming Guide
-Apache Foundation
-https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
-Through "Operations on streaming DataFrames/Datasets" section
+
+    Structured Streaming Programming Guide
+    Apache Foundation
+    https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
+    Through "Operations on streaming DataFrames/Datasets" section
 
 #### Assignment 08 - Set up pipeline, Part 1 (Recommender Project)
 
@@ -250,10 +264,11 @@ Through "Operations on streaming DataFrames/Datasets" section
 #### Themes: Structured streaming, streaming queries, caching vs. stream queries
 
 #### Readings:
-Structured Streaming Programming Guide
-Apache Foundation
-https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
-From "Streaming Queries" section to end
+
+    Structured Streaming Programming Guide
+    Apache Foundation
+    https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
+    From "Streaming Queries" section to end
 
 #### Assignment 09 - Set up pipeline, Part 2 (Recommender Project)
 
@@ -266,13 +281,14 @@ From "Streaming Queries" section to end
 #### Themes: Sessionization and state and model validation and management
 
 #### Readings:
-Scala:Applied Machine Learning
-by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
-Sessionization (in Chapter 6. Working with Unstructured Data)
 
-Advanced Analytics with Spark, 2nd Edition
-by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills
-Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data)
+    Scala:Applied Machine Learning
+    by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
+    Sessionization (in Chapter 6. Working with Unstructured Data)
+
+    Advanced Analytics with Spark, 2nd Edition
+    by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills
+    Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data)
 
 #### Assignment 10 - Synthesis Assignment (Recommender Project)
 
@@ -282,19 +298,21 @@ Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on 
 #### Themes: Conceptual DevOps and serverless architectures
 
 #### Readings:
-Infrastructure as Code
-by Kief Morris
-Chapter 1. Challenges and Principles
 
-Network Programmability and Automation
-by Jason Edelman, Matt Oswalt, Scott S. Lowe
-Chapter 10. Continuous Integration (covers ci/cd, tdd, etc)
+    Infrastructure as Code
+    by Kief Morris
+    Chapter 1. Challenges and Principles
 
-Serverless Architectures on AWS
-by Peter Sbarski
-Chapter 1. Going serverless
+    Network Programmability and Automation
+    by Jason Edelman, Matt Oswalt, Scott S. Lowe
+    Chapter 10. Continuous Integration (covers ci/cd, tdd, etc)
+
+    Serverless Architectures on AWS
+    by Peter Sbarski
+    Chapter 1. Going serverless
 
 ## Tutorials
+
 - Revision Control using Git (in Week 1)
 - The Command Line (in Weeks 1 and 2)
 - Jupyter Notebooks (in Weeks 2 and 3)
@@ -312,5 +330,3 @@ http://sa.berkeley.edu/conduct/integrity
 
 ## Avoiding Plagiarism:
 Plagiarism is a serious academic offense, and students must take care not to copy code written by others. Beginning students sometimes have trouble identifying exactly when plagiarism takes place. Remember that it is generally fine to search for examples of code (for example, on forums like stackexchange). This is a normal part of programming and can help you learn. However, it is important that you understand the code you find and use what you learn to write your own statements. It is ok if a single line of code happens to match an example found on the internet, but you should not copy multiple lines at once. If in doubt, simply document the place you found your example code and ask your instructors for further guidance.
-
----
