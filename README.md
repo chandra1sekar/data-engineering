@@ -295,15 +295,15 @@ by Peter Sbarski
 Chapter 1. Going serverless
 
 ## Tutorials
-Revision Control using Git (in Week 1)
-The Command Line (in Weeks 1 and 2)
-Jupyter Notebooks (in Weeks 2 and 3)
-SQL (in Week 3)
-Clouds and Virtualization (In Weeks 4 and 5)
-Containers (in Weeks 4 and 5)
-Schedulers (in Week 6)
-APIs and Web Services (in Weeks 7 and 8)
-How the Web Works: “Cache is King!” (in Week 12)
+- Revision Control using Git (in Week 1)
+- The Command Line (in Weeks 1 and 2)
+- Jupyter Notebooks (in Weeks 2 and 3)
+- SQL (in Week 3)
+- Clouds and Virtualization (In Weeks 4 and 5)
+- Containers (in Weeks 4 and 5)
+- Schedulers (in Week 6)
+- APIs and Web Services (in Weeks 7 and 8)
+- How the Web Works: “Cache is King!” (in Week 12)
 
 
 ## Academic Integrity:
