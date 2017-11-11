@@ -74,7 +74,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 #### Readings:
 
-Data Science vs. Data Engineering 
+Data Science vs. Data Engineering/cr 
 Insight Data Science blog 
 https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa
 
