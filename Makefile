@@ -4,13 +4,13 @@ DEPLOY_TARGET = "mark.mims@ischool.berkeley.edu:~/public_html/course-development
 MEDIA_TARGET = "elias:/opt/mirrors/box/course-development/2017-mids-w205/raw-media/lectures/"
 weeks = $(wildcard *-*)
 
-syllabus.html: templates/syllabus-header.md README.md templates/syllabus-footer.md
+syllabus.html: README.md
 	@echo "---" $@ "---"
-	pandoc $^ -o $@ --toc -s --section-divs
+	pandoc $^ -o $@ -s --section-divs
 
-syllabus.pdf: templates/syllabus-header.md README.md templates/syllabus-footer.md
+syllabus.pdf: README.md
 	@echo "---" $@ "---"
-	pandoc $^ -o $@ --toc
+	pandoc $^ -o $@
 
 slides:
 	@for lecture in $(weeks); do \
