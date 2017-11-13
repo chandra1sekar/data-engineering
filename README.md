@@ -90,6 +90,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 
 >   Analytics For Hackers: How To Think About Event Data
 >   by Michelle Wetzler
+>   https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data-cabeefe1f3d9
 
 #### Assignment 01: Set up and prerequisites
 
