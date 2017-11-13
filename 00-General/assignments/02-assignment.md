@@ -18,11 +18,24 @@
 ### Basics
 
 ### Some initial queries
-- through console, pretty straightforward (https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_trips?pli=1)
-  *break down json view into original atomic events (brainstorm)
-  *To make business decisions, we want to know the scope of the dataset
-  *queries:*
+Paste your SQL query and answer the question in a sentence.
 
-### Three questions of your own
+- What's the size of this dataset? (i.e., how many trips)
+
+- What is the earliest start time and latest end time for a trip?
+
+- How many bikes are there?
+
+- How many stations are there?
+
+### Questions of your own
+Create and answer 3 questions of your own.
 - BQ is a fully functional SQL environment
-- So, use the SQL tutorial (https://www.w3schools.com/sql/default.asp)
+- So, use the SQL tutorial (https://www.w3schools.com/sql/default.asp) to help you with mechanics.
+
+- Question 1
+
+- Question 2
+
+- Question 3
+

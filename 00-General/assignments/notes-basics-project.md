@@ -8,16 +8,16 @@
 
 
 ### set up google cloud account, look at bike data
-  * set up account (https://cloud.google.com/)
-  * through console, pretty straightforward (https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_trips?pli=1)
-  *break down json view into original atomic events (brainstorm)
-  *To make business decisions, we want to know the scope of the dataset
-  *queries:
+  - set up account (https://cloud.google.com/)
+  - through console, pretty straightforward (https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_trips?pli=1)
+  - break down json view into original atomic events (brainstorm)
+  - To make business decisions, we want to know the scope of the dataset
+  - queries:
   
   What's the size of this dataset? (i.e., how many trips) How big is this spreadsheet - 983K rows?
     SELECT count(*)
     FROM [bigquery-public-data:san_francisco.bikeshare_trips]
-  
+
   What is the earliest start time and latest end time (in `start_date`)
     SELECT min(start_date)
     FROM [bigquery-public-data:san_francisco.bikeshare_trips]
@@ -71,10 +71,10 @@ We want to start getting our analysis tools to the data itself, not copying data
 
 
 ### look at BQ bike data from cli
-  * set up Google cloud SDK
-  * set up project
-  * bq, gsutil, gcloud
-  * how to do sql from cli here?
+  - set up Google cloud SDK
+  - set up project
+  - bq, gsutil, gcloud
+  - how to do sql from cli here?
 
   https://cloud.google.com/bigquery/bq-command-line-tool
 
