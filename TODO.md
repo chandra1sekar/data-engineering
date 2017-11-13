@@ -55,9 +55,6 @@ Data, metadata, some basic tools.
       2.1.2 * Introduction [lecture] [TM]
       2.1.3 - Formats [screencast]
       2.1.4 - Schema/Types [screencast]
-      2.1.5 - Data Count / Range [screencast]
-      2.1.6 - Data Lineage [screencast]
-      2.1.7 - Data Access [screencast]
 
     2.2 Tools for Working with Data
       2.2.1 * Introduction to Tools  [screencast]
@@ -84,7 +81,6 @@ Getting our feet wet with tools for querying and interacting with data.
 
     3.3 Sneak Peek
       3.3.1 - Caching [screencast]
-      3.3.2 - Query Planning [screencast]
 
 
 # The Basics
