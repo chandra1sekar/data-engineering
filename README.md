@@ -64,6 +64,7 @@ Students will:
 The assignments will cumulatively build into 3 projects: the Query Project, the Deep Learning Project and the Recommender Project. Each week, your assignment will be a part of one of these projects. Each weekly assignment will be a hands-on lab that is completed both individually and during the synchronous weekly group sessions. 
 
 Your final grade will be as follows:
+
 - 20% for each of the 3 projects + the set up assignment (80%)
 - 20% for class participation
 
