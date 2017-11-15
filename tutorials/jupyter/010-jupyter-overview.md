@@ -8,7 +8,7 @@ author: "Overview"
 ## Agenda { data-background="images/watch-faded.png" }
 
 - What _is_ a Jupyter Notebook?
-- What can I _do_ with it?
+- What can you _do_ with it?
 - Types of Notebooks
 - Examples
 - What you'll need to know
