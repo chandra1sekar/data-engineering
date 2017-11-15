@@ -7,60 +7,75 @@ author: "Overview"
 #
 ## Agenda { data-background="images/watch-faded.png" }
 
-- What _is_ a Notebook?
+- What _is_ a Jupyter Notebook?
 - What can I _do_ with it?
-- Different types of Notebooks
+- Types of Notebooks
+- Examples
 - What you'll need to know
 
 
 #
-## What is a Notebook?
+## What is a Jupyter Notebook?
 
 
-#
-## Working in Notebooks
+<div class="notes">
+web-based interface
+
+server can be anywhere:
+
+- on your laptop
+- behind your firewall
+- on the public internet
+</div>
 
 
 #
 ## What can I do with a Notebook?
 
-- run interactive commands
-- script / automate tasks
-
-##
-
-- extend / combine commands
-- install / write new commands
-- access remote computers
-- integrate with GUI/web interfaces
-- keep history of commands
-- use built-in help
+- explore datasets
+- develop/run code
+- share results + analysis
+- capture notes/thoughts along the way
 - ...
 
 
 #
-## What types of Notebooks are there?
+## Types of Notebooks
 
-- console shell
-- application shell
 
-<div class="notes">
-awscli
-
-maya/blender
-
-...
-</div>
+#
+## Examples
 
 
 #
 ## What do I need to know _now_?
 
 - starting up a notebook
-- filesystem manipulation (situational awareness)
-- running basic commands
+- run basic python / pandas
+    - import data
+    - transform data
+    - plot data
+    - ...
 
 
 #
 
 <img class="logo" src="images/berkeley-school-of-information-logo.png"/>
+
+
+
+#
+## Jupyter Notebooks - pros
+
+- flexible
+- powerful
+- real programming languages
+- collaborative
+
+## Jupyter Notebooks - cons
+
+- not always available
+- not inherently scalable
+- requires programming expertise
+- limited revision control
+
