@@ -6,11 +6,7 @@
 
 - Info to clone?
 
-2. What is Google Cloud?
-Read 
-https://cloud.google.com/docs/overview/
 
-- Do...
 
 3. Watch the preview video for Google's Coursera course:
 https://www.coursera.org/learn/gcp-big-data-ml-fundamentals

@@ -1,6 +1,6 @@
 # Assignments
 
-## Week 01
+#### Assignment 01: Set up and prerequisites
 
 1. Set up your git repo.
 
