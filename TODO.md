@@ -356,6 +356,7 @@ distributed in-memory storage - alluxio and friends
 
 distributed -vs- parallel... what's the deal?
 
+
     11.1 Pipeline Context
       11.1.1 * Pipeline Context [lecture]
 
@@ -396,6 +397,7 @@ ML integration points
 
 Caching queries
 
+
     12.1 Queries
       - Caching -vs- Stream Queries [screencast]
       - Caching and the Web [screencast]
@@ -427,6 +429,8 @@ Understanding ingested events.
 ## 14 - Patterns for Data Pipelines
 
 Patterns and productionizing data pipelines.
+
+
 
     14.1 DevOps
       14.1.1 - Infrastructure as Code [screencast]
