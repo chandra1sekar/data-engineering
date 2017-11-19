@@ -17,7 +17,8 @@ generate_test_pattern() {
   local duration=$1
   ~/bin/ffmpeg \
     -hide_banner -nostats -loglevel warning \
-    -f lavfi -i testsrc=duration=${duration}:size=hd1080:rate=${FR}:decimals=2 \
+    -f lavfi -i testsrc=duration=${duration}:size=hd1080:rate=${FR} \
+    -vf "drawtext=fontcolor=white:fontsize=240:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:x=50:y=20:box=1:boxcolor=black:timecode='00\\:00\\:00\\;00:rate=30" \
     testpattern.mkv > testpattern.log 2>&1
 }
 
