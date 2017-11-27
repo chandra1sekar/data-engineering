@@ -76,16 +76,20 @@ New
       2.1.1 * Introduction [lecture] [TM]
       2.1.2 - Formats [screencast]
       2.1.3 - Schema/Types [screencast]
-      2.1.4 - Data Count / Range [screencast]
-      2.1.5 - Data Lineage [screencast]
-      2.1.6 - Data Access [screencast]
+X     2.1.4 - Data Count / Range [screencast]
+X     2.1.5 - Data Lineage [screencast]
+X     2.1.6 - Data Access [screencast]
 
     2.2 Tools for Working with Data
-      2.2.1 - Introduction to Tools  [screencast]
-      2.2.2 - The Command Line [tutorial]
-      2.2.3 - Jupyter Notebooks [tutorial]
-      2.2.4 - Shells [screencast]
+X     2.2.1 - Introduction to Tools  [screencast]
+X     2.2.2 - The Command Line [tutorial]
+X     2.2.3 - Jupyter Notebooks [tutorial]
+X     2.2.4 - Shells [screencast]
 
+A     2.2.1 * Introduction to Tools  [screencast/lecture?]
+A     2.2.2 - The Command Line [tutorial] (Intro + Using)
+A     2.2.3 - Jupyter Notebooks [tutorial] (Intro)
+A     2.2.4 * Docker [tutorial] (Intro)
 
 ## Week 3
 
@@ -98,14 +102,15 @@ Old and New are the same
 
     3.2 Query Tools
       3.2.1 - Queryside World  [screencast]
-      3.2.2 - SQL [Tutorial]
+X     3.2.2 - SQL [Tutorial]
       3.2.3 - Athena [screencast]
       3.2.4 - BigQuery [screencast]
 
     3.3 Sneak Peek
       3.3.1 - Caching [screencast]
-      3.3.2 - Query Planning [screencast]
-
+X     3.3.2 - Query Planning [screencast]
+A     2.2.3 - Jupyter Notebooks [tutorial] (Using)
+A     2.2.4 * Docker [tutorial] (Using + Services)
 
 ## Week 4
 
@@ -152,15 +157,15 @@ New
 
     4.3 NoSQL Data Stores
       4.3.1 * NoSQL Data Stores [lecture] [redo?]
-      4.3.2 - NoSQL - Relational Model [activity]
-      4.3.3 - NoSQL - Document Store [activity]
-      4.3.4 - NoSQL - Key-Value Store [activity]
+?     4.3.2 - NoSQL - Relational Model [screencast]
+?     4.3.3 - NoSQL - Document Store [screencast]
+?     4.3.4 - NoSQL - Key-Value Store [screencast]
 
     4.4 Introduction to the Cloud
       4.4.1 - Virtuatlization and Containers [screencast]
       4.4.2 - Infrastructure Encapsulation and Isolation [screencast]
       4.4.3 - Using Containers [screencast]
-      4.4.4 - Virtual Machines and Containers [skype interview]
+?     4.4.4 - Virtual Machines and Containers [skype interview]
       4.4.5 - Cluster Computing [screencast]
   
 
