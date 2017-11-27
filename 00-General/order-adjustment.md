@@ -1,36 +1,5 @@
 ## Week 1
 
-Old
-
-    1.1 - Welcome
-      1.1.1 - Context Problem [text page]
-      1.1.2 - What is Data Engineering to you? [question]
-      1.1.3 * What is Data Engineering? [lecture] [TM]
-      1.1.4 - Why do I need Data Engineering for Data Science? [question]
-      1.1.5 * What will I be able to do after this course? [lecture] [TM]
-
-    1.2 - This Course
-      1.2.1 * Organization and Approach [lecture]
-
-    1.3 - Data Pipelines
-      1.3.1 * What's a Data Pipeline? [lecture]
-      1.3.2 * Typical Pipeline Components [lecture]
-      1.3.3 - Explain briefly how Data Engineering is... [question]
-      1.3.4 - Answer to prededing question [text page]
-
-    1.4 - Events Everywhere
-      1.4.1 - Take a moment to think about... [question]
-      1.4.2 * Device Events [lecture] [TM]
-      1.4.3 * User Events [lecture] [TM]
-      1.4.4 * Event Streams [lecture] [TM]
-
-    1.5 - Answer Questions about Data
-      1.5.1 - Getting started with tools for queries [text page]
-      1.5.2 - query on NYC Bike Data [context problem]
-
-
-New
-
 
     1.1 - Welcome
       1.1.1 * What is Data Engineering? [lecture] [TM]
@@ -51,50 +20,23 @@ New
 
 ## Week 2
 
-Old
-
-    2.1 Working with Data
-      2.1.1 - Brainstorm 3-5 ways you've received data... [question]
-      2.1.2 * Introduction [lecture] [TM]
-      2.1.3 - Formats [screencast]
-      2.1.4 - Schema/Types [screencast]
-      2.1.5 - Data Count / Range [screencast]
-      2.1.6 - Data Lineage [screencast]
-      2.1.7 - Data Access [screencast]
-
-    2.2 Tools for Working with Data
-      2.2.1 - Introduction to Tools  [screencast]
-      2.2.2 - The Command Line [tutorial]
-      2.2.3 - Jupyter Notebooks [tutorial]
-      2.2.4 - Shells [screencast]
-
-
-New
-
 
     2.1 Working with Data
       2.1.1 * Introduction [lecture] [TM]
       2.1.2 - Formats [screencast]
       2.1.3 - Schema/Types [screencast]
-X     2.1.4 - Data Count / Range [screencast]
-X     2.1.5 - Data Lineage [screencast]
-X     2.1.6 - Data Access [screencast]
+
 
     2.2 Tools for Working with Data
-X     2.2.1 - Introduction to Tools  [screencast]
-X     2.2.2 - The Command Line [tutorial]
-X     2.2.3 - Jupyter Notebooks [tutorial]
-X     2.2.4 - Shells [screencast]
+      2.2.1 - Introduction to Tools  [screencast]
+      2.2.2 - Introduction to the Command Line [tutorial]
+      2.2.3 - Using the The Command Line [tutorial]
+      2.2.4 - Introduction to Jupyter Notebooks [tutorial]
+      2.2.5 - Introduction to Docker [tutorial]
 
-A     2.2.1 * Introduction to Tools  [screencast/lecture?]
-A     2.2.2 - The Command Line [tutorial] (Intro + Using)
-A     2.2.3 - Jupyter Notebooks [tutorial] (Intro)
-A     2.2.4 * Docker [tutorial] (Intro)
 
 ## Week 3
 
-
-Old and New are the same
 
     3.1 What is the queryside?
       3.1.1 * Revisiting Pipelines [lecture]
@@ -102,15 +44,15 @@ Old and New are the same
 
     3.2 Query Tools
       3.2.1 - Queryside World  [screencast]
-X     3.2.2 - SQL [Tutorial]
-      3.2.3 - Athena [screencast]
-      3.2.4 - BigQuery [screencast]
+      3.2.2 - Athena [screencast]
+      3.2.3 - BigQuery [screencast]
 
     3.3 Sneak Peek
       3.3.1 - Caching [screencast]
-X     3.3.2 - Query Planning [screencast]
-A     2.2.3 - Jupyter Notebooks [tutorial] (Using)
-A     2.2.4 * Docker [tutorial] (Using + Services)
+      3.2.2 - Using Jupyter Notebooks [tutorial]
+      3.2.3 * Using Docker [tutorial]
+      3.2.4 * Using Containers to Run Services with Docker [tutorial] 
+
 
 ## Week 4
 
