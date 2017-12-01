@@ -29,10 +29,10 @@
 
     2.2 Tools for Working with Data
       2.2.1 - Introduction to Tools  [screencast]
-      2.2.2 - Introduction to the Command Line [tutorial]
+      2.2.2 * Introduction to the Command Line [tutorial]
       2.2.3 - Using the The Command Line [tutorial]
-      2.2.4 - Introduction to Jupyter Notebooks [tutorial]
-      2.2.5 - Introduction to Docker [tutorial]
+      2.2.4 * Introduction to Jupyter Notebooks [tutorial]
+      2.2.5 * Introduction to Docker [tutorial]
 
 
 ## Week 3
@@ -43,12 +43,12 @@
       3.1.2 * Immutability [lecture]
 
     3.2 Query Tools
-      3.2.1 - Queryside World  [screencast]
-      3.2.2 - Athena [screencast]
+      3.2.1 * Queryside World  [screencast]
+      3.2.2 * Athena [screencast]
       3.2.3 - BigQuery [screencast]
 
     3.3 Sneak Peek
-      3.3.1 - Caching [screencast]
+      3.3.1 * Caching [screencast]
       3.2.2 - Using Jupyter Notebooks [tutorial]
       3.2.3 * Using Docker [tutorial]
       3.2.4 * Using Containers to Run Services with Docker [tutorial] 
