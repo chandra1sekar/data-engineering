@@ -1,17 +1,17 @@
 [
   {
     "url": "",
-    "section": "2.1.3",
+    "section": "2.1.2",
     "short_name": "data-formats-files-csv"
   },
   {
     "url": "",
-    "section": "2.1.3",
+    "section": "2.1.2",
     "short_name": "data-formats-json-xml"
   },
   {
     "url": "",
-    "section": "2.1.4",
+    "section": "2.1.3",
     "short_name": "data-formats-schemas-and-types"
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/screencasts/f3616206-e39d-4c30-8695-1607371aa775/queryside-using-athena-video-hd1080-h264-30fps.mp4",
-    "section": "3.2.3",
+    "section": "3.2.2",
     "short_name": "queryside-using-athena"
   },
   {
@@ -41,22 +41,22 @@
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/screencasts/2fe5d2bd-9a3b-4a09-bd95-6ae8ffaed099/docker-overview-video-hd1080-h264-30fps.mp4",
-    "section": "?",
+    "section": "2.2.5",
     "short_name": "docker-overview"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/screencasts/712a3142-7d79-4daf-aa42-1fda13d84121/docker-using-docker-video-hd1080-h264-30fps.mp4",
-    "section": "?",
+    "section": "3.2.3",
     "short_name": "docker-using-docker"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/screencasts/99b57f43-3307-4608-b82d-25be4e9f5bc6/docker-using-docker-to-run-services-video-hd1080-h264-30fps.mp4",
-    "section": "?",
+    "section": "3.2.4",
     "short_name": "docker-using-docker-to-run-services"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/screencasts/1d7e0771-c47a-4f02-bfce-e92c1b3e970c/cli-intro-video-hd1080-h264-30fps.mp4",
-    "section": "?",
+    "section": "2.2.2",
     "short_name": "cli-intro"
   },
   {
@@ -71,7 +71,7 @@
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/screencasts/de2444d0-2d9e-4201-b53f-0a23c57b7211/jupyter-intro-video-hd1080-h264-30fps.mp4",
-    "section": "?",
+    "section": "2.2.4",
     "short_name": "jupyter-intro"
   }
 ]

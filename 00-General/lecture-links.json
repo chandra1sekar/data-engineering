@@ -1,12 +1,12 @@
 [
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/lectures/7ea6b0cb-c75d-4ba3-ab00-65714abb74d1/intro-what-is-data-engineering-video-hd1080-h264-30fps.mp4",
-    "section": "1.1.3",
+    "section": "1.1.1",
     "short_name": "intro-what-is-data-engineering"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/lectures/407ffc42-c21f-4135-95cb-0464e0e6fde5/intro-what-will-i-be-able-to-do-video-hd1080-h264-30fps.mp4",
-    "section": "1.1.5",
+    "section": "1.1.2",
     "short_name": "intro-what-will-i-be-able-to-do"
   },
   {
@@ -26,22 +26,22 @@
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/lectures/8f647330-b365-4cca-95c3-37974be90fa7/intro-device-events-video-hd1080-h264-30fps.mp4",
-    "section": "1.4.2",
+    "section": "1.4.1",
     "short_name": "intro-device-events"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/lectures/cce69dc3-1f48-475e-8dbd-bb3229537485/intro-user-events-video-hd1080-h264-30fps.mp4",
-    "section": "1.4.3",
+    "section": "1.4.2",
     "short_name": "intro-user-events"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/lectures/e623bc8a-4598-4bf6-a3f5-8e407c41eba1/intro-event-streams-video-hd1080-h264-30fps.mp4",
-    "section": "1.4.4",
+    "section": "1.4.3",
     "short_name": "intro-event-streams"
   },
   {
     "url": "https://mids-w205-development.s3.amazonaws.com/lectures/71d54a88-b38c-403f-bcb7-4aef1b985831/working-with-data-intro-video-hd1080-h264-30fps.mp4",
-    "section": "2.1.2",
+    "section": "2.1.1",
     "short_name": "working-with-data-intro"
   },
   {
