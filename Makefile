@@ -35,7 +35,7 @@ publish: slides
 	rsync -azvP readings $(DEPLOY_TARGET)
 	rsync -azvP templates $(DEPLOY_TARGET)
 	rsync -azvP tutorials $(DEPLOY_TARGET)
-	rsync -azvP --exclude=tmp captures/ $(MEDIA_TARGET)
+	#rsync -azvP --exclude=tmp captures/ $(MEDIA_TARGET)
 
 deploy: publish
 
