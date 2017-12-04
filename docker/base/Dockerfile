@@ -104,9 +104,7 @@ RUN apt-get update -y && \
 ###################################
 
 ## install python3.5
-RUN sed -i 's/archive.ubuntu.com/mirror.us.leaseweb.net/' /etc/apt/sources.list \
-      && sed -i 's/deb-src/#deb-src/' /etc/apt/sources.list \
-      && apt-get update \
+RUN apt-get update \
       && apt-get upgrade -y \
       && apt-get install -y \
       aria2 \
@@ -169,7 +167,7 @@ WORKDIR $HOME
 RUN mkdir -p /home/science
 COPY entry.sh /usr/local/bin/entry.sh
 RUN chmod 777 /usr/local/bin/entry.sh
-ENTRYPOINT /usr/local/bin/entry.sh
+#ENTRYPOINT /usr/local/bin/entry.sh
 
 
 
