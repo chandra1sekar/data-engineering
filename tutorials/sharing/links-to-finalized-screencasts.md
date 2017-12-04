@@ -4,10 +4,16 @@ author: "Screencast Downloads"
 
 ---
 
+# Note
+
+please refresh your browser once after this page loads
+
+
 # What can I do here?
 
 - Map Screencasts to Course Sections
 - Preview Screencasts
+- See Screencast Durations
 - Download Screencasts
 
 #
