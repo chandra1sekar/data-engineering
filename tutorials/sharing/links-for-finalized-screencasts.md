@@ -35,6 +35,11 @@ confuse the browser cache.
 <img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
 
 ##
+2.2.1: `intro-to-tools`
+
+<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+
+##
 2.2.2: `cli-intro`
 
 <video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="1d7e0771-c47a-4f02-bfce-e92c1b3e970c" width="700" height="394" tabindex="-1">
