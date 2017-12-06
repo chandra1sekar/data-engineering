@@ -23,7 +23,7 @@
 
     2.1 Working with Data
       2.1.1 * Introduction [lecture] [TM]
-      2.1.2 - Formats [screencast]
+      2.1.2 * Formats [screencast]
       2.1.3 - Schema/Types [screencast]
 
 
