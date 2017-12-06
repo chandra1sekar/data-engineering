@@ -87,7 +87,9 @@ confuse the browser cache.
 ##
 3.2.3: `queryside-using-bigquery`
 
-<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+<video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="fc2c5043-b960-4e6c-b290-8d0488fe75d5" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/fc2c5043-b960-4e6c-b290-8d0488fe75d5/queryside-using-bigquery-video-hd1080-h264-30fps.mp4?Signature=Rz1IuhktrtidGuCxRg0jSNSnL90%3D&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1513129092"/>
+</video>
 
 ##
 3.3.1: `queryside-caching-and-aggregation`

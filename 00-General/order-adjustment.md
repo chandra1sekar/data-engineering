@@ -45,7 +45,7 @@
     3.2 Query Tools
       3.2.1 * Queryside World  [screencast]
       3.2.2 * Athena [screencast]
-      3.2.3 - BigQuery [screencast]
+      3.2.3 * BigQuery [screencast]
 
     3.3 Sneak Peek
       3.3.1 * Caching [screencast]
