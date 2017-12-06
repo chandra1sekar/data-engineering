@@ -1,3 +1,11 @@
+# Assignment 7
 
+Questions from 2u:
+      - What is a Data Store? [question]
+      - Hadoop Question [question]
 
-What will be some of the major issues you face when sourcing data?
+      - Distributed Computation[question]
+      - Fault Tolerance [question]
+
+   
+      - Hadoop Ecosystem Question [question]

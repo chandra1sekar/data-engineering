@@ -15,7 +15,6 @@
 - Now go to https://cloud.google.com/bigquery/public-data/bay-bike-share 
 - Scroll down to "Go to Bay Area Bike Share Trips Dataset" (This will open a BQ working page.)
 
-### Basics
 
 ### Some initial queries
 Paste your SQL query and answer the question in a sentence.
@@ -33,9 +32,15 @@ Create and answer 3 questions of your own.
 - BQ is a fully functional SQL environment
 - So, use the SQL tutorial (https://www.w3schools.com/sql/default.asp) to help you with mechanics.
 
-- Question 1
+- Question 1: 
+  * Answer:
+  * SQL query:
 
-- Question 2
+- Question 2:
+  * Answer:
+  * SQL query:
 
-- Question 3
+- Question 3:
+  * Answer:
+  * SQL query:
 

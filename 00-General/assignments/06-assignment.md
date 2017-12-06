@@ -1,5 +1,4 @@
+## Assignment 06
 
-
-questions from 2u
-      - ETL - traditional vs big data [question]
-      - Schedulers Question [question]
+Questions from 2u:
+What are the differences between NoSQL and Relational data stores? What are the implications of these differences?
