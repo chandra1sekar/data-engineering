@@ -27,7 +27,9 @@ confuse the browser cache.
 ##
 2.1.2: `data-formats`
 
-<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+<video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="bcf151c6-d6bb-43ae-aaa1-df12180627cb" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/bcf151c6-d6bb-43ae-aaa1-df12180627cb/data-formats-video-hd1080-h264-30fps.mp4?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1513124237&Signature=8C7ZB%2B110GfvyS67EXz%2F2FmUcPw%3D"/>
+</video>
 
 ##
 2.1.3: `data-schemas-and-types`
