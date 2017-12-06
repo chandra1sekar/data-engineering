@@ -6,8 +6,12 @@ author: "Using the CLI"
 ---
 
 #
+## Agenda { data-background="images/watch-faded.png" }
 
-<p><img width="400px" src="images/docker-logo.png"/></p>
+- starting up a terminal
+- filesystem manipulation (situational awareness)
+- running basic commands
+
 
 
 #
@@ -30,6 +34,7 @@ author: "Using the CLI"
 #
 
 <img class="logo" src="images/berkeley-school-of-information-logo.png"/>
+
 
 # scratch
 
