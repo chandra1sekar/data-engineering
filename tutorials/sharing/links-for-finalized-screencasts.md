@@ -66,7 +66,7 @@ confuse the browser cache.
 2.2.5: `docker-overview`
 
 <video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="2fe5d2bd-9a3b-4a09-bd95-6ae8ffaed099" width="700" height="394" tabindex="-1">
-  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/2fe5d2bd-9a3b-4a09-bd95-6ae8ffaed099/docker-overview-video-hd1080-h264-30fps.mp4?Expires=1512777059&Signature=kwsc4tsoLXdXl1OaHQm%2FwG%2FTPz0%3D&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A"/>
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/2fe5d2bd-9a3b-4a09-bd95-6ae8ffaed099/docker-overview-video-hd1080-h264-30fps.mp4?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1513262200&Signature=0SfbBdQnzM0FMwucaFT1vv9ygGI%3D"/>
 </video>
 
 #
@@ -111,7 +111,7 @@ confuse the browser cache.
 3.3.3: `docker-using-docker`
 
 <video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="712a3142-7d79-4daf-aa42-1fda13d84121" width="700" height="394" tabindex="-1">
-  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/712a3142-7d79-4daf-aa42-1fda13d84121/docker-using-docker-video-hd1080-h264-30fps.mp4?Signature=igxvvRMZwm6pVBVp9uwcbUP1%2Fpc%3D&Expires=1512777172&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A"/>
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/712a3142-7d79-4daf-aa42-1fda13d84121/docker-using-docker-video-hd1080-h264-30fps.mp4?Signature=IWSMtYflKsR7pY5Fhbc%2BA4oYUvk%3D&Expires=1513263669&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A"/>
 </video>
 
 ##
