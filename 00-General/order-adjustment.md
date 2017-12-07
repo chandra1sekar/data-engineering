@@ -28,9 +28,9 @@
 
 
     2.2 Tools for Working with Data
-      2.2.1 - Introduction to Tools  [screencast]
+      2.2.1 * Introduction to Tools  [screencast]
       2.2.2 * Introduction to the Command Line [tutorial]
-      2.2.3 - Using the The Command Line [tutorial]
+      2.2.3 * Using the The Command Line [tutorial]
       2.2.4 * Introduction to Jupyter Notebooks [tutorial]
       2.2.5 * Introduction to Docker [tutorial]
 
