@@ -39,9 +39,11 @@ confuse the browser cache.
 </video>
 
 ##
-2.2.1: `intro-to-tools`
+2.2.1: `data-intro-to-tools`
 
-<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+<video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="2602a4a7-1b54-45f2-9181-d0c026a52e09" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/2602a4a7-1b54-45f2-9181-d0c026a52e09/data-intro-to-tools-video-hd1080-h264-30fps.mp4?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Signature=jdrl5qWlK90GRjEH%2BQqoOsivX40%3D&Expires=1513273749"/>
+</video>
 
 ##
 2.2.2: `cli-intro`
@@ -53,7 +55,9 @@ confuse the browser cache.
 ##
 2.2.3: `cli-using-the-cli`
 
-<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+<video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="cecde463-e74e-4192-bd02-e44e2458b3dd" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/cecde463-e74e-4192-bd02-e44e2458b3dd/cli-using-the-cli-video-hd1080-h264-30fps.mp4?Expires=1513275723&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Signature=XWPsuZt1UQ1uP6uI2MpD4tsCvpw%3D"/>
+</video>
 
 ##
 2.2.4: `jupyter-intro`
