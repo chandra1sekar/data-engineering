@@ -101,7 +101,9 @@ confuse the browser cache.
 ##
 3.3.2: `jupyter-using-notebooks`
 
-<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+<video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="57f4db68-9919-450b-8764-1cd07b6e341f" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src= "https://mids-w205-development.s3.amazonaws.com/screencasts/57f4db68-9919-450b-8764-1cd07b6e341f/jupyter-using-notebooks-video-hd1080-h264-30fps.mp4?Signature=9pMXsWrkDPTGERdP%2Fh23HsImgmE%3D&Expires=1513220850&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A"/>
+</video>
 
 ##
 3.3.3: `docker-using-docker`
