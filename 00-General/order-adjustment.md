@@ -49,7 +49,7 @@
 
     3.3 Sneak Peek
       3.3.1 * Caching [screencast]
-      3.3.2 - Using Jupyter Notebooks [tutorial]
+      3.3.2 * Using Jupyter Notebooks [tutorial]
       3.3.3 * Using Docker [tutorial]
       3.3.4 * Using Containers to Run Services with Docker [tutorial] 
 
