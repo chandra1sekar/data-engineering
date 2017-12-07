@@ -8,9 +8,36 @@ author: "Using the CLI"
 #
 ## Agenda { data-background="images/watch-faded.png" }
 
-- starting up a terminal
-- filesystem manipulation (situational awareness)
-- running basic commands
+- Terms
+- Filesystem (situational awareness)
+- Running basic commands
+
+#
+## Terms
+
+## Ambiguity
+
+- Command-line
+- Terminal
+- Shell
+- Console
+- ...
+
+## Disambiguation
+
+- bash
+- zsh
+- PowerShell
+- DOS
+- ...
+
+
+#
+## Filesystem
+
+
+#
+## Command Structure
 
 
 #
