@@ -34,7 +34,9 @@ confuse the browser cache.
 ##
 2.1.3: `data-schemas-and-types`
 
-<img height="394" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/under_construction.jpg"/>
+<video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png" webkit-playsinline="" id="863c94ee-d39e-4a9f-a473-59a679e412fa" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://mids-w205-development.s3.amazonaws.com/screencasts/863c94ee-d39e-4a9f-a473-59a679e412fa/data-formats-schemas-and-types-video-hd1080-h264-30fps.mp4?Signature=3Zk5UHjmxzihIQfKRGhhn%2BFUr0Y%3D&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1513223716"/>
+</video>
 
 ##
 2.2.1: `intro-to-tools`
