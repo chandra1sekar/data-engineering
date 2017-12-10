@@ -1,6 +1,6 @@
 # Assignments
 
-#### Assignment 01: Set up and prerequisites
+#### Assignment 01 - Set up and prerequisites
 
 # Query Project
 #### Assignment 02 - Querying Data with BigQuery (Query Project)
