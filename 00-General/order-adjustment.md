@@ -99,17 +99,11 @@ New
 
     4.3 NoSQL Data Stores
       4.3.1 * NoSQL Data Stores [lecture] [redo?]
-?     4.3.2 - NoSQL - Relational Model [screencast]
-?     4.3.3 - NoSQL - Document Store [screencast]
-?     4.3.4 - NoSQL - Key-Value Store [screencast]
+     4.3.2 - NoSQL - Relational Model [screencast]
+     4.3.3 - NoSQL - Document Store [screencast]
+     4.3.4 - NoSQL - Key-Value Store [screencast]
 
-    4.4 Introduction to the Cloud
-      4.4.1 - Virtuatlization and Containers [screencast]
-      4.4.2 - Infrastructure Encapsulation and Isolation [screencast]
-      4.4.3 - Using Containers [screencast]
-?     4.4.4 - Virtual Machines and Containers [skype interview]
-      4.4.5 - Cluster Computing [screencast]
-  
+RM: 4.4 Introduction to the Cloud section
 
 ## Week 5
 
@@ -137,21 +131,27 @@ Old
 
 New
 
+    5.1 Introduction to the Cloud
+      5.1.1 - Virtualization and Containers [screencast]
+      5.1.2 - Infrastructure Encapsulation and Isolation [screencast]
+Ch    5.1.3 - Composing Containers [screencast]
+X     4.4.4 - Virtual Machines and Containers [skype interview]
+X     x.1.4 - Cluster Computing [screencast]
+      5.1.4 - Failure in Distributed Systems [lecture]
 
-    5.1 What is a Data Store?
-      5.1.1 * Hadoop [lecture] [TM]
+    5.2 Hadoop
+      5.2.1 - Hadoop [lecture]
+      5.2.2 - Hadoop Walkthrough [screencast]
+      5.2.3 - The Hadoop Ecosystem [screencast]
+      5.2.4 - Using Hadoop [screencast]
 
-    5.2 Distributed Computation
+
+RM:   5.1 What is a Data Store?
+       [TM]
+
+RM:    5.2 Distributed Computation
       - Distributed   [screencast]
-    5.2.3 * Failure in Distributed Systems [lecture]
-
-    5.3 Hadoop
-      - Hadoop Walkthrough [screencast]
-      - The Hadoop Ecosystem [screencast]
-        (upstream project webpages etc, with logos on pipeline)
-      * Using Hadoop [screencast]
-
-
+    
 
 ## Week 6
 
@@ -187,14 +187,15 @@ New
       - You don't always (aka usually) get what you want [screencast]
 
     6.3 Hadoop ETL
-      6.3.1 * Running Hadoop Jobs [lecture]
+      6.3.1 - Running Hadoop Jobs [lecture]
       6.3.2 - Hadoop ETL [screencast]
+a     x.x.x - Introduction to Spark [screencast]
 
     6.4 Container Management
-      6.4.1 - Working with YARN [screencast]
-      6.4.2 - Distributed Execution Models
+x      6.4.1 - Working with YARN [screencast]
+      6.4.2 - Distributed Execution Models [screencast]
       6.4.3 - Introduction to Schedulers [screencast]
-      6.4.4 - Using a Scheduler [screencast]
+ch      6.4.4 - Using Schedulers [screencast]
 
 
 
@@ -235,20 +236,24 @@ New
 
     7.2 Where did the data come from?
       7.2.1 - APIs [screencast]
-      7.2.2 - Web scraping [screencast]
-      7.2.3 - Stuff gets emailed to you in .xlsx files [screencast]
-      7.2.4 - BI interfaces [screencast]
-      7.2.5 - Datastore (static vs dyanmic) [screencast]
+      7.2.2 - Web pages [screencast]
+ch      7.2.3 - Email attachments [screencast]
+x      7.2.4 - BI interfaces [screencast]
+ch      7.2.5 - Databases [screencast]
+      x.x.x - Cloud Storage [screencast]
+      x.x.x - Application Pipelines [screencast]
+
 
     7.3 What do you want to know about the data you get?
       7.3.1 - Lineage [screencast]
-      7.3.2 - Metadata [screencast]
+x      7.3.2 - Metadata [screencast]
       7.3.3 - Version [screencast]
       7.3.4 - Schema [screencast]
-      7.3.5 - Tying it all together - Build a pipeline [screencast]
+x      7.3.5 - Tying it all together - Build a pipeline [screencast]
 
     7.4 Security and Privacy
-      7.4.1 * Security and Privacy [lecture]
+      7.4.1 Security and Privacy [lecture]
+a      7.4.2 PII [screencast]
 
 
 
@@ -276,20 +281,24 @@ Old
 
 New
 
-    8.1 Querying with Partition Keys
-      8.1.1 * Pipeline Context [lecture]
+    8.1 Querying
+      8.1.1 - Pipeline Context [lecture]
       8.1.2 - Base decisions on queries [screencast] 
-      8.1.3 - Query Walthrough [screencast]
+      8.1.3 - Query Walkthrough [screencast]
 
     8.2 Tools
       8.2.1 - Tools [screencast]
+      Spark (how spark works)
+      Presto (how presto works)
+
      
     8.3 Partitions
       8.3.1 - Querying with Partition Keys [screencast] 
       8.3.2 - How to take advantage of partitions [screencast]
 
     8.4 Query Planning
-      8.4.1 - Planning Queries for Hive, Impala, and other tools [screencast]
+x      8.4.1 - Planning Queries for Hive, Impala, and other tools [screencast]
+a   x.x.x - Query Optimization [screencast]
       8.4.2 - Using the Tools [screencast]
 
 
