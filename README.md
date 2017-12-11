@@ -93,13 +93,29 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Network Programmability and Automation 
 >   by Jason Edelman, Matt Oswalt, Scott S. Lowe
 >   Chapter 8. Source Control with Git
+>   https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch08.html#sourcecontrol
 
 >   Analytics For Hackers: How To Think About Event Data
 >   by Michelle Wetzler
 >   https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data-cabeefe1f3d9
 
-#### Assignment 01: Set up and prerequisites
+#### Asynchronous Content
 
+    1.1 - Welcome
+      1.1.1 What is Data Engineering? [lecture]
+      1.1.2 What will I be able to do after this course? [lecture]
+
+    1.2 - This Course
+      1.2.1 Organization and Approach [lecture]
+
+    1.3 - Data Pipelines
+      1.3.1 What's a Data Pipeline? [lecture]
+      1.3.2 Typical Pipeline Components [lecture]
+
+    1.4 - Events Everywhere
+      1.4.1 Device Events [lecture]
+      1.4.2 User Events [lecture]
+      1.4.3 Event Streams [lecture]
 
 
 ## Week 02 - Working with Data
@@ -111,30 +127,72 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Network Programmability and Automation
 >   by Jason Edelman, Matt Oswalt, Scott S. Lowe
 >   Chapter 5. Data Formats and Data Models
+>   https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch05.html#dataformats
+
 
 >   Python for Data Analysis, 2nd Edition
 >   by William Wesley McKinney
 >   Chapter 2.2 IPython Basics
- 
-#### Assignment 02: Querying data with BigQuery
+>   https://www.safaribooksonline.com/library/view/python-for-data/9781491957653/ch02.html#ipython_basics
+
+#### Asynchronous Content
+
+    2.1 Working with Data
+      2.1.1 Introduction [lecture]
+      2.1.2 Formats [screencast]
+      2.1.3 Schema/Types [screencast]
+
+
+    2.2 Tools for Working with Data
+      2.2.1 Introduction to Tools  [screencast]
+      2.2.2 Introduction to the Command Line [tutorial]
+      2.2.3 Using the The Command Line [tutorial]
+      2.2.4 Introduction to Jupyter Notebooks [tutorial]
+      2.2.5 Introduction to Docker [tutorial]
+
+
+#### Due: Assignment 01: Set up and prerequisites
+
 
 
 ## Week 03 - Welcome to the Queryside
 
-#### Themes
+#### Themes: SQL, query tools
 
 #### Readings
 
 >   Designing Data-Intensive Applications, 1st Edition
 >   Martin Kleppmann
 >   Chapter 2. Data Models and Query Languages
+>   https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html#ch_datamodels
+
 
 >   Learning SQL, 2nd Edition
 >   by Alan Beaulieu
 >   Chapter 3. Query Primer
+>   https://www.safaribooksonline.com/library/view/learning-sql-2nd/9780596801847/ch03.html
+
+#### Asynchronous Content
+
+    3.1 What is the queryside?
+      3.1.1 Revisiting Pipelines [lecture]
+      3.1.2 Immutability [lecture]
+
+    3.2 Query Tools
+      3.2.1 Queryside World  [screencast]
+      3.2.2 Athena [screencast]
+      3.2.3 BigQuery [screencast]
+
+    3.3 Sneak Peek
+      3.3.1 Caching [screencast]
+      3.3.2 Using Jupyter Notebooks [tutorial]
+      3.3.3 Using Docker [tutorial]
+      3.3.4 Using Containers to Run Services with Docker [tutorial] 
 
 
-#### Assignment 03: Querying data from the command line
+#### Due: Assignment 02: Querying data with BigQuery
+
+
 
 
 
@@ -158,6 +216,7 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   by Sam R. Alapati
 >   Chapter 1. Modern Linux System Administration
 
+#### Due: Assignment 03: Querying data from the command line
 
 ## Week 05 - Storing Data II
 
