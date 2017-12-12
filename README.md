@@ -61,12 +61,11 @@ Students will:
 
 ## Evaluation & Grading
 
-The assignments will cumulatively build into 3 projects: the Query Project, the Event Log Project Project and the Pipeline Project. Each week, your assignment will be a part of one of these projects. Each weekly assignment will be a hands-on lab that is completed both individually and revisited during the synchronous weekly group sessions. 
+The 12 assignments will cumulatively build into 3 projects: the Query Project, the Event Log Project Project and the Pipeline Project. Each assignment will be a part of one of these projects. Each assignment will be a hands-on lab that is completed both individually and revisited during the synchronous weekly group sessions. Ten of the twelve assignments will be graded.
 
 Your final grade will be as follows:
 
-- 20% for each of the 3 projects + the set up assignment (80%)
-- 20% for class participation
+- 10% for each of the 10 graded assignments
 
 ## Readings
 Most readings are available through a subscription to https://www.safaribooksonline.com/. Other readings are blogposts and links.
