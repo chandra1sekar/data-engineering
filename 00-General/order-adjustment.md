@@ -87,23 +87,20 @@ Old
 
 New
 
-
-
     4.1 Introduction
-      4.1.1 * Where are we in the Pipeline? [lecture]
+      4.1.1 - Where are we in the Pipeline? [lecture]
 
     4.2 Relational Data Stores
-      4.2.1 * Relational Databases [lecture] [TM]
-      4.2.2 * Relational DBs - Relations [lecture] [TM]
-      4.2.3 * Relational DBs - Normalization [lecture] [TM]
+      4.2.1 - Relational Databases [lecture]
+      4.2.2 - Relational Databases - Relations [lecture]
+      4.2.3 - Relational Databases - Normalization [lecture]
 
     4.3 NoSQL Data Stores
-      4.3.1 * NoSQL Data Stores [lecture] [redo?]
-     4.3.2 - NoSQL - Relational Model [screencast]
-     4.3.3 - NoSQL - Document Store [screencast]
-     4.3.4 - NoSQL - Key-Value Store [screencast]
+      4.3.1 - NoSQL Data Stores [lecture]
+      4.3.2 - NoSQL - Relational Model [screencast]
+      4.3.3 - NoSQL - Document Store [screencast]
+      4.3.4 - NoSQL - Key-Value Store [screencast]
 
-RM: 4.4 Introduction to the Cloud section
 
 ## Week 5
 
@@ -134,9 +131,7 @@ New
     5.1 Introduction to the Cloud
       5.1.1 - Virtualization and Containers [screencast]
       5.1.2 - Infrastructure Encapsulation and Isolation [screencast]
-Ch    5.1.3 - Composing Containers [screencast]
-X     4.4.4 - Virtual Machines and Containers [skype interview]
-X     x.1.4 - Cluster Computing [screencast]
+      5.1.3 - Composing Containers [screencast]
       5.1.4 - Failure in Distributed Systems [lecture]
 
     5.2 Hadoop
@@ -144,13 +139,6 @@ X     x.1.4 - Cluster Computing [screencast]
       5.2.2 - Hadoop Walkthrough [screencast]
       5.2.3 - The Hadoop Ecosystem [screencast]
       5.2.4 - Using Hadoop [screencast]
-
-
-RM:   5.1 What is a Data Store?
-       [TM]
-
-RM:    5.2 Distributed Computation
-      - Distributed   [screencast]
     
 
 ## Week 6
@@ -181,21 +169,20 @@ New
 
 
     6.1 Introduction
-      6.1.1 * Transform Section of Pipeline [lecture]
+      6.1.1 - Transform Section of Pipeline [lecture]
 
     6.2 ETL
-      - You don't always (aka usually) get what you want [screencast]
+      6.2.2 - You don't always (aka usually) get what you want [screencast]
 
     6.3 Hadoop ETL
       6.3.1 - Running Hadoop Jobs [lecture]
       6.3.2 - Hadoop ETL [screencast]
-a     x.x.x - Introduction to Spark [screencast]
+      6.3.3 - Introduction to Spark [screencast]
 
     6.4 Container Management
-x      6.4.1 - Working with YARN [screencast]
-      6.4.2 - Distributed Execution Models [screencast]
-      6.4.3 - Introduction to Schedulers [screencast]
-ch      6.4.4 - Using Schedulers [screencast]
+      6.4.1 - Distributed Execution Models [screencast]
+      6.4.2 - Introduction to Schedulers [screencast]
+      6.4.3 - Using Schedulers [screencast]
 
 
 
@@ -237,23 +224,19 @@ New
     7.2 Where did the data come from?
       7.2.1 - APIs [screencast]
       7.2.2 - Web pages [screencast]
-ch      7.2.3 - Email attachments [screencast]
-x      7.2.4 - BI interfaces [screencast]
-ch      7.2.5 - Databases [screencast]
-      x.x.x - Cloud Storage [screencast]
-      x.x.x - Application Pipelines [screencast]
-
+      7.2.3 - Email attachments [screencast]
+      7.2.4 - Databases [screencast]
+      7.2.5 - Cloud Storage [screencast]
+      7.2.6 - Application Pipelines [screencast]
 
     7.3 What do you want to know about the data you get?
       7.3.1 - Lineage [screencast]
-x      7.3.2 - Metadata [screencast]
-      7.3.3 - Version [screencast]
-      7.3.4 - Schema [screencast]
-x      7.3.5 - Tying it all together - Build a pipeline [screencast]
+      7.3.2 - Version [screencast]
+      7.3.3 - Schema [screencast]
 
     7.4 Security and Privacy
       7.4.1 Security and Privacy [lecture]
-a      7.4.2 PII [screencast]
+      7.4.2 PII [screencast]
 
 
 
@@ -288,17 +271,13 @@ New
 
     8.2 Tools
       8.2.1 - Tools [screencast]
-      Spark (how spark works)
-      Presto (how presto works)
 
-     
     8.3 Partitions
       8.3.1 - Querying with Partition Keys [screencast] 
       8.3.2 - How to take advantage of partitions [screencast]
 
     8.4 Query Planning
-x      8.4.1 - Planning Queries for Hive, Impala, and other tools [screencast]
-a   x.x.x - Query Optimization [screencast]
+      8.4.1 - Query Optimization [screencast]
       8.4.2 - Using the Tools [screencast]
 
 
@@ -330,13 +309,13 @@ New
 
 
     9.1 Pipeline Context
-      9.1.1 * Where are we in the Pipeline? [lecture]
+      9.1.1 - Where are we in the Pipeline? [lecture]
 
     9.2 Kafka
-      9.2.1 * Distributed Messaging [lecture]
+      9.2.1 - Distributed Messaging [lecture]
       9.2.2 - Kafka Walkthrough [screencast]
       9.2.3 - Where are the data coming from? [screencast]
-      9.2.4 * Latency [lecture]
+      9.2.4 - Latency [lecture]
       9.2.5 - Batch vs. Real Time [screencast]
       9.2.6 - Driven by Queries [screencast]
       9.2.7 - Problems with Latency [screencast]
@@ -375,7 +354,7 @@ New
 
 
     10.1 NoETL
-      10.1.1 * Pipeline Context [lecture]
+      10.1.1 - Pipeline Context [lecture]
       10.1.2 - Grabbing data you need as it streams by [screencast]
 
     10.2 Modes of Execution
@@ -385,11 +364,11 @@ New
       10.2.4 - Continuous Applications - Handling Batch and Streaming Data in the Same System [screencast]
 
     10.3
-      - In Memory Computing [screencast]
+      10.3.1 - In Memory Computing [screencast]
 
     10.4 Take Action!
       10.4.1 * Take Action! [lecture]
-      10.4.2 - Act! (pyspark watching kafka) [activity] [??screencast??]
+      10.4.2 - Act! (pyspark watching kafka) [screencast]
 
 
 
@@ -425,20 +404,20 @@ New
 
 
     11.1 Pipeline Context
-      11.1.1 * Pipeline Context [lecture]
+      11.1.1 - Pipeline Context [lecture]
 
     11.2 In Memory
       11.2.1 - Streaming and Spark [screencast]
       11.2.2 - Structured Streaming [screencast]
 
     11.3 Resource Selections
-      11.3.1 - Dedicated Stream Processing? [screencast]
+      11.3.1 - Dedicated Stream Processing [screencast]
 
     11.4 Distributed In-memory Storage
       11.4.1 - Distributed In-memory Storage [screencast]
 
     11.5 Activity
-      11.5.1 * User Activity [lecture]
+      11.5.1 - User Activity [lecture]
 
 
 
@@ -490,10 +469,10 @@ New
 
 
     13.1 Context
-      13.1.1 * Pipeline Context [lecture]
+      13.1.1 - Pipeline Context [lecture]
 
     13.2 Sessionization and State
-      13.2.1 * Sessionization and state for action [lecture]
+      13.2.1 - Sessionization and state for action [lecture]
       13.2.2 - Ingested Events [screencast]
       13.2.3 - Low Latency Ingested Events [screencast]
       13.2.4 - Architectural Patterns for Action [screencast]

@@ -61,12 +61,15 @@ Students will:
 
 ## Evaluation & Grading
 
-The assignments will cumulatively build into 3 projects: the Query Project, the Deep Learning Project and the Recommender Project. Each week, your assignment will be a part of one of these projects. Each weekly assignment will be a hands-on lab that is completed both individually and during the synchronous weekly group sessions. 
+The assignments will cumulatively build into 3 projects: the Query Project, the Event Log Project Project and the Pipeline Project. Each week, your assignment will be a part of one of these projects. Each weekly assignment will be a hands-on lab that is completed both individually and revisited during the synchronous weekly group sessions. 
 
 Your final grade will be as follows:
 
 - 20% for each of the 3 projects + the set up assignment (80%)
 - 20% for class participation
+
+## Readings
+Most readings are available through a subscription to https://www.safaribooksonline.com/. Other readings are blogposts and links.
 
 
 ## Prerequisites
@@ -193,42 +196,75 @@ In addition to the sequenced material covered, the course also includes Tutorial
 #### Due: Assignment 02: Querying data with BigQuery
 
 
-
-
-
 # The Basics
 
 ## Week 04 - Storing Data
 
-#### Themes: Relational and NoSQL datastores, introduction to cloud concepts
+#### Themes: Relational and NoSQL datastores
 
 #### Readings
 
 >   Using Docker
 >   by Adrian Mouat
 >   Chapter 1. The What and Why of Containers
+>   https://www.safaribooksonline.com/library/view/using-docker/9781491915752/ch01.html#what_and_why
 
 >   Infrastructure as Code
 >   by Kief Morris
 >   Chapter 1. Challenges and Principles
+>   https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
 
 >   Modern Linux Administration
 >   by Sam R. Alapati
 >   Chapter 1. Modern Linux System Administration
+>   https://www.safaribooksonline.com/library/view/modern-linux-administration/9781491935941/ch01.html#idm139918689681584
 
-#### Due: Assignment 03: Querying data from the command line
+#### Asynchronous Content
+
+    4.1 Introduction
+      4.1.1 - Where are we in the Pipeline? [lecture]
+
+    4.2 Relational Data Stores
+      4.2.1 - Relational Databases [lecture]
+      4.2.2 - Relational Databases - Relations [lecture]
+      4.2.3 - Relational Databases - Normalization [lecture]
+
+    4.3 NoSQL Data Stores
+      4.3.1 - NoSQL Data Stores [lecture]
+      4.3.2 - NoSQL - Relational Model [screencast]
+      4.3.3 - NoSQL - Document Store [screencast]
+      4.3.4 - NoSQL - Key-Value Store [screencast]
+
+
+#### Due: Assignment 03 - Querying data from the BigQuery CLI - set up (Query Project)
+
 
 ## Week 05 - Storing Data II
 
-#### Themes: Distributed Computation and Hadoop
+#### Themes: Introduction to cloud concepts and Hadoop
 
 #### Readings
 
 >   Hadoop: The Definitive Guide, 4th Edition
 >   by Tom White
 >   Chapters 1-3
+>   https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/
 
-#### Assignment 04 - Employ notebooks to synthesize query project results (Query Project)
+#### Asynchronous Content
+
+    5.1 Introduction to the Cloud
+      5.1.1 - Virtualization and Containers [screencast]
+      5.1.2 - Infrastructure Encapsulation and Isolation [screencast]
+      5.1.3 - Composing Containers [screencast]
+      5.1.4 - Failure in Distributed Systems [lecture]
+
+    5.2 Hadoop
+      5.2.1 - Hadoop [lecture]
+      5.2.2 - Hadoop Walkthrough [screencast]
+      5.2.3 - The Hadoop Ecosystem [screencast]
+      5.2.4 - Using Hadoop [screencast]
+    
+#### Due: Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
 
 
 
@@ -241,15 +277,38 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Designing Data-Intensive Applications, 1st Edition
 >   Martin Kleppmann
 >   Chapter 10. Batch Processing
+>   https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html#ch_batch
 
 >   Designing Data-Intensive Applications, 1st Edition
 >   Martin Kleppmann
 >   Chapter 11. Stream Processing
+>   https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html#ch_stream
 
 >   Hadoop: The Definitive Guide, 4th Edition
 >   by Tom White
 >   Chapter 4. YARN
+>   https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html
 
+#### Asynchronous Content
+
+    6.1 Introduction
+      6.1.1 - Transform Section of Pipeline [lecture]
+
+    6.2 ETL
+      6.2.2 - You don't always (aka usually) get what you want [screencast]
+
+    6.3 Hadoop ETL
+      6.3.1 - Running Hadoop Jobs [lecture]
+      6.3.2 - Hadoop ETL [screencast]
+      6.3.3 - Introduction to Spark [screencast]
+
+    6.4 Container Management
+      6.4.1 - Distributed Execution Models [screencast]
+      6.4.2 - Introduction to Schedulers [screencast]
+      6.4.3 - Using Schedulers [screencast]
+
+
+#### Due: Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
 
 
 ## Week 07 - Sourcing Data
@@ -261,8 +320,31 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Modern Linux Administration
 >   by Sam R. Alapati
 >   Chapter 15. Security and Compliance in the Modern Systems Environment
+>   https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html
 
-#### Assignment 05 - Get and clean data (Deep Learning Project)
+#### Asynchronous Content
+
+    7.1 Pipeline Context
+      7.1.1 * Pipeline Context [lecture]
+
+    7.2 Where did the data come from?
+      7.2.1 - APIs [screencast]
+      7.2.2 - Web pages [screencast]
+      7.2.3 - Email attachments [screencast]
+      7.2.4 - Databases [screencast]
+      7.2.5 - Cloud Storage [screencast]
+      7.2.6 - Application Pipelines [screencast]
+
+    7.3 What do you want to know about the data you get?
+      7.3.1 - Lineage [screencast]
+      7.3.2 - Version [screencast]
+      7.3.3 - Schema [screencast]
+
+    7.4 Security and Privacy
+      7.4.1 Security and Privacy [lecture]
+      7.4.2 PII [screencast]
+
+#### Assignment 06 - Get and clean data (Event Log Project)
 
 
 ## Week 08 - Querying Data
@@ -274,6 +356,27 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Designing Data-Intensive Applications, 1st Edition
 >   by Martin Kleppmann
 >   Chapter 6. Partitioning
+>   https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html#ch_partitioning
+
+#### Asynchronous Content
+
+    8.1 Querying
+      8.1.1 - Pipeline Context [lecture]
+      8.1.2 - Base decisions on queries [screencast] 
+      8.1.3 - Query Walkthrough [screencast]
+
+    8.2 Tools
+      8.2.1 - Tools [screencast]
+
+    8.3 Partitions
+      8.3.1 - Querying with Partition Keys [screencast] 
+      8.3.2 - How to take advantage of partitions [screencast]
+
+    8.4 Query Planning
+      8.4.1 - Query Optimization [screencast]
+      8.4.2 - Using the Tools [screencast]
+
+#### Assignment 07 - Set up pipeline (Event Log Project)
 
 
 # Streaming
@@ -287,8 +390,25 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Kafka: The Definitive Guide, 1st Edition
 >   by Gwen Shapira, Neha Narkhede, Todd Palino
 >   Chapter 7. Building Data Pipelines
- 
-#### Assignment 06 - Set up pipeline (Deep Learning Project)
+>   https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch07.html
+
+
+#### Asynchronous Content
+
+    9.1 Pipeline Context
+      9.1.1 - Where are we in the Pipeline? [lecture]
+
+    9.2 Kafka
+      9.2.1 - Distributed Messaging [lecture]
+      9.2.2 - Kafka Walkthrough [screencast]
+      9.2.3 - Where are the data coming from? [screencast]
+      9.2.4 - Latency [lecture]
+      9.2.5 - Batch vs. Real Time [screencast]
+      9.2.6 - Driven by Queries [screencast]
+      9.2.7 - Problems with Latency [screencast]
+      9.2.8 - Glue [screencast]
+
+#### Due: Assignment 08 - Build and Write-up Pipeline (Event Log Project)
 
 
 
@@ -301,18 +421,39 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   High Performance Spark, 1st Edition
 >   by Holden Karau, Rachel Warren
 >   Chapter 2. How Spark Works
+>   https://www.safaribooksonline.com/library/view/high-performance-spark/9781491943199/ch02.html
 
 >   Learning Spark
 >   by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell
 >   Chapter 10. Spark Streaming
+>   https://www.safaribooksonline.com/library/view/learning-spark/9781449359034/ch10.html
 
-#### Assignment 07 - Train model and test on new data (Deep Learning Project)
+#### Asynchronous Content
+
+    10.1 NoETL
+      10.1.1 - Pipeline Context [lecture]
+      10.1.2 - Grabbing data you need as it streams by [screencast]
+
+    10.2 Modes of Execution
+      10.2.1 - Batch -vs- Streaming [screencast]
+      10.2.2 - Single Event Processing [screencast]
+      10.2.3 - Microbatch [screencast]
+      10.2.4 - Continuous Applications - Handling Batch and Streaming Data in the Same System [screencast]
+
+    10.3
+      10.3.1 - In Memory Computing [screencast]
+
+    10.4 Take Action!
+      10.4.1 * Take Action! [lecture]
+      10.4.2 - Act! (pyspark watching kafka) [screencast]
+
+#### Due: Assignment 09 - Define Your Pipeline (Pipeline Project)
 
 
 
 ## Week 11 - Faster Data Stores
 
-#### Themes: Distributed in-memory storage and Spark.
+#### Themes: Distributed in-memory storage and Spark
 
 #### Readings
 
@@ -321,7 +462,25 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
 >   Through "Operations on streaming DataFrames/Datasets" section
 
-#### Assignment 08 - Set up pipeline, Part 1 (Recommender Project)
+#### Asynchronous Content
+
+    11.1 Pipeline Context
+      11.1.1 - Pipeline Context [lecture]
+
+    11.2 In Memory
+      11.2.1 - Streaming and Spark [screencast]
+      11.2.2 - Structured Streaming [screencast]
+
+    11.3 Resource Selections
+      11.3.1 - Dedicated Stream Processing [screencast]
+
+    11.4 Distributed In-memory Storage
+      11.4.1 - Distributed In-memory Storage [screencast]
+
+    11.5 Activity
+      11.5.1 - User Activity [lecture]
+
+#### Due: Assignment 10 - Set up pipeline, Part 1 (Pipeline Project)
 
 
 
@@ -336,7 +495,16 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
 >   From "Streaming Queries" section to end
 
-#### Assignment 09 - Set up pipeline, Part 2 (Recommender Project)
+#### Asynchronous Content
+
+    12.1 Queries
+      12.1.1 - Caching -vs- Stream Queries [screencast]
+      12.1.2 - Caching and the Web [screencast]
+      12.1.3 - A walk down memory lane - data mining [screencast]
+      12.1.4 - Replay [screencast]
+      12.1.5 - Caching queries [screencast]
+
+#### Due: Assignment 11 - Set up pipeline, Part 2 (Pipeline Project)
 
 
 
@@ -351,12 +519,29 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Scala:Applied Machine Learning
 >   by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion
 >   Sessionization (in Chapter 6. Working with Unstructured Data)
+>   https://www.safaribooksonline.com/library/view/scalaapplied-machine-learning/9781787126640/ch32s04.html
 
 >   Advanced Analytics with Spark, 2nd Edition
 >   by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills
 >   Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data)
+>   https://www.safaribooksonline.com/library/view/Advanced+Analytics+with+Spark,+2nd+Edition/9781491972946/ch08.html#idm140398878264880
 
-#### Assignment 10 - Synthesis Assignment (Recommender Project)
+#### Asynchronous Content
+
+    13.1 Context
+      13.1.1 - Pipeline Context [lecture]
+
+    13.2 Sessionization and State
+      13.2.1 - Sessionization and state for action [lecture]
+      13.2.2 - Ingested Events [screencast]
+      13.2.3 - Low Latency Ingested Events [screencast]
+      13.2.4 - Architectural Patterns for Action [screencast]
+
+    13.3 Models
+      13.3.1 - Model Validation [screencast]
+      13.3.2 - Model Management [screencast]
+
+#### Due: Assignment 12 - Synthesis Assignment (Pipeline Project)
 
 
 ## Week 14 - Patterns for Data Pipelines
@@ -368,26 +553,32 @@ In addition to the sequenced material covered, the course also includes Tutorial
 >   Infrastructure as Code
 >   by Kief Morris
 >   Chapter 1. Challenges and Principles
+>   https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
 
 >   Network Programmability and Automation
 >   by Jason Edelman, Matt Oswalt, Scott S. Lowe
->   Chapter 10. Continuous Integration (covers ci/cd, tdd, etc)
+>   Chapter 10. Continuous Integration
+>   https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch10.html#cicd
 
 >   Serverless Architectures on AWS
 >   by Peter Sbarski
 >   Chapter 1. Going serverless
+>   https://www.safaribooksonline.com/library/view/serverless-architectures-on/9781617293825/kindle_split_013.html
 
-## Tutorials
+#### Asynchronous Content
 
-- Revision Control using Git (in Week 1)
-- The Command Line (in Weeks 1 and 2)
-- Jupyter Notebooks (in Weeks 2 and 3)
-- SQL (in Week 3)
-- Clouds and Virtualization (In Weeks 4 and 5)
-- Containers (in Weeks 4 and 5)
-- Schedulers (in Week 6)
-- APIs and Web Services (in Weeks 7 and 8)
-- How the Web Works: “Cache is King!” (in Week 12)
+    14.1 DevOps
+      14.1.1 - Infrastructure as Code [screencast]
+      14.1.2 - Testing [screencast]
+      14.1.3 - CI/CD  [screencast]
+      14.1.4 - Logging and Monitoring [screencast]
+      14.1.5 - Automation [screencast]
+      14.1.6 - The Development Process [screencast]
+
+    14.2 Serverless Architectures
+      14.2.1 - The Future of Data Engineering [screencast]
+      14.2.2 - AWS Kool-aid stack [screencast]
+      14.2.3 - GCP Kool-aid stack [screencast]
 
 
 ## Academic Integrity
@@ -395,4 +586,4 @@ Please read UC Berkeley’s policies around academic integrity:
 http://sa.berkeley.edu/conduct/integrity
 
 ## Avoiding Plagiarism
-Plagiarism is a serious academic offense, and students must take care not to copy code written by others. Beginning students sometimes have trouble identifying exactly when plagiarism takes place. Remember that it is generally fine to search for examples of code (for example, on forums like stackexchange). This is a normal part of programming and can help you learn. However, it is important that you understand the code you find and use what you learn to write your own statements. It is ok if a single line of code happens to match an example found on the internet, but you should not copy multiple lines at once. If in doubt, simply document the place you found your example code and ask your instructors for further guidance.
+Plagiarism is a serious academic offense, and students must take care not to copy code written by others. Beginning students sometimes have trouble identifying exactly when plagiarism takes place. Remember that it is generally fine to search for examples of code (for example, on forums like stackoverflow). This is a normal part of programming and can help you learn. However, it is important that you understand the code you find and use what you learn to write your own statements. If in doubt, simply document the place you found your example code and ask your instructors for further guidance.
