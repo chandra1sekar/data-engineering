@@ -38,9 +38,8 @@ Paste your SQL query and answer the question in a sentence.
 
 
 ### Questions of your own
-Identify and .
-- BQ is a fully functional SQL environment
-- So, use the SQL tutorial (https://www.w3schools.com/sql/default.asp) to help you with mechanics.
+- Make up 3 questions and answer them using the Bay Area Bike Share Trips Data.
+- Use the SQL tutorial (https://www.w3schools.com/sql/default.asp) to help you with mechanics.
 
 - Question 1: 
   * Answer:
@@ -53,4 +52,6 @@ Identify and .
 - Question 3:
   * Answer:
   * SQL query:
+
+
 

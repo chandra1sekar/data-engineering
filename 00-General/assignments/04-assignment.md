@@ -14,7 +14,9 @@
 
 
 
-#### Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
+## Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
 
-Questions from 2u:
-What are the differences between NoSQL and Relational data stores? What are the implications of these differences?
+- Questions from course planner:
+- do I want this?: What are the differences between NoSQL and Relational data stores? What are the implications of these differences?
+
+- Answer the questions for your project using either BigQuery or the command line

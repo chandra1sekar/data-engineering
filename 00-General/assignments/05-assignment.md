@@ -12,6 +12,10 @@
 
 
 
-#### Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
+## Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
 
 
+#### Get going
+
+pysql - which one?
+set up etc

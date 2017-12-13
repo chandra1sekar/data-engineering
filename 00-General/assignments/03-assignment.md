@@ -43,7 +43,25 @@ https://cloud.google.com/sdk/docs/
 
 ### Queries
 
-- How many stations are there?
+Rerun last week's queries in bq format
+Paste sql here
 
-- How many trips are in the morning vs in the afternoon?
+
+- What's the size of this dataset? (i.e., how many trips)
+
+- What is the earliest start time and latest end time for a trip?
+
+- How many bikes are there?
+
+
+### Project Questions
+- Identify the main questions you'll need to answer to make recommendations (list below, add as many questions as you need). You'll answer these questions in a later assignment.
+
+- Question 1: 
+
+- Question 2: 
+
+- Question 3: 
+
+- Question n: 
 
