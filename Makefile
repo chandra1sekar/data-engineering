@@ -1,8 +1,33 @@
 default: slides syllabus.pdf syllabus.html
 
-DEPLOY_TARGET = "mark.mims@ischool.berkeley.edu:~/public_html/course-development/2017-mids-w205/"
-MEDIA_TARGET = "elias:/opt/mirrors/box/course-development/2017-mids-w205/raw-media/lectures/"
 weeks = $(wildcard *-*)
+
+README.md: templates/README-template.md templates/README-template-footer.md $(wildcard *-*/README.md)
+	@echo "---" $@ "---"
+	cat templates/README-template.md > $@
+	echo "# Introduction" >> $@
+	echo >> $@
+	cat $(wildcard 01-*)/README.md >> $@
+	cat $(wildcard 02-*)/README.md >> $@
+	cat $(wildcard 03-*)/README.md >> $@
+	echo "# The Basics" >> $@
+	echo >> $@
+	cat $(wildcard 04-*)/README.md >> $@
+	cat $(wildcard 05-*)/README.md >> $@
+	cat $(wildcard 06-*)/README.md >> $@
+	cat $(wildcard 07-*)/README.md >> $@
+	cat $(wildcard 08-*)/README.md >> $@
+	echo "# Streaming" >> $@
+	echo >> $@
+	cat $(wildcard 09-*)/README.md >> $@
+	cat $(wildcard 10-*)/README.md >> $@
+	cat $(wildcard 11-*)/README.md >> $@
+	cat $(wildcard 12-*)/README.md >> $@
+	echo "# Putting it All Together" >> $@
+	echo >> $@
+	cat $(wildcard 13-*)/README.md >> $@
+	cat $(wildcard 14-*)/README.md >> $@
+	cat templates/README-template-footer.md >> $@
 
 syllabus.html: README.md
 	@echo "---" $@ "---"
@@ -13,41 +38,18 @@ syllabus.pdf: README.md
 	pandoc $^ -o $@
 
 slides:
-	@for lecture in $(weeks); do \
-	  $(MAKE) -C $$lecture; \
-	done
-	@for tutorial in tutorials/*; do \
-	  $(MAKE) -C $$tutorial; \
+	@for week in $(weeks); do \
+	  $(MAKE) -C $$week; \
 	done
 
 pdfs:
-	@for lecture in $(weeks); do \
-	  $(MAKE) -C $$lecture $@; \
+	@for week in $(weeks); do \
+	  $(MAKE) -C $$week $@; \
 	done
-	@for tutorial in tutorials/*; do \
-	  $(MAKE) -C $$tutorial $@; \
-	done
-
-publish: slides
-	rsync -azvP activities $(DEPLOY_TARGET)
-	rsync -azvP lectures $(DEPLOY_TARGET)
-	rsync -azvP media $(DEPLOY_TARGET)
-	rsync -azvP readings $(DEPLOY_TARGET)
-	rsync -azvP templates $(DEPLOY_TARGET)
-	rsync -azvP tutorials $(DEPLOY_TARGET)
-	#rsync -azvP --exclude=tmp captures/ $(MEDIA_TARGET)
-
-deploy: publish
-
-capture:
-	bin/start-capture.sh
 
 clean:
-	@for lecture in $(weeks); do \
-	  $(MAKE) -C $$lecture $@; \
-	done
-	@for tutorial in tutorials/*; do \
-	  $(MAKE) -C $$tutorial $@; \
+	@for week in $(weeks); do \
+	  $(MAKE) -C $$week $@; \
 	done
 	rm -f syllabus.pdf
 	rm -f syllabus.html
