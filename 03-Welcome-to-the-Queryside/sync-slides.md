@@ -1,12 +1,12 @@
 ---
-title: "The Queryside"
+title: "sync session"
 author:
 ...
 
 ---
 
-# Business Decisions
-##
+#
+## Business Decisions
 
 <div class="notes">
 All about the business
@@ -95,23 +95,6 @@ Take the unix tooling approach
 ## change
 
 <div class="notes">
-- prefer your data raw
-
-business needs change, so queries will too.
-
-(This is much better than a heavy pipeline dedicated to a particular business
-requirement)
-
-You should keep and eye out and start asking questions about how to
-manage the set of queries needed for the business.  Quite similar
-to how to manage the set of models used in analysis.
-
-- immutability 
-
-- be more afraid of how hard it is to maintain an aggregate value
-  than how expensive it is to re-compute that value
-
-- prefer your data raw (direct measurements on populations, not samples)
 </div>
 
 
