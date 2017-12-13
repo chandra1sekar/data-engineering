@@ -15,7 +15,17 @@
 ## Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
 
 
-#### Get going
 
-pysql - which one?
-set up etc
+### What is the Jupyter Notebook?
+- Read: https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html
+
+### Get Going
+
+- set up instructions
+- Jupyter hub?
+- 
+
+#### Report
+- data visualizations to support recommendations 
+- Short description of findings and recommendations 
+- Resource: see example .ipynb file here <link>

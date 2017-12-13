@@ -20,7 +20,7 @@
 >   https://www.safaribooksonline.com/library/view/serverless-architectures-on/9781617293825/kindle_split_013.html
 
 >    The Case for Learned Index Structures
->    by Tim Kraska1, Alex Beutel, Ed H. Chi, Jeffrey Dean, & Neoklis Polyzotis 
+>    by Tim Kraska, Alex Beutel, Ed H. Chi, Jeffrey Dean, & Neoklis Polyzotis 
 >    https://www.arxiv-vanity.com/papers/1712.01208v1/
 
 

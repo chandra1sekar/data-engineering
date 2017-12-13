@@ -11,12 +11,26 @@
   * What are your recommendations for offers (justify based on your findings)?
 
 
-
-
-
 ## Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
 
-- Questions from course planner:
-- do I want this?: What are the differences between NoSQL and Relational data stores? What are the implications of these differences?
+### Project Questions
 
-- Answer the questions for your project using either BigQuery or the command line
+- Answer at least 4 of the questions you identified last week.
+- You can use either BigQuery or the bq command line tool.
+- Paste your questions, queries and answers below.
+
+- Question 1: 
+  * Answer:
+  * SQL query:
+
+- Question 2:
+  * Answer:
+  * SQL query:
+
+- Question 3:
+  * Answer:
+  * SQL query:
+
+- Question n:
+  * Answer:
+  * SQL query:

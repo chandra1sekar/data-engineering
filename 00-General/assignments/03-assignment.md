@@ -23,16 +23,16 @@
 ## Assignment 03 - Querying data from the BigQuery CLI - set up (Query Project)
 
 ### What is Google Cloud SDK?
-- Read: https://cloud.google.com/sdk
+- Read: https://cloud.google.com/sdk/docs/overview
 
-https://cloud.google.com/sdk/docs/
+- If you want to go further, https://cloud.google.com/sdk/docs/concepts has lots of good stuff.
 
 ### Get Going
-- AFAIK, YOU CAN'T DO ANYTHING FROM THE CLI WITHOUT SETTING UP A PROJECT TO BE DOING IT IN
-  * Get instructions in here for how to set up a project
 
-- Install Google Cloud SDK https://cloud.google.com/sdk/docs/
+- Install Google Cloud SDK: https://cloud.google.com/sdk/docs/
+
 - Try BQ from the command line:
+
   * General query structure
 
     bq query --use_legacy_sql=false '
@@ -40,18 +40,21 @@ https://cloud.google.com/sdk/docs/
         FROM
            `bigquery-public-data.san_francisco.bikeshare_trips`'
 
-
 ### Queries
 
-Rerun last week's queries in bq format
-Paste sql here
-
+1. Rerun last week's queries using bq command line tool:
+  * Paste your bq queries:
 
 - What's the size of this dataset? (i.e., how many trips)
 
 - What is the earliest start time and latest end time for a trip?
 
 - How many bikes are there?
+
+2. New Query
+  * Paste your SQL query and answer the question in a sentence.
+
+- How many trips are in the morning vs in the afternoon?
 
 
 ### Project Questions
