@@ -1,6 +1,6 @@
 ---
-title: "sync session"
-author:
+title: Fundamentals of Data Engineering
+author: Week 07 - sync session
 ...
 
 ---
