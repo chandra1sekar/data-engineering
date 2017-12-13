@@ -2,7 +2,7 @@ default: slides syllabus.pdf syllabus.html
 
 weeks = $(wildcard *-*)
 
-README.md: templates/README-template.md templates/README-template-footer.md
+README.md: templates/README-template.md templates/README-template-footer.md $(wildcard *-*/README.md)
 	@echo "---" $@ "---"
 	cat templates/README-template.md > $@
 	echo "# Introduction" >> $@
