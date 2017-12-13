@@ -79,11 +79,21 @@ Most readings are available through a subscription to https://www.safaribooksonl
 - Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.
 
 ## Course Outline
-The course consists of 4 sections: A 3-week Introduction that covers the basics of storage and retrieval concepts and tools; a 5-week Basics section that provides a deeper exploration of working with data and data pipelines; a 4-week section that focuses on Streaming Data; and a concluding section, Putting it All Together, that integrates concepts and skills from the entire course into a cohesive model of the data pipeline. 
+The course consists of 4 sections: A 3-week Introduction that covers the basics
+of storage and retrieval concepts and tools; a 5-week Basics section that
+provides a deeper exploration of working with data and data pipelines; a 4-week
+section that focuses on Streaming Data; and a concluding section, Putting it
+All Together, that integrates concepts and skills from the entire course into a
+cohesive model of the data pipeline.
 
-In addition to the sequenced material covered, the course also includes Tutorial materials that focus on technical skills associated with data engineering technologies, tools, and platforms. These tutorials also provide a practical foundation for the discussions and activities that will take place in the live classroom for specific weeks in the term.
+In addition to the sequenced material covered, the course also includes
+Tutorial materials that focus on technical skills associated with data
+engineering technologies, tools, and platforms. These tutorials also provide a
+practical foundation for the discussions and activities that will take place in
+the live classroom for specific weeks in the term.
 
 # Introduction
+
 ## Week 01 - Introduction
 
 #### Themes: What is Data Engineering? Gathering event data. Get started with queries.

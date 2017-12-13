@@ -84,7 +84,7 @@ of storage and retrieval concepts and tools; a 5-week Basics section that
 provides a deeper exploration of working with data and data pipelines; a 4-week
 section that focuses on Streaming Data; and a concluding section, Putting it
 All Together, that integrates concepts and skills from the entire course into a
-cohesive model of the data pipeline. 
+cohesive model of the data pipeline.
 
 In addition to the sequenced material covered, the course also includes
 Tutorial materials that focus on technical skills associated with data
