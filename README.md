@@ -67,6 +67,8 @@ Your final grade will be as follows:
 
 - 10% for each of the 10 graded assignments
 
+These assignments are the core of this course. Your work on them is one of the best ways for you to learn. To allow you to get the most out of each assignment, we iterate through each of them. For example, for Assignment 1: 1) you'll work in groups and hear from us about the content of the assignment in Week 1, then 2) you'll work on it independently and/or in groups during the week, coming to Week 2's synchronous session with an attempt at the assignment and any questions you have, next 3) we will review it and address questions during Week 2's synchronous session, and finally, 4) the final version of the assignment will be due the next day. 
+
 ## Readings
 Most readings are available through a subscription to https://www.safaribooksonline.com/. Other readings are blogposts and links.
 
@@ -153,7 +155,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       2.2.5 Introduction to Docker [tutorial]
 
 
-#### Due: Assignment 01: Set up and prerequisites
+#### Due Day after Week 2 Synchronous Session: 
+- Assignment 01: Set up and prerequisites
 
 
 
@@ -192,7 +195,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       3.3.4 Using Containers to Run Services with Docker [tutorial] 
 
 
-#### Due: Assignment 02: Querying data with BigQuery
+#### Due Day after Week 3 Synchronous Session: 
+- Assignment 02: Querying data with BigQuery
 
 
 # The Basics
@@ -235,7 +239,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       4.3.4 - NoSQL - Key-Value Store [screencast]
 
 
-#### Due: Assignment 03 - Querying data from the BigQuery CLI - set up (Query Project)
+#### Due Day after Week 4 Synchronous Session: 
+- Assignment 03 - Querying data from the BigQuery CLI - set up (Query Project)
 
 
 ## Week 05 - Storing Data II
@@ -263,7 +268,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       5.2.3 - The Hadoop Ecosystem [screencast]
       5.2.4 - Using Hadoop [screencast]
     
-#### Due: Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
+#### Due Day after Week 5 Synchronous Session: 
+- Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
 
 
 
@@ -307,7 +313,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       6.4.3 - Using Schedulers [screencast]
 
 
-#### Due: Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
+#### Due Day after Week 6 Synchronous Session: 
+- Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
 
 
 ## Week 07 - Sourcing Data
@@ -343,7 +350,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       7.4.1 Security and Privacy [lecture]
       7.4.2 PII [screencast]
 
-#### Assignment 06 - Get and clean data (Event Log Project)
+#### Due Day after Week 7 Synchronous Session: 
+- Assignment 06 - Get and clean data (Event Log Project)
 
 
 ## Week 08 - Querying Data
@@ -375,7 +383,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       8.4.1 - Query Optimization [screencast]
       8.4.2 - Using the Tools [screencast]
 
-#### Assignment 07 - Set up pipeline (Event Log Project)
+#### Due Day after Week 8 Synchronous Session: 
+- Assignment 07 - Set up pipeline (Event Log Project)
 
 
 # Streaming
@@ -407,7 +416,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       9.2.7 - Problems with Latency [screencast]
       9.2.8 - Glue [screencast]
 
-#### Due: Assignment 08 - Build and Write-up Pipeline (Event Log Project)
+#### Due Day after Week 9 Synchronous Session: 
+- Assignment 08 - Build and Write-up Pipeline (Event Log Project)
 
 
 
@@ -446,7 +456,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       10.4.1 * Take Action! [lecture]
       10.4.2 - Act! (pyspark watching kafka) [screencast]
 
-#### Due: Assignment 09 - Define Your Pipeline (Pipeline Project)
+#### Due Day after Week 10 Synchronous Session: 
+- Assignment 09 - Define Your Pipeline (Pipeline Project)
 
 
 
@@ -479,7 +490,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
     11.5 Activity
       11.5.1 - User Activity [lecture]
 
-#### Due: Assignment 10 - Set up pipeline, Part 1 (Pipeline Project)
+#### Due Day after Week 11 Synchronous Session: 
+- Assignment 10 - Set up pipeline, Part 1 (Pipeline Project)
 
 
 
@@ -503,7 +515,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       12.1.4 - Replay [screencast]
       12.1.5 - Caching queries [screencast]
 
-#### Due: Assignment 11 - Set up pipeline, Part 2 (Pipeline Project)
+#### Due Day after Week 12 Synchronous Session: 
+- Assignment 11 - Set up pipeline, Part 2 (Pipeline Project)
 
 
 
@@ -540,7 +553,8 @@ In addition to the sequenced material covered, the course also includes Tutorial
       13.3.1 - Model Validation [screencast]
       13.3.2 - Model Management [screencast]
 
-#### Due: Assignment 12 - Synthesis Assignment (Pipeline Project)
+#### Due Day after Week 13 Synchronous Session: 
+- Assignment 12 - Synthesis Assignment (Pipeline Project)
 
 
 ## Week 14 - Patterns for Data Pipelines
