@@ -1,0 +1,620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="mids-w205---fundamentals-of-data-engineering" class="section level1">
+<h1>MIDS w205 - Fundamentals of Data Engineering</h1>
+<div id="mark-mims-and-taylor-martin" class="section level3">
+<h3>Mark Mims and Taylor Martin</h3>
+</div>
+<div id="spring-2018" class="section level3">
+<h3>Spring 2018</h3>
+</div>
+<div id="course-description" class="section level2">
+<h2>Course Description</h2>
+<p>Storing, managing, and processing datasets are foundational processes in data science. This course introduces the fundamental knowledge and skills of data engineering that are required to be effective as a data scientist. This course focuses on the basics of data pipelines, data pipeline flows and associated business use cases, and how organizations derive value from data and data engineering. As these fundamentals of data engineering are introduced, learners will interact with data and data processes at various stages in the pipeline, understand key data engineering tools and platforms, and use and connect critical technologies through which one can construct storage and processing architectures that underpin data science applications.</p>
+</div>
+<div id="course-format" class="section level2">
+<h2>Course Format</h2>
+<p>The course is organized as an online inverted classroom. During each week, students first work through a set of asynchronous materials, including video lectures, readings, and other activities. Once a week, students meet for a 90-minute live session, in which they connect with an instructor and other students in an online classroom. A functioning webcam and an audio headset are required to participate in the live sessions. Students must complete all assigned asynchronous material before the scheduled live session begins.</p>
+</div>
+<div id="course-objectives" class="section level2">
+<h2>Course Objectives</h2>
+<div id="tools-and-technologies" class="section level3">
+<h3>Tools and Technologies</h3>
+<p>Students will:</p>
+<ul>
+<li>Build practical experience building data pipelines.</li>
+<li>Build practical experience cleaning, anonymizing, and plumbing data.</li>
+<li>Learn tooling for queries and query management (e.g., BigQuery, SQL).</li>
+<li>Learn tooling for analytics (jupyter, python, py-based-libs).</li>
+<li>Get exposure to advanced tooling for analytics (spark, kafka, etc).</li>
+<li>Learn how to leverage revision control.</li>
+<li>Learn how to use docker to assemble common tools for analysis.</li>
+<li>Build practical experience leveraging cloud-based resources for data analytics.</li>
+<li>Build practical experience consuming data and services from APIs.</li>
+<li>Get exposure to events and event-log based analytics.</li>
+</ul>
+</div>
+<div id="concepts" class="section level3">
+<h3>Concepts</h3>
+<p>Students will:</p>
+<ul>
+<li>Learn to keep their analysis grounded in busines relevence.</li>
+<li>Get exposure to some basic distributed storage and compute concepts.</li>
+<li>Get exposure to some basic RDBMS concepts.</li>
+<li>Get exposre to RDB -vs- NoSQL tooling and approaches.</li>
+<li>Get exposure to some basic data warehousing concepts.</li>
+<li>Learn the basics of virtualization and containerization.</li>
+<li>Understand how analysis changes wrt scale / complexity of data.</li>
+<li>Learn about data partitioning.</li>
+<li>Learn about latency in data analysis.</li>
+<li>Get exposure to ETL -vs- NoETL.</li>
+<li>Learn the basic concepts of web-based applications.</li>
+<li>Understand how basic data privacy, security, and chain-of-custody works.</li>
+</ul>
+</div>
+</div>
+<div id="evaluation-grading" class="section level2">
+<h2>Evaluation &amp; Grading</h2>
+<p>The 12 assignments will cumulatively build into 3 projects: the Query Project, the Tracking User Activity Project and the Understanding User Behavior Project. Each assignment will be a part of one of these projects. Each assignment will be a hands-on lab that is completed both individually and revisited during the synchronous weekly group sessions. Ten of the twelve assignments will be graded.</p>
+<p>Your final grade will be as follows:</p>
+<ul>
+<li>10% for each of the 10 graded assignments</li>
+</ul>
+<p>These assignments are the core of this course. Your work on them is one of the best ways for you to learn. To allow you to get the most out of each assignment, we iterate through each of them. For example, for Assignment 1: 1) you'll work in groups and hear from us about the content of the assignment in Week 1, then 2) you'll work on it independently and/or in groups during the week, coming to Week 2's synchronous session with an attempt at the assignment and any questions you have, next 3) we will review it and address questions during Week 2's synchronous session, and finally, 4) the final version of the assignment will be due the next day.</p>
+</div>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<p>Most readings are available through a subscription to https://www.safaribooksonline.com/. Other readings are blogposts and links.</p>
+</div>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<ul>
+<li>Previous experience with Python.</li>
+<li>Basic knowledge of Unix/Linux commands and tools as well as concepts such as processes, file systems.</li>
+</ul>
+</div>
+<div id="course-outline" class="section level2">
+<h2>Course Outline</h2>
+<p>The course consists of 4 sections: A 3-week Introduction that covers the basics of storage and retrieval concepts and tools; a 5-week Basics section that provides a deeper exploration of working with data and data pipelines; a 4-week section that focuses on Streaming Data; and a concluding section, Putting it All Together, that integrates concepts and skills from the entire course into a cohesive model of the data pipeline.</p>
+<p>In addition to the sequenced material covered, the course also includes Tutorial materials that focus on technical skills associated with data engineering technologies, tools, and platforms. These tutorials also provide a practical foundation for the discussions and activities that will take place in the live classroom for specific weeks in the term.</p>
+</div>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<div id="week-01---introduction" class="section level2">
+<h2>Week 01 - Introduction</h2>
+<div id="themes-what-is-data-engineering-gathering-event-data.-get-started-with-queries." class="section level4">
+<h4>Themes: What is Data Engineering? Gathering event data. Get started with queries.</h4>
+</div>
+<div id="readings-1" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Data Science vs. Data Engineering<br />
+Insight Data Science blog https://blog.insightdatascience.com/data-science-vs-data-engineering-62da7678adaa</p>
+</blockquote>
+<blockquote>
+<p>Network Programmability and Automation by Jason Edelman, Matt Oswalt, Scott S. Lowe Chapter 8. Source Control with Git https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch08.html#sourcecontrol</p>
+</blockquote>
+<blockquote>
+<p>Analytics For Hackers: How To Think About Event Data by Michelle Wetzler https://blog.keen.io/analytics-for-hackers-how-to-think-about-event-data-cabeefe1f3d9</p>
+</blockquote>
+</div>
+<div id="asynchronous-content" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>1.1 - Welcome
+  1.1.1 What is Data Engineering? [lecture]
+  1.1.2 What will I be able to do after this course? [lecture]
+
+1.2 - This Course
+  1.2.1 Organization and Approach [lecture]
+
+1.3 - Data Pipelines
+  1.3.1 What&#39;s a Data Pipeline? [lecture]
+  1.3.2 Typical Pipeline Components [lecture]
+
+1.4 - Events Everywhere
+  1.4.1 Device Events [lecture]
+  1.4.2 User Events [lecture]
+  1.4.3 Event Streams [lecture]</code></pre>
+</div>
+</div>
+<div id="week-02---working-with-data" class="section level2">
+<h2>Week 02 - Working with Data</h2>
+<div id="themes-intro-to-data-metadata-and-some-basic-tools-for-working-with-data." class="section level4">
+<h4>Themes: Intro to data, metadata, and some basic tools for working with data.</h4>
+</div>
+<div id="readings-2" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Network Programmability and Automation by Jason Edelman, Matt Oswalt, Scott S. Lowe Chapter 5. Data Formats and Data Models https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch05.html#dataformats</p>
+</blockquote>
+<blockquote>
+<p>Python for Data Analysis, 2nd Edition by William Wesley McKinney Chapter 2.2 IPython Basics https://www.safaribooksonline.com/library/view/python-for-data/9781491957653/ch02.html#ipython_basics</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-1" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>2.1 Working with Data
+  2.1.1 Introduction [lecture]
+  2.1.2 Formats [screencast]
+  2.1.3 Schema/Types [screencast]
+
+
+2.2 Tools for Working with Data
+  2.2.1 Introduction to Tools  [screencast]
+  2.2.2 Introduction to the Command Line [tutorial]
+  2.2.3 Using the The Command Line [tutorial]
+  2.2.4 Introduction to Jupyter Notebooks [tutorial]
+  2.2.5 Introduction to Docker [tutorial]</code></pre>
+</div>
+<div id="due-day-after-week-2-synchronous-session" class="section level4">
+<h4>Due Day after Week 2 Synchronous Session:</h4>
+<ul>
+<li>Assignment 01: Set up and prerequisites</li>
+</ul>
+</div>
+</div>
+<div id="week-03---welcome-to-the-queryside" class="section level2">
+<h2>Week 03 - Welcome to the Queryside</h2>
+<div id="themes-sql-query-tools" class="section level4">
+<h4>Themes: SQL, query tools</h4>
+</div>
+<div id="readings-3" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Designing Data-Intensive Applications, 1st Edition Martin Kleppmann Chapter 2. Data Models and Query Languages https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html#ch_datamodels</p>
+</blockquote>
+<blockquote>
+<p>Learning SQL, 2nd Edition by Alan Beaulieu Chapter 3. Query Primer https://www.safaribooksonline.com/library/view/learning-sql-2nd/9780596801847/ch03.html</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-2" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>3.1 What is the queryside?
+  3.1.1 Revisiting Pipelines [lecture]
+  3.1.2 Immutability [lecture]
+
+3.2 Query Tools
+  3.2.1 Queryside World  [screencast]
+  3.2.2 Athena [screencast]
+  3.2.3 BigQuery [screencast]
+
+3.3 Sneak Peek
+  3.3.1 Caching [screencast]
+  3.3.2 Using Jupyter Notebooks [tutorial]
+  3.3.3 Using Docker [tutorial]
+  3.3.4 Using Containers to Run Services with Docker [tutorial] </code></pre>
+</div>
+<div id="due-day-after-week-3-synchronous-session" class="section level4">
+<h4>Due Day after Week 3 Synchronous Session:</h4>
+<ul>
+<li>Assignment 02: Querying data with BigQuery</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="the-basics" class="section level1">
+<h1>The Basics</h1>
+<div id="week-04---storing-data" class="section level2">
+<h2>Week 04 - Storing Data</h2>
+<div id="themes-relational-and-nosql-datastores" class="section level4">
+<h4>Themes: Relational and NoSQL datastores</h4>
+</div>
+<div id="readings-4" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Using Docker by Adrian Mouat Chapter 1. The What and Why of Containers https://www.safaribooksonline.com/library/view/using-docker/9781491915752/ch01.html#what_and_why</p>
+</blockquote>
+<blockquote>
+<p>Infrastructure as Code by Kief Morris Chapter 1. Challenges and Principles https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges</p>
+</blockquote>
+<blockquote>
+<p>Modern Linux Administration by Sam R. Alapati Chapter 1. Modern Linux System Administration https://www.safaribooksonline.com/library/view/modern-linux-administration/9781491935941/ch01.html#idm139918689681584</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-3" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>4.1 Introduction
+  4.1.1 - Where are we in the Pipeline? [lecture]
+
+4.2 Relational Data Stores
+  4.2.1 - Relational Databases [lecture]
+  4.2.2 - Relational Databases - Relations [lecture]
+  4.2.3 - Relational Databases - Normalization [lecture]
+
+4.3 NoSQL Data Stores
+  4.3.1 - NoSQL Data Stores [lecture]
+  4.3.2 - NoSQL - Relational Model [screencast]
+  4.3.3 - NoSQL - Document Store [screencast]
+  4.3.4 - NoSQL - Key-Value Store [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-4-synchronous-session" class="section level4">
+<h4>Due Day after Week 4 Synchronous Session:</h4>
+<ul>
+<li>Assignment 03 - Querying data from the BigQuery CLI - set up (Query Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-05---storing-data-ii" class="section level2">
+<h2>Week 05 - Storing Data II</h2>
+<div id="themes-introduction-to-cloud-concepts-and-hadoop" class="section level4">
+<h4>Themes: Introduction to cloud concepts and Hadoop</h4>
+</div>
+<div id="readings-5" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Hadoop: The Definitive Guide, 4th Edition by Tom White Chapters 1-3 https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-4" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>5.1 Introduction to the Cloud
+  5.1.1 - Virtualization and Containers [screencast]
+  5.1.2 - Infrastructure Encapsulation and Isolation [screencast]
+  5.1.3 - Composing Containers [screencast]
+  5.1.4 - Failure in Distributed Systems [lecture]
+
+5.2 Hadoop
+  5.2.1 - Hadoop [lecture]
+  5.2.2 - Hadoop Walkthrough [screencast]
+  5.2.3 - The Hadoop Ecosystem [screencast]
+  5.2.4 - Using Hadoop [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-5-synchronous-session" class="section level4">
+<h4>Due Day after Week 5 Synchronous Session:</h4>
+<ul>
+<li>Assignment 04 - Querying data from the BigQuery CLI - finishing up (Query Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-06---transforming-data" class="section level2">
+<h2>Week 06 - Transforming Data</h2>
+<div id="themes-etl-and-its-discontents-more-hadoop-and-container-management" class="section level4">
+<h4>Themes: ETL and its discontents, more Hadoop, and container management</h4>
+</div>
+<div id="readings-6" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Designing Data-Intensive Applications, 1st Edition Martin Kleppmann Chapter 10. Batch Processing https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch10.html#ch_batch</p>
+</blockquote>
+<blockquote>
+<p>Designing Data-Intensive Applications, 1st Edition Martin Kleppmann Chapter 11. Stream Processing https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch11.html#ch_stream</p>
+</blockquote>
+<blockquote>
+<p>Hadoop: The Definitive Guide, 4th Edition by Tom White Chapter 4. YARN https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-5" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>6.1 Introduction
+  6.1.1 - Transform Section of Pipeline [lecture]
+
+6.2 ETL
+  6.2.2 - You don&#39;t always (aka usually) get what you want [screencast]
+
+6.3 Hadoop ETL
+  6.3.1 - Running Hadoop Jobs [lecture]
+  6.3.2 - Hadoop ETL [screencast]
+  6.3.3 - Introduction to Spark [screencast]
+
+6.4 Container Management
+  6.4.1 - Distributed Execution Models [screencast]
+  6.4.2 - Introduction to Schedulers [screencast]
+  6.4.3 - Using Schedulers [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-6-synchronous-session" class="section level4">
+<h4>Due Day after Week 6 Synchronous Session:</h4>
+<ul>
+<li>Assignment 05 - Employ notebooks to synthesize query project results (Query Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-07---sourcing-data" class="section level2">
+<h2>Week 07 - Sourcing Data</h2>
+<div id="themes-data-and-its-provenance-security-and-privacy" class="section level4">
+<h4>Themes: Data and its provenance, security and privacy</h4>
+</div>
+<div id="readings-7" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Modern Linux Administration by Sam R. Alapati Chapter 15. Security and Compliance in the Modern Systems Environment https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-6" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>7.1 Pipeline Context
+  7.1.1 * Pipeline Context [lecture]
+
+7.2 Where did the data come from?
+  7.2.1 - APIs [screencast]
+  7.2.2 - Web pages [screencast]
+  7.2.3 - Email attachments [screencast]
+  7.2.4 - Databases [screencast]
+  7.2.5 - Cloud Storage [screencast]
+  7.2.6 - Application Pipelines [screencast]
+
+7.3 What do you want to know about the data you get?
+  7.3.1 - Lineage [screencast]
+  7.3.2 - Version [screencast]
+  7.3.3 - Schema [screencast]
+
+7.4 Security and Privacy
+  7.4.1 Security and Privacy [lecture]
+  7.4.2 PII [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-7-synchronous-session" class="section level4">
+<h4>Due Day after Week 7 Synchronous Session:</h4>
+<ul>
+<li>Assignment 06 - Get and clean data (Event Log Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-08---querying-data" class="section level2">
+<h2>Week 08 - Querying Data</h2>
+<div id="themes-querying-with-partition-keys-and-query-planning" class="section level4">
+<h4>Themes: Querying with partition keys and query planning</h4>
+</div>
+<div id="readings-8" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Designing Data-Intensive Applications, 1st Edition by Martin Kleppmann Chapter 6. Partitioning https://www.safaribooksonline.com/library/view/designing-data-intensive-applications/9781491903063/ch06.html#ch_partitioning</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-7" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>8.1 Querying
+  8.1.1 - Pipeline Context [lecture]
+  8.1.2 - Base decisions on queries [screencast] 
+  8.1.3 - Query Walkthrough [screencast]
+
+8.2 Tools
+  8.2.1 - Tools [screencast]
+
+8.3 Partitions
+  8.3.1 - Querying with Partition Keys [screencast] 
+  8.3.2 - How to take advantage of partitions [screencast]
+
+8.4 Query Planning
+  8.4.1 - Query Optimization [screencast]
+  8.4.2 - Using the Tools [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-8-synchronous-session" class="section level4">
+<h4>Due Day after Week 8 Synchronous Session:</h4>
+<ul>
+<li>Assignment 07 - Set up pipeline (Event Log Project)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="streaming" class="section level1">
+<h1>Streaming</h1>
+<div id="week-09---ingesting-data" class="section level2">
+<h2>Week 09 - Ingesting Data</h2>
+<div id="themes-ingesting-streaming-data-using-kafka-considerations-of-latency." class="section level4">
+<h4>Themes: Ingesting streaming data, using Kafka, considerations of latency.</h4>
+</div>
+<div id="readings-9" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Kafka: The Definitive Guide, 1st Edition by Gwen Shapira, Neha Narkhede, Todd Palino Chapter 7. Building Data Pipelines https://www.safaribooksonline.com/library/view/kafka-the-definitive/9781491936153/ch07.html</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-8" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>9.1 Pipeline Context
+  9.1.1 - Where are we in the Pipeline? [lecture]
+
+9.2 Kafka
+  9.2.1 - Distributed Messaging [lecture]
+  9.2.2 - Kafka Walkthrough [screencast]
+  9.2.3 - Where are the data coming from? [screencast]
+  9.2.4 - Latency [lecture]
+  9.2.5 - Batch vs. Real Time [screencast]
+  9.2.6 - Driven by Queries [screencast]
+  9.2.7 - Problems with Latency [screencast]
+  9.2.8 - Glue [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-9-synchronous-session" class="section level4">
+<h4>Due Day after Week 9 Synchronous Session:</h4>
+<ul>
+<li>Assignment 08 - Build and Write-up Pipeline (Event Log Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-10---transforming-streaming-data" class="section level2">
+<h2>Week 10 - Transforming Streaming Data</h2>
+<div id="themes-noetl-batch-vs-streaming-in-memory-computing" class="section level4">
+<h4>Themes: NoETL, batch vs streaming, in-memory computing</h4>
+</div>
+<div id="readings-10" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>High Performance Spark, 1st Edition by Holden Karau, Rachel Warren Chapter 2. How Spark Works https://www.safaribooksonline.com/library/view/high-performance-spark/9781491943199/ch02.html</p>
+</blockquote>
+<blockquote>
+<p>Learning Spark by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell Chapter 10. Spark Streaming https://www.safaribooksonline.com/library/view/learning-spark/9781449359034/ch10.html</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-9" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>10.1 NoETL
+  10.1.1 - Pipeline Context [lecture]
+  10.1.2 - Grabbing data you need as it streams by [screencast]
+
+10.2 Modes of Execution
+  10.2.1 - Batch -vs- Streaming [screencast]
+  10.2.2 - Single Event Processing [screencast]
+  10.2.3 - Microbatch [screencast]
+  10.2.4 - Continuous Applications - Handling Batch and Streaming Data in the Same System [screencast]
+
+10.3
+  10.3.1 - In Memory Computing [screencast]
+
+10.4 Take Action!
+  10.4.1 * Take Action! [lecture]
+  10.4.2 - Act! (pyspark watching kafka) [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-10-synchronous-session" class="section level4">
+<h4>Due Day after Week 10 Synchronous Session:</h4>
+<ul>
+<li>Assignment 09 - Define Your Pipeline (Pipeline Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-11---faster-data-stores" class="section level2">
+<h2>Week 11 - Faster Data Stores</h2>
+<div id="themes-distributed-in-memory-storage-and-spark" class="section level4">
+<h4>Themes: Distributed in-memory storage and Spark</h4>
+</div>
+<div id="readings-11" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Structured Streaming Programming Guide Apache Foundation https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html Through &quot;Operations on streaming DataFrames/Datasets&quot; section</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-10" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>11.1 Pipeline Context
+  11.1.1 - Pipeline Context [lecture]
+
+11.2 In Memory
+  11.2.1 - Streaming and Spark [screencast]
+  11.2.2 - Structured Streaming [screencast]
+
+11.3 Resource Selections
+  11.3.1 - Dedicated Stream Processing [screencast]
+
+11.4 Distributed In-memory Storage
+  11.4.1 - Distributed In-memory Storage [screencast]
+
+11.5 Activity
+  11.5.1 - User Activity [lecture]</code></pre>
+</div>
+<div id="due-day-after-week-11-synchronous-session" class="section level4">
+<h4>Due Day after Week 11 Synchronous Session:</h4>
+<ul>
+<li>Assignment 10 - Set up pipeline, Part 1 (Pipeline Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-12---faster-queries" class="section level2">
+<h2>Week 12 - Faster Queries</h2>
+<div id="themes-structured-streaming-streaming-queries-caching-vs.-stream-queries" class="section level4">
+<h4>Themes: Structured streaming, streaming queries, caching vs. stream queries</h4>
+</div>
+<div id="readings-12" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Structured Streaming Programming Guide Apache Foundation https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html From &quot;Streaming Queries&quot; section to end</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-11" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>12.1 Queries
+  12.1.1 - Caching -vs- Stream Queries [screencast]
+  12.1.2 - Caching and the Web [screencast]
+  12.1.3 - A walk down memory lane - data mining [screencast]
+  12.1.4 - Replay [screencast]
+  12.1.5 - Caching queries [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-12-synchronous-session" class="section level4">
+<h4>Due Day after Week 12 Synchronous Session:</h4>
+<ul>
+<li>Assignment 11 - Set up pipeline, Part 2 (Pipeline Project)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="putting-it-all-together" class="section level1">
+<h1>Putting it All Together</h1>
+<div id="week-13---understanding-data" class="section level2">
+<h2>Week 13 - Understanding Data</h2>
+<div id="themes-sessionization-and-state-and-model-validation-and-management" class="section level4">
+<h4>Themes: Sessionization and state and model validation and management</h4>
+</div>
+<div id="readings-13" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Scala:Applied Machine Learning by Alex Kozlov, Patrick R. Nicolas, Pascal Bugnion Sessionization (in Chapter 6. Working with Unstructured Data) https://www.safaribooksonline.com/library/view/scalaapplied-machine-learning/9781787126640/ch32s04.html</p>
+</blockquote>
+<blockquote>
+<p>Advanced Analytics with Spark, 2nd Edition by Uri Laserson, Sandy Ryza, Sean Owen, Josh Wills Sessionization in Spark (in Chapter 8. Geospatial and Temporal Data Analysis on New York City Taxi Trip Data) https://www.safaribooksonline.com/library/view/Advanced+Analytics+with+Spark,+2nd+Edition/9781491972946/ch08.html#idm140398878264880</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-12" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>13.1 Context
+  13.1.1 - Pipeline Context [lecture]
+
+13.2 Sessionization and State
+  13.2.1 - Sessionization and state for action [lecture]
+  13.2.2 - Ingested Events [screencast]
+  13.2.3 - Low Latency Ingested Events [screencast]
+  13.2.4 - Architectural Patterns for Action [screencast]
+
+13.3 Models
+  13.3.1 - Model Validation [screencast]
+  13.3.2 - Model Management [screencast]</code></pre>
+</div>
+<div id="due-day-after-week-13-synchronous-session" class="section level4">
+<h4>Due Day after Week 13 Synchronous Session:</h4>
+<ul>
+<li>Assignment 12 - Synthesis Assignment (Pipeline Project)</li>
+</ul>
+</div>
+</div>
+<div id="week-14---patterns-for-data-pipelines" class="section level2">
+<h2>Week 14 - Patterns for Data Pipelines</h2>
+<div id="themes-conceptual-devops-and-serverless-architectures" class="section level4">
+<h4>Themes: Conceptual DevOps and serverless architectures</h4>
+</div>
+<div id="readings-14" class="section level4">
+<h4>Readings</h4>
+<blockquote>
+<p>Infrastructure as Code by Kief Morris Chapter 1. Challenges and Principles https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges</p>
+</blockquote>
+<blockquote>
+<p>Network Programmability and Automation by Jason Edelman, Matt Oswalt, Scott S. Lowe Chapter 10. Continuous Integration https://www.safaribooksonline.com/library/view/network-programmability-and/9781491931240/ch10.html#cicd</p>
+</blockquote>
+<blockquote>
+<p>Serverless Architectures on AWS by Peter Sbarski Chapter 1. Going serverless https://www.safaribooksonline.com/library/view/serverless-architectures-on/9781617293825/kindle_split_013.html</p>
+</blockquote>
+<blockquote>
+<p>The Case for Learned Index Structures by Tim Kraska, Alex Beutel, Ed H. Chi, Jeffrey Dean, &amp; Neoklis Polyzotis https://www.arxiv-vanity.com/papers/1712.01208v1/</p>
+</blockquote>
+</div>
+<div id="asynchronous-content-13" class="section level4">
+<h4>Asynchronous Content</h4>
+<pre><code>14.1 DevOps
+  14.1.1 - Infrastructure as Code [screencast]
+  14.1.2 - Testing [screencast]
+  14.1.3 - CI/CD  [screencast]
+  14.1.4 - Logging and Monitoring [screencast]
+  14.1.5 - Automation [screencast]
+  14.1.6 - The Development Process [screencast]
+
+14.2 Serverless Architectures
+  14.2.1 - The Future of Data Engineering [screencast]
+  14.2.2 - AWS Kool-aid stack [screencast]
+  14.2.3 - GCP Kool-aid stack [screencast]</code></pre>
+</div>
+</div>
+<div id="academic-integrity" class="section level2">
+<h2>Academic Integrity</h2>
+<p>Please read UC Berkeley’s policies around academic integrity: http://sa.berkeley.edu/conduct/integrity</p>
+</div>
+<div id="avoiding-plagiarism" class="section level2">
+<h2>Avoiding Plagiarism</h2>
+<p>Plagiarism is a serious academic offense, and students must take care not to copy code written by others. Beginning students sometimes have trouble identifying exactly when plagiarism takes place. Remember that it is generally fine to search for examples of code (for example, on forums like stackoverflow). This is a normal part of programming and can help you learn. However, it is important that you understand the code you find and use what you learn to write your own statements. If in doubt, simply document the place you found your example code and ask your instructors for further guidance.</p>
+</div>
+</div>
+</body>
+</html>
