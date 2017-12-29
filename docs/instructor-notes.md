@@ -9,7 +9,7 @@ tools, images, and grading.  We'll work to keep this up-to-date as we progress
 through the first semester that this course is taught.
 
 This document is intended to be live and is maintained in the `course-content`
-repository.
+repository under `docs/instructor-notes.md`.
 
 
 # GitHub
