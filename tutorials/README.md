@@ -33,7 +33,7 @@ screencasts:
 - jupyter-using-notebooks
 
 
-## Containers (in Week 4 of Synch Section)
+## Containers
 
 goals:
 
