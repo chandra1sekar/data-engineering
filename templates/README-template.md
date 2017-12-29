@@ -79,7 +79,7 @@ Most readings are available through a subscription to https://www.safaribooksonl
 - In addition we'll use Docker, Git, and SQL as well as other tools.
 - If you feel like you're not where you'd like to be with these technologies/tools, here are some resources to get up to speed. There are options, pick which one best suits your needs.
 
-- SQL
+#### SQL
 
     SQL Tutorial
     w3schools.com
@@ -89,25 +89,25 @@ Most readings are available through a subscription to https://www.safaribooksonl
 	by Alan Beaulieu
 	https://www.safaribooksonline.com/library/view/learning-sql-2nd/9780596801847/
 
-- The Command Line
+#### The Command Line
 
 	Learning the Shell
 	by William E. Shotts, Jr.
 	http://linuxcommand.org/lc3_learning_the_shell.php
 
-- Git
+#### Git
 
 	Pro Git book
 	by Scott Chacon and Ben Straub 
 	https://git-scm.com/book/en/v2
 
-- Python
+#### Python
 
 	Python for Data Analysis, 2nd Edition
 	by William Wesley McKinney
 	https://www.safaribooksonline.com/library/view/python-for-data/9781491957653/
 
-- Docker
+#### Docker
 
 	Getting Started with Docker
 	https://docs.docker.com/get-started/
