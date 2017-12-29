@@ -1,6 +1,6 @@
 ## Week 10 - Transforming Streaming Data
 
-#### Themes: NoETL, batch vs streaming, in-memory computing.
+#### Themes: NoETL, batch vs streaming, in-memory computing
 
 #### Readings
 
