@@ -1,5 +1,4 @@
 # MIDS w205 - Fundamentals of Data Engineering 
-### Mark Mims and Taylor Martin
 ### Spring 2018
 
 ## Course Description
@@ -61,7 +60,7 @@ Students will:
 
 ## Evaluation & Grading
 
-The 12 assignments will cumulatively build into 3 projects: the Query Project, the Event Log Project Project and the Pipeline Project. Each assignment will be a part of one of these projects. Each assignment will be a hands-on lab that is completed both individually and revisited during the synchronous weekly group sessions. Ten of the twelve assignments will be graded.
+The 12 assignments will cumulatively build into 3 projects: the Query Project, the Tracking User Activity Project and the Understanding User Behavior Project. Each assignment will be a part of one of these projects. Each assignment will be a hands-on lab that is completed both individually and revisited during the synchronous weekly group sessions. Ten of the twelve assignments will be graded.
 
 Your final grade will be as follows:
 
