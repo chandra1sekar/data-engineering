@@ -229,9 +229,71 @@ This section is a walk through of how we will iterate through assignments.
 
 > - Review Assignment 2, questions, where did you hit a wall?
 > - Some lectur-ish stuff on this week's topic
-> - Preview, discussion, do google cloud platform setup and views for Assignment 3
+> - Preview, discussion, do google cloud platform setup and sql statements for Assignment 3
 > - Final Assignment 2 due next day
 
+
+#
+## Student Projects
+
+## Student Projects
+
+1. Querying Data
+2. Tracking User Activity
+3. Understanding User Behavior
+
+## Querying Data
+
+- Use existing tools/pipeline/dataset
+- Answer basic business questions
+
+<div class="notes">
+data-driven business decisions
+
+prompt/reinforce the connection
+
+validation/testing?  (how good are our results?)
+
+(intro to model management?)
+</div>
+
+## Tracking User Activity
+
+- Use provided pipeline components
+- Transform/store data
+- Answer business questions
+- Bonus:
+    - Trigger notifications
+
+<div class="notes">
+"Catching and Transforming Data using plumbing that's provided"
+
+Catching Data
+
+Classifying Events
+Filtering/Sorting/Grouping
+Transforming Data
+
+Storing Data
+</div>
+
+## Understanding User Behavior
+
+- Assemble an end-to-end pipeline
+- Ingest/transform/store data
+- Answer comprehensive business questions
+- Bonus:
+    - Manage sessionization / state
+
+<div class="notes">
+end-to-end pipeline for understanding behavior
+
+you assemble the plumbing
+
+baseline: queries to answer questions about the user activity
+
+bonuses as above
+</div>
 
 
 ## Levels of Expertise
