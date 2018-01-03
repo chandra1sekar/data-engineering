@@ -105,6 +105,13 @@ Fallback for windows or anyone else who can't get going here.
 > - Make a directory
 >    - `mkdir w205`
 
+<div class="notes">
+fix this slide's formatting
+
+what else
+</div>
+
+
 #
 ## git
 
