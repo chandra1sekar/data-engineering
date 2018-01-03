@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Week 01 - sync session">
+  <title>Fundamentals of Data Engineering</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/mids.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Fundamentals of Data Engineering</h1>
+  <h2 class="author">Week 01 - sync session</h2>
+  <img class="frontPageSlogan" src="images/datascience-at-berkeley.png"/>
+</section>
+
+<section id="section" class="slide level1">
+<h1></h1>
+<section id="week-1---overview" class="level2">
+<h2>Week 1 - Overview</h2>
+<ul>
+<li>Introductions</li>
+<li>Set up your working environment for this class</li>
+<li>Review syllabus, course goals, processes &amp; tools ...</li>
+</ul>
+<aside class="notes">
+<p>See ~/taylor-oreilly/data-engineering-course/solutions/setup.md</p>
+</aside>
+</section>
+<section id="introductions" class="level2">
+<h2>Introductions</h2>
+<aside class="notes">
+<p>Introduce yourself :) Student introductions</p>
+</aside>
+</section>
+<section id="in-this-class-you-will" class="level2">
+<h2>In this class, you will</h2>
+<ul>
+<li class="fragment">Gain exposure to basic problems associated with data and data-driven decision-making</li>
+<li class="fragment">Develop a working knowledge of some tools/techniques used to solve these problems</li>
+<li class="fragment">Learn where to go for help and more info</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="approach" class="level2">
+<h2>Approach</h2>
+</section>
+<section id="section-1" class="level2">
+<h2></h2>
+<ul>
+<li class="fragment">Hands-on</li>
+<li class="fragment">Just enough</li>
+<li class="fragment">Motivated content</li>
+<li class="fragment">Adaptible to change</li>
+</ul>
+<aside class="notes">
+<p>hands on - activities are da bomb</p>
+<p>motivated content: use everything we cover</p>
+<p>just enough DE</p>
+<p>multiple exposures - hit everything 3 xs with increasing levels of detail</p>
+<p>context anchors - explain what you mean by this</p>
+<p>ideal outcome is the prepare them to learn further independently (including stack overflow etc)</p>
+<p>prefer scale and latency free concepts</p>
+</aside>
+</section>
+<section id="processprocedures" class="level2">
+<h2>Process/Procedures</h2>
+<aside class="notes">
+<p>For your other classes, they may use a variety of ways to get content, turn in assignments etc. Here, we're trying to follow good practices for data engineering and use appropriate tools. this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)</p>
+</aside>
+</section>
+<section id="section-2" class="level2">
+<h2></h2>
+<ul>
+<li>Github-centric content</li>
+<li>Cloud accounts</li>
+<li>Dockerhub</li>
+<li>Activity submissions</li>
+</ul>
+</section>
+<section id="activities" class="level2">
+<h2>Activities</h2>
+<ul>
+<li>Let's get going!</li>
+</ul>
+<aside class="notes">
+<p>With all of that in mind, let's get going! (Cloud accounts is covered in the what is Data Engineering section)</p>
+</aside>
+</section>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<section id="cli" class="level2">
+<h2>CLI</h2>
+<ul>
+<li>Where's (what's) my terminal???</li>
+<li>Windows users</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="cli-1" class="level2">
+<h2>CLI</h2>
+<ul>
+<li>Mac &amp; Linux users</li>
+<li>Windows users</li>
+</ul>
+<aside class="notes">
+<p>What do windows users need to do? Fallback for windows or anyone else who can't get going here.</p>
+</aside>
+</section>
+<section id="cli-basics" class="level2">
+<h2>CLI basics</h2>
+<ul>
+<li class="fragment">Where am I?</li>
+<li class="fragment"><code>pwd</code></li>
+<li class="fragment">Get to home!</li>
+<li class="fragment"><code>cd</code></li>
+<li class="fragment">Make a directory</li>
+<li class="fragment"><code>mkdir w205</code></li>
+</ul>
+<aside class="notes">
+<p>fix this slide's formatting</p>
+<p>what else</p>
+</aside>
+</section>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<section id="git" class="level2">
+<h2>git</h2>
+<ul>
+<li>What is git?</li>
+</ul>
+<aside class="notes">
+<p>We'll go over set up of folders, install git if needed, show git hub...</p>
+</aside>
+</section>
+<section id="install-git" class="level2">
+<h2>Install git</h2>
+<ul>
+<li>Link???</li>
+</ul>
+<aside class="notes">
+<p>Even if not doing this here, will have as notes. install git if needed</p>
+</aside>
+</section>
+<section id="git-set-up" class="level2">
+<h2>Git set up</h2>
+<ul>
+<li class="fragment"><code>cd w205</code></li>
+<li class="fragment"><code>git clone &lt;repo-name&gt;</code></li>
+<li class="fragment">PR walkthrough</li>
+</ul>
+<aside class="notes">
+<p>This will cover what they'll need to turn in assignments. Which repo How to do a PR on that</p>
+</aside>
+</section>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<section id="docker" class="level2">
+<h2>Docker</h2>
+<aside class="notes">
+<p>What is docker? Very brief version</p>
+</aside>
+</section>
+<section id="install-docker" class="level2">
+<h2>Install docker</h2>
+<aside class="notes">
+<p>where do you go, have they done this already, are we requiring them to b4 1st class?</p>
+</aside>
+</section>
+<section id="docker-set-up" class="level2">
+<h2>Docker set up</h2>
+<ul>
+<li class="fragment"><code>docker pull midsw205/base</code></li>
+<li class="fragment"><code>cd w205/</code></li>
+<li class="fragment"><code>docker run -it --rm -v</code>pwd<code>:/w205 midsw205/base:latest</code></li>
+</ul>
+</section>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<section id="what-is-data-engineering" class="level2">
+<h2>What is Data Engineering?</h2>
+</section>
+<section id="things-are-changing-quickly" class="level2">
+<h2>Things are changing quickly</h2>
+<p>https://www.coursera.org/learn/gcp-big-data-ml-fundamentals</p>
+<aside class="notes">
+<p>Watch the preview video for Google's Coursera course as a group</p>
+<ul>
+<li>What surprised you about the points made?</li>
+<li>Slides on gcp, DO, &amp; aws</li>
+<li>What they will set up for gcp???</li>
+</ul>
+</aside>
+</section>
+<section id="what-surprised-you-about-the-points-made" class="level2">
+<h2>What surprised you about the points made?</h2>
+<ul>
+<li>Enter 2 things on chat that you noticed.</li>
+</ul>
+</section>
+<section id="virtualization" class="level2">
+<h2>Virtualization</h2>
+<aside class="notes">
+<ul>
+<li>We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way</li>
+<li>You will use accts for all of these, but what set up today?</li>
+</ul>
+</aside>
+</section>
+<section id="gcp" class="level2">
+<h2>GCP</h2>
+<aside class="notes">
+<p>What is it? Link?</p>
+</aside>
+</section>
+<section id="do" class="level2">
+<h2>DO</h2>
+<aside class="notes">
+<p>What is it? Link?</p>
+</aside>
+<section id="aws" class="level3">
+<h3>AWS</h3>
+<aside class="notes">
+<p>What is it? Link?</p>
+</aside>
+</section>
+</section>
+<section id="data-engineering-jobs" class="level2">
+<h2>Data Engineering Jobs</h2>
+<ul>
+<li>Search &quot;data engineering jobs&quot;</li>
+<li>What are companies looking for in skills, experience, competencies?</li>
+</ul>
+<aside class="notes">
+<p>Google data engineering jobs &amp; read ads (between 5&amp;10). - What are companies looking for in skills, experience, competencies?</p>
+</aside>
+</section>
+<section id="just-enough" class="level2">
+<h2>Just enough</h2>
+<aside class="notes">
+<p>You'll hear this over and over, but basics of worldview ...</p>
+</aside>
+</section>
+<section id="pipeline-contextual-anchor" class="level2">
+<h2>Pipeline: Contextual Anchor</h2>
+<figure>
+<img src="images/pipeline-overall.svg" />
+</figure>
+<aside class="notes">
+<p>This pipeline is your anchor, basically where are we and how does here relate to the rest of the class?</p>
+</aside>
+</section>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<section id="how-this-class-works" class="level2">
+<h2>How this class works</h2>
+</section>
+<section id="syllabus" class="level2">
+<h2>Syllabus</h2>
+<ul>
+<li>Link: https://classroom.github.com/classrooms/34870768-mids-w205-fundamentals-of-data-engineering-martin-mims/????????</li>
+</ul>
+<aside class="notes">
+<p>syllabus √assignment flow √Go through all 3 projects?</p>
+</aside>
+</section>
+<section id="assignment-flow" class="level2">
+<h2>Assignment flow</h2>
+<aside class="notes">
+<p>This section is a walk through of how we will iterate through assignments.</p>
+</aside>
+</section>
+<section id="class-1" class="level2">
+<h2>Class 1</h2>
+<ul>
+<li class="fragment">Preview, discussion, walkthrough set up for github for Assignment 1</li>
+</ul>
+</section>
+<section id="class-2" class="level2">
+<h2>Class 2</h2>
+<ul>
+<li class="fragment">Review Assignment 1, questions, where did you hit a wall?</li>
+<li class="fragment">Some lectur-ish stuff on this week's topic</li>
+<li class="fragment">Preview Query Project (spans Assignments 2-5)</li>
+<li class="fragment">Preview, discussion, SQL query activities to prepare for Assignment 2</li>
+<li class="fragment">Final Assignment 1 due next day</li>
+</ul>
+</section>
+<section id="class-3" class="level2">
+<h2>Class 3</h2>
+<ul>
+<li class="fragment">Review Assignment 2, questions, where did you hit a wall?</li>
+<li class="fragment">Some lectur-ish stuff on this week's topic</li>
+<li class="fragment">Preview, discussion, do google cloud platform setup and sql statements for Assignment 3</li>
+<li class="fragment">Final Assignment 2 due next day</li>
+</ul>
+</section>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="student-projects" class="level2">
+<h2>Student Projects</h2>
+</section>
+<section id="student-projects-1" class="level2">
+<h2>Student Projects</h2>
+<ol type="1">
+<li>Querying Data</li>
+<li>Tracking User Activity</li>
+<li>Understanding User Behavior</li>
+</ol>
+</section>
+<section id="querying-data" class="level2">
+<h2>Querying Data</h2>
+<ul>
+<li>Use existing tools/pipeline/dataset</li>
+<li>Answer basic business questions</li>
+</ul>
+<aside class="notes">
+<p>data-driven business decisions</p>
+<p>prompt/reinforce the connection</p>
+<p>validation/testing? (how good are our results?)</p>
+<p>(intro to model management?)</p>
+</aside>
+</section>
+<section id="tracking-user-activity" class="level2">
+<h2>Tracking User Activity</h2>
+<ul>
+<li>Use provided pipeline components</li>
+<li>Transform/store data</li>
+<li>Answer business questions</li>
+<li>Bonus:
+<ul>
+<li>Trigger notifications</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>&quot;Catching and Transforming Data using plumbing that's provided&quot;</p>
+<p>Catching Data</p>
+<p>Classifying Events Filtering/Sorting/Grouping Transforming Data</p>
+<p>Storing Data</p>
+</aside>
+</section>
+<section id="understanding-user-behavior" class="level2">
+<h2>Understanding User Behavior</h2>
+<ul>
+<li>Assemble an end-to-end pipeline</li>
+<li>Ingest/transform/store data</li>
+<li>Answer comprehensive business questions</li>
+<li>Bonus:
+<ul>
+<li>Manage sessionization / state</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>end-to-end pipeline for understanding behavior</p>
+<p>you assemble the plumbing</p>
+<p>baseline: queries to answer questions about the user activity</p>
+<p>bonuses as above</p>
+</aside>
+</section>
+<section id="levels-of-expertise" class="level2">
+<h2>Levels of Expertise</h2>
+<aside class="notes">
+<p>If you're brand new to something, you'll get it taken care of. If you've nailed it, get creative</p>
+</aside>
+</section>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<section id="section-10" class="level2">
+<h2></h2>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-11" class="slide level1">
+<h1></h1>
+<section id="section-12" class="level2">
+<h2></h2>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<section id="section-14" class="level2">
+<h2></h2>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-15" class="slide level1">
+<h1></h1>
+<p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Transition style
+        transition: 'linear', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
