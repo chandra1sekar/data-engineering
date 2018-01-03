@@ -91,7 +91,13 @@ With all of that in mind, let's get going!
 - Windows users
 
 <div class="notes">
-basic cli activity - point them to shotts for more
+</div>
+
+## CLI
+- Mac & Linux users
+- Windows users
+
+<div class="notes">
 What do windows users need to do?
 Fallback for windows or anyone else who can't get going here.
 </div>
