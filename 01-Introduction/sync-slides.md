@@ -96,8 +96,12 @@ basic cli activity - point them to shotts for more
 
 ## CLI stuff everyone needs to be able to do
 
-- point
-- point
+> - Where am I?
+  * `pwd`
+> - Get to home!
+  * `cd`
+> - Make a directory
+  * `mkdir w205`
 
 #
 ## git
@@ -110,9 +114,9 @@ We'll go over set up of folders, install git if needed, show git hub...
 
 ## Git set up
 
-- git clone <repo-name>
-- mkdir w205
--
+> - `cd w205`
+> - git clone <repo-name>
+> -
 
 <div class="notes">
 This will cover what they'll need to turn in assignments.
@@ -129,8 +133,9 @@ What is docker
 
 ## Docker set up
 
-- `docker pull midsw205/base`
-- point
+> - `docker pull midsw205/base`
+> - `cd w205/`
+
 
 
 
