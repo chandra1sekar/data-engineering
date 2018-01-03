@@ -99,11 +99,11 @@ Fallback for windows or anyone else who can't get going here.
 ## CLI basics
 
 > - Where am I?
->     `pwd`
+>    - `pwd`
 > - Get to home!
->     `cd`
+>    - `cd`
 > - Make a directory
->     `mkdir w205`
+>    - `mkdir w205`
 
 #
 ## git
