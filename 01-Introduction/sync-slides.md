@@ -82,7 +82,7 @@ this will probably take some getting used to at first (unless you already use gi
 
 <div class="notes">
 With all of that in mind, let's get going!
-Cloud accounts is covered in the what is Data Engineering section
+(Cloud accounts is covered in the what is Data Engineering section)
 </div>
 
 #
@@ -92,6 +92,8 @@ Cloud accounts is covered in the what is Data Engineering section
 
 <div class="notes">
 basic cli activity - point them to shotts for more
+What do windows users need to do?
+Fallback for windows or anyone else who can't get going here.
 </div>
 
 ## CLI stuff everyone needs to be able to do
@@ -112,14 +114,24 @@ basic cli activity - point them to shotts for more
 We'll go over set up of folders, install git if needed, show git hub...
 </div>
 
+## Install git
+
+- What is git?
+
+<div class="notes">
+Even if not doing this here, will have as notes. install git if needed
+</div>
+
 ## Git set up
 
 > - `cd w205`
 > - git clone <repo-name>
-> -
+> - PR walkthrough
 
 <div class="notes">
 This will cover what they'll need to turn in assignments.
+Which repo
+How to do a PR on that
 </div>
 
 
@@ -128,13 +140,20 @@ This will cover what they'll need to turn in assignments.
 ## Docker
 
 <div class="notes">
-What is docker
+What is docker? Very brief version
+</div>
+
+## Install docker
+
+<div class="notes">
+where do you go, have they done this already, are we requiring them to b4 1st class?
 </div>
 
 ## Docker set up
 
 > - `docker pull midsw205/base`
 > - `cd w205/`
+> - `docker run -it --rm -v`pwd`:/w205 midsw205/base:latest`
 
 
 
@@ -159,6 +178,12 @@ Watch the preview video for Google's Coursera course as a group
 
 - Enter 2 things on chat that you noticed.
 
+## Virtualization
+<div class="notes">
+- We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way
+- You will use accts for all of these, but what set up today?
+</div>
+
 ## GCP
 
 <div class="notes">
@@ -178,16 +203,13 @@ What is it?
 Link?
 </div>
 
-## Virtualization
-<div class="notes">
-- We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way
-</div>
+
 
 
 ## Data Engineering Jobs
 
-- point
-- point
+- Search "data engineering jobs"
+- What are companies looking for in skills, experience, competencies?
 
 <div class="notes">
 Google data engineering jobs & read ads (between 5&10).
@@ -200,21 +222,24 @@ You'll hear this over and over, but basics of worldview
 ...
 </div>
 
-## Pipeline
+## Pipeline: Contextual Anchor
 
 ![](images/pipeline-overall.svg)
 
 <div class="notes">
-go over pipeline pic
+This pipeline is your anchor, basically where are we and how does here relate to the rest of the class?
 </div>
 
 #
 ## How this class works
 ## Syllabus
+
+- Link: https://classroom.github.com/classrooms/34870768-mids-w205-fundamentals-of-data-engineering-martin-mims/????????
+
 <div class="notes">
 syllabus
 √assignment flow
-Go through all 3 projects? 
+√Go through all 3 projects? 
 </div>
 
 ## Assignment flow
@@ -230,7 +255,7 @@ This section is a walk through of how we will iterate through assignments.
 
 > - Review Assignment 1, questions, where did you hit a wall?
 > - Some lectur-ish stuff on this week's topic
-> - Preview Query Project (which spans Assignments 2-5)
+> - Preview Query Project (spans Assignments 2-5)
 > - Preview, discussion, SQL query activities to prepare for Assignment 2
 > - Final Assignment 1 due next day
 
