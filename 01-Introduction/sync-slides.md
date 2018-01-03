@@ -6,8 +6,8 @@ author: Week 01 - sync session
 ---
 
 # 
-## Week 1 - Overview, go through set up in class
-## Overview
+## Week 1 - Overview
+
 - Introductions
 - Set up your working environment for this class
 
