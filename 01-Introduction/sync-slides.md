@@ -17,6 +17,10 @@ See ~/taylor-oreilly/data-engineering-course/solutions/setup.md
 
 ## Introductions
 
+<div class="notes">
+Introduce yourself :)
+Student introductions
+</div>
 
 ## In this class, you will
 
@@ -28,8 +32,63 @@ See ~/taylor-oreilly/data-engineering-course/solutions/setup.md
 
 </div>
 
+
+## Approach
+
+##
+
+> - Hands-on
+> - Just enough
+> - Motivated content
+> - Adaptible to change
+
+<div class="notes">
+hands on - activities are da bomb
+
+motivated content: use everything we cover
+
+just enough DE
+
+multiple exposures - hit everything 3 xs with increasing levels of detail
+
+context anchors - explain what you mean by this
+
+ideal outcome is the prepare them to learn further independently (including stack overflow etc)
+
+prefer scale and latency free concepts
+
+</div>
+
+
+## Process/Procedures
+
+<div class="notes">
+For your other classes, they may use a variety of ways to get content, turn in assignments etc. 
+Here, we're trying to follow good practices for data engineering and use appropriate tools. 
+this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)
+</div>
+
+##
+
+- Github-centric content
+- Cloud accounts
+- Dockerhub
+- Activity submissions
+
+## Activities
+
+- Let's get going!
+
+<div class="notes">
+With all of that in mind, let's get going!
+Cloud accounts is covered in the what is Data Engineering section
+</div>
+
 #
-## Git
+## git
+
+- What is git?
+
 <div class="notes">
 We'll go over set up of folders, install git if needed, show git hub...
 </div>
@@ -40,6 +99,9 @@ We'll go over set up of folders, install git if needed, show git hub...
 - mkdir w205
 -
 
+<div class="notes">
+This will cover what they'll need to turn in assignments.
+</div>
 
 
 #
@@ -54,20 +116,64 @@ basic cli activity - point them to shotts for more
 - point
 - point
 
+#
+## Docker
+
+<div class="notes">
+What is docker
+</div>
+
+## Docker set up
+
+- point
+- point
+
 
 
 # 
 ## What is Data Engineering?
 
-## Google Video
+## Things are changing quickly
+
+https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+
 <div class="notes">
-Watch the preview video for Google's Coursera course:
-    https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+Watch the preview video for Google's Coursera course as a group
 
 - What surprised you about the points made?
 - Slides on gcp, DO, & aws
+- What they will set up for gcp???
+
+</div>
+
+## What surprised you about the points made?
+
+- Enter 2 things on chat that you noticed.
+
+## GCP
+
+<div class="notes">
+What is it?
+Link?
+</div>
+
+## DO
+<div class="notes">
+What is it?
+Link?
+</div>
+
+### AWS
+<div class="notes">
+What is it?
+Link?
+</div>
+
+## Virtualization
+<div class="notes">
 - We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way
 </div>
+
 
 ## Data Engineering Jobs
 
