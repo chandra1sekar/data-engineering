@@ -96,14 +96,14 @@ What do windows users need to do?
 Fallback for windows or anyone else who can't get going here.
 </div>
 
-## CLI stuff everyone needs to be able to do
+## CLI basics
 
 > - Where am I?
-  * `pwd`
+>     `pwd`
 > - Get to home!
-  * `cd`
+>     `cd`
 > - Make a directory
-  * `mkdir w205`
+>     `mkdir w205`
 
 #
 ## git
@@ -116,7 +116,7 @@ We'll go over set up of folders, install git if needed, show git hub...
 
 ## Install git
 
-- What is git?
+- Link???
 
 <div class="notes">
 Even if not doing this here, will have as notes. install git if needed
@@ -125,7 +125,7 @@ Even if not doing this here, will have as notes. install git if needed
 ## Git set up
 
 > - `cd w205`
-> - git clone <repo-name>
+> - `git clone <repo-name>`
 > - PR walkthrough
 
 <div class="notes">
@@ -192,12 +192,14 @@ Link?
 </div>
 
 ## DO
+
 <div class="notes">
 What is it?
 Link?
 </div>
 
 ### AWS
+
 <div class="notes">
 What is it?
 Link?
@@ -217,6 +219,7 @@ Google data engineering jobs & read ads (between 5&10).
 </div>
 
 ## Just enough
+
 <div class="notes">
 You'll hear this over and over, but basics of worldview
 ...
@@ -243,6 +246,7 @@ syllabus
 </div>
 
 ## Assignment flow
+
 <div class="notes">
 This section is a walk through of how we will iterate through assignments.
 </div>
