@@ -86,36 +86,46 @@ With all of that in mind, let's get going!
 </div>
 
 #
-## CLI
-- Where's (what's) my terminal???
-- Windows users
+## Docker
+
+- What is docker?
 
 <div class="notes">
+What is docker? Very brief version
 </div>
 
-## CLI
-- Mac & Linux users
-- Windows users
+## Install docker
+
+https://www.docker.com/community-edition#/download
+
+- Windows
+
+https://store.docker.com/editions/community/docker-ce-desktop-windows
+
+- Mac
+
+https://store.docker.com/editions/community/docker-ce-desktop-mac
+
 
 <div class="notes">
-What do windows users need to do?
-Fallback for windows or anyone else who can't get going here.
+We will send this out on wall notice ahead, but...
+where do you go, have they done this already, are we requiring them to b4 1st class?
 </div>
 
-## CLI basics
+## Docker set up
 
-> - Where am I?
->    - `pwd`
-> - Get to home!
->    - `cd`
-> - Make a directory
->    - `mkdir w205`
+> - open a terminal
+> - `docker pull midsw205/base`
+> - `mkdir w205`
+> - Mac: `docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest`
+> - exit or `ctrl-d`
 
 <div class="notes">
-fix this slide's formatting
-
-what else
+These commands look gnarly.
+Don't worry about it, we will review....blah, blah,
+For now, just follow
 </div>
+
 
 
 #
@@ -127,47 +137,64 @@ what else
 We'll go over set up of folders, install git if needed, show git hub...
 </div>
 
-## Install git
-
-- Link???
-
-<div class="notes">
-Even if not doing this here, will have as notes. install git if needed
-</div>
 
 ## Git set up
 
+> - If working on Mac or Linux, or have git installed, go to w205 folder...
+> - If windows or no git, 
+    `docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest`
 > - `cd w205`
-> - `git clone <repo-name>`
+> - `git clone https://github.com/mids-w205-<instructor-last-name>/signup-<your-user-name>/`
+> - nano README.md
+> - change line
+> - `ctrl-o`
+> - return
+> - `ctrl-x`
+> - now back to computer
+add
+root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'root@0889eaef96c0.(none)')
+root@0889eaef96c0:~/signup-htmartin# git config --global "tmartin@oreilly.com"
+error: invalid key: tmartin@oreilly.com
+root@0889eaef96c0:~/signup-htmartin# git config --global user.email "tmartin@oreilly.com"
+root@0889eaef96c0:~/signup-htmartin# git config --global user.name "htmartin"  
+root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'
+[master e9e81fe] my new readme
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+then set config
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git push
 > - PR walkthrough
 
 <div class="notes">
+check if most have done beginning of signup assign, if so, PR walkthrough from there.
 This will cover what they'll need to turn in assignments.
 Which repo
 How to do a PR on that
 </div>
 
-
-
-#
-## Docker
-
-<div class="notes">
-What is docker? Very brief version
-</div>
-
-## Install docker
+## After all that,
+- Mac & Linux users
+- Windows users
+- for today, you used docker, 
+- What do we need to do going forward...
 
 <div class="notes">
-where do you go, have they done this already, are we requiring them to b4 1st class?
+- What do windows users need to do?
+- Will have droplet for web login if nothing else works (which we will slack to other instructors)
 </div>
-
-## Docker set up
-
-> - `docker pull midsw205/base`
-> - `cd w205/`
-> - `docker run -it --rm -v`pwd`:/w205 midsw205/base:latest`
-
 
 
 

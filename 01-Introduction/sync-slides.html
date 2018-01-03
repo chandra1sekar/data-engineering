@@ -111,39 +111,41 @@
 </section>
 <section id="section-3" class="slide level1">
 <h1></h1>
-<section id="cli" class="level2">
-<h2>CLI</h2>
+<section id="docker" class="level2">
+<h2>Docker</h2>
 <ul>
-<li>Where's (what's) my terminal???</li>
-<li>Windows users</li>
+<li>What is docker?</li>
 </ul>
 <aside class="notes">
-
+<p>What is docker? Very brief version</p>
 </aside>
 </section>
-<section id="cli-1" class="level2">
-<h2>CLI</h2>
+<section id="install-docker" class="level2">
+<h2>Install docker</h2>
+<p>https://www.docker.com/community-edition#/download</p>
 <ul>
-<li>Mac &amp; Linux users</li>
-<li>Windows users</li>
+<li>Windows</li>
 </ul>
+<p>https://store.docker.com/editions/community/docker-ce-desktop-windows</p>
+<ul>
+<li>Mac</li>
+</ul>
+<p>https://store.docker.com/editions/community/docker-ce-desktop-mac</p>
 <aside class="notes">
-<p>What do windows users need to do? Fallback for windows or anyone else who can't get going here.</p>
+<p>We will send this out on wall notice ahead, but... where do you go, have they done this already, are we requiring them to b4 1st class?</p>
 </aside>
 </section>
-<section id="cli-basics" class="level2">
-<h2>CLI basics</h2>
+<section id="docker-set-up" class="level2">
+<h2>Docker set up</h2>
 <ul>
-<li class="fragment">Where am I?</li>
-<li class="fragment"><code>pwd</code></li>
-<li class="fragment">Get to home!</li>
-<li class="fragment"><code>cd</code></li>
-<li class="fragment">Make a directory</li>
+<li class="fragment">open a terminal</li>
+<li class="fragment"><code>docker pull midsw205/base</code></li>
 <li class="fragment"><code>mkdir w205</code></li>
+<li class="fragment">Mac: <code>docker run -it --rm -v /Users/&lt;user-name&gt;/w205:/w205 midsw205/base:latest</code></li>
+<li class="fragment">exit or <code>ctrl-d</code></li>
 </ul>
 <aside class="notes">
-<p>fix this slide's formatting</p>
-<p>what else</p>
+<p>These commands look gnarly. Don't worry about it, we will review....blah, blah, For now, just follow</p>
 </aside>
 </section>
 </section>
@@ -158,51 +160,47 @@
 <p>We'll go over set up of folders, install git if needed, show git hub...</p>
 </aside>
 </section>
-<section id="install-git" class="level2">
-<h2>Install git</h2>
-<ul>
-<li>Link???</li>
-</ul>
-<aside class="notes">
-<p>Even if not doing this here, will have as notes. install git if needed</p>
-</aside>
-</section>
 <section id="git-set-up" class="level2">
 <h2>Git set up</h2>
 <ul>
+<li class="fragment">If working on Mac or Linux, or have git installed, go to w205 folder...</li>
+<li class="fragment">If windows or no git, <code>docker run -it --rm -v /Users/&lt;user-name&gt;/w205:/w205 midsw205/base:latest</code></li>
 <li class="fragment"><code>cd w205</code></li>
-<li class="fragment"><code>git clone &lt;repo-name&gt;</code></li>
-<li class="fragment">PR walkthrough</li>
+<li class="fragment"><code>git clone https://github.com/mids-w205-&lt;instructor-last-name&gt;/signup-&lt;your-user-name&gt;/</code></li>
+<li class="fragment">nano README.md</li>
+<li class="fragment">change line</li>
+<li class="fragment"><code>ctrl-o</code></li>
+<li class="fragment">return</li>
+<li class="fragment"><code>ctrl-x</code></li>
+<li class="fragment">now back to computer add root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'</li>
+</ul>
+<p>*** Please tell me who you are.</p>
+<p>Run</p>
+<p>git config --global user.email &quot;you@example.com&quot; git config --global user.name &quot;Your Name&quot;</p>
+<p>to set your account's default identity. Omit --global to set the identity only in this repository.</p>
+<p>fatal: unable to auto-detect email address (got 'root@0889eaef96c0.(none)') root@0889eaef96c0:~/signup-htmartin# git config --global &quot;tmartin@oreilly.com&quot; error: invalid key: tmartin@oreilly.com root@0889eaef96c0:~/signup-htmartin# git config --global user.email &quot;tmartin@oreilly.com&quot; root@0889eaef96c0:~/signup-htmartin# git config --global user.name &quot;htmartin&quot;<br />
+root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81fe] my new readme 1 file changed, 1 insertion(+), 1 deletion(-) then set config git config --global user.email &quot;you@example.com&quot; git config --global user.name &quot;Your Name&quot; git push &gt; - PR walkthrough</p>
+<aside class="notes">
+<p>check if most have done beginning of signup assign, if so, PR walkthrough from there. This will cover what they'll need to turn in assignments. Which repo How to do a PR on that</p>
+</aside>
+</section>
+<section id="after-all-that" class="level2">
+<h2>After all that,</h2>
+<ul>
+<li>Mac &amp; Linux users</li>
+<li>Windows users</li>
+<li>for today, you used docker,</li>
+<li>What do we need to do going forward...</li>
 </ul>
 <aside class="notes">
-<p>This will cover what they'll need to turn in assignments. Which repo How to do a PR on that</p>
+<ul>
+<li>What do windows users need to do?</li>
+<li>Will have droplet for web login if nothing else works (which we will slack to other instructors)</li>
+</ul>
 </aside>
 </section>
 </section>
 <section id="section-5" class="slide level1">
-<h1></h1>
-<section id="docker" class="level2">
-<h2>Docker</h2>
-<aside class="notes">
-<p>What is docker? Very brief version</p>
-</aside>
-</section>
-<section id="install-docker" class="level2">
-<h2>Install docker</h2>
-<aside class="notes">
-<p>where do you go, have they done this already, are we requiring them to b4 1st class?</p>
-</aside>
-</section>
-<section id="docker-set-up" class="level2">
-<h2>Docker set up</h2>
-<ul>
-<li class="fragment"><code>docker pull midsw205/base</code></li>
-<li class="fragment"><code>cd w205/</code></li>
-<li class="fragment"><code>docker run -it --rm -v</code>pwd<code>:/w205 midsw205/base:latest</code></li>
-</ul>
-</section>
-</section>
-<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="what-is-data-engineering" class="level2">
 <h2>What is Data Engineering?</h2>
@@ -278,7 +276,7 @@
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="how-this-class-works" class="level2">
 <h2>How this class works</h2>
@@ -324,7 +322,7 @@
 </ul>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="student-projects" class="level2">
 <h2>Student Projects</h2>
@@ -393,34 +391,34 @@
 </aside>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
-<section id="section-10" class="level2">
+<section id="section-9" class="level2">
 <h2></h2>
 <aside class="notes">
 
 </aside>
 </section>
 </section>
-<section id="section-11" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
-<section id="section-12" class="level2">
+<section id="section-11" class="level2">
 <h2></h2>
 <aside class="notes">
 
 </aside>
 </section>
 </section>
-<section id="section-13" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
-<section id="section-14" class="level2">
+<section id="section-13" class="level2">
 <h2></h2>
 <aside class="notes">
 
 </aside>
 </section>
 </section>
-<section id="section-15" class="slide level1">
+<section id="section-14" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
