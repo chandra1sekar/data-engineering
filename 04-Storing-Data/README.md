@@ -9,11 +9,6 @@
 >   Chapter 1. The What and Why of Containers
 >   https://www.safaribooksonline.com/library/view/using-docker/9781491915752/ch01.html#what_and_why
 
->   Infrastructure as Code
->   by Kief Morris
->   Chapter 1. Challenges and Principles
->   https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
-
 >   Modern Linux Administration
 >   by Sam R. Alapati
 >   Chapter 1. Modern Linux System Administration

@@ -7,7 +7,7 @@
 >   Modern Linux Administration
 >   by Sam R. Alapati
 >   Chapter 15. Security and Compliance in the Modern Systems Environment
->   https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html
+>   https://www.safaribooksonline.com/library/view/modern-linux-administration/9781491935941/ch15.html
 
 #### Asynchronous Content
 

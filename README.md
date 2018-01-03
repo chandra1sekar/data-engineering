@@ -260,11 +260,6 @@ the live classroom for specific weeks in the term.
 >   Chapter 1. The What and Why of Containers
 >   https://www.safaribooksonline.com/library/view/using-docker/9781491915752/ch01.html#what_and_why
 
->   Infrastructure as Code
->   by Kief Morris
->   Chapter 1. Challenges and Principles
->   https://www.safaribooksonline.com/library/view/infrastructure-as-code/9781491924334/ch01.html#chapter-challenges
-
 >   Modern Linux Administration
 >   by Sam R. Alapati
 >   Chapter 1. Modern Linux System Administration
@@ -374,7 +369,7 @@ the live classroom for specific weeks in the term.
 >   Modern Linux Administration
 >   by Sam R. Alapati
 >   Chapter 15. Security and Compliance in the Modern Systems Environment
->   https://www.safaribooksonline.com/library/view/hadoop-the-definitive/9781491901687/ch04.html
+>   https://www.safaribooksonline.com/library/view/modern-linux-administration/9781491935941/ch15.html
 
 #### Asynchronous Content
 
