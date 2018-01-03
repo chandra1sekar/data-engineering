@@ -15,13 +15,14 @@ author: Week 01 - sync session
 See ~/taylor-oreilly/data-engineering-course/solutions/setup.md
 </div>
 
-##
+## Introductions
 
-New slide
 
-## 
+## In this class, you will
 
-New slide
+> - Gain exposure to basic problems associated with data and data-driven decision-making
+> - Develop a working knowledge of some tools/techniques used to solve these problems
+> - Learn where to go for help and more info
 
 <div class="notes">
 
@@ -86,8 +87,10 @@ You'll hear this over and over, but basics of worldview
 
 ## Pipeline
 
+![](images/pipeline-overall.svg)
+
 <div class="notes">
-	Put image in here
+go over pipeline pic
 </div>
 
 #
@@ -95,14 +98,35 @@ You'll hear this over and over, but basics of worldview
 ## Syllabus
 <div class="notes">
 syllabus
-assignment flow
+√assignment flow
 Go through all 3 projects? 
 </div>
 
 ## Assignment flow
 <div class="notes">
-Walk through iterate, iterate, iterate
+This section is a walk through of how we will iterate through assignments.
 </div>
+
+## Class 1
+
+> - Preview, discussion, walkthrough set up for github for Assignment 1
+
+## Class 2
+
+> - Review Assignment 1, questions, where did you hit a wall?
+> - Some lectur-ish stuff on this week's topic
+> - Preview Query Project (which spans Assignments 2-5)
+> - Preview, discussion, SQL query activities to prepare for Assignment 2
+> - Final Assignment 1 due next day
+
+## Class 3
+
+> - Review Assignment 2, questions, where did you hit a wall?
+> - Some lectur-ish stuff on this week's topic
+> - Preview, discussion, do google cloud platform setup and views for Assignment 3
+> - Final Assignment 2 due next day
+
+
 
 ## Levels of Expertise
 <div class="notes">
