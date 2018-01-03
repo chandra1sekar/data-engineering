@@ -10,6 +10,7 @@ author: Week 01 - sync session
 
 - Introductions
 - Set up your working environment for this class
+- Review syllabus, course goals, processes & tools ...
 
 <div class="notes">
 See ~/taylor-oreilly/data-engineering-course/solutions/setup.md
@@ -85,6 +86,20 @@ Cloud accounts is covered in the what is Data Engineering section
 </div>
 
 #
+## CLI
+- Where's (what's) my terminal???
+- Windows users
+
+<div class="notes">
+basic cli activity - point them to shotts for more
+</div>
+
+## CLI stuff everyone needs to be able to do
+
+- point
+- point
+
+#
 ## git
 
 - What is git?
@@ -104,17 +119,6 @@ This will cover what they'll need to turn in assignments.
 </div>
 
 
-#
-## CLI
-
-<div class="notes">
-basic cli activity - point them to shotts for more
-</div>
-
-## New slide
-
-- point
-- point
 
 #
 ## Docker
@@ -125,7 +129,7 @@ What is docker
 
 ## Docker set up
 
-- point
+- `docker pull midsw205/base`
 - point
 
 
