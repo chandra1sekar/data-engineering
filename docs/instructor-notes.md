@@ -30,6 +30,14 @@ Each instructor has a separate GitHub Organization
     
 to use for all sections they teach.
 
+Note that once you have a listing of student GitHub user accounts (which we'll
+get automatically from GitHub classroom), we will need to invite
+them to be "outside contributors" (read-only) to each instructor's
+
+    mids-w205-<instructor>/course-content
+
+main content repo.
+
 
 # GitHub Classroom
 
@@ -156,6 +164,10 @@ students:
 We recommend students use any existing GitHub accounts if they already have
 them.  It's generally best to use a single GitHub account that follows you
 around for life.
+
+Note that there's no need to additionally invite students to be members of 
+your `mids-w205-<instructor>` orgs in order for them to accept and submit
+assignments.
 
 ### Rosters
 
