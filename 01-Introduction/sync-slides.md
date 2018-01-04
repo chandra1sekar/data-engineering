@@ -151,6 +151,9 @@ We'll go over set up of folders, install git if needed, show git hub...
 > - return
 > - `ctrl-x`
 > - now back to computer
+
+<div class="notes">
+
 add
 root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'
 
@@ -178,7 +181,7 @@ git config --global user.name "Your Name"
 git push
 > - PR walkthrough
 
-<div class="notes">
+
 check if most have done beginning of signup assign, if so, PR walkthrough from there.
 This will cover what they'll need to turn in assignments.
 Which repo
