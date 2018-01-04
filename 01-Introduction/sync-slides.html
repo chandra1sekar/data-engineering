@@ -40,7 +40,7 @@
 <ul>
 <li>Introductions</li>
 <li>Set up your working environment for this class</li>
-<li>Review syllabus, course goals, processes &amp; tools ...</li>
+<li>Review syllabus, course goals, processes &amp; tools …</li>
 </ul>
 <aside class="notes">
 <p>See ~/taylor-oreilly/data-engineering-course/solutions/setup.md</p>
@@ -65,9 +65,6 @@
 </section>
 <section id="approach" class="level2">
 <h2>Approach</h2>
-</section>
-<section id="section-1" class="level2">
-<h2></h2>
 <ul>
 <li class="fragment">Hands-on</li>
 <li class="fragment">Just enough</li>
@@ -86,11 +83,16 @@
 </section>
 <section id="processprocedures" class="level2">
 <h2>Process/Procedures</h2>
+<ul>
+<li class="fragment">Good practices</li>
+<li class="fragment">Appropriate tools</li>
+<li class="fragment">Getting used to</li>
+</ul>
 <aside class="notes">
-<p>For your other classes, they may use a variety of ways to get content, turn in assignments etc. Here, we're trying to follow good practices for data engineering and use appropriate tools. this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)</p>
+<p>For your other classes, they may use a variety of ways to get content, turn in assignments etc. Here, we’re trying to follow good practices for data engineering and use appropriate tools. this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)</p>
 </aside>
 </section>
-<section id="section-2" class="level2">
+<section id="section-1" class="level2">
 <h2></h2>
 <ul>
 <li>Github-centric content</li>
@@ -102,14 +104,14 @@
 <section id="activities" class="level2">
 <h2>Activities</h2>
 <ul>
-<li>Let's get going!</li>
+<li>Let’s get going!</li>
 </ul>
 <aside class="notes">
-<p>With all of that in mind, let's get going! (Cloud accounts is covered in the what is Data Engineering section)</p>
+<p>With all of that in mind, let’s get going! (Cloud accounts is covered in the what is Data Engineering section)</p>
 </aside>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-2" class="slide level1">
 <h1></h1>
 <section id="docker" class="level2">
 <h2>Docker</h2>
@@ -122,17 +124,14 @@
 </section>
 <section id="install-docker" class="level2">
 <h2>Install docker</h2>
-<p>https://www.docker.com/community-edition#/download</p>
 <ul>
-<li>Windows</li>
+<li><p>Windows</p>
+<p>https://store.docker.com/editions/community/docker-ce-desktop-windows</p></li>
+<li><p>Mac</p>
+<p>https://store.docker.com/editions/community/docker-ce-desktop-mac</p></li>
 </ul>
-<p>https://store.docker.com/editions/community/docker-ce-desktop-windows</p>
-<ul>
-<li>Mac</li>
-</ul>
-<p>https://store.docker.com/editions/community/docker-ce-desktop-mac</p>
 <aside class="notes">
-<p>We will send this out on wall notice ahead, but... where do you go, have they done this already, are we requiring them to b4 1st class?</p>
+<p>We will send this out on wall notice ahead, but… where do you go, have they done this already, are we requiring them to b4 1st class?</p>
 </aside>
 </section>
 <section id="docker-set-up" class="level2">
@@ -141,15 +140,15 @@
 <li class="fragment">open a terminal</li>
 <li class="fragment"><code>docker pull midsw205/base</code></li>
 <li class="fragment"><code>mkdir w205</code></li>
-<li class="fragment">Mac: <code>docker run -it --rm -v /Users/&lt;user-name&gt;/w205:/w205 midsw205/base:latest</code></li>
+<li class="fragment">Mac: docker run -it –rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest</li>
 <li class="fragment">exit or <code>ctrl-d</code></li>
 </ul>
 <aside class="notes">
-<p>These commands look gnarly. Don't worry about it, we will review....blah, blah, For now, just follow</p>
+<p>These commands look gnarly. Don’t worry about it, we will review….blah, blah, For now, just follow along</p>
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-3" class="slide level1">
 <h1></h1>
 <section id="git" class="level2">
 <h2>git</h2>
@@ -157,32 +156,58 @@
 <li>What is git?</li>
 </ul>
 <aside class="notes">
-<p>We'll go over set up of folders, install git if needed, show git hub...</p>
+<p>We’ll go over set up of folders, install git if needed, show git hub…</p>
 </aside>
 </section>
 <section id="git-set-up" class="level2">
 <h2>Git set up</h2>
+</section>
+<section id="get-started-in-the-container." class="level2">
+<h2>Get started in the container.</h2>
 <ul>
-<li class="fragment">If working on Mac or Linux, or have git installed, go to w205 folder...</li>
-<li class="fragment">If windows or no git, <code>docker run -it --rm -v /Users/&lt;user-name&gt;/w205:/w205 midsw205/base:latest</code></li>
+<li class="fragment">If working on Mac or Linux, or have git installed, go to w205 folder…</li>
+<li class="fragment">If windows or no git, docker run -it –rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest</li>
+</ul>
+</section>
+<section id="clone-the-repo-once-in-docker-container" class="level2">
+<h2>Clone the repo once in docker container</h2>
+<ul>
 <li class="fragment"><code>cd w205</code></li>
-<li class="fragment"><code>git clone https://github.com/mids-w205-&lt;instructor-last-name&gt;/signup-&lt;your-user-name&gt;/</code></li>
-<li class="fragment">nano README.md</li>
+<li class="fragment">git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-name>/</li>
+</ul>
+</section>
+<section id="open-change-close-readme.md" class="level2">
+<h2>Open, Change, Close <code>README.md</code></h2>
+<ul>
+<li class="fragment"><code>nano README.md</code></li>
 <li class="fragment">change line</li>
 <li class="fragment"><code>ctrl-o</code></li>
 <li class="fragment">return</li>
 <li class="fragment"><code>ctrl-x</code></li>
-<li class="fragment">now back to computer</li>
+<li class="fragment">Now you’re out of nano, but still in the container.</li>
+</ul>
+</section>
+<section id="git-commit-changes" class="level2">
+<h2>Git: commit changes</h2>
+<ul>
+<li class="fragment"><code>git status</code></li>
+<li class="fragment"><code>git add README.md</code></li>
+<li class="fragment"><code>git commit -m 'my new readme'</code></li>
+<li class="fragment">The first time you commit, it doesn’t know who you are, after this it will.</li>
+<li class="fragment">Will see: root@0889eaef96c0:~/signup-htmartin# git commit -m ‘my new readme’ *** Please tell me who you are. Run git config –global user.email “you@example.com” git config –global user.name “Your Name” to set your account’s default identity.</li>
+<li class="fragment"><code>git config --global user.email &quot;you@example.com&quot;</code></li>
+<li class="fragment"><code>git config --global user.name &quot;Your Name&quot;</code></li>
+<li class="fragment"><code>git commit -m 'my new readme'</code></li>
+<li class="fragment"><code>git push</code></li>
+</ul>
+</section>
+<section id="git-submit-a-pr" class="level2">
+<h2>Git: submit a PR</h2>
+<ul>
+<li class="fragment">PR walkthrough</li>
 </ul>
 <aside class="notes">
-<p>add root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'</p>
-<p>*** Please tell me who you are.</p>
-<p>Run</p>
-<p>git config --global user.email &quot;you@example.com&quot; git config --global user.name &quot;Your Name&quot;</p>
-<p>to set your account's default identity. Omit --global to set the identity only in this repository.</p>
-<p>fatal: unable to auto-detect email address (got 'root@0889eaef96c0.(none)') root@0889eaef96c0:~/signup-htmartin# git config --global &quot;tmartin@oreilly.com&quot; error: invalid key: tmartin@oreilly.com root@0889eaef96c0:~/signup-htmartin# git config --global user.email &quot;tmartin@oreilly.com&quot; root@0889eaef96c0:~/signup-htmartin# git config --global user.name &quot;htmartin&quot;<br />
-root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81fe] my new readme 1 file changed, 1 insertion(+), 1 deletion(-) then set config git config --global user.email &quot;you@example.com&quot; git config --global user.name &quot;Your Name&quot; git push &gt; - PR walkthrough</p>
-<p>check if most have done beginning of signup assign, if so, PR walkthrough from there. This will cover what they'll need to turn in assignments. Which repo How to do a PR on that</p>
+<p>check if most have done beginning of signup assign, if so, PR walkthrough from there. This will cover what they’ll need to turn in assignments. Which repo How to do a PR on that</p>
 </aside>
 </section>
 <section id="after-all-that" class="level2">
@@ -191,7 +216,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <li>Mac &amp; Linux users</li>
 <li>Windows users</li>
 <li>for today, you used docker,</li>
-<li>What do we need to do going forward...</li>
+<li>What do we need to do going forward…</li>
 </ul>
 <aside class="notes">
 <ul>
@@ -201,7 +226,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 </aside>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="what-is-data-engineering" class="level2">
 <h2>What is Data Engineering?</h2>
@@ -210,7 +235,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <h2>Things are changing quickly</h2>
 <p>https://www.coursera.org/learn/gcp-big-data-ml-fundamentals</p>
 <aside class="notes">
-<p>Watch the preview video for Google's Coursera course as a group</p>
+<p>Watch the preview video for Google’s Coursera course as a group</p>
 <ul>
 <li>What surprised you about the points made?</li>
 <li>Slides on gcp, DO, &amp; aws</li>
@@ -228,7 +253,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <h2>Virtualization</h2>
 <aside class="notes">
 <ul>
-<li>We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way</li>
+<li>We’ll talk a lot about virtualization later, but important to understand that many orgs are going totally this way</li>
 <li>You will use accts for all of these, but what set up today?</li>
 </ul>
 </aside>
@@ -254,7 +279,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <section id="data-engineering-jobs" class="level2">
 <h2>Data Engineering Jobs</h2>
 <ul>
-<li>Search &quot;data engineering jobs&quot;</li>
+<li>Search “data engineering jobs”</li>
 <li>What are companies looking for in skills, experience, competencies?</li>
 </ul>
 <aside class="notes">
@@ -264,20 +289,18 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <section id="just-enough" class="level2">
 <h2>Just enough</h2>
 <aside class="notes">
-<p>You'll hear this over and over, but basics of worldview ...</p>
+<p>You’ll hear this over and over, but basics of worldview …</p>
 </aside>
 </section>
 <section id="pipeline-contextual-anchor" class="level2">
 <h2>Pipeline: Contextual Anchor</h2>
-<figure>
-<img src="images/pipeline-overall.svg" />
-</figure>
+<p><img data-src="images/pipeline-overall.svg" /></p>
 <aside class="notes">
 <p>This pipeline is your anchor, basically where are we and how does here relate to the rest of the class?</p>
 </aside>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="how-this-class-works" class="level2">
 <h2>How this class works</h2>
@@ -307,7 +330,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <h2>Class 2</h2>
 <ul>
 <li class="fragment">Review Assignment 1, questions, where did you hit a wall?</li>
-<li class="fragment">Some lectur-ish stuff on this week's topic</li>
+<li class="fragment">Some lectur-ish stuff on this week’s topic</li>
 <li class="fragment">Preview Query Project (spans Assignments 2-5)</li>
 <li class="fragment">Preview, discussion, SQL query activities to prepare for Assignment 2</li>
 <li class="fragment">Final Assignment 1 due next day</li>
@@ -317,13 +340,13 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <h2>Class 3</h2>
 <ul>
 <li class="fragment">Review Assignment 2, questions, where did you hit a wall?</li>
-<li class="fragment">Some lectur-ish stuff on this week's topic</li>
+<li class="fragment">Some lectur-ish stuff on this week’s topic</li>
 <li class="fragment">Preview, discussion, do google cloud platform setup and sql statements for Assignment 3</li>
 <li class="fragment">Final Assignment 2 due next day</li>
 </ul>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="student-projects" class="level2">
 <h2>Student Projects</h2>
@@ -361,7 +384,7 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 </ul></li>
 </ul>
 <aside class="notes">
-<p>&quot;Catching and Transforming Data using plumbing that's provided&quot;</p>
+<p>“Catching and Transforming Data using plumbing that’s provided”</p>
 <p>Catching Data</p>
 <p>Classifying Events Filtering/Sorting/Grouping Transforming Data</p>
 <p>Storing Data</p>
@@ -388,38 +411,38 @@ root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme' [master e9e81
 <section id="levels-of-expertise" class="level2">
 <h2>Levels of Expertise</h2>
 <aside class="notes">
-<p>If you're brand new to something, you'll get it taken care of. If you've nailed it, get creative</p>
+<p>If you’re brand new to something, you’ll get it taken care of. If you’ve nailed it, get creative</p>
 </aside>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
-<section id="section-9" class="level2">
+<section id="section-8" class="level2">
 <h2></h2>
 <aside class="notes">
 
 </aside>
 </section>
 </section>
-<section id="section-10" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
-<section id="section-11" class="level2">
+<section id="section-10" class="level2">
 <h2></h2>
 <aside class="notes">
 
 </aside>
 </section>
 </section>
-<section id="section-12" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
-<section id="section-13" class="level2">
+<section id="section-12" class="level2">
 <h2></h2>
 <aside class="notes">
 
 </aside>
 </section>
 </section>
-<section id="section-14" class="slide level1">
+<section id="section-13" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

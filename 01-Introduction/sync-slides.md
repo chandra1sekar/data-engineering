@@ -36,8 +36,6 @@ Student introductions
 
 ## Approach
 
-##
-
 > - Hands-on
 > - Just enough
 > - Motivated content
@@ -62,6 +60,10 @@ prefer scale and latency free concepts
 
 
 ## Process/Procedures
+
+> - Good practices
+> - Appropriate tools
+> - Getting used to
 
 <div class="notes">
 For your other classes, they may use a variety of ways to get content, turn in assignments etc. 
@@ -96,15 +98,14 @@ What is docker? Very brief version
 
 ## Install docker
 
-https://www.docker.com/community-edition#/download
 
-- Windows
+- Windows 
 
-https://store.docker.com/editions/community/docker-ce-desktop-windows
+    https://store.docker.com/editions/community/docker-ce-desktop-windows
 
-- Mac
+- Mac 
 
-https://store.docker.com/editions/community/docker-ce-desktop-mac
+    https://store.docker.com/editions/community/docker-ce-desktop-mac
 
 
 <div class="notes">
@@ -117,13 +118,14 @@ where do you go, have they done this already, are we requiring them to b4 1st cl
 > - open a terminal
 > - `docker pull midsw205/base`
 > - `mkdir w205`
-> - Mac: `docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest`
+> - Mac: 
+    docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest
 > - exit or `ctrl-d`
 
 <div class="notes">
 These commands look gnarly.
 Don't worry about it, we will review....blah, blah,
-For now, just follow
+For now, just follow along
 </div>
 
 
@@ -139,49 +141,49 @@ We'll go over set up of folders, install git if needed, show git hub...
 
 
 ## Git set up
+## Get started in the container.
 
 > - If working on Mac or Linux, or have git installed, go to w205 folder...
 > - If windows or no git, 
-    `docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest`
+    docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest
+
+## Clone the repo once in docker container
 > - `cd w205`
-> - `git clone https://github.com/mids-w205-<instructor-last-name>/signup-<your-user-name>/`
-> - nano README.md
+> - 
+    git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-name>/
+
+## Open, Change, Close  `README.md` 
+> - `nano README.md`
 > - change line
 > - `ctrl-o`
 > - return
 > - `ctrl-x`
-> - now back to computer
+> - Now you're out of nano, but still in the container.
 
-<div class="notes">
+## Git: commit changes
 
-add
-root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'
+> - `git status`
+> - `git add README.md`
+> - `git commit -m 'my new readme'`
+> - The first time you commit, it doesn't know who you are, after this it will.
+> - Will see:
+    root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'
+    *** Please tell me who you are.
+    Run
+      git config --global user.email "you@example.com"
+      git config --global user.name "Your Name"
+    to set your account's default identity.
+> - `git config --global user.email "you@example.com"`
+> - `git config --global user.name "Your Name"`
+> - `git commit -m 'my new readme'`
+> - `git push`
 
-*** Please tell me who you are.
+## Git: submit a PR
 
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: unable to auto-detect email address (got 'root@0889eaef96c0.(none)')
-root@0889eaef96c0:~/signup-htmartin# git config --global "tmartin@oreilly.com"
-error: invalid key: tmartin@oreilly.com
-root@0889eaef96c0:~/signup-htmartin# git config --global user.email "tmartin@oreilly.com"
-root@0889eaef96c0:~/signup-htmartin# git config --global user.name "htmartin"  
-root@0889eaef96c0:~/signup-htmartin# git commit -m 'my new readme'
-[master e9e81fe] my new readme
- 1 file changed, 1 insertion(+), 1 deletion(-)
-then set config
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-git push
 > - PR walkthrough
 
 
+<div class="notes">
 check if most have done beginning of signup assign, if so, PR walkthrough from there.
 This will cover what they'll need to turn in assignments.
 Which repo
