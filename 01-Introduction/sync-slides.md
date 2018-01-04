@@ -243,7 +243,7 @@ What is it?
 Link?
 </div>
 
-### AWS
+## AWS
 
 <div class="notes">
 What is it?
@@ -282,7 +282,8 @@ This pipeline is your anchor, basically where are we and how does here relate to
 ## How this class works
 ## Syllabus
 
-- Link: https://classroom.github.com/classrooms/34870768-mids-w205-fundamentals-of-data-engineering-martin-mims/????????
+- Link: 
+https://github.com/mids-w205-martin-mims/course-content
 
 <div class="notes">
 syllabus
