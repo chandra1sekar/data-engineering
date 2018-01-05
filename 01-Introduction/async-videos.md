@@ -38,6 +38,7 @@ confuse the browser cache.
   <source type="video/mp4" src="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/6395e622cf3a2dff14da5bd2ca210be5/mp4_med.mp4"/>
 </video>
 
+[video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/6395e622cf3a2dff14da5bd2ca210be5/mp4_med.mp4)
 [slides](https://mids-w205-development.s3.amazonaws.com/lectures/7ea6b0cb-c75d-4ba3-ab00-65714abb74d1/intro-what-is-data-engineering-slides.pdf?Signature=abwcP8Yh6tT9Rd%2FkBp9TssjRmUU%3D&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1528132671)
 
 ##
