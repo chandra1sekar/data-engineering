@@ -275,7 +275,7 @@ You'll hear this over and over, but basics of worldview
 ![](images/pipeline-overall.svg)
 
 <div class="notes">
-This pipeline is your anchor, basically where are we and how does here relate to the rest of the class?
+This pipeline is your anchor, basically where are we and how does here relate to the rest of the class
 </div>
 
 #
@@ -286,12 +286,53 @@ This pipeline is your anchor, basically where are we and how does here relate to
 https://github.com/mids-w205-martin-mims/course-content
 
 <div class="notes">
-syllabus
-√assignment flow
-√Go through all 3 projects? 
+Prereqs
+Video links
+Readings
 </div>
 
-## Assignment flow
+## Asyncronous Content
+
+- Linked to the sections in that week of the syllabus: 
+
+    1.1 - Welcome
+      1.1.1 What is Data Engineering? [lecture]
+      1.1.2 What will I be able to do after this course? [lecture]
+
+- Same as in ISVC, but you can access it all in one place here.
+
+## Readings
+
+> - No one textbook available for this course.
+> - Using subscription service to cover the range of topics.
+> - https://www.safaribooksonline.com/pricing/
+> - Two Options:
+> - Individually $39/month 
+> - Also sections could go in as a team (up to 25 people) - 1 year subscription for $399
+> - Quick note: Get the mobile apps.
+
+## Prerequisites
+
+> - Resources listed under prereqs
+> - Safari has tons of other materials you can help yourself with.
+
+## Course Outline
+
+> - 4 sections:  
+> - 3-week Introduction
+> - 5-week Basics section 
+> - 4-week Streaming Data section
+> - Putting it All Together
+
+
+<div class="notes">
+- 3-week Introduction covers the basics of storage and retrieval concepts and tools
+- 5-week Basics section  provides a deeper exploration of working with data and data pipelines
+- 4-week section that focuses on Streaming Data; and a 
+- 1-week wrapup, Putting it All Together, integrates concepts and skills from the entire course into a cohesive model of the data pipeline.
+</div>
+
+## Class flow
 
 <div class="notes">
 This section is a walk through of how we will iterate through assignments.
@@ -301,20 +342,34 @@ This section is a walk through of how we will iterate through assignments.
 
 > - Preview, discussion, walkthrough set up for github for Assignment 1
 
+## Between Class 1 & Class 2
+
+> - async material for Week 1
+> - Readings for Week 1
+> - Assignment 01
+
+
 ## Class 2
 
-> - Review Assignment 1, questions, where did you hit a wall?
+> - Review Assignment 01, questions, where did you hit a wall?
 > - Some lectur-ish stuff on this week's topic
 > - Preview Query Project (spans Assignments 2-5)
 > - Preview, discussion, SQL query activities to prepare for Assignment 2
-> - Final Assignment 1 due next day
+> - Final Assignment 01 due on Friday
+
+## Between Class 2 & Class 3
+
+> - async material for Week 2
+> - Readings for Week 2
+> - Assignment 02
+
 
 ## Class 3
 
-> - Review Assignment 2, questions, where did you hit a wall?
+> - Review Assignment 02, questions, where did you hit a wall?
 > - Some lectur-ish stuff on this week's topic
-> - Preview, discussion, do google cloud platform setup and sql statements for Assignment 3
-> - Final Assignment 2 due next day
+> - Preview, discussion, do google cloud platform setup and sql statements for Assignment 03
+> - Final Assignment 02 due on Friday
 
 
 #
