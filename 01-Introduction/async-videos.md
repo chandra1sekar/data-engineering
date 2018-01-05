@@ -132,6 +132,7 @@ direct links:
 [video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/8e7ecb78c4ef117bb5698e9e06269cf6/mp4_med.mp4),
 [slides](https://mids-w205-development.s3.amazonaws.com/lectures/e623bc8a-4598-4bf6-a3f5-8e407c41eba1/intro-event-streams-slides.pdf?Expires=1528132675&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Signature=wbT3rNFhlhpruUCgrECXSIbCpEY%3D)
 
+
 #
 <img class="logo" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png"/>
 
