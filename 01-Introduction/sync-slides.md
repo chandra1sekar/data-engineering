@@ -71,12 +71,12 @@ Here, we're trying to follow good practices for data engineering and use appropr
 this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)
 </div>
 
-##
+## Approach
 
-- Github-centric content
-- Cloud accounts
-- Dockerhub
-- Activity submissions
+> - Github-centric content
+> - Cloud accounts
+> - Dockerhub
+> - Activity submissions
 
 ## Activities
 
@@ -109,9 +109,20 @@ What is docker? Very brief version
 
 
 <div class="notes">
-We will send this out on wall notice ahead, but...
-where do you go, have they done this already, are we requiring them to b4 1st class?
+Send this out on wall notice ahead, but just in case.
 </div>
+
+##
+
+![](images/dontpanic.jpeg)
+
+
+<div class="notes">
+These commands will look gnarly.
+Don't worry about it, we will review....blah, blah,
+For now, just follow along
+</div>
+
 
 ## Docker set up
 
@@ -123,9 +134,7 @@ where do you go, have they done this already, are we requiring them to b4 1st cl
 > - exit or `ctrl-d`
 
 <div class="notes">
-These commands look gnarly.
-Don't worry about it, we will review....blah, blah,
-For now, just follow along
+Like we said, we'll get into what all those options mean etc, just keep track for now
 </div>
 
 
@@ -274,6 +283,7 @@ You'll hear this over and over, but basics of worldview
 
 ![](images/pipeline-overall.svg)
 
+
 <div class="notes">
 This pipeline is your anchor, basically where are we and how does here relate to the rest of the class
 </div>
@@ -293,11 +303,9 @@ Readings
 
 ## Asyncronous Content
 
-- Linked to the sections in that week of the syllabus: 
+- Linked in: 
 
-    1.1 - Welcome
-      1.1.1 What is Data Engineering? [lecture]
-      1.1.2 What will I be able to do after this course? [lecture]
+    https://github.com/mids-w205-martin-mims/course-content/blob/master/01-Introduction/async-videos.md
 
 - Same as in ISVC, but you can access it all in one place here.
 
@@ -307,7 +315,7 @@ Readings
 > - Using subscription service to cover the range of topics.
 > - https://www.safaribooksonline.com/pricing/
 > - Two Options:
-> - Individually $39/month 
+> - Individually $39/month (can stop whenever you want)
 > - Also sections could go in as a team (up to 25 people) - 1 year subscription for $399
 > - Quick note: Get the mobile apps.
 
@@ -438,6 +446,7 @@ bonuses as above
 ## Levels of Expertise
 <div class="notes">
 If you're brand new to something, you'll get it taken care of. If you've nailed it, get creative
+talk about survey results?
 </div>
 
 #
