@@ -31,12 +31,8 @@ Each instructor has a separate GitHub Organization
 to use for all sections they teach.
 
 Note that once you have a listing of student GitHub user accounts (which we'll
-get automatically from GitHub classroom), we will need to invite
-them to be "outside contributors" (read-only) to each instructor's
-
-    mids-w205-<instructor>/course-content
-
-main content repo.
+get automatically from GitHub classroom), we will need to invite them to the
+"students" team within your `mids-w205-<instructor>` org.
 
 
 # GitHub Classroom
@@ -165,9 +161,9 @@ We recommend students use any existing GitHub accounts if they already have
 them.  It's generally best to use a single GitHub account that follows you
 around for life.
 
-Note that there's no need to additionally invite students to be members of 
-your `mids-w205-<instructor>` orgs in order for them to accept and submit
-assignments.
+This automatically adds them as "outside collaborators" to your `mids-w205-<instructor>` orgs,
+but we recommend _additionally_ inviting the students to be members of your
+instructor org _and_ add them to the "students" team.
 
 ### Rosters
 
@@ -220,17 +216,56 @@ of particularly useful tools for this class right out of the box:
 
 - common python (2&3) ML tools and libraries
 - common R tools and libraries
-- jupyterhub
+- jupyterhub (listening on port `TCP/8000`)
     - with terminal access!
     - `basic_auth` over bare `http`, so be careful
-- r-studio server
+- r-studio server (listening on port `TCP/8787` iirc)
     - `basic_auth` over bare `http`, so be careful
     
+### Instructor Droplets
+
+Each instructor has a single `8core/16GB` instance, with more available as
+necessary.  These are spun from the MLOC image described above with, most
+notably/usefully docker, pythonlibs, and jupyterhub.  You'll have to add any
+users and set passwords for students to use jupyterhub.
+
+### Student Droplets
+
+For students, we're starting with a handful of `2core/2GB` instances
+per section, with the ability to create more if instructors wish.  These
+are spun from the MLOC image mentioned above with docker, pythonlibs,
+jupyterhub, and R-studio server.
+
+Unlike the instructor droplets, each student droplet has a password set for
+access.  Instructors can simply hand out an `{ IP addr, password }` pair to any
+students that require it.  The students can immediately go to town on
+jupyterhub on port 8000 for notebook or web-based terminal access to the
+droplet.
+
+The thinking here is to provide these instances as a backup in case students
+are having troubles on individual machines during classes.  The web-based
+terminal access to droplets can provide a solid work-around for students who
+might have restricted access to their laptops.
+
 
 # Cloud and Container Images
 
 TODO: Most of what we do will be included in the activity template repos,
 but it's worth going over some basic requirements we have here.
+
+We'll use a number of docker images, but our go-to will be
+
+    midsw205/base
+
+which anyone can get (also on the droplets above) using
+
+    docker pull midsw205/base:latest
+
+and run with
+
+    docker run -it --rm -v $HOME:/w205 midsw205/base bash
+
+as an example.
 
 
 # Keeping Things Fresh
