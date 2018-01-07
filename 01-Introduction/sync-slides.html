@@ -147,7 +147,10 @@
 <li class="fragment">open a terminal</li>
 <li class="fragment"><code>docker pull midsw205/base</code></li>
 <li class="fragment"><code>mkdir w205</code></li>
-<li class="fragment">Mac: docker run -it –rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest</li>
+<li class="fragment">Mac:</li>
+</ul>
+<pre><code>docker run -it --rm -v /Users/&lt;user-name&gt;/w205:/w205 \ midsw205/base:latest</code></pre>
+<ul>
 <li class="fragment">exit or <code>ctrl-d</code></li>
 </ul>
 <aside class="notes">
@@ -169,15 +172,15 @@
 <section id="git-set-up" class="level2">
 <h2>Git set up</h2>
 </section>
-<section id="get-started-in-the-container." class="level2">
-<h2>Get started in the container.</h2>
+<section id="get-started." class="level2">
+<h2>Get started.</h2>
 <ul>
-<li class="fragment">If working on Mac or Linux, or have git installed, go to w205 folder…</li>
+<li class="fragment">If working on Mac or Linux, or have git installed, go to w205 folder.</li>
 <li class="fragment">If windows or no git, docker run -it –rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest</li>
 </ul>
 </section>
-<section id="clone-the-repo-once-in-docker-container" class="level2">
-<h2>Clone the repo once in docker container</h2>
+<section id="clone-the-repo" class="level2">
+<h2>Clone the repo</h2>
 <ul>
 <li class="fragment"><code>cd w205</code></li>
 <li class="fragment">git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-name>/</li>
@@ -193,6 +196,9 @@
 <li class="fragment"><code>ctrl-x</code></li>
 <li class="fragment">Now you’re out of nano, but still in the container.</li>
 </ul>
+<aside class="notes">
+<p>Or just use whatever text editor you have, these are basically directions for doing this in the container.</p>
+</aside>
 </section>
 <section id="git-commit-changes" class="level2">
 <h2>Git: commit changes</h2>
@@ -200,22 +206,12 @@
 <li class="fragment"><code>git status</code></li>
 <li class="fragment"><code>git add README.md</code></li>
 <li class="fragment"><code>git commit -m 'my new readme'</code></li>
-<li class="fragment">The first time you commit, it doesn’t know who you are, after this it will.</li>
-<li class="fragment">Will see: root@0889eaef96c0:~/signup-htmartin# git commit -m ‘my new readme’ *** Please tell me who you are. Run git config –global user.email “you@example.com” git config –global user.name “Your Name” to set your account’s default identity.</li>
+<li class="fragment">The first time you commit, it doesn’t know who you are.</li>
 <li class="fragment"><code>git config --global user.email &quot;you@example.com&quot;</code></li>
 <li class="fragment"><code>git config --global user.name &quot;Your Name&quot;</code></li>
 <li class="fragment"><code>git commit -m 'my new readme'</code></li>
 <li class="fragment"><code>git push</code></li>
 </ul>
-</section>
-<section id="git-submit-a-pr" class="level2">
-<h2>Git: submit a PR</h2>
-<ul>
-<li class="fragment">PR walkthrough</li>
-</ul>
-<aside class="notes">
-<p>check if most have done beginning of signup assign, if so, PR walkthrough from there. This will cover what they’ll need to turn in assignments. Which repo How to do a PR on that</p>
-</aside>
 </section>
 <section id="after-all-that" class="level2">
 <h2>After all that,</h2>
@@ -230,6 +226,25 @@
 <li>What do windows users need to do?</li>
 <li>Will have droplet for web login if nothing else works (which we will slack to other instructors)</li>
 </ul>
+</aside>
+</section>
+<section id="git-submit-a-pr" class="level2">
+<h2>Git: submit a PR</h2>
+<ul>
+<li class="fragment">All assignments submitted as PRs</li>
+<li class="fragment">https://github.com/mids-w205-martin-mims/signup-<user-name></li>
+<li class="fragment">Click on README.md</li>
+<li class="fragment">Click on edit button</li>
+<li class="fragment">Make a change</li>
+<li class="fragment">At bottom of screen “Commit changes” section</li>
+<li class="fragment">Select “Create a new branch for this commit and start a pull request”</li>
+<li class="fragment">Enter PR name &amp; description</li>
+<li class="fragment">Click “Propose file change” button</li>
+<li class="fragment">Assign instructors as reviewers</li>
+<li class="fragment">Click “Create pull request” button</li>
+</ul>
+<aside class="notes">
+<p>Do this in the gui</p>
 </aside>
 </section>
 </section>
@@ -336,7 +351,7 @@
 <li class="fragment">Using subscription service to cover the range of topics.</li>
 <li class="fragment">https://www.safaribooksonline.com/pricing/</li>
 <li class="fragment">Two Options:</li>
-<li class="fragment">Individually $39/month</li>
+<li class="fragment">Individually $39/month (can stop whenever you want)</li>
 <li class="fragment">Also sections could go in as a team (up to 25 people) - 1 year subscription for $399</li>
 <li class="fragment">Quick note: Get the mobile apps.</li>
 </ul>
