@@ -130,13 +130,11 @@ For now, just follow along
   ```
   docker pull midsw205/base
   ```
-
 - create your mids-w205 workspace:
   ```
   mkdir w205
   ```
-
-- (Mac)
+- run (set _your_ home directory for "`-v`")
   ```
   docker run \
     -it \
