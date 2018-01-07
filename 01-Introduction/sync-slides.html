@@ -141,17 +141,21 @@
 <p>These commands will look gnarly. Don’t worry about it, we will review….blah, blah, For now, just follow along</p>
 </aside>
 </section>
-<section id="docker-set-up" class="level2">
-<h2>Docker set up</h2>
+<section id="docker-set-up-from-a-terminal" class="level2">
+<h2>Docker set up (from a terminal)</h2>
 <ul>
-<li class="fragment">open a terminal</li>
-<li class="fragment"><code>docker pull midsw205/base</code></li>
-<li class="fragment"><code>mkdir w205</code></li>
-<li class="fragment">Mac:</li>
-</ul>
-<pre><code>docker run -it --rm -v /Users/&lt;user-name&gt;/w205:/w205 \ midsw205/base:latest</code></pre>
-<ul>
-<li class="fragment">exit or <code>ctrl-d</code></li>
+<li><p>pull the image:</p>
+<pre><code>docker pull midsw205/base</code></pre></li>
+<li><p>create your mids-w205 workspace:</p>
+<pre><code>mkdir w205</code></pre></li>
+<li><p>(Mac)</p>
+<pre><code>docker run \
+  -it \
+  --rm \
+  -v /Users/&lt;user&gt;/w205:/w205 \
+  midsw205/base:latest \
+  bash</code></pre></li>
+<li><p><code>exit</code> (or <code>ctrl-d</code>)</p></li>
 </ul>
 <aside class="notes">
 <p>Like we said, we’ll get into what all those options mean etc, just keep track for now</p>

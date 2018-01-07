@@ -124,15 +124,28 @@ For now, just follow along
 </div>
 
 
-## Docker set up
+## Docker set up (from a terminal)
 
-> - open a terminal
-> - `docker pull midsw205/base`
-> - `mkdir w205`
-> - Mac: 
-`docker run -it --rm -v /Users/<user-name>/w205:/w205 \ midsw205/base:latest`
+- pull the image:
+  ```
+  docker pull midsw205/base
+  ```
 
-> - exit or `ctrl-d`
+- create your mids-w205 workspace:
+  ```
+  mkdir w205
+  ```
+
+- (Mac)
+  ```
+  docker run \
+    -it \
+    --rm \
+    -v /Users/<user>/w205:/w205 \
+    midsw205/base:latest \
+    bash
+  ```
+- `exit` (or `ctrl-d`)
 
 <div class="notes">
 Like we said, we'll get into what all those options mean etc, just keep track for now
