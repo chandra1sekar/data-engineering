@@ -162,16 +162,29 @@ We'll go over set up of folders, install git if needed, show git hub...
 
 
 ## Git set up
-## Get started.
+## Get started
 
-> - If working on Mac or Linux, or have git installed, go to w205 folder.
-> - If windows or no git, 
-    docker run -it --rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest
+- If working on Mac or Linux, or have git installed, go to w205 folder.
+- If windows or no git, 
+  ```
+  docker run \
+    -it \
+    --rm \
+    -v /Users/<user>/w205:/w205 \
+    midsw205/base:latest \
+    bash
+  ```
+
 
 ## Clone the repo
-> - `cd w205`
-> - 
-    git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-name>/
+- `cd w205`
+- Clone the repo into your mids-w205 workspace:
+  ```
+  git clone https://github.com/mids-w205- \
+    <instructor-last-name>/ \
+    signup-<git-user-name>
+  ```
+
 
 ## Open, Change, Close  `README.md` 
 > - `nano README.md`
@@ -187,14 +200,19 @@ Or just use whatever text editor you have, these are basically directions for do
 
 ## Git: commit changes
 
-> - `git status`
-> - `git add README.md`
-> - `git commit -m 'my new readme'`
-> - The first time you commit, it doesn't know who you are.
-> - `git config --global user.email "you@example.com"`
-> - `git config --global user.name "Your Name"`
-> - `git commit -m 'my new readme'`
-> - `git push`
+- `git status`
+- `git add README.md`
+- `git commit -m 'my new readme'`
+- The first time you commit, it doesn't know who you are.
+  ```
+  git config --global user.email "you@example.com"
+  ```
+  ```
+  git config --global user.name "Your Name"
+  ```
+- `git commit -m 'my new readme'`
+- `git push`
+
 
 ## After all that,
 - Mac & Linux users
@@ -208,17 +226,18 @@ Or just use whatever text editor you have, these are basically directions for do
 </div>
 
 ## Git: submit a PR
-> - All assignments submitted as PRs
-> - https://github.com/mids-w205-martin-mims/signup-<user-name>
-> - Click on README.md
-> - Click on edit button
-> - Make a change
-> - At bottom of screen "Commit changes" section
-> - Select "Create a new branch for this commit and start a pull request"
-> - Enter PR name & description
-> - Click "Propose file change" button
-> - Assign instructors as reviewers
-> - Click "Create pull request" button
+- All assignments submitted as PRs
+  ```
+  https://github.com/mids-w205-martin-mims/signup-<user-name>
+  ```
+- Click on `README.md`
+- Click on edit button (pencil icon)
+- Make a change
+- "Commit changes" section, select "Create a new branch for this commit..."
+- Enter PR name & description
+- Click "Propose file change" button
+- Assign instructors as reviewers
+- Click "Create pull request" button
 
 <div class="notes">
 Do this in the gui
@@ -232,8 +251,9 @@ Do this in the gui
 ## What is Data Engineering?
 
 ## Things are changing quickly
-
-https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+  ```
+  https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+  ```
 
 <div class="notes">
 Watch the preview video for Google's Coursera course as a group
@@ -308,8 +328,10 @@ This pipeline is your anchor, basically where are we and how does here relate to
 ## How this class works
 ## Syllabus
 
-- Link: 
-https://github.com/mids-w205-martin-mims/course-content
+  ```
+  https://github.com/mids-w205-martin-mims/course-content
+  ```
+
 
 <div class="notes">
 Prereqs
@@ -319,9 +341,10 @@ Readings
 
 ## Asyncronous Content
 
-- Linked in: 
-
-    https://github.com/mids-w205-martin-mims/course-content/blob/master/01-Introduction/async-videos.md
+  ```
+  https://github.com/mids-w205-martin-mims/course-content/ \
+  blob/master/01-Introduction/async-videos.md
+  ```
 
 - Same as in ISVC, but you can access it all in one place here.
 
@@ -329,10 +352,10 @@ Readings
 
 > - No one textbook available for this course.
 > - Using subscription service to cover the range of topics.
-> - https://www.safaribooksonline.com/pricing/
+> - `https://www.safaribooksonline.com/pricing/`
 > - Two Options:
-> - Individually $39/month (can stop whenever you want)
-> - Also sections could go in as a team (up to 25 people) - 1 year subscription for $399
+> - Individual option: $39/month (can stop whenever you want)
+> - Team option: (up to 25 people) - 1 year subscription for $399
 > - Quick note: Get the mobile apps.
 
 ## Prerequisites
