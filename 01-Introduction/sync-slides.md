@@ -298,15 +298,7 @@ Link?
 
 
 
-## Data Engineering Jobs
 
-- Search "data engineering jobs"
-- What are companies looking for in skills, experience, competencies?
-
-<div class="notes">
-Google data engineering jobs & read ads (between 5&10).
-- What are companies looking for in skills, experience, competencies?
-</div>
 
 ## Just enough
 
