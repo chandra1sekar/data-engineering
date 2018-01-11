@@ -34,29 +34,22 @@ Student introductions
 </div>
 
 
-## Approach
-
-> - Hands-on
-> - Just enough
-> - Motivated content
-> - Adaptible to change
+## Just enough
 
 <div class="notes">
-hands on - activities are da bomb
-
-motivated content: use everything we cover
-
-just enough DE
-
-multiple exposures - hit everything 3 xs with increasing levels of detail
-
-context anchors - explain what you mean by this
-
-ideal outcome is the prepare them to learn further independently (including stack overflow etc)
-
-prefer scale and latency free concepts
-
+You'll hear this over and over, but basics of worldview
+...
 </div>
+
+## Pipeline: Contextual Anchor
+
+![](images/pipeline-overall.svg)
+
+
+<div class="notes">
+This pipeline is your anchor, basically where are we and how does here relate to the rest of the class
+</div>
+
 
 
 ## Process/Procedures
@@ -300,21 +293,6 @@ Link?
 
 
 
-## Just enough
-
-<div class="notes">
-You'll hear this over and over, but basics of worldview
-...
-</div>
-
-## Pipeline: Contextual Anchor
-
-![](images/pipeline-overall.svg)
-
-
-<div class="notes">
-This pipeline is your anchor, basically where are we and how does here relate to the rest of the class
-</div>
 
 #
 ## How this class works
@@ -419,6 +397,16 @@ This section is a walk through of how we will iterate through assignments.
 1. Querying Data
 2. Tracking User Activity
 3. Understanding User Behavior
+
+## Pipeline
+
+![](images/pipeline-overall.svg)
+
+
+<div class="notes">
+Back to the pipeline - What part are we in?
+</div>
+
 
 ## Querying Data
 
