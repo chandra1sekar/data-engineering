@@ -25,8 +25,8 @@
       9.2.7 - Problems with Latency [screencast]
       9.2.8 - Glue [screencast]
 
-#### Due Day after Week 9 Synchronous Session: 
-- Assignment 08 - Build and Write-up Pipeline (Event Log Project)
+#### Due Friday after Week 9 Synchronous Session: 
+- Assignment 08 - Build and Write-up Pipeline (Tracking User Activity Project)
 
 
 

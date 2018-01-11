@@ -33,7 +33,7 @@
       3.3.4 Using Containers to Run Services with Docker [tutorial] 
 
 
-#### Due Day after Week 3 Synchronous Session: 
+#### Due Friday after Week 3 Synchronous Session: 
 - Assignment 02: Querying data with BigQuery
 
 
