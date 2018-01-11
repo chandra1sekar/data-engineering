@@ -33,8 +33,8 @@
       10.4.1 * Take Action! [lecture]
       10.4.2 - Act! (pyspark watching kafka) [screencast]
 
-#### Due Day after Week 10 Synchronous Session: 
-- Assignment 09 - Define Your Pipeline (Pipeline Project)
+#### Due Friday after Week 10 Synchronous Session: 
+- Assignment 09 - Define Your Pipeline (Understanding User Behavior Project)
 
 
 

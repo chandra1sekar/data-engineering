@@ -203,7 +203,7 @@ the live classroom for specific weeks in the term.
       2.2.5 Introduction to Docker [tutorial]
 
 
-#### Due Day after Week 2 Synchronous Session: 
+#### Due Friday after Week 2 Synchronous Session: 
 - Assignment 01: Set up and prerequisites
 
 
@@ -243,7 +243,7 @@ the live classroom for specific weeks in the term.
       3.3.4 Using Containers to Run Services with Docker [tutorial] 
 
 
-#### Due Day after Week 3 Synchronous Session: 
+#### Due Friday after Week 3 Synchronous Session: 
 - Assignment 02: Querying data with BigQuery
 
 
@@ -282,7 +282,7 @@ the live classroom for specific weeks in the term.
       4.3.4 - NoSQL - Key-Value Store [screencast]
 
 
-#### Due Day after Week 4 Synchronous Session: 
+#### Due Friday after Week 4 Synchronous Session: 
 - Assignment 03 - Querying data from the BigQuery CLI - set up (Query Project)
 
 
@@ -311,8 +311,8 @@ the live classroom for specific weeks in the term.
       5.2.3 - The Hadoop Ecosystem [screencast]
       5.2.4 - Using Hadoop [screencast]
     
-#### Due Day after Week 5 Synchronous Session: 
-- Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
+#### Due Friday after Week 5 Synchronous Session: 
+- Assignment 04 - Querying data from BigQuery - finishing up  (Query Project)
 
 
 
@@ -356,7 +356,7 @@ the live classroom for specific weeks in the term.
       6.4.3 - Using Schedulers [screencast]
 
 
-#### Due Day after Week 6 Synchronous Session: 
+#### Due Friday after Week 6 Synchronous Session: 
 - Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
 
 
@@ -393,8 +393,8 @@ the live classroom for specific weeks in the term.
       7.4.1 Security and Privacy [lecture]
       7.4.2 PII [screencast]
 
-#### Due Day after Week 7 Synchronous Session: 
-- Assignment 06 - Get and clean data (Event Log Project)
+#### Due Friday after Week 7 Synchronous Session: 
+- Assignment 06 - Get and clean data (Tracking User Activity Project)
 
 
 ## Week 08 - Querying Data
@@ -426,8 +426,8 @@ the live classroom for specific weeks in the term.
       8.4.1 - Query Optimization [screencast]
       8.4.2 - Using the Tools [screencast]
 
-#### Due Day after Week 8 Synchronous Session: 
-- Assignment 07 - Set up pipeline (Event Log Project)
+#### Due Friday after Week 8 Synchronous Session: 
+- Assignment 07 - Set up pipeline (Tracking User Activity Project)
 
 
 # Streaming
@@ -459,8 +459,8 @@ the live classroom for specific weeks in the term.
       9.2.7 - Problems with Latency [screencast]
       9.2.8 - Glue [screencast]
 
-#### Due Day after Week 9 Synchronous Session: 
-- Assignment 08 - Build and Write-up Pipeline (Event Log Project)
+#### Due Friday after Week 9 Synchronous Session: 
+- Assignment 08 - Build and Write-up Pipeline (Tracking User Activity Project)
 
 
 
@@ -499,8 +499,8 @@ the live classroom for specific weeks in the term.
       10.4.1 * Take Action! [lecture]
       10.4.2 - Act! (pyspark watching kafka) [screencast]
 
-#### Due Day after Week 10 Synchronous Session: 
-- Assignment 09 - Define Your Pipeline (Pipeline Project)
+#### Due Friday after Week 10 Synchronous Session: 
+- Assignment 09 - Define Your Pipeline (Understanding User Behavior Project)
 
 
 
@@ -533,8 +533,8 @@ the live classroom for specific weeks in the term.
     11.5 Activity
       11.5.1 - User Activity [lecture]
 
-#### Due Day after Week 11 Synchronous Session: 
-- Assignment 10 - Set up pipeline, Part 1 (Pipeline Project)
+#### Due Friday after Week 11 Synchronous Session: 
+- Assignment 10 - Set up pipeline, Part 1 (Understanding User Behavior Project)
 
 
 
@@ -558,8 +558,8 @@ the live classroom for specific weeks in the term.
       12.1.4 - Replay [screencast]
       12.1.5 - Caching queries [screencast]
 
-#### Due Day after Week 12 Synchronous Session: 
-- Assignment 11 - Set up pipeline, Part 2 (Pipeline Project)
+#### Due Friday after Week 12 Synchronous Session: 
+- Assignment 11 - Set up pipeline, Part 2 (Understanding User Behavior Project)
 
 
 
@@ -596,8 +596,8 @@ the live classroom for specific weeks in the term.
       13.3.1 - Model Validation [screencast]
       13.3.2 - Model Management [screencast]
 
-#### Due Day after Week 13 Synchronous Session: 
-- Assignment 12 - Synthesis Assignment (Pipeline Project)
+#### Due Friday after Week 13 Synchronous Session: 
+- Assignment 12 - Synthesis Assignment (Understanding User Behavior Project)
 
 
 ## Week 14 - Patterns for Data Pipelines

@@ -141,14 +141,21 @@
 <p>These commands will look gnarly. Don’t worry about it, we will review….blah, blah, For now, just follow along</p>
 </aside>
 </section>
-<section id="docker-set-up" class="level2">
-<h2>Docker set up</h2>
+<section id="docker-set-up-from-a-terminal" class="level2">
+<h2>Docker set up (from a terminal)</h2>
 <ul>
-<li class="fragment">open a terminal</li>
-<li class="fragment"><code>docker pull midsw205/base</code></li>
-<li class="fragment"><code>mkdir w205</code></li>
-<li class="fragment">Mac: docker run -it –rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest</li>
-<li class="fragment">exit or <code>ctrl-d</code></li>
+<li><p>pull the image:</p>
+<pre><code>docker pull midsw205/base</code></pre></li>
+<li><p>create your mids-w205 workspace:</p>
+<pre><code>mkdir w205</code></pre></li>
+<li><p>run (set <em>your</em> home directory for “<code>-v</code>”)</p>
+<pre><code>docker run \
+  -it \
+  --rm \
+  -v /Users/&lt;user&gt;/w205:/w205 \
+  midsw205/base:latest \
+  bash</code></pre></li>
+<li><p><code>exit</code> (or <code>ctrl-d</code>)</p></li>
 </ul>
 <aside class="notes">
 <p>Like we said, we’ll get into what all those options mean etc, just keep track for now</p>
@@ -169,18 +176,27 @@
 <section id="git-set-up" class="level2">
 <h2>Git set up</h2>
 </section>
-<section id="get-started-in-the-container." class="level2">
-<h2>Get started in the container.</h2>
+<section id="get-started" class="level2">
+<h2>Get started</h2>
 <ul>
-<li class="fragment">If working on Mac or Linux, or have git installed, go to w205 folder…</li>
-<li class="fragment">If windows or no git, docker run -it –rm -v /Users/<user-name>/w205:/w205 midsw205/base:latest</li>
+<li>If working on Mac or Linux, or have git installed, go to w205 folder.</li>
+<li><p>If windows or no git,</p>
+<pre><code>docker run \
+  -it \
+  --rm \
+  -v /Users/&lt;user&gt;/w205:/w205 \
+  midsw205/base:latest \
+  bash</code></pre></li>
 </ul>
 </section>
-<section id="clone-the-repo-once-in-docker-container" class="level2">
-<h2>Clone the repo once in docker container</h2>
+<section id="clone-the-repo" class="level2">
+<h2>Clone the repo</h2>
 <ul>
-<li class="fragment"><code>cd w205</code></li>
-<li class="fragment">git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-name>/</li>
+<li><code>cd w205</code></li>
+<li><p>Clone the repo into your mids-w205 workspace:</p>
+<pre><code>git clone https://github.com/mids-w205- \
+  &lt;instructor-last-name&gt;/ \
+  signup-&lt;git-user-name&gt;</code></pre></li>
 </ul>
 </section>
 <section id="open-change-close-readme.md" class="level2">
@@ -193,29 +209,22 @@
 <li class="fragment"><code>ctrl-x</code></li>
 <li class="fragment">Now you’re out of nano, but still in the container.</li>
 </ul>
+<aside class="notes">
+<p>Or just use whatever text editor you have, these are basically directions for doing this in the container.</p>
+</aside>
 </section>
 <section id="git-commit-changes" class="level2">
 <h2>Git: commit changes</h2>
 <ul>
-<li class="fragment"><code>git status</code></li>
-<li class="fragment"><code>git add README.md</code></li>
-<li class="fragment"><code>git commit -m 'my new readme'</code></li>
-<li class="fragment">The first time you commit, it doesn’t know who you are, after this it will.</li>
-<li class="fragment">Will see: root@0889eaef96c0:~/signup-htmartin# git commit -m ‘my new readme’ *** Please tell me who you are. Run git config –global user.email “you@example.com” git config –global user.name “Your Name” to set your account’s default identity.</li>
-<li class="fragment"><code>git config --global user.email &quot;you@example.com&quot;</code></li>
-<li class="fragment"><code>git config --global user.name &quot;Your Name&quot;</code></li>
-<li class="fragment"><code>git commit -m 'my new readme'</code></li>
-<li class="fragment"><code>git push</code></li>
+<li><code>git status</code></li>
+<li><code>git add README.md</code></li>
+<li><code>git commit -m 'my new readme'</code></li>
+<li><p>The first time you commit, it doesn’t know who you are.</p>
+<pre><code>git config --global user.email &quot;you@example.com&quot;</code></pre>
+<pre><code>git config --global user.name &quot;Your Name&quot;</code></pre></li>
+<li><code>git commit -m 'my new readme'</code></li>
+<li><p><code>git push</code></p></li>
 </ul>
-</section>
-<section id="git-submit-a-pr" class="level2">
-<h2>Git: submit a PR</h2>
-<ul>
-<li class="fragment">PR walkthrough</li>
-</ul>
-<aside class="notes">
-<p>check if most have done beginning of signup assign, if so, PR walkthrough from there. This will cover what they’ll need to turn in assignments. Which repo How to do a PR on that</p>
-</aside>
 </section>
 <section id="after-all-that" class="level2">
 <h2>After all that,</h2>
@@ -232,6 +241,24 @@
 </ul>
 </aside>
 </section>
+<section id="git-submit-a-pr" class="level2">
+<h2>Git: submit a PR</h2>
+<ul>
+<li><p>All assignments submitted as PRs</p>
+<pre><code>https://github.com/mids-w205-martin-mims/signup-&lt;user-name&gt;</code></pre></li>
+<li>Click on <code>README.md</code></li>
+<li>Click on edit button (pencil icon)</li>
+<li>Make a change</li>
+<li>“Commit changes” section, select “Create a new branch for this commit…”</li>
+<li>Enter PR name &amp; description</li>
+<li>Click “Propose file change” button</li>
+<li>Assign instructors as reviewers</li>
+<li><p>Click “Create pull request” button</p></li>
+</ul>
+<aside class="notes">
+<p>Do this in the gui</p>
+</aside>
+</section>
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
@@ -240,7 +267,7 @@
 </section>
 <section id="things-are-changing-quickly" class="level2">
 <h2>Things are changing quickly</h2>
-<p>https://www.coursera.org/learn/gcp-big-data-ml-fundamentals</p>
+<pre><code>https://www.coursera.org/learn/gcp-big-data-ml-fundamentals</code></pre>
 <aside class="notes">
 <p>Watch the preview video for Google’s Coursera course as a group</p>
 <ul>
@@ -283,16 +310,6 @@
 <p>What is it? Link?</p>
 </aside>
 </section>
-<section id="data-engineering-jobs" class="level2">
-<h2>Data Engineering Jobs</h2>
-<ul>
-<li>Search “data engineering jobs”</li>
-<li>What are companies looking for in skills, experience, competencies?</li>
-</ul>
-<aside class="notes">
-<p>Google data engineering jobs &amp; read ads (between 5&amp;10). - What are companies looking for in skills, experience, competencies?</p>
-</aside>
-</section>
 <section id="just-enough" class="level2">
 <h2>Just enough</h2>
 <aside class="notes">
@@ -314,19 +331,17 @@
 </section>
 <section id="syllabus" class="level2">
 <h2>Syllabus</h2>
-<ul>
-<li>Link: https://github.com/mids-w205-martin-mims/course-content</li>
-</ul>
+<pre><code>https://github.com/mids-w205-martin-mims/course-content</code></pre>
 <aside class="notes">
 <p>Prereqs Video links Readings</p>
 </aside>
 </section>
 <section id="asyncronous-content" class="level2">
 <h2>Asyncronous Content</h2>
+<pre><code>https://github.com/mids-w205-martin-mims/course-content/ \
+blob/master/01-Introduction/async-videos.md</code></pre>
 <ul>
-<li><p>Linked in:</p>
-<p>https://github.com/mids-w205-martin-mims/course-content/blob/master/01-Introduction/async-videos.md</p></li>
-<li><p>Same as in ISVC, but you can access it all in one place here.</p></li>
+<li>Same as in ISVC, but you can access it all in one place here.</li>
 </ul>
 </section>
 <section id="readings" class="level2">
@@ -334,10 +349,10 @@
 <ul>
 <li class="fragment">No one textbook available for this course.</li>
 <li class="fragment">Using subscription service to cover the range of topics.</li>
-<li class="fragment">https://www.safaribooksonline.com/pricing/</li>
+<li class="fragment"><code>https://www.safaribooksonline.com/pricing/</code></li>
 <li class="fragment">Two Options:</li>
-<li class="fragment">Individually $39/month</li>
-<li class="fragment">Also sections could go in as a team (up to 25 people) - 1 year subscription for $399</li>
+<li class="fragment">Individual option: $39/month (can stop whenever you want)</li>
+<li class="fragment">Team option: (up to 25 people) - 1 year subscription for $399</li>
 <li class="fragment">Quick note: Get the mobile apps.</li>
 </ul>
 </section>

@@ -18,8 +18,8 @@
       12.1.4 - Replay [screencast]
       12.1.5 - Caching queries [screencast]
 
-#### Due Day after Week 12 Synchronous Session: 
-- Assignment 11 - Set up pipeline, Part 2 (Pipeline Project)
+#### Due Friday after Week 12 Synchronous Session: 
+- Assignment 11 - Set up pipeline, Part 2 (Understanding User Behavior Project)
 
 
 

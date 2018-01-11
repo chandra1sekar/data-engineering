@@ -31,7 +31,7 @@
       2.2.5 Introduction to Docker [tutorial]
 
 
-#### Due Day after Week 2 Synchronous Session: 
+#### Due Friday after Week 2 Synchronous Session: 
 - Assignment 01: Set up and prerequisites
 
 

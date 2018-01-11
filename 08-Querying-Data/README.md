@@ -27,7 +27,7 @@
       8.4.1 - Query Optimization [screencast]
       8.4.2 - Using the Tools [screencast]
 
-#### Due Day after Week 8 Synchronous Session: 
-- Assignment 07 - Set up pipeline (Event Log Project)
+#### Due Friday after Week 8 Synchronous Session: 
+- Assignment 07 - Set up pipeline (Tracking User Activity Project)
 
 

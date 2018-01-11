@@ -38,7 +38,7 @@
       6.4.3 - Using Schedulers [screencast]
 
 
-#### Due Day after Week 6 Synchronous Session: 
+#### Due Friday after Week 6 Synchronous Session: 
 - Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
 
 
