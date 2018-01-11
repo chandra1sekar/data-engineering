@@ -24,7 +24,12 @@ confuse the browser cache.
 
 
 #
-## Unit 4
+## Unit 4 - Storing Data
+
+
+#
+## 4.1 - Introduction
+(down for videos)
 
 ##
 4.1.1: `storage-pipeline-context`
@@ -36,6 +41,10 @@ confuse the browser cache.
 direct links:
 [video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/bf0857aebbdb8d7e1b86f5df9ab86257/mp4_med.mp4),
 [slides](https://mids-w205-development.s3.amazonaws.com/lectures/87fe241d-6d66-4e1c-aac4-de026b2a07e3/storage-pipeline-context-slides.pdf?Signature=5GPySoguZZxoyyT3T2kVyts24sg%3D&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1528633897)
+
+
+#
+## 4.2 - Relational Data Stores
 
 ##
 4.2.1: `storage-relational-dbs-intro`
@@ -69,6 +78,10 @@ direct links:
 direct links:
 [video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/aebe9fd5a2385e3c1b00e94bf9501f43/mp4_med.mp4),
 [slides](https://mids-w205-development.s3.amazonaws.com/lectures/749fb7a6-56c9-45bc-9469-370b3746c593/storage-relational-dbs-normalization-slides.pdf?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1528633899&Signature=8j96H8HQrojEb%2B%2B6ekmUfaiJwqg%3D)
+
+
+#
+## 4.3 - NoSQL Data Stores
 
 ##
 4.3.1: `storage-nosql-intro`

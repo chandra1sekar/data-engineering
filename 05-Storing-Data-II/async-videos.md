@@ -24,29 +24,11 @@ confuse the browser cache.
 
 
 #
-## Unit 5
+## Unit 5 - Storing Data II
 
-##
-5.1.4: `failure-in-a-distributed-system`
 
-<video preload="none" controls poster="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/7345ca623b95d181c2d9203c5e47f55b/0_high.jpg" webkit-playsinline="" id="cb5dc5e3-4179-4c3a-86ec-d278599b93b4" width="700" height="394" tabindex="-1">
-  <source type="video/mp4" src="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/7345ca623b95d181c2d9203c5e47f55b/mp4_med.mp4"/>
-</video>
-
-direct links:
-[video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/7345ca623b95d181c2d9203c5e47f55b/mp4_med.mp4),
-[slides](https://mids-w205-development.s3.amazonaws.com/lectures/cb5dc5e3-4179-4c3a-86ec-d278599b93b4/failure-in-a-distributed-system-slides.pdf?Signature=c9pvBxY1BxoFriaQHzWbN%2FGA8IE%3D&Expires=1528633939&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A)
-
-##
-5.2.1: `storage-hadoop-intro`
-
-<video preload="none" controls poster="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/33340262982ad3366368fc7d850fdc5e/0_high.jpg" webkit-playsinline="" id="05a7b38a-d63a-416c-a3bd-d0341aac0478" width="700" height="394" tabindex="-1">
-  <source type="video/mp4" src="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/33340262982ad3366368fc7d850fdc5e/mp4_med.mp4"/>
-</video>
-
-direct links:
-[video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/33340262982ad3366368fc7d850fdc5e/mp4_med.mp4),
-[slides](https://mids-w205-development.s3.amazonaws.com/lectures/05a7b38a-d63a-416c-a3bd-d0341aac0478/storage-hadoop-intro-slides.pdf?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1528633940&Signature=kfKrLgjgBMg34lC%2B9w%2FR4MTotJM%3D)
+#
+## 5.1 - Introduction to the Cloud
 
 ##
 5.1.1: `cloud-intro-to-virt`
@@ -82,6 +64,32 @@ direct links:
 [slides](https://mids-w205-development.s3.amazonaws.com/screencasts/940384e5-c6f9-40fd-9a1a-e5293d101a3d/docker-composing-containers-slides.pdf?Expires=1528633943&Signature=GxAyTP%2BbXtF7Z87xTmULRBQchsU%3D&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A)
 
 ##
+5.1.4: `failure-in-a-distributed-system`
+
+<video preload="none" controls poster="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/7345ca623b95d181c2d9203c5e47f55b/0_high.jpg" webkit-playsinline="" id="cb5dc5e3-4179-4c3a-86ec-d278599b93b4" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/7345ca623b95d181c2d9203c5e47f55b/mp4_med.mp4"/>
+</video>
+
+direct links:
+[video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/7345ca623b95d181c2d9203c5e47f55b/mp4_med.mp4),
+[slides](https://mids-w205-development.s3.amazonaws.com/lectures/cb5dc5e3-4179-4c3a-86ec-d278599b93b4/failure-in-a-distributed-system-slides.pdf?Signature=c9pvBxY1BxoFriaQHzWbN%2FGA8IE%3D&Expires=1528633939&AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A)
+
+
+#
+## 5.2 - Hadoop
+
+##
+5.2.1: `storage-hadoop-intro`
+
+<video preload="none" controls poster="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/33340262982ad3366368fc7d850fdc5e/0_high.jpg" webkit-playsinline="" id="05a7b38a-d63a-416c-a3bd-d0341aac0478" width="700" height="394" tabindex="-1">
+  <source type="video/mp4" src="https://ucb-mids.s3.amazonaws.com/prod/output_video_general/33340262982ad3366368fc7d850fdc5e/mp4_med.mp4"/>
+</video>
+
+direct links:
+[video](https://ucb-mids.s3.amazonaws.com/prod/output_video_general/33340262982ad3366368fc7d850fdc5e/mp4_med.mp4),
+[slides](https://mids-w205-development.s3.amazonaws.com/lectures/05a7b38a-d63a-416c-a3bd-d0341aac0478/storage-hadoop-intro-slides.pdf?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1528633940&Signature=kfKrLgjgBMg34lC%2B9w%2FR4MTotJM%3D)
+
+##
 5.2.2: `hadoop-walkthrough`
 
 <video preload="none" controls poster="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/hadoop-walkthrough-cover-high.jpg" webkit-playsinline="" id="f5513137-404d-459d-929c-c40d348a6391" width="700" height="394" tabindex="-1">
@@ -113,6 +121,7 @@ direct links:
 direct links:
 [video](https://mids-w205-development.s3.amazonaws.com/screencasts/e48174fc-3bf6-4d4d-b8f6-bd44ab892b85/storage-hadoop-cli-video-hd1080-h264-30fps.mp4?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Expires=1528633945&Signature=qOeW6Tc9ufNUitle3qyFpMTmboI%3D),
 [slides](https://mids-w205-development.s3.amazonaws.com/screencasts/e48174fc-3bf6-4d4d-b8f6-bd44ab892b85/storage-hadoop-cli-slides.pdf?AWSAccessKeyId=AKIAIO5BJ5NEJCZYSG2A&Signature=RQ0n3FFoMK%2Fkr2SPIq%2FeuXxy3hQ%3D&Expires=1528633945)
+
 
 #
 <img class="logo" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/berkeley-school-of-information-logo.png"/>
