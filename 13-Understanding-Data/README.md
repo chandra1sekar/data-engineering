@@ -29,7 +29,7 @@
       13.3.1 - Model Validation [screencast]
       13.3.2 - Model Management [screencast]
 
-#### Due Day after Week 13 Synchronous Session: 
-- Assignment 12 - Synthesis Assignment (Pipeline Project)
+#### Due Friday after Week 13 Synchronous Session: 
+- Assignment 12 - Synthesis Assignment (Understanding User Behavior Project)
 
 

@@ -23,8 +23,8 @@
       5.2.3 - The Hadoop Ecosystem [screencast]
       5.2.4 - Using Hadoop [screencast]
     
-#### Due Day after Week 5 Synchronous Session: 
-- Assignment 04 - Querying data from the BigQuery CLI - finishing up  (Query Project)
+#### Due Friday after Week 5 Synchronous Session: 
+- Assignment 04 - Querying data from BigQuery - finishing up  (Query Project)
 
 
 
