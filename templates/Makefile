@@ -19,7 +19,7 @@ pdfs: $(slides:.md=.pdf)
 
 %.pdf : %.html
 	@echo "---" $@ "---"
-	phantomjs ../lib/decktape/decktape.js $< $@
+	phantomjs ~/lib/decktape/decktape.js $< $@
 
 clean:
 	rm -f *.html
