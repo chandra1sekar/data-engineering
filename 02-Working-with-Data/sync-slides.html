@@ -194,8 +194,11 @@
 <ul>
 <li>Go to https://cloud.google.com/bigquery/</li>
 <li>Click on “Try it Free”</li>
-<li>It asks for credit card, but you get $300 free and it does not autorenew after the $300 credit is used, so go ahead (OR CHANGE THIS IF SOME SORT OF OTHER ACCESS INFO)</li>
+<li>It asks for credit card, but you get $300 free and it does not autorenew after the $300 credit is used,</li>
 </ul>
+<aside class="notes">
+<p>(OR CHANGE THIS IF SOME SORT OF OTHER ACCESS INFO)</p>
+</aside>
 </section>
 <section id="working-with-bq-gui" class="level2">
 <h2>Working with BQ gui</h2>
@@ -205,8 +208,137 @@
 <h2>Tutorial</h2>
 <p>https://www.w3schools.com/sql/default.asp</p>
 </section>
+<section id="some-annoying-specific-stuff-about-bq" class="level2">
+<h2>Some annoying specific stuff about BQ</h2>
 </section>
-<section id="section-6" class="slide level1">
+<section id="the" class="level2">
+<h2>the ;</h2>
+<pre><code>SELECT * 
+FROM Customers;</code></pre>
+<p>VS</p>
+<pre><code>SELECT * 
+FROM Customers</code></pre>
+<aside class="notes">
+<ul>
+<li>Nearly all other sql implementations (and what students will see in the tutorial), end statements with a ;</li>
+<li>BQ doesn’t</li>
+<li>btw, the CAPITALIZATION isn’t necessary :)</li>
+</ul>
+</aside>
+</section>
+<section id="two-ways-to-structure-in-bq" class="level2">
+<h2>Two ways to structure in BQ</h2>
+<pre><code>SELECT *
+FROM [bigquery-public-data:san_francisco.bikeshare_trips]</code></pre>
+<p>OR</p>
+<pre><code>#standardSQL
+SELECT * 
+FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
+<aside class="notes">
+<ul>
+<li><p>Google was going to create their own sql that worked different :)</p></li>
+<li><p>It’s silly, but the way the table reference part, the “FROM” part, is written is different.</p></li>
+<li><p>So, now there’s the #standardSQL flag</p></li>
+</ul>
+</aside>
+</section>
+<section id="the-big-difference" class="level2">
+<h2>The Big Difference</h2>
+<p>NO</p>
+<pre><code>SELECT distinct(bikes_available) 
+FROM [bigquery-public-data:san_francisco.bikeshare_status]</code></pre>
+<p>YES</p>
+<pre><code>#standardSQL
+SELECT distinct(bikes_available) 
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+<aside class="notes">
+<ul>
+<li>It’s in doing things with distinct that I’ve noticed the biggest differences from regular (aka “standard” SQL)</li>
+<li>You get: Error: syntax error at: 1.1 - 1.42. SELECT DISTINCT is currently not supported. Please use GROUP BY instead to get the same effect.</li>
+</ul>
+</aside>
+</section>
+<section id="for-this-class" class="level2">
+<h2>For this class</h2>
+<pre><code>#standardSQL
+SELECT * 
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+<ul>
+<li>More similar to command line bq</li>
+<li>More like most other SQL implementations</li>
+</ul>
+<aside class="notes">
+<p>We’re doing this one, but you can use either</p>
+</aside>
+</section>
+<section id="how-many-events-are-there" class="level2">
+<h2>How many events are there?</h2>
+<aside class="notes">
+<p>For the following slides, Wait on the question slide for a minute to give everyone a chance to try it. Then reveal the next slide with correct query.</p>
+<ul>
+<li>Optional: you can do these in groups and ask people to
+<ul>
+<li>report out</li>
+<li>share issues, false starts they ran into</li>
+</ul></li>
+</ul>
+<p>[Obviously more useful on more complicated queries]</p>
+</aside>
+</section>
+<section id="section-6" class="level2">
+<h2></h2>
+<pre><code>#standardSQL
+SELECT count(*)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+<aside class="notes">
+<p>107,501,619 The point: you can use select * to actually answer questions.</p>
+</aside>
+</section>
+<section id="how-many-stations-are-there" class="level2">
+<h2>How many stations are there?</h2>
+</section>
+<section id="section-7" class="level2">
+<h2></h2>
+<pre><code>#standardSQL
+SELECT count(distinct station_id)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+<aside class="notes">
+<p>The point: how to count unique</p>
+</aside>
+</section>
+<section id="how-long-a-time-period-do-these-data-cover" class="level2">
+<h2>How long a time period do these data cover?</h2>
+</section>
+<section id="section-8" class="level2">
+<h2></h2>
+<pre><code>#standardSQL
+SELECT min(time), max(time)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+<aside class="notes">
+<p>2013-08-29 12:06:01.000 UTC 2016-08-31 23:58:59.000 UTC</p>
+</aside>
+</section>
+<section id="how-many-total-bikes-does-each-station-have" class="level2">
+<h2>How many total bikes does each station have?</h2>
+<aside class="notes">
+<p>what they will figure out eventually is that we have varying reports, bad sensor? human counter, who knows</p>
+</aside>
+</section>
+<section id="section-9" class="level2">
+<h2></h2>
+<pre><code>#standardSQL
+SELECT docks_available + bikes_available as total_bikes
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+<p>#standardSQL SELECT station_id, (docks_available + bikes_available) as total_bikes FROM <code>bigquery-public-data.san_francisco.bikeshare_status</code> GROUP BY station_id ORDER BY total_bikes</p>
+</section>
+<section id="section-10" class="level2">
+<h2></h2>
+<pre><code>#standardSQL
+SELECT *
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+</section>
+</section>
+<section id="section-11" class="slide level1">
 <h1></h1>
 <section id="section-title-slide-summary" class="level2">
 <h2>Section Title Slide: Summary</h2>
@@ -222,7 +354,7 @@
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
