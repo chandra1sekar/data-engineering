@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Week 02 - sync session">
+  <title>Fundamentals of Data Engineering</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/mids.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Fundamentals of Data Engineering</h1>
+  <h2 class="author">Week 02 - sync session</h2>
+  <img class="frontPageSlogan" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/datascience-at-berkeley.png"/>
+</section>
+
+<section id="section" class="slide level1">
+<h1></h1>
+<section id="assignment" class="level2">
+<h2>Assignment</h2>
+</section>
+<section id="your-laptop-set-up" class="level2">
+<h2>Your laptop set up</h2>
+<ul>
+<li>git installed</li>
+<li>repos cloned: course-content, assignment-01-<user-name></li>
+<li>docker installed</li>
+<li>shell</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="how-to-do-a-pr" class="level2">
+<h2>How to do a PR</h2>
+<ul>
+<li>Review process from gui</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="how-to-do-a-pr-from-the-command-line" class="level2">
+<h2>How to do a PR from the command line</h2>
+<ul>
+<li>put in steps</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="due-friday-remember-do-a-pr" class="level2">
+<h2>Due Friday, remember do a PR</h2>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<section id="some-things-about-this-class" class="level2">
+<h2>Some things about this class</h2>
+</section>
+<section id="how-to-read" class="level2">
+<h2>How to read</h2>
+<ul>
+<li>Two screens (or devices)</li>
+<li>Reading</li>
+<li>Following along with coding</li>
+</ul>
+</section>
+<section id="pacing" class="level2">
+<h2>Pacing</h2>
+<ul>
+<li>What you can do</li>
+<li>What you can understand</li>
+</ul>
+<aside class="notes">
+<p>We’ll be reading/watching screencasts ahead of what we can do</p>
+</aside>
+</section>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<section id="where-are-we-in-the-pipeline" class="level2">
+<h2>Where are we in the pipeline</h2>
+<p><img data-src="images/pipeline-overall.svg" /></p>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="events" class="level2">
+<h2>Events???</h2>
+<ul>
+<li>point</li>
+<li>point</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="main-thing-to-pay-attention-to-2" class="level2">
+<h2>Main thing to pay attention to 2</h2>
+<ul>
+<li>point</li>
+<li>point</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<section id="big-ideas" class="level2">
+<h2>Big Ideas</h2>
+</section>
+<section id="business-decisions" class="level2">
+<h2>Business Decisions</h2>
+<ul>
+<li><p>All about the business</p></li>
+<li><p>Data-Driven Business Decisions …are queries</p></li>
+</ul>
+<aside class="notes">
+<p>in order for business decisions to be based on data, you have to be able to interact with the data. business requirements get encoded as queries of data</p>
+</aside>
+</section>
+<section id="translation" class="level2">
+<h2>Translation</h2>
+<ul>
+<li>SQL queries are really pretty easy</li>
+<li>How to get to the queries from the questions, sometimes not so much</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<section id="query-project" class="level2">
+<h2>Query Project</h2>
+<ul>
+<li><p>In the Query Project, you will get practice with SQL while learning about Google Cloud Platform (GCP) and BiqQuery. You’ll answer business-driven questions using public datasets housed in GCP. To give you experience with different ways to use those datasets, you will use the web UI (BiqQuery) and the command-line tools, and work with them in jupyter notebooks.</p></li>
+<li><p>We will be using the Bay Area Bike Share Trips Data (https://cloud.google.com/bigquery/public-data/bay-bike-share).</p></li>
+</ul>
+</section>
+<section id="problem-statement" class="level2">
+<h2>Problem Statement</h2>
+<ul>
+<li>You’re a data scientist at Ford GoBike (https://www.fordgobike.com/), the company running Bay Area Bikeshare. You are trying to increase ridership, and you want to offer deals through the mobile app to do so. What deals do you offer though? Currently, your company has three options: a flat price for a single one-way trip, a day pass that allows unlimited 30-minute rides for 24 hours and an annual membership.</li>
+</ul>
+</section>
+<section id="questions" class="level2">
+<h2>Questions</h2>
+<ul>
+<li>Through this project, you will answer these questions:
+<ul>
+<li>What are the 5 most popular trips that you would call “commuter trips”?</li>
+<li>What are your recommendations for offers (justify based on your findings)?</li>
+</ul></li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<section id="querying-data" class="level2">
+<h2>Querying Data</h2>
+</section>
+<section id="get-going-google-account" class="level2">
+<h2>Get Going: Google account</h2>
+<ul>
+<li>Go to https://cloud.google.com/bigquery/</li>
+<li>Click on “Try it Free”</li>
+<li>It asks for credit card, but you get $300 free and it does not autorenew after the $300 credit is used, so go ahead (OR CHANGE THIS IF SOME SORT OF OTHER ACCESS INFO)</li>
+</ul>
+</section>
+<section id="working-with-bq-gui" class="level2">
+<h2>Working with BQ gui</h2>
+<p>https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_status</p>
+</section>
+<section id="tutorial" class="level2">
+<h2>Tutorial</h2>
+<p>https://www.w3schools.com/sql/default.asp</p>
+</section>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<section id="section-title-slide-summary" class="level2">
+<h2>Section Title Slide: Summary</h2>
+</section>
+<section id="new-slide" class="level2">
+<h2>New slide</h2>
+<ul>
+<li>point</li>
+<li>point</li>
+</ul>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Transition style
+        transition: 'linear', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
