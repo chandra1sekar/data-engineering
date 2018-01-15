@@ -7,7 +7,7 @@ author: Week 02 - sync session
 
 # 
 
-## Assignment
+## Assignment 1
 
 ## Your laptop set up
 
@@ -117,8 +117,16 @@ business requirements get encoded as queries of data
 
 - We will be using the Bay Area Bike Share Trips Data (https://cloud.google.com/bigquery/public-data/bay-bike-share). 
 
+<div class="notes">
+	Go over what the dataset is on the webpage
+</div>
+
 ## Problem Statement
 - You're a data scientist at Ford GoBike (https://www.fordgobike.com/), the company running Bay Area Bikeshare. You are trying to increase ridership, and you want to offer deals through the mobile app to do so. What deals do you offer though? Currently, your company has three options: a flat price for a single one-way trip, a day pass that allows unlimited 30-minute rides for 24 hours and an annual membership. 
+
+<div class="notes">
+</div>
+
 
 ## Questions
 
@@ -132,8 +140,6 @@ business requirements get encoded as queries of data
 </div>
 
 # 
-
-## Querying Data
 
 ## Get Going: Google account
 
@@ -153,6 +159,8 @@ https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikes
 ## Tutorial
 
 https://www.w3schools.com/sql/default.asp
+
+#
 
 ## Some annoying specific stuff about BQ
 
@@ -175,13 +183,13 @@ VS
 </div>
 
 
-## Two ways to structure in BQ
+## Legacy vs Standard SQL
 
 
     SELECT *
     FROM [bigquery-public-data:san_francisco.bikeshare_trips]
 
-OR 
+VS 
 
     #standardSQL
     SELECT * 
@@ -198,19 +206,19 @@ OR
 
 ## The Big Difference
 
-NO
-
 
     SELECT distinct(bikes_available) 
     FROM [bigquery-public-data:san_francisco.bikeshare_status]
 
 
-YES 
+NO
 
 
     #standardSQL
     SELECT distinct(bikes_available) 
     FROM `bigquery-public-data.san_francisco.bikeshare_status`
+
+YES
 
 <div class="notes">
 - It's in doing things with distinct that I've noticed the biggest differences from regular (aka "standard" SQL)
@@ -232,12 +240,16 @@ YES
 We're doing this one, but you can use either
 </div>
 
+#
+
+## Querying Data
+
 ## How many events are there?
 
 <div class="notes">
 For the following slides,
 Wait on the question slide for a minute to give everyone a chance to try it.
-Then reveal the next slide with correct query.
+Then reveal the next slide with query.
 
 
 - Optional: you can do these in groups and ask people to 
@@ -271,6 +283,7 @@ The point: you can use select * to actually answer questions.
 
 <div class="notes">
 The point: how to count unique
+Answer: something like 75
 </div>
 
 
@@ -289,25 +302,93 @@ The point: how to count unique
 2016-08-31 23:58:59.000 UTC	
 </div>
 
+## How many bikes does station 90 have?
 
-## How many total bikes does each station have? 
 
 <div class="notes">
-what they will figure out eventually is that we have varying reports, bad sensor? human counter, who knows
+Break into groups here.
+Give them a few minutes, have someone from each group screen share and present their query.
+If they don't tell you, ask why they made the choices they made.
+I decided that a station's total bikes would = docks_available + bikes_available.
+</div>
+
+
+##
+
+	#standardSQL
+	SELECT station_id, (docks_available + bikes_available) as total_bikes
+	FROM `bigquery-public-data.san_francisco.bikeshare_status`
+	WHERE station_id = 90
+
+<div class="notes">
+Stuff to explore:
+- each station "has" different unique numbers of bikes [probably b/c e.g., docks are added to stations, etc, etc, etc]
+*** Next slides will help unpack what they find here ***
+</div>
+
+## What's up with that?
+
+<div class="notes">
+Getitng into queries to help figure out the issue from last slide
+</div>
+
+##
+
+	#standardSQL
+	SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+	FROM `bigquery-public-data.san_francisco.bikeshare_status`
+	WHERE station_id = 90
+    ORDER BY total_bikes
+
+
+<div class="notes">
+The point: 
+- query returns 8916 results 
+- but if ordered by total_bikes, can click "First" and "Last" to see what the values are
+</div>
+
+## Get a table with total_bikes in it
+
+<div class="notes">
+"Ok, so we don't want to go clicking through 8900 results to figure out what the unique values for total_bikes for a station are.""
+- On this one, just show it
 </div>
 
 ## 
 
+	#standardSQL
+		SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+		FROM `bigquery-public-data.san_francisco.bikeshare_status`
+
+<div class="notes">
+- This is the query to create the total_bikes table (which is totally a view, but BQ is weird about views, something about legacy sql vs standard sql)
+- Do "Save Table"
+- Window will pop up, need to have added a dataset to your project earlier, then enter dataset name and add a name for the table.
+- I'm calling it total_bikes
+</div>
+
+## 
 
 	#standardSQL
-	SELECT docks_available + bikes_available as total_bikes
-	FROM `bigquery-public-data.san_francisco.bikeshare_status`
+	SELECT distinct (station_id), total_bikes
+	 FROM `ambient-cubist-185918.bike_trips_data.total_bikes`
 
-#standardSQL
-SELECT station_id, (docks_available + bikes_available) as total_bikes
-FROM `bigquery-public-data.san_francisco.bikeshare_status`
-GROUP BY station_id
-ORDER BY total_bikes
+<div class="notes">
+This shows that you get multiple entries for each station_id b/c diff values of total bikes
+</div>
+
+##
+
+	#standardSQL
+	SELECT distinct station_id, total_bikes
+	FROM `ambient-cubist-185918.bike_trips_data.total_bikes`
+	WHERE station_id = 22
+
+<div class="notes">
+	This lets you explore each station's total number of bikes
+
+</div>
+
 
 ##
 
@@ -316,11 +397,24 @@ ORDER BY total_bikes
 	FROM `bigquery-public-data.san_francisco.bikeshare_status`
 
 
+## Independent Queries
+
+
+https://www.w3schools.com/sql/default.asp
+
+
+<div class="notes">
+If there's any time, break in groups to do whatever questions they come up with. 
+Rotate between groups to see what folks are coming up with.
+</div>
+
+
+
+
+
 # 
 
-## Section Title Slide: Summary
-
-## New slide
+## Summary
 
 - point
 - point
