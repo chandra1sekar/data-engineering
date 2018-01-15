@@ -63,20 +63,28 @@ We'll be reading/watching screencasts ahead of what we can do
 <div class="notes">
 </div>
 
-## Events???
+## Events
 
-- point
-- point
+- What sort of events feed this pipeline?
+- How were these events captured?
+
+::: notes
+Fed from device events:
+
+- station kiosk (?)
+- user app (?)
+:::
 
 <div class="notes">
 </div>
 
-## Main thing to pay attention to 2
+## Main thing to pay attention to
 
-- point
-- point
+- Pipeline is provided for this example
+- We're _using_ it to answer business questions
 
 <div class="notes">
+How would we build this ourselves?
 </div>
 
 # 
@@ -409,8 +417,10 @@ Rotate between groups to see what folks are coming up with.
 
 ## Summary
 
-- point
-- point
+- Business questions
+- Answered using empirical data
+- By running queries against (raw?) events
+- Need a pipeline in place to capture these raw events
 
 <div class="notes">
 </div>
