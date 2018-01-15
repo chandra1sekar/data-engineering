@@ -25,16 +25,9 @@ author: Week 02 - sync session
 - Review process from gui 
 
 <div class="notes">
-
+we defer cli-support for this until next week
 </div>
 
-## How to do a PR from the command line
-
-- put in steps
-
-<div class="notes">
-
-</div>
 
 ## Due Friday, remember do a PR
 
