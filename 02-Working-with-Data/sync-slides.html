@@ -42,13 +42,14 @@
 <h2>Your laptop set up</h2>
 <ul>
 <li>git installed</li>
-<li>repos cloned: course-content, assignment-01-<user-name></li>
+<li>repos cloned:
+<ul>
+<li><code>course-content</code></li>
+<li><code>assignment-01-&lt;user-name&gt;</code></li>
+</ul></li>
 <li>docker installed</li>
 <li>shell</li>
 </ul>
-<aside class="notes">
-
-</aside>
 </section>
 <section id="how-to-do-a-pr" class="level2">
 <h2>How to do a PR</h2>
@@ -61,9 +62,6 @@
 </section>
 <section id="due-friday-remember-do-a-pr" class="level2">
 <h2>Due Friday, remember do a PR</h2>
-<aside class="notes">
-
-</aside>
 </section>
 </section>
 <section id="section-1" class="slide level1">
@@ -95,9 +93,6 @@
 <section id="where-are-we-in-the-pipeline" class="level2">
 <h2>Where are we in the pipeline</h2>
 <p><img data-src="images/pipeline-overall.svg" /></p>
-<aside class="notes">
-
-</aside>
 </section>
 <section id="events" class="level2">
 <h2>Events</h2>
@@ -111,9 +106,6 @@
 <li>station kiosk (?)</li>
 <li>user app (?)</li>
 </ul>
-</aside>
-<aside class="notes">
-
 </aside>
 </section>
 <section id="main-thing-to-pay-attention-to" class="level2">
@@ -139,7 +131,8 @@
 <li><p>Data-Driven Business Decisions …are queries</p></li>
 </ul>
 <aside class="notes">
-<p>in order for business decisions to be based on data, you have to be able to interact with the data. business requirements get encoded as queries of data</p>
+<p>in order for business decisions to be based on data, you have to be able to interact with the data.</p>
+<p>business requirements get encoded as queries of data</p>
 </aside>
 </section>
 <section id="translation" class="level2">
@@ -148,9 +141,6 @@
 <li>SQL queries are really pretty easy</li>
 <li>How to get to the queries from the questions, sometimes not so much</li>
 </ul>
-<aside class="notes">
-
-</aside>
 </section>
 </section>
 <section id="section-4" class="slide level1">
@@ -159,20 +149,17 @@
 <h2>Query Project</h2>
 <ul>
 <li><p>In the Query Project, you will get practice with SQL while learning about Google Cloud Platform (GCP) and BiqQuery. You’ll answer business-driven questions using public datasets housed in GCP. To give you experience with different ways to use those datasets, you will use the web UI (BiqQuery) and the command-line tools, and work with them in jupyter notebooks.</p></li>
-<li><p>We will be using the Bay Area Bike Share Trips Data (https://cloud.google.com/bigquery/public-data/bay-bike-share).</p></li>
+<li><p>We will be using the Bay Area Bike Share Trips Data (<a href="https://cloud.google.com/bigquery/public-data/bay-bike-share" class="uri">https://cloud.google.com/bigquery/public-data/bay-bike-share</a>).</p></li>
 </ul>
 <aside class="notes">
-<pre><code>Go over what the dataset is on the webpage</code></pre>
+<p>Go over what the dataset is on the webpage</p>
 </aside>
 </section>
 <section id="problem-statement" class="level2">
 <h2>Problem Statement</h2>
 <ul>
-<li>You’re a data scientist at Ford GoBike (https://www.fordgobike.com/), the company running Bay Area Bikeshare. You are trying to increase ridership, and you want to offer deals through the mobile app to do so. What deals do you offer though? Currently, your company has three options: a flat price for a single one-way trip, a day pass that allows unlimited 30-minute rides for 24 hours and an annual membership.</li>
+<li>You’re a data scientist at Ford GoBike (<a href="https://www.fordgobike.com/" class="uri">https://www.fordgobike.com/</a>), the company running Bay Area Bikeshare. You are trying to increase ridership, and you want to offer deals through the mobile app to do so. What deals do you offer though? Currently, your company has three options: a flat price for a single one-way trip, a day pass that allows unlimited 30-minute rides for 24 hours and an annual membership.</li>
 </ul>
-<aside class="notes">
-
-</aside>
 </section>
 <section id="questions" class="level2">
 <h2>Questions</h2>
@@ -183,9 +170,6 @@
 <li>What are your recommendations for offers (justify based on your findings)?</li>
 </ul></li>
 </ul>
-<aside class="notes">
-
-</aside>
 </section>
 </section>
 <section id="section-5" class="slide level1">
@@ -193,21 +177,21 @@
 <section id="get-going-google-account" class="level2">
 <h2>Get Going: Google account</h2>
 <ul>
-<li>Go to https://cloud.google.com/bigquery/</li>
+<li>Go to <a href="https://cloud.google.com/bigquery/" class="uri">https://cloud.google.com/bigquery/</a></li>
 <li>Click on “Try it Free”</li>
 <li>It asks for credit card, but you get $300 free and it does not autorenew after the $300 credit is used,</li>
 </ul>
 <aside class="notes">
-<p>(OR CHANGE THIS IF SOME SORT OF OTHER ACCESS INFO)</p>
+<p>(<strong>OR CHANGE THIS IF SOME SORT OF OTHER ACCESS INFO</strong>)</p>
 </aside>
 </section>
 <section id="working-with-bq-gui" class="level2">
 <h2>Working with BQ gui</h2>
-<p>https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_status</p>
+<p><a href="https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_status" class="uri">https://bigquery.cloud.google.com/table/bigquery-public-data:san_francisco.bikeshare_status</a></p>
 </section>
 <section id="tutorial" class="level2">
 <h2>Tutorial</h2>
-<p>https://www.w3schools.com/sql/default.asp</p>
+<p><a href="https://www.w3schools.com/sql/default.asp" class="uri">https://www.w3schools.com/sql/default.asp</a></p>
 </section>
 </section>
 <section id="section-6" class="slide level1">
@@ -216,7 +200,7 @@
 <h2>Some annoying specific stuff about BQ</h2>
 </section>
 <section id="the" class="level2">
-<h2>the ;</h2>
+<h2>the <code>;</code></h2>
 <pre><code>SELECT * 
 FROM Customers;</code></pre>
 <p>VS</p>
@@ -224,7 +208,7 @@ FROM Customers;</code></pre>
 FROM Customers</code></pre>
 <aside class="notes">
 <ul>
-<li>Nearly all other sql implementations (and what students will see in the tutorial), end statements with a ;</li>
+<li>Nearly all other sql implementations (and what students will see in the tutorial), end statements with a <code>;</code></li>
 <li>BQ doesn’t</li>
 <li>btw, the CAPITALIZATION isn’t necessary :)</li>
 </ul>
@@ -240,9 +224,9 @@ SELECT *
 FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
 <aside class="notes">
 <ul>
-<li><p>Google was going to create their own sql that worked different :)</p></li>
-<li><p>It’s silly, but the way the table reference part, the “FROM” part, is written is different.</p></li>
-<li><p>So, now there’s the #standardSQL flag</p></li>
+<li>Google was going to create their own sql that worked different :)</li>
+<li>It’s silly, but the way the table reference part, the “FROM” part, is written is different.</li>
+<li>So, now there’s the <code>#standardSQL</code> flag</li>
 </ul>
 </aside>
 </section>
@@ -284,9 +268,10 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <section id="how-many-events-are-there" class="level2">
 <h2>How many events are there?</h2>
 <aside class="notes">
-<p>For the following slides, Wait on the question slide for a minute to give everyone a chance to try it. Then reveal the next slide with query.</p>
+<p>For the following slides, Wait on the question slide for a minute to give everyone a chance to try it.</p>
+<p>Then reveal the next slide with query.</p>
 <ul>
-<li>Optional: you can do these in groups and ask people to
+<li><p>Optional: you can do these in groups and ask people to</p>
 <ul>
 <li>report out</li>
 <li>share issues, false starts they ran into</li>
@@ -301,7 +286,8 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 SELECT count(*)
 FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <aside class="notes">
-<p>107,501,619 The point: you can use select * to actually answer questions.</p>
+<p>107,501,619</p>
+<p>The point: you can use <code>select *</code> to actually answer questions.</p>
 </aside>
 </section>
 <section id="how-many-stations-are-there" class="level2">
@@ -325,13 +311,18 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 SELECT min(time), max(time)
 FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <aside class="notes">
-<p>2013-08-29 12:06:01.000 UTC 2016-08-31 23:58:59.000 UTC</p>
+<ul>
+<li>2013-08-29 12:06:01.000 UTC<br />
+</li>
+<li>2016-08-31 23:58:59.000 UTC<br />
+</li>
+</ul>
 </aside>
 </section>
 <section id="how-many-bikes-does-station-90-have" class="level2">
 <h2>How many bikes does station 90 have?</h2>
 <aside class="notes">
-<p>Break into groups here. Give them a few minutes, have someone from each group screen share and present their query. If they don’t tell you, ask why they made the choices they made. I decided that a station’s total bikes would = docks_available + bikes_available.</p>
+<p>Break into groups here. Give them a few minutes, have someone from each group screen share and present their query. If they don’t tell you, ask why they made the choices they made. I decided that a station’s total bikes would <code>= docks_available + bikes_available</code>.</p>
 </aside>
 </section>
 <section id="section-11" class="level2">
@@ -341,7 +332,11 @@ SELECT station_id, (docks_available + bikes_available) as total_bikes
 FROM `bigquery-public-data.san_francisco.bikeshare_status`
 WHERE station_id = 90</code></pre>
 <aside class="notes">
-<p>Stuff to explore: - each station “has” different unique numbers of bikes [probably b/c e.g., docks are added to stations, etc, etc, etc] *** Next slides will help unpack what they find here ***</p>
+<p>Stuff to explore:</p>
+<ul>
+<li>each station “has” different unique numbers of bikes [probably b/c e.g., docks are added to stations, etc, etc, etc]</li>
+</ul>
+<p><strong>Next slides will help unpack what they find here</strong></p>
 </aside>
 </section>
 <section id="whats-up-with-that" class="level2">
@@ -358,26 +353,33 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`
 WHERE station_id = 90
 ORDER BY total_bikes</code></pre>
 <aside class="notes">
-<p>The point: - query returns 8916 results - but if ordered by total_bikes, can click “First” and “Last” to see what the values are</p>
+<p>The point:</p>
+<ul>
+<li>query returns 8916 results</li>
+<li>but if ordered by <code>total_bikes</code>, can click “First” and “Last” to see what the values are</li>
+</ul>
 </aside>
 </section>
 <section id="get-a-table-with-total_bikes-in-it" class="level2">
 <h2>Get a table with total_bikes in it</h2>
 <aside class="notes">
-<p>“Ok, so we don’t want to go clicking through 8900 results to figure out what the unique values for total_bikes for a station are.”&quot; - On this one, just show it</p>
+<p>“Ok, so we don’t want to go clicking through 8900 results to figure out what the unique values for total_bikes for a station are.”&quot;</p>
+<ul>
+<li>On this one, just show it</li>
+</ul>
 </aside>
 </section>
 <section id="section-13" class="level2">
 <h2></h2>
 <pre><code>#standardSQL
-    SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
-    FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
+SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <aside class="notes">
 <ul>
-<li>This is the query to create the total_bikes table (which is totally a view, but BQ is weird about views, something about legacy sql vs standard sql)</li>
+<li>This is the query to create the <code>total_bikes</code> table (which is totally a view, but BQ is weird about views, something about legacy sql vs standard sql)</li>
 <li>Do “Save Table”</li>
 <li>Window will pop up, need to have added a dataset to your project earlier, then enter dataset name and add a name for the table.</li>
-<li>I’m calling it total_bikes</li>
+<li>I’m calling it <code>total_bikes</code></li>
 </ul>
 </aside>
 </section>
@@ -387,7 +389,7 @@ ORDER BY total_bikes</code></pre>
 SELECT distinct (station_id), total_bikes
  FROM `ambient-cubist-185918.bike_trips_data.total_bikes`</code></pre>
 <aside class="notes">
-<p>This shows that you get multiple entries for each station_id b/c diff values of total bikes</p>
+<p>This shows that you get multiple entries for each <code>station_id</code> b/c diff values of total bikes</p>
 </aside>
 </section>
 <section id="section-15" class="level2">
@@ -408,7 +410,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 </section>
 <section id="independent-queries" class="level2">
 <h2>Independent Queries</h2>
-<p>https://www.w3schools.com/sql/default.asp</p>
+<p><a href="https://www.w3schools.com/sql/default.asp" class="uri">https://www.w3schools.com/sql/default.asp</a></p>
 <aside class="notes">
 <p>If there’s any time, break in groups to do whatever questions they come up with. Rotate between groups to see what folks are coming up with.</p>
 </aside>
@@ -424,9 +426,6 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <li>By running queries against (raw?) events</li>
 <li>Need a pipeline in place to capture these raw events</li>
 </ul>
-<aside class="notes">
-
-</aside>
 </section>
 </section>
 <section id="section-18" class="slide level1">
