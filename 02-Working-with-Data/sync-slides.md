@@ -319,19 +319,19 @@ The point:
 - but if ordered by `total_bikes`, can click "First" and "Last" to see what the values are
 :::
 
-## Get a table with total_bikes in it
+## Get a table with `total_bikes` in it
 
 ::: notes
-"Ok, so we don't want to go clicking through 8900 results to figure out what the unique values for total_bikes for a station are.""
+"Ok, so we don't want to go clicking through 8900 results to figure out what the unique values for `total_bikes` for a station are."
 
 - On this one, just show it
 :::
 
 ## 
 
-    #standardSQL
-    SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
-    FROM `bigquery-public-data.san_francisco.bikeshare_status`
+	#standardSQL
+	SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+	FROM `bigquery-public-data.san_francisco.bikeshare_status`
 
 ::: notes
 - This is the query to create the `total_bikes` table (which is totally a view, but BQ is weird about views, something about legacy sql vs standard sql)
@@ -358,7 +358,7 @@ This shows that you get multiple entries for each `station_id` b/c diff values o
 	WHERE station_id = 22
 
 ::: notes
-	This lets you explore each station's total number of bikes
+This lets you explore each station's total number of bikes
 :::
 
 ##
