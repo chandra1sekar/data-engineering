@@ -348,7 +348,8 @@ WHERE station_id = 90</code></pre>
 <section id="section-12" class="level2">
 <h2></h2>
 <pre><code>#standardSQL
-SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+SELECT station_id, docks_available, bikes_available, time, 
+(docks_available + bikes_available) as total_bikes
 FROM `bigquery-public-data.san_francisco.bikeshare_status`
 WHERE station_id = 90
 ORDER BY total_bikes</code></pre>

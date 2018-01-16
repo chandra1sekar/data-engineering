@@ -285,7 +285,8 @@ I decided that a station's total bikes would `= docks_available + bikes_availabl
 ##
 
 	#standardSQL
-	SELECT station_id, (docks_available + bikes_available) as total_bikes
+	SELECT station_id, 
+	(docks_available + bikes_available) as total_bikes
 	FROM `bigquery-public-data.san_francisco.bikeshare_status`
 	WHERE station_id = 90
 
@@ -306,7 +307,8 @@ Getitng into queries to help figure out the issue from last slide
 ##
 
 	#standardSQL
-	SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+	SELECT station_id, docks_available, bikes_available, time, 
+	(docks_available + bikes_available) as total_bikes
 	FROM `bigquery-public-data.san_francisco.bikeshare_status`
 	WHERE station_id = 90
     ORDER BY total_bikes
@@ -330,7 +332,8 @@ The point:
 ## 
 
 	#standardSQL
-	SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+	SELECT station_id, docks_available, bikes_available, time, 
+	(docks_available + bikes_available) as total_bikes
 	FROM `bigquery-public-data.san_francisco.bikeshare_status`
 
 ::: notes
@@ -361,11 +364,7 @@ This shows that you get multiple entries for each `station_id` b/c diff values o
 This lets you explore each station's total number of bikes
 :::
 
-##
 
-	#standardSQL
-	SELECT *
-	FROM `bigquery-public-data.san_francisco.bikeshare_status`
 
 ## Independent Queries
 
