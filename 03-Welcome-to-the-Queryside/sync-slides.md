@@ -278,10 +278,6 @@ Descending
     FROM `bigquery-public-data.san_francisco.bikeshare_status`'
 
 
-    bq query --use_legacy_sql=false '
-        SELECT count(*)
-        FROM
-           `bigquery-public-data.san_francisco.bikeshare_trips`'
 
 ::: notes
 107,501,619

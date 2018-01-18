@@ -294,13 +294,7 @@ sort | uniq -c | sort -gr | head -10</code></pre>
 <h2></h2>
 <pre><code>bq query --use_legacy_sql=false &#39;
 SELECT count(*)
-FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;
-
-
-bq query --use_legacy_sql=false &#39;
-    SELECT count(*)
-    FROM
-       `bigquery-public-data.san_francisco.bikeshare_trips`&#39;</code></pre>
+FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <aside class="notes">
 <p>107,501,619</p>
 <p>The point: you can use <code>select *</code> to actually answer questions.</p>
