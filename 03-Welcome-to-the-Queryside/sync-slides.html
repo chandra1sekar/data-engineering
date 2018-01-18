@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Week 03 - sync session">
+  <title>Fundamentals of Data Engineering</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/mids.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Fundamentals of Data Engineering</h1>
+  <h2 class="author">Week 03 - sync session</h2>
+  <img class="frontPageSlogan" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/datascience-at-berkeley.png"/>
+</section>
+
+<section class="slide level1">
+
+<ul>
+<li><p>go through how to get cli running to prep for week’s activities</p></li>
+<li>generate ideas (what do you know? what will you need to find out) for your questions for ## Questions</li>
+<li>Through this project, you will answer these questions:
+<ul>
+<li>What are the 5 most popular trips that you would call “commuter trips”?</li>
+<li>What are your recommendations for offers (justify based on your findings)?</li>
+</ul></li>
+<li>work on bq cli (from droplet)</li>
+<li><p>More complex queries</p></li>
+<li><p>jq &amp; cli activities to unwind data and find out stuff</p></li>
+</ul>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<section id="assignment-2" class="level2">
+<h2>Assignment 2</h2>
+</section>
+<section id="what-was-your-coolest-query" class="level2">
+<h2>What was your coolest query?</h2>
+<ul>
+<li>take a minute, be ready to present</li>
+</ul>
+<aside class="notes">
+<p>breakout</p>
+</aside>
+</section>
+<section id="whats-the-size-of-this-dataset-i.e.-how-many-trips" class="level2">
+<h2>What’s the size of this dataset? (i.e., how many trips)</h2>
+<p><code>983648</code></p>
+<pre><code>#standardSQL
+SELECT count(*) FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
+</section>
+<section id="what-is-the-earliest-start-time-and-latest-end-time-for-a-trip" class="level2">
+<h2>What is the earliest start time and latest end time for a trip?</h2>
+<p><code>2013-08-29 09:08:00</code> <code>2016-08-31 23:48:00</code></p>
+<pre><code>#standardSQL
+SELECT min(start_date) 
+FROM `bigquery-public-data.san_francisco.bikeshare_trips`
+
+#standardSQL
+SELECT max(end_date) 
+FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
+</section>
+<section id="how-many-bikes-are-there" class="level2">
+<h2>How many bikes are there?</h2>
+<p><code>700</code></p>
+<pre><code>#standardSQL
+SELECT count(distinct bike_number)
+FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
+</section>
+<section id="due-friday-pr" class="level2">
+<h2>Due Friday (PR)</h2>
+</section>
+<section id="housekeeping" class="level2">
+<h2>Housekeeping</h2>
+<ul>
+<li>Channel etiquette</li>
+</ul>
+</section>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<section id="activities-async-content" class="level2">
+<h2>Activities: async content</h2>
+</section>
+<section id="section-2" class="level2">
+<h2></h2>
+<ul>
+<li>You got started with lots of stuff this week</li>
+<li>Working with files: json, csv etc</li>
+</ul>
+</section>
+<section id="finding-stuff-out-about-your-data" class="level2">
+<h2>Finding stuff out about your data</h2>
+</section>
+<section id="go-to-your-droplet" class="level2">
+<h2>Go to your droplet</h2>
+<aside class="notes">
+<ul>
+<li>Instructor droplets ssh science <span class="citation" data-cites="165.227.30.165">@165.227.30.165</span> OR http://165.227.30.165:8000/</li>
+</ul>
+</aside>
+</section>
+<section id="can-work-from-your-terminal-or-terminal-in-jupyter" class="level2">
+<h2>Can work from your terminal or terminal in jupyter</h2>
+</section>
+<section id="whats-in-this-file" class="level2">
+<h2>What’s in this file?</h2>
+<p><code>head lp_data.csv</code></p>
+<p><code>tail lp_data.csv</code></p>
+<aside class="notes">
+<p>WHERE DO DATASETS GO?</p>
+<ul>
+<li>Lots of csvs and tsvs I get sent/access to have e.g., 17M rows</li>
+<li>I don’t want to have to open that or <code>cat</code> it or even <code>| less</code></li>
+</ul>
+</aside>
+</section>
+<section id="what-are-variables-in-here" class="level2">
+<h2>What are variables in here?</h2>
+<p><code>head -n1 lp_data.csv</code></p>
+<aside class="notes">
+<ul>
+<li>These are the columns in the dataset</li>
+<li>business_id,date,review_id,stars,text,type,user_id,cool,useful,funny</li>
+</ul>
+</aside>
+</section>
+<section id="how-many-entries" class="level2">
+<h2>How many entries?</h2>
+<p><code>cat lp_data.csv | wc -l</code></p>
+<aside class="notes">
+<ul>
+<li>100 rows</li>
+</ul>
+</aside>
+</section>
+<section id="how-about-sorting" class="level2">
+<h2>How about sorting?</h2>
+<p><code>cat lp_data.csv | sort</code></p>
+<aside class="notes">
+<ul>
+<li>it sorts by usage</li>
+<li>but it’s treating numbers weird</li>
+</ul>
+</aside>
+</section>
+<section id="take-a-look-at-what-options-there-are-for-sort" class="level2">
+<h2>Take a look at what options there are for sort</h2>
+<p><code>man sort</code></p>
+<aside class="notes">
+<ul>
+<li><p>Ask them to generate options</p>
+<p>-g, –general-numeric-sort compare according to general numerical value</p>
+-n, –numeric-sort compare according to string numerical value</li>
+</ul>
+</aside>
+</section>
+<section id="fix-so-sorting-correctly" class="level2">
+<h2>fix so sorting correctly</h2>
+<p><code>cat lp_data.csv | sort -g</code></p>
+<p><code>cat lp_data.csv | sort -n</code></p>
+</section>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<section id="find-out-which-topics-are-more-popular" class="level2">
+<h2>Find out which topics are more popular</h2>
+</section>
+<section id="what-have-we-got-in-this-file" class="level2">
+<h2>What have we got in this file?</h2>
+<p><code>head annot_fpid.json</code></p>
+<aside class="notes">
+<ul>
+<li>It will scroll all over the page,</li>
+<li>b/c it’s json, it’s just one line, so head is everything</li>
+</ul>
+</aside>
+</section>
+<section id="hmmm-what-now-jq" class="level2">
+<h2>Hmmm, what now? jq</h2>
+<p>pretty print the json</p>
+<p><code>cat annot_fpid.json | jq .</code></p>
+<aside class="notes">
+<ul>
+<li>There’s a slide for a jq reference at the end here, we’re just going to do a little in class</li>
+</ul>
+</aside>
+</section>
+<section id="just-the-terms" class="level2">
+<h2>Just the terms</h2>
+<p><code>cat annot_fpid.json | jq '.[][]'</code></p>
+<aside class="notes">
+<ul>
+<li></li>
+</ul>
+</aside>
+</section>
+<section id="remove-the-s" class="level2">
+<h2>Remove the “”s</h2>
+<p><code>cat annot_fpid.json | jq '.[][]' -r</code></p>
+<aside class="notes">
+<ul>
+<li></li>
+</ul>
+</aside>
+</section>
+<section id="can-we-sort-that" class="level2">
+<h2>Can we sort that?</h2>
+<p><code>cat annot_fpid.json | jq '.[][]' -r | sort</code></p>
+<aside class="notes">
+<ul>
+<li>Hmmm, there’s lots of repeated terms</li>
+</ul>
+</aside>
+</section>
+<section id="unique-values-only" class="level2">
+<h2>Unique values only</h2>
+<pre><code>cat annot_fpid.json | jq &#39;.[][]&#39; -r | 
+sort | uniq </code></pre>
+<aside class="notes">
+<ul>
+<li></li>
+</ul>
+</aside>
+</section>
+<section id="how-could-i-find-out-how-many-of-each-of-those-unique-values-there-are" class="level2">
+<h2>How could I find out how many of each of those unique values there are?</h2>
+<pre><code>cat annot_fpid.json | jq &#39;.[][]&#39; -r | 
+sort | uniq -c </code></pre>
+<aside class="notes">
+<ul>
+<li></li>
+</ul>
+</aside>
+</section>
+<section id="now-how-could-i-sort-by-that" class="level2">
+<h2>Now, how could I sort by that?</h2>
+<pre><code>cat annot_fpid.json | jq &#39;.[][]&#39; -r | 
+sort | uniq -c | sort -g</code></pre>
+<p>Ascending</p>
+<pre><code>cat annot_fpid.json | jq &#39;.[][]&#39; -r | 
+sort | uniq -c | sort -gr</code></pre>
+<p>Descending</p>
+<aside class="notes">
+<ul>
+<li></li>
+</ul>
+</aside>
+</section>
+<section id="so-what-are-the-top-ten-terms" class="level2">
+<h2>So, what are the top ten terms?</h2>
+<pre><code>cat annot_fpid.json | jq &#39;.[][]&#39; -r | 
+sort | uniq -c | sort -gr | head -10</code></pre>
+<aside class="notes">
+<ul>
+<li></li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<section id="bq-cli" class="level2">
+<h2>bq cli</h2>
+<ul>
+<li>How to set up</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>This will be set up on the droplets</li>
+</ul>
+</aside>
+</section>
+<section id="section-5" class="level2">
+<h2></h2>
+<pre><code>bq query --use_legacy_sql=false &#39;
+SELECT count(*)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;
+
+
+bq query --use_legacy_sql=false &#39;
+    SELECT count(*)
+    FROM
+       `bigquery-public-data.san_francisco.bikeshare_trips`&#39;</code></pre>
+<aside class="notes">
+<p>107,501,619</p>
+<p>The point: you can use <code>select *</code> to actually answer questions.</p>
+</aside>
+</section>
+<section id="how-many-stations-are-there" class="level2">
+<h2>How many stations are there?</h2>
+</section>
+<section id="section-6" class="level2">
+<h2></h2>
+<pre><code>bq query --use_legacy_sql=false &#39;
+SELECT count(distinct station_id)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
+<aside class="notes">
+<p>The point: how to count unique Answer: something like 75</p>
+</aside>
+</section>
+<section id="how-long-a-time-period-do-these-data-cover" class="level2">
+<h2>How long a time period do these data cover?</h2>
+</section>
+<section id="section-7" class="level2">
+<h2></h2>
+<pre><code>bq query --use_legacy_sql=false &#39;
+SELECT min(time), max(time)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
+<aside class="notes">
+<ul>
+<li>2013-08-29 12:06:01.000 UTC<br />
+</li>
+<li>2016-08-31 23:58:59.000 UTC<br />
+</li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="generate-ideas" class="level2">
+<h2>Generate Ideas</h2>
+<ul>
+<li>What do you know?</li>
+<li>What will you need to find out?</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>breakout</li>
+<li>get them going on questions for project like:
+<ul>
+<li>What’s a trip?</li>
+<li>What’s a commuter trip?</li>
+<li>etc</li>
+</ul></li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="big-ideas-new-topic" class="slide level1">
+<h1>Big Ideas: New Topic</h1>
+</section>
+<section id="introducerevisit-project-this-weeks-assignment-on-new-topic" class="slide level1">
+<h1>Introduce/Revisit Project &amp; this week’s assignment on New Topic</h1>
+</section>
+<section id="activities-new-topic" class="slide level1">
+<h1>Activities: New Topic</h1>
+</section>
+<section id="wrap-up" class="slide level1">
+<h1>Wrap Up</h1>
+<section id="summary" class="level2">
+<h2>Summary</h2>
+</section>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<section id="extras" class="level2">
+<h2>Extras</h2>
+</section>
+<section id="resources" class="level2">
+<h2>Resources</h2>
+</section>
+<section id="sed-and-awk" class="level2">
+<h2>sed and awk</h2>
+<p>http://www.catonmat.net/blog/awk-one-liners-explained-part-one/ http://www.catonmat.net/blog/sed-one-liners-explained-part-one/</p>
+</section>
+<section id="jq" class="level2">
+<h2>jq</h2>
+<p>https://stedolan.github.io/jq/tutorial/</p>
+</section>
+<section id="advanced-options" class="level2">
+<h2>Advanced options</h2>
+</section>
+<section id="sort-by-product_name" class="level2">
+<h2>Sort by ‘product_name’</h2>
+<p><code>cat lp_data.csv | awk -F',' '{ print $2,$1 }' | sort</code></p>
+<aside class="notes">
+<ul>
+<li><p>Put in extras for add ons or activities if folks finish early</p></li>
+<li>This switches the columns and sorts on LP title</li>
+<li>but you find out that some LPs have “”s around the titles</li>
+</ul>
+</aside>
+</section>
+<section id="fix-the-s-issue" class="level2">
+<h2>Fix the “”s issue</h2>
+<p><code>cat lp_data.csv  | awk -F',' '{ print $2,$1 }' | sed 's/&quot;//' | sort | less</code></p>
+<aside class="notes">
+<ul>
+<li>the sed part here takes out the “”</li>
+<li>and then we sort based on title</li>
+</ul>
+</aside>
+</section>
+<section id="section-10" class="level2">
+<h2></h2>
+<p><code>command</code></p>
+<aside class="notes">
+<ul>
+<li>lala</li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="section-11" class="slide level1">
+<h1></h1>
+<p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Transition style
+        transition: 'linear', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
