@@ -12,7 +12,7 @@ author: Week 03 - sync session
   * What are the 5 most popular trips that you would call "commuter trips"?
   * What are your recommendations for offers (justify based on your findings)?
 
-- work on bq cli (from droplet)
+- work on bq cli (using docker)
 - More complex queries
 
 - jq & cli activities to unwind data and find out stuff
@@ -80,17 +80,25 @@ breakout
 
 ## Finding stuff out about your data
 
-## Go to your droplet
+## Download Datasets
+
+Save into your `~/w205` directory
 
 ::: notes
-- Instructor droplets
-ssh science @165.227.30.165
-OR
-http://165.227.30.165:8000/
+make sure they go into `~/w205`
 :::
 
-## Can work from your terminal or terminal in jupyter
+## Start a container
+```
+docker run -it --rm -v ~/w205:/w205 midsw205/base bash
+```
 
+::: notes
+- the volume option works as-is on mac/linux, but might need to be adjusted
+  for windows depending on which shell they're using
+- can also run this from a student droplet if students are still having docker
+  issues
+:::
 
 ## What's in this file?
 
@@ -264,11 +272,26 @@ Descending
 
 ## bq cli
 
-- How to set up
+## setup
+
+(from your mids container)
+
+- auth the GCP client
+  ```
+  gcloud init
+  ```
+  and copy/paste the link
+
+- associate `bq` with a project
+  ```
+  bq
+  ```
+  and select project if asked
 
 ::: notes
-
-- This will be set up on the droplets
+- The `gcloud` and `bq` cli tools are already installed in the `midsw205/base`
+  docker image
+- `gcloud init` will print an oauth link that needs to be copied over to a browser
 :::
 
 ##

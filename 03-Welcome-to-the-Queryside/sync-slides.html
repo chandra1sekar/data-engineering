@@ -43,7 +43,7 @@
 <li>What are the 5 most popular trips that you would call “commuter trips”?</li>
 <li>What are your recommendations for offers (justify based on your findings)?</li>
 </ul></li>
-<li>work on bq cli (from droplet)</li>
+<li>work on bq cli (using docker)</li>
 <li><p>More complex queries</p></li>
 <li><p>jq &amp; cli activities to unwind data and find out stuff</p></li>
 </ul>
@@ -111,16 +111,22 @@ FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
 <section id="finding-stuff-out-about-your-data" class="level2">
 <h2>Finding stuff out about your data</h2>
 </section>
-<section id="go-to-your-droplet" class="level2">
-<h2>Go to your droplet</h2>
+<section id="download-datasets" class="level2">
+<h2>Download Datasets</h2>
+<p>Save into your <code>~/w205</code> directory</p>
 <aside class="notes">
-<ul>
-<li>Instructor droplets ssh science <span class="citation" data-cites="165.227.30.165">@165.227.30.165</span> OR http://165.227.30.165:8000/</li>
-</ul>
+<p>make sure they go into <code>~/w205</code></p>
 </aside>
 </section>
-<section id="can-work-from-your-terminal-or-terminal-in-jupyter" class="level2">
-<h2>Can work from your terminal or terminal in jupyter</h2>
+<section id="start-a-container" class="level2">
+<h2>Start a container</h2>
+<pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base bash</code></pre>
+<aside class="notes">
+<ul>
+<li>the volume option works as-is on mac/linux, but might need to be adjusted for windows depending on which shell they’re using</li>
+<li>can also run this from a student droplet if students are still having docker issues</li>
+</ul>
+</aside>
 </section>
 <section id="whats-in-this-file" class="level2">
 <h2>What’s in this file?</h2>
@@ -281,12 +287,22 @@ sort | uniq -c | sort -gr | head -10</code></pre>
 <h1></h1>
 <section id="bq-cli" class="level2">
 <h2>bq cli</h2>
+</section>
+<section id="setup" class="level2">
+<h2>setup</h2>
+<p>(from your mids container)</p>
 <ul>
-<li>How to set up</li>
+<li><p>auth the GCP client</p>
+<pre><code>gcloud init</code></pre>
+<p>and copy/paste the link</p></li>
+<li><p>associate <code>bq</code> with a project</p>
+<pre><code>bq</code></pre>
+<p>and select project if asked</p></li>
 </ul>
 <aside class="notes">
 <ul>
-<li>This will be set up on the droplets</li>
+<li>The <code>gcloud</code> and <code>bq</code> cli tools are already installed in the <code>midsw205/base</code> docker image</li>
+<li><code>gcloud init</code> will print an oauth link that needs to be copied over to a browser</li>
 </ul>
 </aside>
 </section>
