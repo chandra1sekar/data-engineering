@@ -80,14 +80,6 @@ breakout
 
 ## Finding stuff out about your data
 
-## Download Datasets
-
-Save into your `~/w205` directory
-
-::: notes
-make sure they go into `~/w205`
-:::
-
 ## Start a container
 ```
 docker run -it --rm -v ~/w205:/w205 midsw205/base bash
@@ -98,6 +90,19 @@ docker run -it --rm -v ~/w205:/w205 midsw205/base bash
   for windows depending on which shell they're using
 - can also run this from a student droplet if students are still having docker
   issues
+:::
+
+## Download Datasets
+
+Save data into your `w205` directory
+```
+curl -L -o annot_fpid.json https://goo.gl/Acndkc
+curl -L -o lp_data.csv https://goo.gl/Noxx26
+```
+
+::: notes
+make sure they go into `~/w205` on the laptop
+(equivalently `/w205` in a container)
 :::
 
 ## What's in this file?
