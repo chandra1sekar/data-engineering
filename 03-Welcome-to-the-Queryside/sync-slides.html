@@ -33,22 +33,19 @@
   <img class="frontPageSlogan" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/datascience-at-berkeley.png"/>
 </section>
 
-<section class="slide level1">
-
+<section id="section" class="slide level1">
+<h1></h1>
+<section id="overview" class="level2">
+<h2>Overview</h2>
 <ul>
-<li><p>go through how to get cli running to prep for week’s activities</p></li>
-<li>generate ideas (what do you know? what will you need to find out) for your questions for ## Questions</li>
-<li>Through this project, you will answer these questions:
-<ul>
-<li>What are the 5 most popular trips that you would call “commuter trips”?</li>
-<li>What are your recommendations for offers (justify based on your findings)?</li>
-</ul></li>
-<li>work on bq cli (using docker)</li>
-<li><p>More complex queries</p></li>
-<li><p>jq &amp; cli activities to unwind data and find out stuff</p></li>
+<li>Go over Assignment 2 results</li>
+<li>Dive into command line tools for figuring out what you have in datasets</li>
+<li>Docker for setting up BigQuery from the command line</li>
+<li>What’s up next?</li>
 </ul>
 </section>
-<section id="section" class="slide level1">
+</section>
+<section id="section-1" class="slide level1">
 <h1></h1>
 <section id="assignment-2" class="level2">
 <h2>Assignment 2</h2>
@@ -96,12 +93,12 @@ FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
 </ul>
 </section>
 </section>
-<section id="section-1" class="slide level1">
+<section id="section-2" class="slide level1">
 <h1></h1>
 <section id="activities-async-content" class="level2">
 <h2>Activities: async content</h2>
 </section>
-<section id="section-2" class="level2">
+<section id="section-3" class="level2">
 <h2></h2>
 <ul>
 <li>You got started with lots of stuff this week</li>
@@ -135,7 +132,6 @@ curl -L -o lp_data.csv https://goo.gl/Noxx26</code></pre>
 <p><code>head lp_data.csv</code></p>
 <p><code>tail lp_data.csv</code></p>
 <aside class="notes">
-<p>WHERE DO DATASETS GO?</p>
 <ul>
 <li>Lots of csvs and tsvs I get sent/access to have e.g., 17M rows</li>
 <li>I don’t want to have to open that or <code>cat</code> it or even <code>| less</code></li>
@@ -146,10 +142,7 @@ curl -L -o lp_data.csv https://goo.gl/Noxx26</code></pre>
 <h2>What are variables in here?</h2>
 <p><code>head -n1 lp_data.csv</code></p>
 <aside class="notes">
-<ul>
-<li>These are the columns in the dataset</li>
-<li>business_id,date,review_id,stars,text,type,user_id,cool,useful,funny</li>
-</ul>
+
 </aside>
 </section>
 <section id="how-many-entries" class="level2">
@@ -188,7 +181,7 @@ curl -L -o lp_data.csv https://goo.gl/Noxx26</code></pre>
 <p><code>cat lp_data.csv | sort -n</code></p>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="find-out-which-topics-are-more-popular" class="level2">
 <h2>Find out which topics are more popular</h2>
@@ -285,7 +278,7 @@ sort | uniq -c | sort -gr | head -10</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="bq-cli" class="level2">
 <h2>bq cli</h2>
@@ -308,7 +301,7 @@ sort | uniq -c | sort -gr | head -10</code></pre>
 </ul>
 </aside>
 </section>
-<section id="section-5" class="level2">
+<section id="section-6" class="level2">
 <h2></h2>
 <pre><code>bq query --use_legacy_sql=false &#39;
 SELECT count(*)
@@ -321,7 +314,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <section id="how-many-stations-are-there" class="level2">
 <h2>How many stations are there?</h2>
 </section>
-<section id="section-6" class="level2">
+<section id="section-7" class="level2">
 <h2></h2>
 <pre><code>bq query --use_legacy_sql=false &#39;
 SELECT count(distinct station_id)
@@ -333,7 +326,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <section id="how-long-a-time-period-do-these-data-cover" class="level2">
 <h2>How long a time period do these data cover?</h2>
 </section>
-<section id="section-7" class="level2">
+<section id="section-8" class="level2">
 <h2></h2>
 <pre><code>bq query --use_legacy_sql=false &#39;
 SELECT min(time), max(time)
@@ -348,7 +341,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="generate-ideas" class="level2">
 <h2>Generate Ideas</h2>
@@ -359,8 +352,19 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <aside class="notes">
 <ul>
 <li>breakout</li>
-<li>get them going on questions for project like:
+<li>Generate Ideas = get them going on generating questions for project</li>
+<li>If they don’t come up with anything, ask:
+<ol type="1">
+<li>What do you know?</li>
+</ol>
 <ul>
+<li>i.e., what variables do you have? what do they mean?</li>
+</ul>
+<ol start="2" type="1">
+<li>What will you need to find out?</li>
+</ol>
+<ul>
+<li>i.e., how to use those variables in some combo to figure out:</li>
 <li>What’s a trip?</li>
 <li>What’s a commuter trip?</li>
 <li>etc</li>
@@ -369,25 +373,26 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </aside>
 </section>
 </section>
-<section id="big-ideas-new-topic" class="slide level1">
-<h1>Big Ideas: New Topic</h1>
-</section>
-<section id="introducerevisit-project-this-weeks-assignment-on-new-topic" class="slide level1">
-<h1>Introduce/Revisit Project &amp; this week’s assignment on New Topic</h1>
-</section>
-<section id="activities-new-topic" class="slide level1">
-<h1>Activities: New Topic</h1>
-</section>
-<section id="wrap-up" class="slide level1">
-<h1>Wrap Up</h1>
+<section id="section-10" class="slide level1">
+<h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
+<ul>
+<li>Command line tools and jq to dive into your data</li>
+<li>BigQuery from the command line</li>
+<li>Idiomatic docker (1st pass)</li>
+</ul>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
 <section id="extras" class="level2">
 <h2>Extras</h2>
+<aside class="notes">
+<ul>
+<li>All of this is stuff you can use or not.</li>
+</ul>
+</aside>
 </section>
 <section id="resources" class="level2">
 <h2>Resources</h2>
@@ -424,17 +429,8 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </ul>
 </aside>
 </section>
-<section id="section-10" class="level2">
-<h2></h2>
-<p><code>command</code></p>
-<aside class="notes">
-<ul>
-<li>lala</li>
-</ul>
-</aside>
 </section>
-</section>
-<section id="section-11" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

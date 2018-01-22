@@ -5,17 +5,13 @@ author: Week 03 - sync session
 
 ---
 
-- go through how to get cli running to prep for week's activities
+#
 
-- generate ideas (what do you know? what will you need to find out) for your questions for ## Questions
-- Through this project, you will answer these questions: 
-  * What are the 5 most popular trips that you would call "commuter trips"?
-  * What are your recommendations for offers (justify based on your findings)?
-
-- work on bq cli (using docker)
-- More complex queries
-
-- jq & cli activities to unwind data and find out stuff
+## Overview
+- Go over Assignment 2 results
+- Dive into command line tools for figuring out what you have in datasets
+- Docker for setting up BigQuery from the command line
+- What's up next?
 
 # 
 
@@ -112,7 +108,6 @@ make sure they go into `~/w205` on the laptop
 `tail lp_data.csv`
 
 ::: notes
-WHERE DO DATASETS GO?
 
 - Lots of csvs and tsvs I get sent/access to have e.g., 17M rows
 - I don't want to have to open that or `cat` it or even `| less`
@@ -124,8 +119,6 @@ WHERE DO DATASETS GO?
 
 ::: notes
 
-- These are the columns in the dataset
-- business_id,date,review_id,stars,text,type,user_id,cool,useful,funny
 
 :::
 
@@ -351,20 +344,32 @@ Answer: something like 75
 ::: notes
 
 - breakout
-- get them going on questions for project like:
-  * What's a trip?
-  * What's a commuter trip?
-  * etc
+- Generate Ideas = get them going on generating questions for project 
+- If they don't come up with anything, ask:
+  1. What do you know?
+    * i.e., what variables do you have? what do they mean? 
+  2. What will you need to find out?
+    * i.e., how to use those variables in some combo to figure out:
+    * What's a trip?
+    * What's a commuter trip?
+    * etc
 :::
 
-# Big Ideas: New Topic
-# Introduce/Revisit Project & this week's assignment on New Topic
-# Activities: New Topic
-# Wrap Up
+#
 ## Summary
+- Command line tools and jq to dive into your data
+- BigQuery from the command line
+- Idiomatic docker (1st pass)
+
+
+
 
 #
 ## Extras
+
+::: notes
+- All of this is stuff you can use or not.
+:::
 
 ## Resources
 
@@ -402,14 +407,6 @@ https://stedolan.github.io/jq/tutorial/
 - and then we sort based on title
 :::
 
-## 
-
-`command`
-
-::: notes
-
-- lala
-:::
 
 
 
