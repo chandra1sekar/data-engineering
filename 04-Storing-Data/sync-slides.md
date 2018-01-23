@@ -86,6 +86,23 @@ author: Week 04 - sync session: Storing Data
 think through following logic of pros & cons in videos, for making recommendations for GoBike
 :::
 
+## Docker
+
+::: notes
+- slides on basic docker commands, walk them through it
+docker run something
+docker ps (see what's running)
+docker ps -a
+docker run -d something (run in background)
+
+:::
+
+## Run docker from localhost
+::: notes
+:::
+
+
+
 # 
 
 ## Big Ideas & New Topic Activities
