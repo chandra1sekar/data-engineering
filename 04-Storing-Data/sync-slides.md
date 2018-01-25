@@ -1,5 +1,4 @@
 ---
-
 title: Fundamentals of Data Engineering
 author: Week 04 - sync session: Storing Data
 ...
@@ -7,6 +6,19 @@ author: Week 04 - sync session: Storing Data
 ---
 
 
+#
+## While we're getting started
+
+- Review your Project Questions 
+- Get ready to share
+
+::: notes
+I've been following this at about 5 after with a breakout.
+- Check in with each group on their solution to the assignment
+- Answer questions as people have them on what they had trouble with
+:::
+
+#
 ## Overview
 - Go over Assignment 3 results
 - 
@@ -16,12 +28,31 @@ author: Week 04 - sync session: Storing Data
 
 # 
 
-## Assignment 3 
-## Few people/groups present
-## Our solution
+## Our Project Questions
+- What is a trip?
+- What are the most common trips?
+- How does this differ based on trip type (commuter vs all)?
+- What is a commuter trip?
+
+::: notes
+- What is a commuter trip?
+  * A trip during rush hour
+  * Write a query to determine if a trip happens from 7-9 am or 4-7 pm. (or how many trips do...)
+:::
+
+
 ## Due Friday (PR)
-## Where are we in project (ie. how progressing to end it)
+
+
+
+
 ## Housekeeping
+
+- Class flow
+
+:::notes
+The following few slides are just reviewing the flow of when things are due and what readings/videos go with what.
+:::
 
 ## Between Class 3 & Class 4
 
@@ -30,7 +61,7 @@ author: Week 04 - sync session: Storing Data
 > - Assignment 03
 
 
-## Class 4
+## Class 4 (i.e., today)
 
 > - Review Assignment 03, questions, where did you hit a wall?
 > - Some lectur-ish stuff/activities on Assignment 04/Week 4 async topic
@@ -44,49 +75,42 @@ author: Week 04 - sync session: Storing Data
 > - Readings in Week 4 syllabus
 > - Assignment 04
 
+## Where are we in project (ie. how progressing to end it)
 
-# Highlight async Ideas/Concepts
-## Where are we in the pipeline
-
-![](images/pipeline-overall.svg)
-
-## Immutability
-
-- Prefer raw data
-- Better able to reverse your process
-- Keep your data (HDFS, cold storage in AWS etc)
-- Kafka - kappa architecture, storing raw events in message queue 
-  * unpack why that's different from usual - activity?
+- Assignment 4: Answer your Project Questions
+- Assignment 5: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.
 
 ::: notes
-- What are raw data
-- How can you tell you have it?
+use bigquery or bq cli for assignment 4
 :::
 
 
+# 
 
-# Activities from async content
+## Need to do command line commit, branch and PR 
 
 ## Athena & AWS cli tool (aws)
 
 ::: notes
 - watched video on it week 3 async
+*** SAVE FOR WEEK 5
 :::
 
-## aggregating queries
-- Recalculate vs
-- Precompute and warehouse
-- Expense
-- 
+
+
+
+#
+## Docker: Where am I?
 
 ::: notes
-- watched video on it week 3 async
-- can we do it with hdfs?
-- *** With the query project - do you want to precompute or recalculate? how to do both (have precompute but not recalculate) with sql?
-think through following logic of pros & cons in videos, for making recommendations for GoBike
+By week 4, they should have watched this, so ***need an activity*** to use it, not just walk them through
+
+Activity: something with docker compose?
+Also: Where the heck am I activity
 :::
 
-## Docker
+
+## Basic commands
 
 ::: notes
 - slides on basic docker commands, walk them through it
@@ -97,25 +121,49 @@ docker run -d something (run in background)
 
 :::
 
-## Run docker from localhost
+## Clean up docker 
 ::: notes
+docker rm -f <name-of-container>
 :::
 
 
+## Idiomatic docker
 
-# 
-
-## Big Ideas & New Topic Activities
-
-## Jupyter Notebooks
-
-- what to do to get started
-- some viz 
 
 ::: notes
-run it in the container again (like I do on elias? on fwf?)
+I hope some of this simplifies when we start using the containers to _just_ run a command... i.e.,
+`docker run [<opts>] <image> [<command>]`
+... e.g., 
+ME: check this query for backticks from bq cli sql
+`docker run -it --rm midsw205/base bq query --use_legacy_sql=false 'select count(*) from mytable'`
+in one go (edited)
+
+then they're only "in" one place
 :::
 
+
+## Docker compose
+
+- What is docker compose?
+
+## Docker compose .yml file
+
+
+::: notes
+Save the following snippet as `~/w205/kafka/docker-compose.yml` on your host
+filesystem
+:::
+
+## Docker compose spin things up
+
+- `cd ~/w205/kafka`
+- `docker-compose up -d`
+- `docker-compose ps`
+
+::: notes
+- This is the start of spinning up things that will lead to projects 2&3
+- Have them go through on command line, talk about what is happening.
+:::
 
 #
 ## Summary
@@ -132,7 +180,16 @@ md works here
 # 
 
 ## Extras
+
 ## Jupyter Notebook shortcut link
+## Jupyter Notebooks
+
+- what to do to get started
+- some viz 
+
+::: notes
+run it in the container again (like I do on elias? on fwf?)
+:::
 
 
 #
