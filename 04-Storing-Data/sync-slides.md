@@ -89,12 +89,51 @@ use bigquery or bq cli for assignment 4
 
 ## Need to do command line commit, branch and PR 
 
-## Athena & AWS cli tool (aws)
+# Creating a GitHub Pull-Request(PR)
 
-::: notes
-- watched video on it week 3 async
-*** SAVE FOR WEEK 5
-:::
+## From the command-line
+
+First, clone a repo from GitHub
+
+    git clone https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+    cd assignment-02-htmartin
+
+then create a branch to work from
+
+    git branch my-cool-feature
+
+and switch to that branch
+
+    git checkout my-cool-feature
+
+make changes to code
+
+    vi README.md
+
+commit those changes
+
+    git commit -m'updated README' README.md
+
+push those up to GitHub
+
+    git push origin my-cool-feature
+
+
+Note that if this is the first time you've pushed to the remote
+`my-cool-feature` branch, then this command will automatically _create_ that
+branch in your github repo and then push your changes to it.
+
+## From the GitHub Web-UI
+
+Select "New Pull-Request"
+
+Select branches so that you are "Requesting to merge changes from `my-cool-feature` branch _into_ `master`."
+
+Select your instructor(s) to review.
+
+Submit.
+
+
 
 
 

@@ -126,13 +126,32 @@
 <section id="need-to-do-command-line-commit-branch-and-pr" class="level2">
 <h2>Need to do command line commit, branch and PR</h2>
 </section>
-<section id="athena-aws-cli-tool-aws" class="level2">
-<h2>Athena &amp; AWS cli tool (aws)</h2>
-<aside class="notes">
-<ul>
-<li>watched video on it week 3 async *** SAVE FOR WEEK 5</li>
-</ul>
-</aside>
+</section>
+<section id="creating-a-github-pull-requestpr" class="slide level1">
+<h1>Creating a GitHub Pull-Request(PR)</h1>
+<section id="from-the-command-line" class="level2">
+<h2>From the command-line</h2>
+<p>First, clone a repo from GitHub</p>
+<pre><code>git clone https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+cd assignment-02-htmartin</code></pre>
+<p>then create a branch to work from</p>
+<pre><code>git branch my-cool-feature</code></pre>
+<p>and switch to that branch</p>
+<pre><code>git checkout my-cool-feature</code></pre>
+<p>make changes to code</p>
+<pre><code>vi README.md</code></pre>
+<p>commit those changes</p>
+<pre><code>git commit -m&#39;updated README&#39; README.md</code></pre>
+<p>push those up to GitHub</p>
+<pre><code>git push origin my-cool-feature</code></pre>
+<p>Note that if this is the first time you’ve pushed to the remote <code>my-cool-feature</code> branch, then this command will automatically <em>create</em> that branch in your github repo and then push your changes to it.</p>
+</section>
+<section id="from-the-github-web-ui" class="level2">
+<h2>From the GitHub Web-UI</h2>
+<p>Select “New Pull-Request”</p>
+<p>Select branches so that you are “Requesting to merge changes from <code>my-cool-feature</code> branch <em>into</em> <code>master</code>.”</p>
+<p>Select your instructor(s) to review.</p>
+<p>Submit.</p>
 </section>
 </section>
 <section id="section-4" class="slide level1">
