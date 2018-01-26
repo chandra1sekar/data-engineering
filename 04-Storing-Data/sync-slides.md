@@ -1,6 +1,6 @@
 ---
 title: Fundamentals of Data Engineering
-author: Week 04 - sync session: Storing Data
+author: Week 04 - sync session
 ...
 
 ---
