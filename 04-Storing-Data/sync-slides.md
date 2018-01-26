@@ -146,14 +146,15 @@ use bigquery or bq cli for assignment 4
 - How do we find our way around with Docker?
 
 ::: notes
-docker run -it --rm -p 8888:8888 -v`pwd`:/tmartin midsw205/base:latest
+docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 
 :::
 
 ## Run the regular container
 
-    docker run -it --rm -p 8888:8888 -v`pwd`:/tmartin midsw205/base:latest
-
+```
+docker run -it --rm -v ~/w205:/w205 midsw205/base bash
+```
 
 ## What conatiners are running right now?
 
@@ -200,7 +201,10 @@ docker rm -f <name-of-container>
 - exit container
 - from prompt 
 
-    docker run -it --rm -p 8888:8888 -v`pwd`:/tmartin midsw205/base:latest pwd
+```
+docker run -it --rm -v ~/w205:/w205 midsw205/base pwd
+```
+ 
 
 
 

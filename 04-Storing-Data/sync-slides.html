@@ -192,12 +192,12 @@ cd assignment-02-htmartin</code></pre>
 <li>How do we find our way around with Docker?</li>
 </ul>
 <aside class="notes">
-<p>docker run -it –rm -p 8888:8888 -v<code>pwd</code>:/tmartin midsw205/base:latest</p>
+<p>docker run -it –rm -v ~/w205:/w205 midsw205/base bash</p>
 </aside>
 </section>
 <section id="run-the-regular-container" class="level2">
 <h2>Run the regular container</h2>
-<pre><code>docker run -it --rm -p 8888:8888 -v`pwd`:/tmartin midsw205/base:latest</code></pre>
+<pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base bash</code></pre>
 </section>
 <section id="what-conatiners-are-running-right-now" class="level2">
 <h2>What conatiners are running right now?</h2>
@@ -244,9 +244,9 @@ cd assignment-02-htmartin</code></pre>
 <ul>
 <li><p>start the container -<code>pwd</code> in midsw205/base:latest</p></li>
 <li>exit container</li>
-<li><p>from prompt</p>
-<p>docker run -it –rm -p 8888:8888 -v<code>pwd</code>:/tmartin midsw205/base:latest pwd</p></li>
+<li><p>from prompt</p></li>
 </ul>
+<pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base pwd</code></pre>
 <aside class="notes">
 <p>I hope some of this simplifies when we start using the containers to <em>just</em> run a command… i.e., <code>docker run [&lt;opts&gt;] &lt;image&gt; [&lt;command&gt;]</code> … e.g., ME: check this query for backticks from bq cli sql <code>docker run -it --rm midsw205/base bq query --use_legacy_sql=false 'select count(*) from mytable'</code> in one go (edited)</p>
 <p>then they’re only “in” one place</p>
