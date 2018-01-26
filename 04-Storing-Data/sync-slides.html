@@ -42,7 +42,7 @@
 <li>Get ready to share</li>
 </ul>
 <aside class="notes">
-<p>I’ve been following this at about 5 after with a breakout. - Check in with each group on their solution to the assignment - Answer questions as people have them on what they had trouble with</p>
+<p>Breakout at about 5 after the hour: - Check in with each group on their solution to the assignment - Answer questions as people have them on what they had trouble with - Usually takes 10-20 minutes</p>
 </aside>
 </section>
 </section>
@@ -52,16 +52,15 @@
 <h2>Overview</h2>
 <ul>
 <li>Go over Assignment 3 results</li>
-<li></li>
-<li></li>
-<li></li>
+<li>PRs from the command line</li>
+<li>Docker compose, beginning</li>
 </ul>
 </section>
 </section>
 <section id="section-2" class="slide level1">
 <h1></h1>
-<section id="our-project-questions" class="level2">
-<h2>Our Project Questions</h2>
+<section id="assignment-3-our-project-questions" class="level2">
+<h2>Assignment 3: Our Project Questions</h2>
 <ul>
 <li>What is a trip?</li>
 <li>What are the most common trips?</li>
@@ -87,7 +86,9 @@
 <li>Class flow</li>
 </ul>
 <aside class="notes">
-<p>The following few slides are just reviewing the flow of when things are due and what readings/videos go with what.</p>
+<ul>
+<li>The following few slides review the flow of when things are due and what readings/videos go with which week.</li>
+</ul>
 </aside>
 </section>
 <section id="between-class-3-class-4" class="level2">
@@ -116,8 +117,8 @@
 <li class="fragment">Assignment 04</li>
 </ul>
 </section>
-<section id="where-are-we-in-project-ie.-how-progressing-to-end-it" class="level2">
-<h2>Where are we in project (ie. how progressing to end it)</h2>
+<section id="where-are-we-in-the-query-project" class="level2">
+<h2>Where are we in the Query Project?</h2>
 <ul>
 <li>Assignment 4: Answer your Project Questions</li>
 <li>Assignment 5: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.</li>
@@ -129,43 +130,123 @@
 </section>
 <section id="section-3" class="slide level1">
 <h1></h1>
-<section id="need-to-do-command-line-commit-branch-and-pr" class="level2">
-<h2>Need to do command line commit, branch and PR</h2>
+<section id="creating-a-github-pull-requestpr" class="level2">
+<h2>Creating a GitHub Pull-Request(PR)</h2>
+<ul>
+<li>From the command-line</li>
+</ul>
 </section>
-<section id="athena-aws-cli-tool-aws" class="level2">
-<h2>Athena &amp; AWS cli tool (aws)</h2>
+<section id="clone-a-repo-from-github" class="level2">
+<h2>Clone a repo from GitHub</h2>
+<pre><code>git clone https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+cd assignment-02-htmartin</code></pre>
+</section>
+<section id="create-a-branch-to-work-from" class="level2">
+<h2>Create a branch to work from</h2>
+<pre><code>git branch my-cool-feature</code></pre>
+</section>
+<section id="switch-to-that-branch" class="level2">
+<h2>Switch to that branch</h2>
+<pre><code>git checkout my-cool-feature</code></pre>
+</section>
+<section id="make-changes-to-code" class="level2">
+<h2>Make changes to code</h2>
+<pre><code>vi README.md</code></pre>
 <aside class="notes">
 <ul>
-<li>watched video on it week 3 async *** SAVE FOR WEEK 5</li>
+<li>M: no vi in container? droplets?</li>
 </ul>
 </aside>
+</section>
+<section id="commit-those-changes" class="level2">
+<h2>Commit those changes</h2>
+<pre><code>git commit -m&#39;updated README&#39; README.md</code></pre>
+</section>
+<section id="push-those-up-to-github" class="level2">
+<h2>Push those up to GitHub</h2>
+<pre><code>git push origin my-cool-feature</code></pre>
+</section>
+<section id="note" class="level2">
+<h2>Note</h2>
+<ul>
+<li>If this is the first time you’ve pushed to the remote <code>my-cool-feature</code> branch, then this command will automatically <em>create</em> that branch in your github repo and then push your changes to it.</li>
+</ul>
+</section>
+<section id="pull-request-from-the-github-web-ui" class="level2">
+<h2>Pull Request from the GitHub Web-UI</h2>
+<ul>
+<li><p>Select “New Pull-Request”</p></li>
+<li><p>Select branches so that you are “Requesting to merge changes from <code>my-cool-feature</code> branch <em>into</em> <code>master</code>.”</p></li>
+<li><p>Select your instructor(s) to review.</p></li>
+<li><p>Submit</p></li>
+</ul>
 </section>
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
 <section id="docker-where-am-i" class="level2">
 <h2>Docker: Where am I?</h2>
-<aside class="notes">
-<p>By week 4, they should have watched this, so <strong><em>need an activity</em></strong> to use it, not just walk them through</p>
-<p>Activity: something with docker compose? Also: Where the heck am I activity</p>
-</aside>
-</section>
-<section id="basic-commands" class="level2">
-<h2>Basic commands</h2>
-<aside class="notes">
 <ul>
-<li>slides on basic docker commands, walk them through it docker run something docker ps (see what’s running) docker ps -a docker run -d something (run in background)</li>
+<li>We’ve worked with Docker</li>
+<li>We’ve explore cli ways to find out what’s up with data</li>
+<li>How do we find our way around with Docker?</li>
 </ul>
+<aside class="notes">
+<p>docker run -it –rm -v ~/w205:/w205 midsw205/base bash</p>
 </aside>
 </section>
-<section id="clean-up-docker" class="level2">
-<h2>Clean up docker</h2>
-<aside class="notes">
+<section id="run-the-regular-container" class="level2">
+<h2>Run the regular container</h2>
+<pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base bash</code></pre>
+</section>
+<section id="what-conatiners-are-running-right-now" class="level2">
+<h2>What conatiners are running right now?</h2>
+<ul>
+<li><p>New terminal window</p></li>
+<li><p><code>docker ps</code></p></li>
+</ul>
+</section>
+<section id="what-conatiners-exist" class="level2">
+<h2>What conatiners exist?</h2>
+<ul>
+<li><code>docker ps -a</code></li>
+</ul>
+</section>
+<section id="container-name" class="level2">
+<h2>Container name</h2>
+<ul>
+<li><code>fervent_austin</code> is my running <code>midsw205/base:latest</code> container</li>
+</ul>
+</section>
+<section id="what-images-do-i-have" class="level2">
+<h2>What images do I have?</h2>
+<ul>
+<li><p>Images vs. containers</p></li>
+<li><p><code>docker images</code></p></li>
+</ul>
+</section>
+<section id="image-name" class="level2">
+<h2>Image name</h2>
+<ul>
+<li><p>Need both repository &amp; tag</p></li>
+<li><p>e.g., <code>midsw205/base:latest</code></p></li>
+</ul>
+</section>
+<section id="clean-up-containers" class="level2">
+<h2>Clean up containers</h2>
 <p>docker rm -f <name-of-container></p>
+<aside class="notes">
+
 </aside>
 </section>
 <section id="idiomatic-docker" class="level2">
 <h2>Idiomatic docker</h2>
+<ul>
+<li><p>start the container -<code>pwd</code> in midsw205/base:latest</p></li>
+<li>exit container</li>
+<li><p>from prompt</p></li>
+</ul>
+<pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base pwd</code></pre>
 <aside class="notes">
 <p>I hope some of this simplifies when we start using the containers to <em>just</em> run a command… i.e., <code>docker run [&lt;opts&gt;] &lt;image&gt; [&lt;command&gt;]</code> … e.g., ME: check this query for backticks from bq cli sql <code>docker run -it --rm midsw205/base bq query --use_legacy_sql=false 'select count(*) from mytable'</code> in one go (edited)</p>
 <p>then they’re only “in” one place</p>
@@ -179,6 +260,11 @@
 </section>
 <section id="docker-compose-.yml-file" class="level2">
 <h2>Docker compose .yml file</h2>
+<ul>
+<li><code>cd w205</code></li>
+<li><p><code>mkdir kafka</code></p></li>
+<li><p>put <code>docker-compose.yml</code> file that is in <code>mids-w205-martin-mims/course-content/04-Storing-Data</code> in your ~/w205/kafka directory</p></li>
+</ul>
 <aside class="notes">
 <p>Save the following snippet as <code>~/w205/kafka/docker-compose.yml</code> on your host filesystem</p>
 </aside>

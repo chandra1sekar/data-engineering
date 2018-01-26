@@ -13,22 +13,22 @@ author: Week 04 - sync session
 - Get ready to share
 
 ::: notes
-I've been following this at about 5 after with a breakout.
+Breakout at about 5 after the hour:
 - Check in with each group on their solution to the assignment
 - Answer questions as people have them on what they had trouble with
+- Usually takes 10-20 minutes
 :::
 
 #
 ## Overview
 - Go over Assignment 3 results
-- 
--
--
+- PRs from the command line
+- Docker compose, beginning
 
 
 # 
 
-## Our Project Questions
+## Assignment 3: Our Project Questions
 - What is a trip?
 - What are the most common trips?
 - How does this differ based on trip type (commuter vs all)?
@@ -51,7 +51,7 @@ I've been following this at about 5 after with a breakout.
 - Class flow
 
 :::notes
-The following few slides are just reviewing the flow of when things are due and what readings/videos go with what.
+- The following few slides review the flow of when things are due and what readings/videos go with which week.
 :::
 
 ## Between Class 3 & Class 4
@@ -75,7 +75,7 @@ The following few slides are just reviewing the flow of when things are due and 
 > - Readings in Week 4 syllabus
 > - Assignment 04
 
-## Where are we in project (ie. how progressing to end it)
+## Where are we in the Query Project?
 
 - Assignment 4: Answer your Project Questions
 - Assignment 5: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.
@@ -87,14 +87,53 @@ use bigquery or bq cli for assignment 4
 
 # 
 
-## Need to do command line commit, branch and PR 
+## Creating a GitHub Pull-Request(PR)
+- From the command-line
 
-## Athena & AWS cli tool (aws)
+## Clone a repo from GitHub
+
+    git clone https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+    cd assignment-02-htmartin
+
+## Create a branch to work from
+
+    git branch my-cool-feature
+
+## Switch to that branch
+
+    git checkout my-cool-feature
+
+## Make changes to code
+
+    vi README.md
 
 ::: notes
-- watched video on it week 3 async
-*** SAVE FOR WEEK 5
+- M: no vi in container? droplets?
 :::
+
+## Commit those changes
+
+    git commit -m'updated README' README.md
+
+## Push those up to GitHub
+
+    git push origin my-cool-feature
+
+
+## Note  
+- If this is the first time you've pushed to the remote `my-cool-feature` branch, then this command will automatically _create_ that branch in your github repo and then push your changes to it.
+
+## Pull Request from the GitHub Web-UI
+
+- Select "New Pull-Request"
+
+- Select branches so that you are "Requesting to merge changes from `my-cool-feature` branch _into_ `master`."
+
+- Select your instructor(s) to review.
+
+- Submit
+
+
 
 
 
@@ -102,32 +141,71 @@ use bigquery or bq cli for assignment 4
 #
 ## Docker: Where am I?
 
-::: notes
-By week 4, they should have watched this, so ***need an activity*** to use it, not just walk them through
-
-Activity: something with docker compose?
-Also: Where the heck am I activity
-:::
-
-
-## Basic commands
+- We've worked with Docker
+- We've explore cli ways to find out what's up with data
+- How do we find our way around with Docker?
 
 ::: notes
-- slides on basic docker commands, walk them through it
-docker run something
-docker ps (see what's running)
-docker ps -a
-docker run -d something (run in background)
+docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 
 :::
 
-## Clean up docker 
-::: notes
+## Run the regular container
+
+```
+docker run -it --rm -v ~/w205:/w205 midsw205/base bash
+```
+
+## What conatiners are running right now?
+
+- New terminal window
+
+- `docker ps`
+
+## What conatiners exist?
+
+- `docker ps -a`
+
+## Container name
+
+- `fervent_austin` is my running `midsw205/base:latest` container
+
+## What images do I have?
+
+- Images vs. containers
+
+- `docker images`
+
+## Image name 
+
+- Need both repository & tag
+
+- e.g., `midsw205/base:latest`
+
+
+
+
+## Clean up containers
+
 docker rm -f <name-of-container>
+
+::: notes
 :::
 
 
 ## Idiomatic docker
+
+- start the container
+-`pwd` in midsw205/base:latest
+
+- exit container
+- from prompt 
+
+```
+docker run -it --rm -v ~/w205:/w205 midsw205/base pwd
+```
+ 
+
 
 
 ::: notes
@@ -148,6 +226,10 @@ then they're only "in" one place
 
 ## Docker compose .yml file
 
+- `cd w205`
+- `mkdir kafka`
+
+- put `docker-compose.yml` file that is in `mids-w205-martin-mims/course-content/04-Storing-Data` in your ~/w205/kafka directory
 
 ::: notes
 Save the following snippet as `~/w205/kafka/docker-compose.yml` on your host
