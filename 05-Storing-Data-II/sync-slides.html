@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Week 05 - sync session">
+  <title>Fundamentals of Data Engineering</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/mids.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Fundamentals of Data Engineering</h1>
+  <h2 class="author">Week 05 - sync session</h2>
+  <img class="frontPageSlogan" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/datascience-at-berkeley.png"/>
+</section>
+
+<section class="slide level1">
+
+<ul>
+<li>Watching RDBs and NoSQL videos b/t week 4 &amp; week 5</li>
+</ul>
+<p>spin up 2 containers: redis &amp; midsw205/base run python in one that’s talking to redis in the other (docker compose + how to run a notebook in the container) [get from videos]</p>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<section id="while-were-getting-started" class="level2">
+<h2>While we’re getting started</h2>
+<ul>
+<li>Review your Assignment 04</li>
+<li>Get ready to share</li>
+</ul>
+<aside class="notes">
+<p>Breakout at about 5 after the hour: - Check in with each group on their solution to the assignment - Answer questions as people have them on what they had trouble with - Usually takes 10-20 minutes</p>
+</aside>
+</section>
+<section id="our-solution-do-we-need-this-this-week" class="level2">
+<h2>Our solution??? Do we need this this week</h2>
+</section>
+<section id="due-friday-pr" class="level2">
+<h2>Due Friday (PR)</h2>
+</section>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<section id="where-are-we" class="level2">
+<h2>Where are we?</h2>
+</section>
+<section id="today" class="level2">
+<h2>Today</h2>
+<ul>
+<li>Assignment 04</li>
+<li>Run standalone kafka cluster</li>
+<li>NoSQL stores with docker compose</li>
+</ul>
+</section>
+<section id="between-class-5-class-6" class="level2">
+<h2>Between Class 5 &amp; Class 6</h2>
+<ul>
+<li>async material in Week 5 syllabus (Virtualization, Hadoop)</li>
+<li>Readings in Week 5 syllabus</li>
+<li>Assignment 05 (notebook to present)</li>
+<li>Final Assignment 04 due on Friday</li>
+</ul>
+</section>
+<section id="class-6" class="level2">
+<h2>Class 6</h2>
+<ul>
+<li>Final presentations of Query Project Notebooks/Recommendations</li>
+<li>Tracking User Activity Project (spans Assignments 6-8)</li>
+<li>Prep activities for Assignment 06</li>
+</ul>
+</section>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<section id="standalone-kafka-cluster" class="level2">
+<h2>Standalone kafka cluster</h2>
+</section>
+<section id="update-your-course-content-repo-in-w205" class="level2">
+<h2>Update your course content repo in w205</h2>
+<p><code>cd w205</code> <code>cd course-content</code> <code>git pull --all</code></p>
+</section>
+<section id="docker-compose-.yml-file" class="level2">
+<h2>Docker compose .yml file</h2>
+<ul>
+<li><code>cd w205</code></li>
+<li><code>mkdir kafka</code></li>
+<li>save <code>docker-compose.yml</code> from recently pulled <code>~/w205/course-content</code> to recently created <code>~/w205/kafka</code> directory</li>
+</ul>
+<aside class="notes">
+<p>Save the following snippet as <code>~/w205/kafka/docker-compose.yml</code> on your host filesystem</p>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    network_mode: host
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    network_mode: host
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;</code></pre>
+</aside>
+</section>
+<section id="run-the-cluster" class="level2">
+<h2>Run the cluster</h2>
+<pre><code>cd ~/w205/kafka
+docker-compose up -d</code></pre>
+</section>
+<section id="verify-things-started-up-ok" class="level2">
+<h2>Verify things started up ok</h2>
+<pre><code>docker-compose ps</code></pre>
+</section>
+<section id="should-see-something-like" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Name                        Command            State   Ports
+-----------------------------------------------------------------------
+kafkasinglenode_kafka_1       /etc/confluent/docker/run   Up
+kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up</code></pre>
+</section>
+<section id="check-zookeeper" class="level2">
+<h2>Check zookeeper</h2>
+<pre><code>docker-compose logs zookeeper | grep -i binding</code></pre>
+</section>
+<section id="should-see-something-like-1" class="level2">
+<h2>Should see something like</h2>
+<pre><code>zookeeper_1  | [2016-07-25 03:26:04,018] INFO binding to port 0.0.0.0/0.0.0.0:32181 (org.apache.zookeeper.server.NIOServerCnxnFactory)</code></pre>
+</section>
+<section id="check-the-kafka-broker" class="level2">
+<h2>Check the kafka broker</h2>
+<pre><code>docker-compose logs kafka | grep -i started</code></pre>
+</section>
+<section id="should-see-something-like-2" class="level2">
+<h2>Should see something like</h2>
+<pre><code>kafka_1      | [2017-08-31 00:31:40,244] INFO [Socket Server on Broker 1], Started 1 acceptor threads (kafka.network.SocketServer)
+kafka_1      | [2017-08-31 00:31:40,426] INFO [Replica state machine on controller 1]: Started replica state machine with initial state -&gt; Map() (kafka.controller.ReplicaStateMachine)
+kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Controller 1]: Started partition state machine with initial state -&gt; Map() (kafka.controller.PartitionStateMachine)
+kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)</code></pre>
+</section>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<section id="testing-things-out" class="level2">
+<h2>Testing things out</h2>
+</section>
+<section id="create-a-topic-foo" class="level2">
+<h2>Create a Topic <code>foo</code></h2>
+<pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181</code></pre>
+</section>
+<section id="should-see-something-like-3" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Created topic &quot;foo&quot;.</code></pre>
+</section>
+<section id="check-the-topic" class="level2">
+<h2>Check the topic</h2>
+<pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181</code></pre>
+</section>
+<section id="should-see-something-like-4" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
+Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
+</section>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<section id="publish-and-consume-messages" class="level2">
+<h2>Publish and Consume Messages</h2>
+</section>
+<section id="publish-messages" class="level2">
+<h2>Publish Messages</h2>
+<ul>
+<li><p>Use the kafka console producer to publish some test messages to that topic</p>
+<p>docker-compose exec kafka bash -c “seq 42 | kafka-console-producer –request-required-acks 1 –broker-list localhost:29092 –topic foo &amp;&amp; echo ‘Produced 42 messages.’”</p></li>
+</ul>
+</section>
+<section id="should-see-something-like-5" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Produced 42 messages.</code></pre>
+</section>
+<section id="consume-messages" class="level2">
+<h2>Consume Messages</h2>
+<ul>
+<li><p>Start a consumer to read from that topic</p>
+<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server localhost:29092 –topic foo –from-beginning –max-messages 42</p></li>
+</ul>
+</section>
+<section id="should-see-something-like-6" class="level2">
+<h2>Should see something like</h2>
+<pre><code>1
+....
+42
+Processed a total of 42 messages</code></pre>
+<ul>
+<li>The consumer can be created before, during, or after the producer’s run.</li>
+</ul>
+</section>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<section id="clean-up" class="level2">
+<h2>Clean Up</h2>
+</section>
+<section id="tearing-things-down" class="level2">
+<h2>Tearing things down</h2>
+<pre><code>docker-compose down</code></pre>
+</section>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<section id="jupyter-notebooks" class="level2">
+<h2>Jupyter Notebooks</h2>
+</section>
+<section id="section-7" class="level2">
+<h2></h2>
+<pre><code>docker run -it --rm -p 8888:8888 -v ~/w205:/w205 midsw205/base:latest</code></pre>
+<aside class="notes">
+<p>docker run -it –rm -p 8888:8888 -v<code>pwd</code>:/tmartin midsw205/base:latest</p>
+<p>jupyter notebook –no-browser –port 8888 –ip=0.0.0.0 –allow-root</p>
+<p>Regular container run docker run -it –rm -v ~/w205:/w205 midsw205/base bash</p>
+</aside>
+</section>
+<section id="jupyter-notebook-start-up-in-container" class="level2">
+<h2>Jupyter Notebook start up in container</h2>
+<pre><code>jupyter notebook --no-browser --port 8888 --ip=0.0.0.0 --allow-root </code></pre>
+<ul>
+<li>get token</li>
+<li><code>localhost:8888</code></li>
+</ul>
+<aside class="notes">
+<p>run it in the container again (like I do on elias? on fwf?) - what to do to get started - some viz</p>
+</aside>
+</section>
+<section id="see-slides" class="level2">
+<h2>See slides</h2>
+</section>
+<section id="docker-compose-for-redis-container-to-work-with-w205midsbase" class="level2">
+<h2>Docker compose for redis container to work with w205midsbase</h2>
+</section>
+<section id="redis-activity" class="level2">
+<h2>Redis activity</h2>
+</section>
+<section id="summary" class="level2">
+<h2>Summary</h2>
+</section>
+<section id="template-slide" class="level2">
+<h2>Template slide</h2>
+<ul>
+<li>point</li>
+<li>point</li>
+</ul>
+<aside class="notes">
+<p>md works here</p>
+</aside>
+</section>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="extras" class="level2">
+<h2>Extras</h2>
+</section>
+<section id="athena-aws-cli-tool-aws" class="level2">
+<h2>Athena &amp; AWS cli tool (aws)</h2>
+<aside class="notes">
+<p>if we need to fill time, do some queries wtih ebl data</p>
+</aside>
+</section>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Transition style
+        transition: 'linear', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

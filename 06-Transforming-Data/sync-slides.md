@@ -5,115 +5,60 @@ author: Week 06 - sync session
 
 ---
 
-#
-## Business Decisions
-
-<div class="notes">
-All about the business
-</div>
-
-##
-
-Data-Driven
-
-## 
-
-Data-Driven Business Decisions
-...are queries
-
-<div class="notes">
-in order for 
-business decisions to be based on data,
-you have to be able to interact with the data.
-
-business requirements get encoded as queries of data
-</div>
-
-#
-## Interfaces for data analysis:
-
-- SQL
-
-- DataFrames
-
-<div class="notes">
-We'd like to go over a few ways in which you'll interact directly with
-data when analyzing datasets.
-</div>
+- wrap up Assignment 5
+- intro project 2, 
+- demonstrate what is in the pipeline that's set up
+- How to do project 2, part I assignment
 
 
-#
-## Some General Considerations
+## While we're getting started
 
-- what functionality does it support?
-- how well does it perform?
-- how well does it handle scale?
-- how well does it handle change?
+- Review your Assignment 05
+- Get ready to share
+
+::: notes
+Breakout at about 5 after the hour:
+- Check in with each group on their solution to the assignment
+- Answer questions as people have them on what they had trouble with
+- Usually takes 10-20 minutes
+:::
 
 
+## Our solution??? what were our recommendations?
+::: notes
+do nb and make recommendations
+:::
+
+## Due Friday (PR)
+
+
+# 
+## Where are we in the pipeline
+
+![](images/pipeline-overall.svg)
+
+## Main Points
+
+# 
+## Activities from async content
+# 
+##Big Ideas: New Topic
 
 #
-## functionality
-
-<div class="notes">
-mind-numbing number of tools coming out every day
-to "help" you work with data
-
-I'd like to fold them into two categories:
-
-- presentation...
-    dashboards, reports, graphs, etc
-    you are supporting business decisions
-
-- analysis... 
-    - exploration, what-if, ad-hoc
-    - classifying things, etc
-    - developing/training models for ML/AI
-
-Avoid the comprehensive environments that "do it all"
-
-Take the unix tooling approach
-</div>
-
+## Activities: New Topic
 
 #
-## performance
+## Summary
 
-<div class="notes">
-- interactive
+## Template slide
 
-- modern query tools perform well enough to, in some cases, completely remove
-  the need for yesterday's heavy ETL pipelines
-</div>
+- point
+- point
 
+::: notes
+md works here
+:::
 
-#
-## scale
-
-
-#
-## change
-
-<div class="notes">
-</div>
-
-
-
-#
-## summary
-
-- data-driven business decisions are encoded as queries
-
-- query engines and interfaces play a critical role in data pipelines they
-  allow you to interact directly with data
-
-- modern query tools perform well enough to, in some cases, completely remove
-  the need for heavy ETL pipelines
-
-- avoid comprehensive environments that "do it all"... prefer the unix tooling
-  approach
-
-- prefer your data raw
 
 
 #

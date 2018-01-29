@@ -192,7 +192,7 @@ docker rm -f <name-of-container>
 ::: notes
 :::
 
-
+#
 ## Idiomatic docker
 
 - start the container
@@ -219,22 +219,58 @@ in one go (edited)
 then they're only "in" one place
 :::
 
-
+#
 ## Docker compose
 
 - What is docker compose?
+
+## Update your course content repo in w205
+
+`cd w205`
+`cd course-content`
+`git pull --all`
 
 ## Docker compose .yml file
 
 - `cd w205`
 - `mkdir kafka`
+- save `docker-compose.yml` from recently pulled `~/w205/course-content` to recently created `~/w205/kafka` directory
 
-- put `docker-compose.yml` file that is in `mids-w205-martin-mims/course-content/04-Storing-Data` in your ~/w205/kafka directory
 
 ::: notes
+
 Save the following snippet as `~/w205/kafka/docker-compose.yml` on your host
 filesystem
+
+    ---
+    version: '2'
+    services:
+      zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        network_mode: host
+        environment:
+          ZOOKEEPER_CLIENT_PORT: 32181
+          ZOOKEEPER_TICK_TIME: 2000
+        extra_hosts:
+          - "moby:127.0.0.1"
+
+      kafka:
+        image: confluentinc/cp-kafka:latest
+        network_mode: host
+        depends_on:
+          - zookeeper
+        environment:
+          KAFKA_BROKER_ID: 1
+          KAFKA_ZOOKEEPER_CONNECT: localhost:32181
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        extra_hosts:
+          - "moby:127.0.0.1"
+
 :::
+
+
+
 
 ## Docker compose spin things up
 
@@ -263,15 +299,7 @@ md works here
 
 ## Extras
 
-## Jupyter Notebook shortcut link
-## Jupyter Notebooks
 
-- what to do to get started
-- some viz 
-
-::: notes
-run it in the container again (like I do on elias? on fwf?)
-:::
 
 
 #
