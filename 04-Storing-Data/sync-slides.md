@@ -59,21 +59,23 @@ Breakout at about 5 after the hour:
 > - async material in Week 3 syllabus
 > - Readings in Week 3 syllabus
 > - Assignment 03
+> - Final Assignment 02 was due last Friday
 
 
 ## Class 4 (i.e., today)
 
-> - Review Assignment 03, questions, where did you hit a wall?
-> - Some lectur-ish stuff/activities on Assignment 04/Week 4 async topic
+> - Groupwork & present Assignment 03
+> - Activities Week 4 async topic
 > - Review Query Project (spans Assignments 2-5)
-> - Preview, discussion, do contentprep activities for Assignment 04 (refining and answering your project questions)
-> - Final Assignment 03 due on Friday
+> - Activities for Assignment 04 (refining and answering your project questions)
 
 ## Between Class 4 & Class 5
 
-> - async material in Week 4 syllabus
+> - async material in Week 4 syllabus (RDBs & NoSQL)
 > - Readings in Week 4 syllabus
 > - Assignment 04
+> - Final Assignment 03 due on Friday
+
 
 ## Where are we in the Query Project?
 
@@ -92,7 +94,11 @@ use bigquery or bq cli for assignment 4
 
 ## Clone a repo from GitHub
 
-    git clone https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+```
+git clone 
+https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+```
+
     cd assignment-02-htmartin
 
 ## Create a branch to work from
@@ -285,6 +291,11 @@ filesystem
 
 #
 ## Summary
+- git branching
+- where are we with Docker?
+- Idiomatic Docker
+- docker-compose
+
 
 #
 
