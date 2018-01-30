@@ -456,8 +456,6 @@ the live classroom for specific weeks in the term.
       9.2.4 - Latency [lecture]
       9.2.5 - Batch vs. Real Time [screencast]
       9.2.6 - Driven by Queries [screencast]
-      9.2.7 - Problems with Latency [screencast]
-      9.2.8 - Glue [screencast]
 
 #### Due Friday after Week 9 Synchronous Session: 
 - Assignment 08 - Build and Write-up Pipeline (Tracking User Activity Project)
@@ -484,7 +482,6 @@ the live classroom for specific weeks in the term.
 
     10.1 NoETL
       10.1.1 - Pipeline Context [lecture]
-      10.1.2 - Grabbing data you need as it streams by [screencast]
 
     10.2 Modes of Execution
       10.2.1 - Batch -vs- Streaming [screencast]
@@ -497,14 +494,13 @@ the live classroom for specific weeks in the term.
 
     10.4 Take Action!
       10.4.1 * Take Action! [lecture]
-      10.4.2 - Act! (pyspark watching kafka) [screencast]
 
 #### Due Friday after Week 10 Synchronous Session: 
 - Assignment 09 - Define Your Pipeline (Understanding User Behavior Project)
 
 
 
-## Week 11 - Faster Data Stores
+## Week 11 - Storing Data III
 
 #### Themes: Distributed in-memory storage and Spark
 
