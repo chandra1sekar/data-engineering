@@ -1,4 +1,4 @@
-## Week 12 - Faster Queries
+## Week 12 - Querying Data III
 
 #### Themes: Structured streaming, streaming queries, caching vs. stream queries
 
