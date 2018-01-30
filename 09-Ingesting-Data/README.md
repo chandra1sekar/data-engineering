@@ -22,8 +22,6 @@
       9.2.4 - Latency [lecture]
       9.2.5 - Batch vs. Real Time [screencast]
       9.2.6 - Driven by Queries [screencast]
-      9.2.7 - Problems with Latency [screencast]
-      9.2.8 - Glue [screencast]
 
 #### Due Friday after Week 9 Synchronous Session: 
 - Assignment 08 - Build and Write-up Pipeline (Tracking User Activity Project)
