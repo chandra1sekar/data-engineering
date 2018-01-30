@@ -95,8 +95,8 @@ use bigquery or bq cli for assignment 4
 ## Clone a repo from GitHub
 
 ```
-git clone 
-https://github.com/mids-w205-martin-mims/assignment-02-htmartin
+git clone \
+  https://github.com/mids-w205-martin-mims/assignment-02-htmartin
 ```
 
     cd assignment-02-htmartin
@@ -193,7 +193,7 @@ docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 
 ## Clean up containers
 
-docker rm -f <name-of-container>
+`docker rm -f <name-of-container>`
 
 ::: notes
 :::
@@ -201,11 +201,11 @@ docker rm -f <name-of-container>
 #
 ## Idiomatic docker
 
-- start the container
--`pwd` in midsw205/base:latest
-
+- start a `midsw205/base:latest` container
+- run `pwd`
 - exit container
-- from prompt 
+
+-vs-
 
 ```
 docker run -it --rm -v ~/w205:/w205 midsw205/base pwd
@@ -232,15 +232,17 @@ then they're only "in" one place
 
 ## Update your course content repo in w205
 
-`cd w205`
-`cd course-content`
-`git pull --all`
+```
+cd ~/w205/course-content
+git pull --all
+```
 
 ## Docker compose .yml file
 
 - `cd w205`
 - `mkdir kafka`
-- save `docker-compose.yml` from recently pulled `~/w205/course-content` to recently created `~/w205/kafka` directory
+- save `docker-compose.yml` from recently pulled `~/w205/course-content` to
+  recently created `~/w205/kafka` directory
 
 
 ::: notes

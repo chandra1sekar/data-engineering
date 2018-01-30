@@ -139,8 +139,8 @@
 </section>
 <section id="clone-a-repo-from-github" class="level2">
 <h2>Clone a repo from GitHub</h2>
-<pre><code>git clone 
-https://github.com/mids-w205-martin-mims/assignment-02-htmartin</code></pre>
+<pre><code>git clone \
+  https://github.com/mids-w205-martin-mims/assignment-02-htmartin</code></pre>
 <pre><code>cd assignment-02-htmartin</code></pre>
 </section>
 <section id="create-a-branch-to-work-from" class="level2">
@@ -236,7 +236,7 @@ https://github.com/mids-w205-martin-mims/assignment-02-htmartin</code></pre>
 </section>
 <section id="clean-up-containers" class="level2">
 <h2>Clean up containers</h2>
-<p>docker rm -f <name-of-container></p>
+<p><code>docker rm -f &lt;name-of-container&gt;</code></p>
 <aside class="notes">
 
 </aside>
@@ -247,10 +247,11 @@ https://github.com/mids-w205-martin-mims/assignment-02-htmartin</code></pre>
 <section id="idiomatic-docker" class="level2">
 <h2>Idiomatic docker</h2>
 <ul>
-<li><p>start the container -<code>pwd</code> in midsw205/base:latest</p></li>
+<li>start a <code>midsw205/base:latest</code> container</li>
+<li>run <code>pwd</code></li>
 <li>exit container</li>
-<li><p>from prompt</p></li>
 </ul>
+<p>-vs-</p>
 <pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base pwd</code></pre>
 <aside class="notes">
 <p>I hope some of this simplifies when we start using the containers to <em>just</em> run a command… i.e., <code>docker run [&lt;opts&gt;] &lt;image&gt; [&lt;command&gt;]</code> … e.g., ME: check this query for backticks from bq cli sql <code>docker run -it --rm midsw205/base bq query --use_legacy_sql=false 'select count(*) from mytable'</code> in one go (edited)</p>
@@ -268,7 +269,8 @@ https://github.com/mids-w205-martin-mims/assignment-02-htmartin</code></pre>
 </section>
 <section id="update-your-course-content-repo-in-w205" class="level2">
 <h2>Update your course content repo in w205</h2>
-<p><code>cd w205</code> <code>cd course-content</code> <code>git pull --all</code></p>
+<pre><code>cd ~/w205/course-content
+git pull --all</code></pre>
 </section>
 <section id="docker-compose-.yml-file" class="level2">
 <h2>Docker compose .yml file</h2>
