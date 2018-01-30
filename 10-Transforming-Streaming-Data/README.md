@@ -18,7 +18,6 @@
 
     10.1 NoETL
       10.1.1 - Pipeline Context [lecture]
-      10.1.2 - Grabbing data you need as it streams by [screencast]
 
     10.2 Modes of Execution
       10.2.1 - Batch -vs- Streaming [screencast]
@@ -31,7 +30,6 @@
 
     10.4 Take Action!
       10.4.1 * Take Action! [lecture]
-      10.4.2 - Act! (pyspark watching kafka) [screencast]
 
 #### Due Friday after Week 10 Synchronous Session: 
 - Assignment 09 - Define Your Pipeline (Understanding User Behavior Project)
