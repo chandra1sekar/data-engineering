@@ -65,7 +65,7 @@ Breakout at about 5 after the hour:
 ## Class 4 (i.e., today)
 
 > - Groupwork & present Assignment 03
-> - Activities Week 4 async topic
+> - Activities Week 3 async topic
 > - Review Query Project (spans Assignments 2-5)
 > - Activities for Assignment 04 (refining and answering your project questions)
 
@@ -291,12 +291,28 @@ filesystem
 - Have them go through on command line, talk about what is happening.
 :::
 
+## Clean up
+
+`docker-compose down`
+
+- Can check with:
+- `docker-compose ps`
+
+
 #
 ## Summary
 - git branching
 - where are we with Docker?
 - Idiomatic Docker
 - docker-compose
+
+##
+
+![](images/pipeline-overall.svg)
+
+::: notes
+docker-compose is for this
+:::
 
 
 #
