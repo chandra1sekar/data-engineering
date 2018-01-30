@@ -97,24 +97,25 @@
 <li class="fragment">async material in Week 3 syllabus</li>
 <li class="fragment">Readings in Week 3 syllabus</li>
 <li class="fragment">Assignment 03</li>
+<li class="fragment">Final Assignment 02 was due last Friday</li>
 </ul>
 </section>
 <section id="class-4-i.e.-today" class="level2">
 <h2>Class 4 (i.e., today)</h2>
 <ul>
-<li class="fragment">Review Assignment 03, questions, where did you hit a wall?</li>
-<li class="fragment">Some lectur-ish stuff/activities on Assignment 04/Week 4 async topic</li>
+<li class="fragment">Groupwork &amp; present Assignment 03</li>
+<li class="fragment">Activities Week 4 async topic</li>
 <li class="fragment">Review Query Project (spans Assignments 2-5)</li>
-<li class="fragment">Preview, discussion, do contentprep activities for Assignment 04 (refining and answering your project questions)</li>
-<li class="fragment">Final Assignment 03 due on Friday</li>
+<li class="fragment">Activities for Assignment 04 (refining and answering your project questions)</li>
 </ul>
 </section>
 <section id="between-class-4-class-5" class="level2">
 <h2>Between Class 4 &amp; Class 5</h2>
 <ul>
-<li class="fragment">async material in Week 4 syllabus</li>
+<li class="fragment">async material in Week 4 syllabus (RDBs &amp; NoSQL)</li>
 <li class="fragment">Readings in Week 4 syllabus</li>
 <li class="fragment">Assignment 04</li>
+<li class="fragment">Final Assignment 03 due on Friday</li>
 </ul>
 </section>
 <section id="where-are-we-in-the-query-project" class="level2">
@@ -138,8 +139,9 @@
 </section>
 <section id="clone-a-repo-from-github" class="level2">
 <h2>Clone a repo from GitHub</h2>
-<pre><code>git clone https://github.com/mids-w205-martin-mims/assignment-02-htmartin
-cd assignment-02-htmartin</code></pre>
+<pre><code>git clone 
+https://github.com/mids-w205-martin-mims/assignment-02-htmartin</code></pre>
+<pre><code>cd assignment-02-htmartin</code></pre>
 </section>
 <section id="create-a-branch-to-work-from" class="level2">
 <h2>Create a branch to work from</h2>
@@ -239,6 +241,9 @@ cd assignment-02-htmartin</code></pre>
 
 </aside>
 </section>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
 <section id="idiomatic-docker" class="level2">
 <h2>Idiomatic docker</h2>
 <ul>
@@ -252,21 +257,52 @@ cd assignment-02-htmartin</code></pre>
 <p>then they’re only “in” one place</p>
 </aside>
 </section>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
 <section id="docker-compose" class="level2">
 <h2>Docker compose</h2>
 <ul>
 <li>What is docker compose?</li>
 </ul>
 </section>
+<section id="update-your-course-content-repo-in-w205" class="level2">
+<h2>Update your course content repo in w205</h2>
+<p><code>cd w205</code> <code>cd course-content</code> <code>git pull --all</code></p>
+</section>
 <section id="docker-compose-.yml-file" class="level2">
 <h2>Docker compose .yml file</h2>
 <ul>
 <li><code>cd w205</code></li>
-<li><p><code>mkdir kafka</code></p></li>
-<li><p>put <code>docker-compose.yml</code> file that is in <code>mids-w205-martin-mims/course-content/04-Storing-Data</code> in your ~/w205/kafka directory</p></li>
+<li><code>mkdir kafka</code></li>
+<li>save <code>docker-compose.yml</code> from recently pulled <code>~/w205/course-content</code> to recently created <code>~/w205/kafka</code> directory</li>
 </ul>
 <aside class="notes">
 <p>Save the following snippet as <code>~/w205/kafka/docker-compose.yml</code> on your host filesystem</p>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    network_mode: host
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    network_mode: host
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;</code></pre>
 </aside>
 </section>
 <section id="docker-compose-spin-things-up" class="level2">
@@ -284,41 +320,34 @@ cd assignment-02-htmartin</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
+<ul>
+<li>git branching</li>
+<li>where are we with Docker?</li>
+<li>Idiomatic Docker</li>
+<li>docker-compose</li>
+</ul>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
-<section id="section-7" class="level2">
+<section id="section-9" class="level2">
 <h2></h2>
 <aside class="notes">
 <p>md works here</p>
 </aside>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
 <section id="extras" class="level2">
 <h2>Extras</h2>
 </section>
-<section id="jupyter-notebook-shortcut-link" class="level2">
-<h2>Jupyter Notebook shortcut link</h2>
 </section>
-<section id="jupyter-notebooks" class="level2">
-<h2>Jupyter Notebooks</h2>
-<ul>
-<li>what to do to get started</li>
-<li>some viz</li>
-</ul>
-<aside class="notes">
-<p>run it in the container again (like I do on elias? on fwf?)</p>
-</aside>
-</section>
-</section>
-<section id="section-9" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
