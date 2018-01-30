@@ -534,7 +534,7 @@ the live classroom for specific weeks in the term.
 
 
 
-## Week 12 - Faster Queries
+## Week 12 - Querying Data II
 
 #### Themes: Structured streaming, streaming queries, caching vs. stream queries
 

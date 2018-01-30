@@ -1,4 +1,4 @@
-## Week 12 - Querying Data III
+## Week 12 - Querying Data II
 
 #### Themes: Structured streaming, streaming queries, caching vs. stream queries
 
