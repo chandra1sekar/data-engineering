@@ -162,13 +162,13 @@ docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 ```
 
-## What conatiners are running right now?
+## What containers are running right now?
 
 - New terminal window
 
 - `docker ps`
 
-## What conatiners exist?
+## What containers exist?
 
 - `docker ps -a`
 
