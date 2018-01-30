@@ -23,7 +23,7 @@ run python in one that's talking to redis in the other
 Breakout at about 5 after the hour:
 - Check in with each group on their solution to the assignment
 - Answer questions as people have them on what they had trouble with
-- Usually takes 10-20 minutes
+- Have 3-4 people present
 :::
 
 
@@ -242,7 +242,36 @@ run it in the container again (like I do on elias? on fwf?)
 
 ## See slides
 ## Docker compose for redis container to work with w205midsbase
+
+::: notes
+docker compose file is in taylor@elias:~/w205/redis-state dir
+redis with persistent volumes
+w205
+data in data store place
+docker compose file
+nb
+docker compose up, down etc
+docker compose exec inside the mids base container
+install redis ahead
+
+fix sleep part
+fix pip install redis in midsbase
+experiment with nohost networking
+:::
+
+
 ## Redis activity
+
+::: notes
+import redis
+import pandas
+
+r=redis.Redis(host='localhost', port = 6379)
+
+e.g. r.keys()
+
+But see nosql-kv-stores-video-hd1080-h264-30fps.mp4 
+:::
 
 ## Summary
 
