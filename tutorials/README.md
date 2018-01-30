@@ -48,4 +48,6 @@ screencasts:
 - docker-overview
 - docker-using-docker
 - docker-using-docker-to-run-services
+- docker-in-the-cloud
+- docker-volumes
 
