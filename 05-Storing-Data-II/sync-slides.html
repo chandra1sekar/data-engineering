@@ -33,13 +33,6 @@
   <img class="frontPageSlogan" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/datascience-at-berkeley.png"/>
 </section>
 
-<section class="slide level1">
-
-<ul>
-<li>Watching RDBs and NoSQL videos b/t week 4 &amp; week 5</li>
-</ul>
-<p>spin up 2 containers: redis &amp; midsw205/base run python in one that’s talking to redis in the other (docker compose + how to run a notebook in the container) [get from videos]</p>
-</section>
 <section id="section" class="slide level1">
 <h1></h1>
 <section id="while-were-getting-started" class="level2">
@@ -71,6 +64,14 @@
 <li>Run standalone kafka cluster</li>
 <li>NoSQL stores with docker compose</li>
 </ul>
+<aside class="notes">
+<ul>
+<li><p>Watching RDBs and NoSQL videos b/t week 4 &amp; week 5</p></li>
+<li>spin up 2 containers: redis &amp; midsw205/base</li>
+<li>run python in one that’s talking to redis in the other</li>
+<li>(docker compose + how to run a notebook in the container)</li>
+</ul>
+</aside>
 </section>
 <section id="between-class-5-class-6" class="level2">
 <h2>Between Class 5 &amp; Class 6</h2>
@@ -156,7 +157,10 @@ kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up</code></pre>
 </section>
 <section id="should-see-something-like-1" class="level2">
 <h2>Should see something like</h2>
-<pre><code>zookeeper_1  | [2016-07-25 03:26:04,018] INFO binding to port 0.0.0.0/0.0.0.0:32181 (org.apache.zookeeper.server.NIOServerCnxnFactory)</code></pre>
+<pre><code>zookeeper_1  | \
+[2016-07-25 03:26:04,018] \
+INFO binding to port 0.0.0.0/0.0.0.0:32181 \
+(org.apache.zookeeper.server.NIOServerCnxnFactory)</code></pre>
 </section>
 <section id="check-the-kafka-broker" class="level2">
 <h2>Check the kafka broker</h2>
@@ -168,6 +172,12 @@ kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up</code></pre>
 kafka_1      | [2017-08-31 00:31:40,426] INFO [Replica state machine on controller 1]: Started replica state machine with initial state -&gt; Map() (kafka.controller.ReplicaStateMachine)
 kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Controller 1]: Started partition state machine with initial state -&gt; Map() (kafka.controller.PartitionStateMachine)
 kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)</code></pre>
+<aside class="notes">
+<ul>
+<li>Scroll on the slides that show screen results</li>
+<li>We want it to look like what they’ll see on their screens</li>
+</ul>
+</aside>
 </section>
 </section>
 <section id="section-3" class="slide level1">
@@ -177,7 +187,14 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 </section>
 <section id="create-a-topic-foo" class="level2">
 <h2>Create a Topic <code>foo</code></h2>
+<pre><code>    docker-compose exec \
+    kafka kafka-topics --create --topic foo \
+    --partitions 1 --replication-factor 1 \
+    --if-not-exists --zookeeper \
+    localhost:32181</code></pre>
+<aside class="notes">
 <pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181</code></pre>
+</aside>
 </section>
 <section id="should-see-something-like-3" class="level2">
 <h2>Should see something like</h2>
@@ -185,7 +202,12 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 </section>
 <section id="check-the-topic" class="level2">
 <h2>Check the topic</h2>
+<pre><code>    docker-compose exec \
+    kafka kafka-topics --describe --topic foo \
+    --zookeeper localhost:32181</code></pre>
+<aside class="notes">
 <pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181</code></pre>
+</aside>
 </section>
 <section id="should-see-something-like-4" class="level2">
 <h2>Should see something like</h2>
@@ -201,9 +223,16 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <section id="publish-messages" class="level2">
 <h2>Publish Messages</h2>
 <ul>
-<li><p>Use the kafka console producer to publish some test messages to that topic</p>
-<p>docker-compose exec kafka bash -c “seq 42 | kafka-console-producer –request-required-acks 1 –broker-list localhost:29092 –topic foo &amp;&amp; echo ‘Produced 42 messages.’”</p></li>
+<li>Use the kafka console producer to publish some test messages to that topic</li>
 </ul>
+<pre><code>    docker-compose exec \
+    kafka bash -c &quot;seq 42 | kafka-console-producer \
+    --request-required-acks 1 \
+    --broker-list localhost:29092 \
+    --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
+<aside class="notes">
+<pre><code>docker-compose exec kafka bash -c &quot;seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
+</aside>
 </section>
 <section id="should-see-something-like-5" class="level2">
 <h2>Should see something like</h2>
@@ -212,9 +241,15 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <section id="consume-messages" class="level2">
 <h2>Consume Messages</h2>
 <ul>
-<li><p>Start a consumer to read from that topic</p>
-<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server localhost:29092 –topic foo –from-beginning –max-messages 42</p></li>
+<li>Start a consumer to read from that topic</li>
 </ul>
+<pre><code>    docker-compose exec \
+    kafka kafka-console-consumer \
+    --bootstrap-server localhost:29092 \
+    --topic foo --from-beginning --max-messages 42</code></pre>
+<aside class="notes">
+<pre><code>docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42</code></pre>
+</aside>
 </section>
 <section id="should-see-something-like-6" class="level2">
 <h2>Should see something like</h2>

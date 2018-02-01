@@ -6,12 +6,7 @@ author: Week 05 - sync session
 ---
 
 
-- Watching RDBs and NoSQL videos b/t week 4 & week 5
 
-spin up 2 containers: redis & midsw205/base
-run python in one that's talking to redis in the other
-(docker compose + how to run a notebook in the container)
-[get from videos]
 
 #
 ## While we're getting started
@@ -39,6 +34,14 @@ Breakout at about 5 after the hour:
 - Assignment 04
 - Run standalone kafka cluster
 - NoSQL stores with docker compose
+
+::: notes
+- Watching RDBs and NoSQL videos b/t week 4 & week 5
+
+- spin up 2 containers: redis & midsw205/base
+- run python in one that's talking to redis in the other
+- (docker compose + how to run a notebook in the container)
+:::
 
 ## Between Class 5 & Class 6
 
@@ -125,8 +128,12 @@ filesystem
 
 ## Should see something like
 
-
-    zookeeper_1  | [2016-07-25 03:26:04,018] INFO binding to port 0.0.0.0/0.0.0.0:32181 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+```
+zookeeper_1  | \
+[2016-07-25 03:26:04,018] \
+INFO binding to port 0.0.0.0/0.0.0.0:32181 \
+(org.apache.zookeeper.server.NIOServerCnxnFactory)
+```
 
 ## Check the kafka broker
 
@@ -141,13 +148,27 @@ filesystem
     kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Controller 1]: Started partition state machine with initial state -> Map() (kafka.controller.PartitionStateMachine)
     kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)
 
+::: notes
+- Scroll on the slides that show screen results 
+- We want it to look like what they'll see on their screens
+:::
+
 #
 ## Testing things out
 
 ## Create a Topic `foo`
 
+```
+    docker-compose exec \
+    kafka kafka-topics --create --topic foo \
+    --partitions 1 --replication-factor 1 \
+    --if-not-exists --zookeeper \
+    localhost:32181
+```
 
+::: notes
     docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181
+:::
 
 ## Should see something like
 
@@ -156,7 +177,16 @@ filesystem
 
 ## Check the topic
 
+```
+    docker-compose exec \
+    kafka kafka-topics --describe --topic foo \
+    --zookeeper localhost:32181
+```
+
+::: notes
+
     docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
+:::
 
 ## Should see something like
 
@@ -170,8 +200,17 @@ filesystem
 
 - Use the kafka console producer to publish some test messages to that topic
 
+```
+    docker-compose exec \
+    kafka bash -c "seq 42 | kafka-console-producer \
+    --request-required-acks 1 \
+    --broker-list localhost:29092 \
+    --topic foo && echo 'Produced 42 messages.'"
+```
 
+::: notes
     docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
+:::
 
 ## Should see something like
 
@@ -181,8 +220,16 @@ filesystem
 ## Consume Messages
 
 - Start a consumer to read from that topic
+```
+    docker-compose exec \
+    kafka kafka-console-consumer \
+    --bootstrap-server localhost:29092 \
+    --topic foo --from-beginning --max-messages 42
+```
 
+::: notes
     docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
+:::
 
 ## Should see something like
 
@@ -275,11 +322,10 @@ But see nosql-kv-stores-video-hd1080-h264-30fps.mp4
 
 ## Summary
 
+#
+## 
 
-## Template slide
 
-- point
-- point
 
 ::: notes
 md works here
