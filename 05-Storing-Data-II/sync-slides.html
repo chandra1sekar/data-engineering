@@ -89,6 +89,13 @@
 </section>
 <section id="section-2" class="slide level1">
 <h1></h1>
+<section id="where-are-we-in-the-pipeline" class="level2">
+<h2>Where are we in the pipeline?</h2>
+<p><img data-src="images/pipeline-overall.svg" /></p>
+</section>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
 <section id="standalone-kafka-cluster" class="level2">
 <h2>Standalone kafka cluster</h2>
 </section>
@@ -176,7 +183,7 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 </aside>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="testing-things-out" class="level2">
 <h2>Testing things out</h2>
@@ -211,7 +218,7 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="publish-and-consume-messages" class="level2">
 <h2>Publish and Consume Messages</h2>
@@ -258,7 +265,7 @@ Processed a total of 42 messages</code></pre>
 </ul>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="clean-up" class="level2">
 <h2>Clean Up</h2>
@@ -268,7 +275,7 @@ Processed a total of 42 messages</code></pre>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="docker-compose-with-redis" class="level2">
 <h2>Docker-compose with Redis</h2>
@@ -360,7 +367,7 @@ exit</code></pre>
 <pre><code>docker-compose ps</code></pre>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="jupyter-notebooks" class="level2">
 <h2>Jupyter Notebooks</h2>
@@ -390,6 +397,9 @@ services:
 <aside class="notes">
 <ul>
 <li>Add a port for the <code>mids</code> service</li>
+<li>Expose adds ports</li>
+<li>Ports exposes it out to the host</li>
+<li>Port is… channel for services to talk to each other.</li>
 </ul>
 </aside>
 </section>
@@ -417,7 +427,7 @@ services:
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="automate-notebook-startup" class="level2">
 <h2>Automate notebook startup</h2>
@@ -474,7 +484,7 @@ print(value)</code></pre>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
 <section id="redis-to-track-state" class="level2">
 <h2>Redis to track state</h2>
@@ -500,12 +510,12 @@ curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
 <section id="open-new-python3-notebook-1" class="level2">
 <h2>Open New Python3 Notebook</h2>
 </section>
-<section id="section-10" class="level2">
+<section id="section-11" class="level2">
 <h2></h2>
 <pre><code>import redis
 import pandas as pd</code></pre>
 </section>
-<section id="section-11" class="level2">
+<section id="section-12" class="level2">
 <h2></h2>
 <pre><code>trips=pd.read_csv(&#39;trips.csv&#39;)
 
@@ -513,12 +523,15 @@ date_sorted_trips = trips.sort_values(by=&#39;end_date&#39;)
 
 date_sorted_trips.head()</code></pre>
 </section>
-<section id="section-12" class="level2">
+<section id="section-13" class="level2">
 <h2></h2>
 <pre><code>for trip in date_sorted_trips.itertuples():
   print(trip.end_date, &#39;&#39;, trip.bike_number, &#39;&#39;, trip.end_station_name)</code></pre>
+<aside class="notes">
+<p>print date sorted list of where all bikes are</p>
+</aside>
 </section>
-<section id="section-13" class="level2">
+<section id="section-14" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations = redis.Redis(host=&#39;redis&#39;, port=&#39;6379&#39;)
 current_bike_locations.keys()</code></pre>
@@ -528,7 +541,7 @@ current_bike_locations.keys()</code></pre>
 <pre><code>for trip in date_sorted_trips.itertuples():
   current_bike_locations.set(trip.bike_number, trip.end_station_name)</code></pre>
 </section>
-<section id="section-14" class="level2">
+<section id="section-15" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations.keys()</code></pre>
 </section>
@@ -544,16 +557,16 @@ current_bike_locations.keys()</code></pre>
 <h2>Summary</h2>
 </section>
 </section>
-<section id="section-15" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
-<section id="section-16" class="level2">
+<section id="section-17" class="level2">
 <h2></h2>
 <aside class="notes">
-<p>md works here</p>
+<p>Using docker compose Assembled a set of services running a query within that</p>
 </aside>
 </section>
 </section>
-<section id="section-17" class="slide level1">
+<section id="section-18" class="slide level1">
 <h1></h1>
 <section id="extras" class="level2">
 <h2>Extras</h2>
@@ -565,7 +578,7 @@ current_bike_locations.keys()</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-18" class="slide level1">
+<section id="section-19" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

@@ -52,6 +52,11 @@ Breakout at about 5 after the hour:
 - Tracking User Activity Project (spans Assignments 6-8)
 
 
+# 
+## Where are we in the pipeline?
+
+![](images/pipeline-overall.svg)
+
 #
 ## Standalone kafka cluster
 
@@ -366,6 +371,9 @@ something about what we're going to do
 
 ::: notes
 - Add a port for the `mids` service
+- Expose adds ports
+- Ports exposes it out to the host
+- Port is... channel for services to talk to each other.
 :::
 
 ## Save that and bring it up
@@ -494,6 +502,11 @@ See nosql-kv-stores-video-hd1080-h264-30fps.mp4
     for trip in date_sorted_trips.itertuples():
       print(trip.end_date, '', trip.bike_number, '', trip.end_station_name)
 
+::: notes
+print date sorted list of where all bikes are
+:::
+
+
 ##
     current_bike_locations = redis.Redis(host='redis', port='6379')
     current_bike_locations.keys()
@@ -528,7 +541,9 @@ See nosql-kv-stores-video-hd1080-h264-30fps.mp4
 
 
 ::: notes
-md works here
+Using docker compose
+Assembled a set of services
+running a query within that
 :::
 
 #
