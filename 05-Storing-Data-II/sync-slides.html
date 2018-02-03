@@ -91,191 +91,13 @@
 <h1></h1>
 <section id="where-are-we-in-the-pipeline" class="level2">
 <h2>Where are we in the pipeline?</h2>
+</section>
+<section id="section-3" class="level2">
+<h2></h2>
 <p><img data-src="images/pipeline-overall.svg" /></p>
 </section>
 </section>
-<section id="section-3" class="slide level1">
-<h1></h1>
-<section id="standalone-kafka-cluster" class="level2">
-<h2>Standalone kafka cluster</h2>
-</section>
-<section id="update-your-course-content-repo-in-w205" class="level2">
-<h2>Update your course content repo in w205</h2>
-<p><code>cd w205</code> <code>cd course-content</code> <code>git pull --all</code></p>
-</section>
-<section id="docker-compose-.yml-file" class="level2">
-<h2>Docker compose .yml file</h2>
-<ul>
-<li><code>cd w205</code></li>
-<li><code>mkdir kafka</code></li>
-<li>save <code>docker-compose.yml</code> from recently pulled <code>~/w205/course-content</code> to recently created <code>~/w205/kafka</code> directory</li>
-</ul>
-<aside class="notes">
-<p>Save the following snippet as <code>~/w205/kafka/docker-compose.yml</code> on your host filesystem</p>
-<pre><code>---
-version: &#39;2&#39;
-services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    network_mode: host
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    network_mode: host
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
-</aside>
-</section>
-<section id="run-the-cluster" class="level2">
-<h2>Run the cluster</h2>
-<pre><code>cd ~/w205/kafka
-docker-compose up -d</code></pre>
-</section>
-<section id="verify-things-started-up-ok" class="level2">
-<h2>Verify things started up ok</h2>
-<pre><code>docker-compose ps</code></pre>
-</section>
-<section id="should-see-something-like" class="level2">
-<h2>Should see something like</h2>
-<pre><code>Name                        Command            State   Ports
------------------------------------------------------------------------
-kafkasinglenode_kafka_1       /etc/confluent/docker/run   Up
-kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up</code></pre>
-</section>
-<section id="check-zookeeper" class="level2">
-<h2>Check zookeeper</h2>
-<pre><code>docker-compose logs zookeeper | grep -i binding</code></pre>
-</section>
-<section id="should-see-something-like-1" class="level2">
-<h2>Should see something like</h2>
-<pre><code>zookeeper_1  | \
-[2016-07-25 03:26:04,018] \
-INFO binding to port 0.0.0.0/0.0.0.0:32181 \
-(org.apache.zookeeper.server.NIOServerCnxnFactory)</code></pre>
-</section>
-<section id="check-the-kafka-broker" class="level2">
-<h2>Check the kafka broker</h2>
-<pre><code>docker-compose logs kafka | grep -i started</code></pre>
-</section>
-<section id="should-see-something-like-2" class="level2">
-<h2>Should see something like</h2>
-<pre><code>kafka_1      | [2017-08-31 00:31:40,244] INFO [Socket Server on Broker 1], Started 1 acceptor threads (kafka.network.SocketServer)
-kafka_1      | [2017-08-31 00:31:40,426] INFO [Replica state machine on controller 1]: Started replica state machine with initial state -&gt; Map() (kafka.controller.ReplicaStateMachine)
-kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Controller 1]: Started partition state machine with initial state -&gt; Map() (kafka.controller.PartitionStateMachine)
-kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)</code></pre>
-<aside class="notes">
-<ul>
-<li>Scroll on the slides that show screen results</li>
-<li>We want it to look like what they’ll see on their screens</li>
-</ul>
-</aside>
-</section>
-</section>
 <section id="section-4" class="slide level1">
-<h1></h1>
-<section id="testing-things-out" class="level2">
-<h2>Testing things out</h2>
-</section>
-<section id="create-a-topic-foo" class="level2">
-<h2>Create a Topic <code>foo</code></h2>
-<pre><code>    docker-compose exec \
-    kafka kafka-topics --create --topic foo \
-    --partitions 1 --replication-factor 1 \
-    --if-not-exists --zookeeper \
-    localhost:32181</code></pre>
-<aside class="notes">
-<pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181</code></pre>
-</aside>
-</section>
-<section id="should-see-something-like-3" class="level2">
-<h2>Should see something like</h2>
-<pre><code>Created topic &quot;foo&quot;.</code></pre>
-</section>
-<section id="check-the-topic" class="level2">
-<h2>Check the topic</h2>
-<pre><code>    docker-compose exec \
-    kafka kafka-topics --describe --topic foo \
-    --zookeeper localhost:32181</code></pre>
-<aside class="notes">
-<pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181</code></pre>
-</aside>
-</section>
-<section id="should-see-something-like-4" class="level2">
-<h2>Should see something like</h2>
-<pre><code>Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
-Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
-</section>
-</section>
-<section id="section-5" class="slide level1">
-<h1></h1>
-<section id="publish-and-consume-messages" class="level2">
-<h2>Publish and Consume Messages</h2>
-</section>
-<section id="publish-messages" class="level2">
-<h2>Publish Messages</h2>
-<ul>
-<li>Use the kafka console producer to publish some test messages to that topic</li>
-</ul>
-<pre><code>    docker-compose exec \
-    kafka bash -c &quot;seq 42 | kafka-console-producer \
-    --request-required-acks 1 \
-    --broker-list localhost:29092 \
-    --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
-<aside class="notes">
-<pre><code>docker-compose exec kafka bash -c &quot;seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
-</aside>
-</section>
-<section id="should-see-something-like-5" class="level2">
-<h2>Should see something like</h2>
-<pre><code>Produced 42 messages.</code></pre>
-</section>
-<section id="consume-messages" class="level2">
-<h2>Consume Messages</h2>
-<ul>
-<li>Start a consumer to read from that topic</li>
-</ul>
-<pre><code>    docker-compose exec \
-    kafka kafka-console-consumer \
-    --bootstrap-server localhost:29092 \
-    --topic foo --from-beginning --max-messages 42</code></pre>
-<aside class="notes">
-<pre><code>docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42</code></pre>
-</aside>
-</section>
-<section id="should-see-something-like-6" class="level2">
-<h2>Should see something like</h2>
-<pre><code>1
-....
-42
-Processed a total of 42 messages</code></pre>
-<ul>
-<li>The consumer can be created before, during, or after the producer’s run.</li>
-</ul>
-</section>
-</section>
-<section id="section-6" class="slide level1">
-<h1></h1>
-<section id="clean-up" class="level2">
-<h2>Clean Up</h2>
-</section>
-<section id="tearing-things-down" class="level2">
-<h2>Tearing things down</h2>
-<pre><code>docker-compose down</code></pre>
-</section>
-</section>
-<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="docker-compose-with-redis" class="level2">
 <h2>Docker-compose with Redis</h2>
@@ -312,10 +134,8 @@ services:
 </section>
 <section id="spinup" class="level2">
 <h2>Spinup</h2>
-<ul>
-<li><p>Start up the cluster</p>
-<p>docker-compose up -d</p></li>
-</ul>
+<p>Start up the cluster</p>
+<pre><code>docker-compose up -d</code></pre>
 </section>
 <section id="check-stuff" class="level2">
 <h2>Check stuff</h2>
@@ -338,10 +158,8 @@ redisexample_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp </co
 </section>
 <section id="run-stuff" class="level2">
 <h2>Run stuff</h2>
-<ul>
-<li><p>Connect to the mids container</p>
-<p>docker-compose exec mids bash</p></li>
-</ul>
+<p>Connect to the mids container</p>
+<pre><code>docker-compose exec mids bash</code></pre>
 </section>
 <section id="at-the-prompt-run" class="level2">
 <h2>At the prompt, run</h2>
@@ -367,7 +185,7 @@ exit</code></pre>
 <pre><code>docker-compose ps</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="jupyter-notebooks" class="level2">
 <h2>Jupyter Notebooks</h2>
@@ -410,6 +228,9 @@ services:
 <section id="start-up-a-notebook" class="level2">
 <h2>Start up a notebook</h2>
 <pre><code>docker-compose exec mids jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root</code></pre>
+<aside class="notes">
+<p>remember, you can copy/paste this from the <code>course-content</code> repo</p>
+</aside>
 </section>
 <section id="copy-token-should-look-something-like" class="level2">
 <h2>Copy token… should look something like</h2>
@@ -427,10 +248,13 @@ services:
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="automate-notebook-startup" class="level2">
 <h2>Automate notebook startup</h2>
+</section>
+<section id="section-7" class="level2">
+<h2></h2>
 <p>Just for fun,</p>
 <pre><code>---
 version: &#39;2&#39;
@@ -484,7 +308,7 @@ print(value)</code></pre>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-10" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="redis-to-track-state" class="level2">
 <h2>Redis to track state</h2>
@@ -510,12 +334,12 @@ curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
 <section id="open-new-python3-notebook-1" class="level2">
 <h2>Open New Python3 Notebook</h2>
 </section>
-<section id="section-11" class="level2">
+<section id="section-9" class="level2">
 <h2></h2>
 <pre><code>import redis
 import pandas as pd</code></pre>
 </section>
-<section id="section-12" class="level2">
+<section id="section-10" class="level2">
 <h2></h2>
 <pre><code>trips=pd.read_csv(&#39;trips.csv&#39;)
 
@@ -523,7 +347,7 @@ date_sorted_trips = trips.sort_values(by=&#39;end_date&#39;)
 
 date_sorted_trips.head()</code></pre>
 </section>
-<section id="section-13" class="level2">
+<section id="section-11" class="level2">
 <h2></h2>
 <pre><code>for trip in date_sorted_trips.itertuples():
   print(trip.end_date, &#39;&#39;, trip.bike_number, &#39;&#39;, trip.end_station_name)</code></pre>
@@ -531,7 +355,7 @@ date_sorted_trips.head()</code></pre>
 <p>print date sorted list of where all bikes are</p>
 </aside>
 </section>
-<section id="section-14" class="level2">
+<section id="section-12" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations = redis.Redis(host=&#39;redis&#39;, port=&#39;6379&#39;)
 current_bike_locations.keys()</code></pre>
@@ -541,7 +365,7 @@ current_bike_locations.keys()</code></pre>
 <pre><code>for trip in date_sorted_trips.itertuples():
   current_bike_locations.set(trip.bike_number, trip.end_station_name)</code></pre>
 </section>
-<section id="section-15" class="level2">
+<section id="section-13" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations.keys()</code></pre>
 </section>
@@ -553,20 +377,17 @@ current_bike_locations.keys()</code></pre>
 <h2>Drop cluster</h2>
 <pre><code>docker-compose down</code></pre>
 </section>
+</section>
+<section id="section-14" class="slide level1">
+<h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
-</section>
-</section>
-<section id="section-16" class="slide level1">
-<h1></h1>
-<section id="section-17" class="level2">
-<h2></h2>
 <aside class="notes">
 <p>Using docker compose Assembled a set of services running a query within that</p>
 </aside>
 </section>
 </section>
-<section id="section-18" class="slide level1">
+<section id="section-15" class="slide level1">
 <h1></h1>
 <section id="extras" class="level2">
 <h2>Extras</h2>
@@ -578,7 +399,7 @@ current_bike_locations.keys()</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-19" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

@@ -55,197 +55,9 @@ Breakout at about 5 after the hour:
 # 
 ## Where are we in the pipeline?
 
+##
 ![](images/pipeline-overall.svg)
 
-#
-## Standalone kafka cluster
-
-## Update your course content repo in w205
-
-`cd w205`
-`cd course-content`
-`git pull --all`
-
-## Docker compose .yml file
-
-- `cd w205`
-- `mkdir kafka`
-- save `docker-compose.yml` from recently pulled `~/w205/course-content` to recently created `~/w205/kafka` directory
-
-::: notes
-
-Save the following snippet as `~/w205/kafka/docker-compose.yml` on your host
-filesystem
-
-    ---
-    version: '2'
-    services:
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        network_mode: host
-        environment:
-          ZOOKEEPER_CLIENT_PORT: 32181
-          ZOOKEEPER_TICK_TIME: 2000
-        extra_hosts:
-          - "moby:127.0.0.1"
-
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        network_mode: host
-        depends_on:
-          - zookeeper
-        environment:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        extra_hosts:
-          - "moby:127.0.0.1"
-
-:::
-
-
-## Run the cluster
-
-    cd ~/w205/kafka
-    docker-compose up -d
-
-
-## Verify things started up ok
-
-    docker-compose ps
-
-## Should see something like
-
-    Name                        Command            State   Ports
-    -----------------------------------------------------------------------
-    kafkasinglenode_kafka_1       /etc/confluent/docker/run   Up
-    kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up
-
-## Check zookeeper
-
-    docker-compose logs zookeeper | grep -i binding
-
-## Should see something like
-
-```
-zookeeper_1  | \
-[2016-07-25 03:26:04,018] \
-INFO binding to port 0.0.0.0/0.0.0.0:32181 \
-(org.apache.zookeeper.server.NIOServerCnxnFactory)
-```
-
-## Check the kafka broker
-
-    docker-compose logs kafka | grep -i started
-
-## Should see something like
-
-
-
-    kafka_1      | [2017-08-31 00:31:40,244] INFO [Socket Server on Broker 1], Started 1 acceptor threads (kafka.network.SocketServer)
-    kafka_1      | [2017-08-31 00:31:40,426] INFO [Replica state machine on controller 1]: Started replica state machine with initial state -> Map() (kafka.controller.ReplicaStateMachine)
-    kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Controller 1]: Started partition state machine with initial state -> Map() (kafka.controller.PartitionStateMachine)
-    kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)
-
-::: notes
-- Scroll on the slides that show screen results 
-- We want it to look like what they'll see on their screens
-:::
-
-#
-## Testing things out
-
-## Create a Topic `foo`
-
-```
-    docker-compose exec \
-    kafka kafka-topics --create --topic foo \
-    --partitions 1 --replication-factor 1 \
-    --if-not-exists --zookeeper \
-    localhost:32181
-```
-
-::: notes
-    docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181
-:::
-
-## Should see something like
-
-
-    Created topic "foo".
-
-## Check the topic
-
-```
-    docker-compose exec \
-    kafka kafka-topics --describe --topic foo \
-    --zookeeper localhost:32181
-```
-
-::: notes
-
-    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
-:::
-
-## Should see something like
-
-    Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
-    Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1
-
-#
-## Publish and Consume Messages
-
-## Publish Messages
-
-- Use the kafka console producer to publish some test messages to that topic
-
-```
-    docker-compose exec \
-    kafka bash -c "seq 42 | kafka-console-producer \
-    --request-required-acks 1 \
-    --broker-list localhost:29092 \
-    --topic foo && echo 'Produced 42 messages.'"
-```
-
-::: notes
-    docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
-:::
-
-## Should see something like
-
-    Produced 42 messages.
-
-
-## Consume Messages
-
-- Start a consumer to read from that topic
-```
-    docker-compose exec \
-    kafka kafka-console-consumer \
-    --bootstrap-server localhost:29092 \
-    --topic foo --from-beginning --max-messages 42
-```
-
-::: notes
-    docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
-:::
-
-## Should see something like
-
-    1
-    ....
-    42
-    Processed a total of 42 messages
-
-- The consumer can be created before, during, or after the producer's run.
-
-#
-## Clean Up
-
-## Tearing things down
-
-    docker-compose down
 
 # 
 ## Docker-compose with Redis
@@ -286,13 +98,12 @@ something about what we're going to do
 
 ## Spinup
 
-- Start up the cluster
+Start up the cluster
 
     docker-compose up -d
 
 
 ## Check stuff
-
 
     docker-compose ps
 
@@ -312,10 +123,9 @@ something about what we're going to do
 
     Ready to accept connections
 
-
 ## Run stuff
 
-- Connect to the mids container
+Connect to the mids container
 
     docker-compose exec mids bash
 
@@ -384,6 +194,10 @@ something about what we're going to do
 
     docker-compose exec mids jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root
 
+::: notes
+remember, you can copy/paste this from the `course-content` repo
+:::
+
 ## Copy token... should look something like
 
     open http://0.0.0.0:8888/?token=<your token>
@@ -400,6 +214,8 @@ something about what we're going to do
 
 #
 ## Automate notebook startup
+
+##
 
 Just for fun,
 
@@ -427,7 +243,6 @@ Just for fun,
 
     docker-compose up -d
 
-
 ## Run to get the token 
 
     docker-compose logs mids
@@ -436,11 +251,9 @@ Just for fun,
 
     open http://0.0.0.0:8888/?token=<your token>
 
-
 ## Open New Python3 Notebook
 
 ## Try redis
-
 
     import redis
     r = redis.Redis(host='redis', port='6379')
@@ -472,7 +285,6 @@ See nosql-kv-stores-video-hd1080-h264-30fps.mp4
 
     docker-compose up -d
 
-
 ## Run to get the token 
 
     docker-compose logs mids
@@ -480,7 +292,6 @@ See nosql-kv-stores-video-hd1080-h264-30fps.mp4
 ## Open a browser
 
     open http://0.0.0.0:8888/?token=<your token>
-
 
 ## Open New Python3 Notebook
 
@@ -508,6 +319,7 @@ print date sorted list of where all bikes are
 
 
 ##
+
     current_bike_locations = redis.Redis(host='redis', port='6379')
     current_bike_locations.keys()
     
@@ -524,21 +336,13 @@ print date sorted list of where all bikes are
 
     current_bike_locations.get('92')
 
-
 ## Drop cluster
 
     docker-compose down
 
 
-
-
-
-## Summary
-
 #
-## 
-
-
+## Summary
 
 ::: notes
 Using docker compose
@@ -546,8 +350,10 @@ Assembled a set of services
 running a query within that
 :::
 
+
 #
 ## Extras
+
 ## Athena & AWS cli tool (aws) 
 
 ::: notes
