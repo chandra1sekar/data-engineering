@@ -1,0 +1,21 @@
+---
+version: '2'
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - "6379"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    expose:
+      - "8888"
+    ports:
+      - "8888:8888"
+    extra_hosts:
+      - "moby:127.0.0.1"
+    command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root

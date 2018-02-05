@@ -235,6 +235,8 @@ Just for fun,
         tty: true
         expose:
           - "8888"
+        ports:
+          - "8888:8888"
         extra_hosts:
           - "moby:127.0.0.1"
         command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root

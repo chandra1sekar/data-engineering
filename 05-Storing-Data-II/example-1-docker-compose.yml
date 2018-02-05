@@ -1,0 +1,16 @@
+---
+version: '2'
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - "6379"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    extra_hosts:
+      - "moby:127.0.0.1"
