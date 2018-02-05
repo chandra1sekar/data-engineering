@@ -28,8 +28,8 @@ Breakout at about 5 after the hour:
 
 ## Today
 - Assignment 04
-- Run standalone kafka cluster
-- NoSQL stores with docker compose
+- Creating basic `docker-compose` clusters
+- NoSQL stores with `docker-compose`
 
 ::: notes
 - Watching RDBs and NoSQL videos b/t week 4 & week 5
