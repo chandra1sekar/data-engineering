@@ -4,30 +4,26 @@ weeks = $(wildcard *-*)
 
 README.md: templates/README-template.md templates/README-template-footer.md $(wildcard *-*/README.md)
 	@echo "---" $@ "---"
-	cat templates/README-template.md > $@
-	echo "# Introduction" >> $@
-	echo >> $@
-	cat $(wildcard 01-*)/README.md >> $@
-	cat $(wildcard 02-*)/README.md >> $@
-	cat $(wildcard 03-*)/README.md >> $@
-	echo "# The Basics" >> $@
-	echo >> $@
-	cat $(wildcard 04-*)/README.md >> $@
-	cat $(wildcard 05-*)/README.md >> $@
-	cat $(wildcard 06-*)/README.md >> $@
-	cat $(wildcard 07-*)/README.md >> $@
-	cat $(wildcard 08-*)/README.md >> $@
-	echo "# Streaming" >> $@
-	echo >> $@
-	cat $(wildcard 09-*)/README.md >> $@
-	cat $(wildcard 10-*)/README.md >> $@
-	cat $(wildcard 11-*)/README.md >> $@
-	cat $(wildcard 12-*)/README.md >> $@
-	echo "# Putting it All Together" >> $@
-	echo >> $@
-	cat $(wildcard 13-*)/README.md >> $@
-	cat $(wildcard 14-*)/README.md >> $@
-	cat templates/README-template-footer.md >> $@
+	cat templates/README-template.md \
+		templates/README-template-section-1.md \
+		$(wildcard 01-*)/README.md \
+		$(wildcard 02-*)/README.md \
+		$(wildcard 03-*)/README.md \
+		templates/README-template-section-2.md \
+		$(wildcard 04-*)/README.md \
+		$(wildcard 05-*)/README.md \
+		$(wildcard 06-*)/README.md \
+		$(wildcard 07-*)/README.md \
+		$(wildcard 08-*)/README.md \
+		templates/README-template-section-3.md \
+		$(wildcard 09-*)/README.md \
+		$(wildcard 10-*)/README.md \
+		$(wildcard 11-*)/README.md \
+		$(wildcard 12-*)/README.md \
+		templates/README-template-section-4.md \
+		$(wildcard 13-*)/README.md \
+		$(wildcard 14-*)/README.md \
+		templates/README-template-footer.md > $@
 
 syllabus.html: README.md
 	@echo "---" $@ "---"
