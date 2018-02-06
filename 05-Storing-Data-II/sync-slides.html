@@ -314,12 +314,47 @@ print(value)</code></pre>
 <h1></h1>
 <section id="redis-to-track-state" class="level2">
 <h2>Redis to track state</h2>
-<pre><code>~/w205/redis
-
-curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
 <aside class="notes">
 <p>See nosql-kv-stores-video-hd1080-h264-30fps.mp4</p>
 </aside>
+</section>
+<section id="setup-1" class="level2">
+<h2>Setup</h2>
+<p>Download data:</p>
+<pre><code>cd ~/w205/
+curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
+</section>
+<section id="setup-2" class="level2">
+<h2>Setup</h2>
+<p>Add volumes to your <code>docker-compose.yml</code>:</p>
+<pre><code>volumes:
+  - ~/w205:/w205</code></pre>
+</section>
+<section id="section-9" class="level2">
+<h2></h2>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - &quot;6379&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;8888&quot;
+    ports:
+      - &quot;8888:8888&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+    command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root</code></pre>
 </section>
 <section id="spin-up-cluster" class="level2">
 <h2>Spin up cluster</h2>
@@ -336,12 +371,12 @@ curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
 <section id="open-new-python3-notebook-1" class="level2">
 <h2>Open New Python3 Notebook</h2>
 </section>
-<section id="section-9" class="level2">
+<section id="section-10" class="level2">
 <h2></h2>
 <pre><code>import redis
 import pandas as pd</code></pre>
 </section>
-<section id="section-10" class="level2">
+<section id="section-11" class="level2">
 <h2></h2>
 <pre><code>trips=pd.read_csv(&#39;trips.csv&#39;)
 
@@ -349,7 +384,7 @@ date_sorted_trips = trips.sort_values(by=&#39;end_date&#39;)
 
 date_sorted_trips.head()</code></pre>
 </section>
-<section id="section-11" class="level2">
+<section id="section-12" class="level2">
 <h2></h2>
 <pre><code>for trip in date_sorted_trips.itertuples():
   print(trip.end_date, &#39;&#39;, trip.bike_number, &#39;&#39;, trip.end_station_name)</code></pre>
@@ -357,7 +392,7 @@ date_sorted_trips.head()</code></pre>
 <p>print date sorted list of where all bikes are</p>
 </aside>
 </section>
-<section id="section-12" class="level2">
+<section id="section-13" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations = redis.Redis(host=&#39;redis&#39;, port=&#39;6379&#39;)
 current_bike_locations.keys()</code></pre>
@@ -367,7 +402,7 @@ current_bike_locations.keys()</code></pre>
 <pre><code>for trip in date_sorted_trips.itertuples():
   current_bike_locations.set(trip.bike_number, trip.end_station_name)</code></pre>
 </section>
-<section id="section-13" class="level2">
+<section id="section-14" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations.keys()</code></pre>
 </section>
@@ -380,7 +415,7 @@ current_bike_locations.keys()</code></pre>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-14" class="slide level1">
+<section id="section-15" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
@@ -389,7 +424,7 @@ current_bike_locations.keys()</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-15" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
 <section id="extras" class="level2">
 <h2>Extras</h2>
@@ -401,7 +436,7 @@ current_bike_locations.keys()</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-16" class="slide level1">
+<section id="section-17" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

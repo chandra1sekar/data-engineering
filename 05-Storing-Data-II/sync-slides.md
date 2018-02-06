@@ -275,13 +275,51 @@ Just for fun,
 #
 ## Redis to track state
 
-    ~/w205/redis
-
-    curl -L -o trips.csv https://goo.gl/MVNVhW
-
 ::: notes
 See nosql-kv-stores-video-hd1080-h264-30fps.mp4 
 :::
+
+## Setup
+
+Download data:
+
+    cd ~/w205/
+    curl -L -o trips.csv https://goo.gl/MVNVhW
+
+## Setup
+
+Add volumes to your `docker-compose.yml`:
+
+    volumes:
+      - ~/w205:/w205
+
+
+## 
+
+    ---
+    version: '2'
+    services:
+      redis:
+        image: redis:latest
+        expose:
+          - "6379"
+        extra_hosts:
+          - "moby:127.0.0.1"
+
+      mids:
+        image: midsw205/base:latest
+        stdin_open: true
+        tty: true
+        volumes:
+          - ~/w205:/w205
+        expose:
+          - "8888"
+        ports:
+          - "8888:8888"
+        extra_hosts:
+          - "moby:127.0.0.1"
+        command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root
+
 
 ## Spin up cluster
 
