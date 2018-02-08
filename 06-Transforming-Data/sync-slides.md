@@ -18,8 +18,8 @@ author: Week 06 - sync session
 
 ::: notes
 Breakout at about 5 after the hour:
-- Check in with each group on their solution to the assignment
-- Answer questions as people have them on what they had trouble with
+- Check in with each group 
+- Choose 4-5 people with different approaches to present
 - Usually takes 10-20 minutes
 :::
 
@@ -37,10 +37,23 @@ do nb and make recommendations
 
 ![](images/pipeline-overall.svg)
 
-#
-## Docker compose
+## Starting into Project 2
+- Tracking User Activity
 
-- What is docker compose?
+::: notes
+- Will take a built pipeline,
+- Manage data within it
+- Using kafka, spark and hdfs
+:::
+
+##  Classes 6-8
+- Class 6: Today will work with kafka to pull in messages
+- Class 7: Start with simple spark
+- Class 8: More complex spark, land data in hdfs
+
+
+#
+## Stand alone kafka
 
 ## Update your course content repo in w205
 
@@ -206,8 +219,157 @@ The consumer can be created before, during, or after the producer's run.
 
     docker-compose down
 
+#
+## Kafka with "real" messages
+
+- We'll deal with json for the project
+
+## Kafka with json example
+
+## docker-compose.yml file
 
 
+    ---
+    version: '2'
+    services:
+      zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        environment:
+          ZOOKEEPER_CLIENT_PORT: 32181
+          ZOOKEEPER_TICK_TIME: 2000
+        expose:
+          - "2181"
+          - "2888"
+          - "32181"
+          - "3888"
+        #ports:
+          #- "32181:32181"
+        extra_hosts:
+          - "moby:127.0.0.1"
+
+      kafka:
+        image: confluentinc/cp-kafka:latest
+        depends_on:
+          - zookeeper
+        environment:
+          KAFKA_BROKER_ID: 1
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        volumes:
+          - ~/w205:/w205
+        expose:
+          - "9092"
+          - "29092"
+        extra_hosts:
+          - "moby:127.0.0.1"
+
+      mids:
+        image: midsw205/base:latest
+        stdin_open: true
+        tty: true
+        volumes:
+          - ~/w205:/w205
+        extra_hosts:
+          - "moby:127.0.0.1"
+
+::: notes
+Create a `docker-compose.yml` with the following
+:::
+
+## Pull data
+
+
+    curl -L -o github-example-large.json https://goo.gl/WewtYn
+
+
+## Spin up the cluster
+
+    docker-compose up -d
+
+## Watch it come up
+
+    docker-compose logs -f kafka
+
+- Detach with `Ctrl-C`
+
+
+::: notes
+when this looks like it's done, detach
+:::
+
+## use it
+
+### create a topic
+
+```
+
+    docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
+
+## Should see something like
+
+    Created topic "foo".
+
+## Check the topic
+
+```
+    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+```
+
+## Should see something like
+
+    Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
+    Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1
+
+
+#
+## Publish some stuff to kafka
+
+## Check out our messages
+
+    docker-compose exec mids bash -c "cat /w205/github-example-large.json"
+    docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
+    docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c"
+
+
+
+Check this section:
+## Temporarily, install kafkacat (this is being baked into the mids image)
+
+    docker-compose exec mids bash -c "apt-get -qq update && apt-get -yqq install kafkacat"
+
+Use the kafka console producer to publish some test messages to that topic
+
+    docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+
+## Should see something like
+
+    Produced 100 messages.
+
+#
+## Consume the messages
+
+## We can either do what we did before
+
+```
+    docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42
+```
+
+## or 
+
+```
+    docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+```
+
+## and maybe
+```
+    docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+```
+
+## Down
+
+    docker-compose down
 
 
 #
