@@ -29,19 +29,40 @@ do nb and make recommendations
 
 
 # 
-## Pipes slide
+## Pipes 
+
+
+```
+cat junk.csv | sort | uniq | wc -l
+```
+
+::: notes
+:::
 
 ## Where are we in the pipeline
 
 ##
 ![](images/pipeline-overall.svg){style="border:0;box-shadow:none"}
 
-## Starting into Project 2
-- Tracking User Activity
+#
+## Starting into Project 2: Tracking User Activity
+
+- In this project, you work at an ed tech firm. 
+- You've created a service that delivers assessments.
+- Now lots of different customers (e.g., Pearson) want to publish their assessments on it. 
+- You need to get ready for data scientists who work for these customers to run queries on the data. 
+
+## Project 2 actitivities
+
+- Through 3 different activites, you will spin up existing containers and prepare the infrastructure to land the data in the form and structure it needs to be to be queried. 
+  1) Publish and consume messages with kafka.
+  2) Use spark to transform the messages.
+  3) Use spark to transform the messages so that you can land them in hdfs.
 
 ## 
 
-- img for this pipeline
+![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
+
 
 ::: notes
 - Will take a built pipeline,
@@ -189,11 +210,18 @@ which should show something like
 #
 ## Publish Messages
 
-
-    docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
+```
+    docker-compose exec kafka \
+    bash -c "seq 42 | kafka-console-producer \
+      --request-required-acks 1 \
+      --broker-list localhost:29092 \
+      --topic foo && echo 'Produced 42 messages.'"
+```
 
 ::: notes
 Use the kafka console producer to publish some test messages to that topic
+
+docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
 
 :::
 
@@ -206,11 +234,19 @@ Use the kafka console producer to publish some test messages to that topic
 ## Consume Messages
 
 ```
-    docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
+    docker-compose exec kafka \
+    kafka-console-consumer \
+      --bootstrap-server localhost:29092 \
+      --topic foo \
+      --from-beginning \
+      --max-messages 42
 ```
 
 ::: notes
 Start a consumer to read from that topic
+
+docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
+
 :::
 
 ## Should see something like
@@ -235,6 +271,17 @@ The consumer can be created before, during, or after the producer's run.
 - We'll deal with json for the project
 
 ## Kafka with json example
+- To address json, we'll need kafkacat
+
+
+## kafkacat
+
+## 
+![](images/kafkacat-syntax.svg){style="border:0;box-shadow:none"}
+
+::: notes
+omg, check out <https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz>!
+:::
 
 ## docker-compose.yml file
 
@@ -310,12 +357,23 @@ when this looks like it's done, detach
 
 ## use it
 
-### create a topic
+## create a topic
 
 ```
 
-    docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+    docker-compose exec kafka \
+    kafka-topics \
+      --create \
+      --topic foo \
+      --partitions 1 \
+      --replication-factor 1 \
+      --if-not-exists \
+      --zookeeper zookeeper:32181
 ```
+
+::: notes
+docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+:::
 
 ## Should see something like
 
@@ -324,9 +382,16 @@ when this looks like it's done, detach
 ## Check the topic
 
 ```
-    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+    docker-compose exec kafka \
+    kafka-topics \
+      --describe \
+      --topic foo \
+      --zookeeper zookeeper:32181
 ```
 
+::: notes
+docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+:::
 ## Should see something like
 
     Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
@@ -346,7 +411,13 @@ when this looks like it's done, detach
 
 ## Publish some test messages to that topic with the kafka console producer
 
+```
     docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+```
+
+::: notes
+docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+:::
 
 ## Should see something like
 
@@ -358,8 +429,17 @@ when this looks like it's done, detach
 ## We can either do what we did before
 
 ```
-    docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42
+    docker-compose exec kafka \
+    kafka-console-consumer \
+      --bootstrap-server kafka:29092 \
+      --topic foo \
+      --from-beginning \
+      --max-messages 42
 ```
+
+::: notes
+docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42
+::::
 
 ## or 
 
@@ -367,10 +447,18 @@ when this looks like it's done, detach
     docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
 ```
 
+::: notes
+docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+:::
+
 ## and maybe
 ```
     docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
 ```
+
+::: notes
+docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+:::
 
 ## Down
 
@@ -379,21 +467,21 @@ when this looks like it's done, detach
 #
 ## Assignment 06
 - Step through this process using the Project 2 data
-- In repo: your `docker-compose.yml` 
+- What you turn in:
+- In your `/assignment-05-<user-name>` repo:
+  * your `docker-compose.yml` 
+  * once you've run the example on your terminal
+    * Run `history > <user-name>-history.txt`
+    * Save the relevant portion of your history as `<user-name>-annotations.md`
+    * Annotate the file with explanations of what you were doing at each point (See `htmartin-annotations.md`)
 
 #
 ## Summary
 - Test that we can spin up containers, publish & consume messages with simple numbers messages.
 - Work through some actual data from github
+- Prep for assignment
 
-## Template slide
 
-- point
-- point
-
-::: notes
-md works here
-:::
 
 
 
@@ -402,25 +490,12 @@ md works here
 <img class="logo" src="images/berkeley-school-of-information-logo.png"/>
 
 
+
 #
-## pipes
-
-```
-cat junk.csv | sort | uniq | wc -l
-```
-
 ##
 ![](images/pipeline-overall.svg){style="border:0;box-shadow:none"}
 
-#
-## kafkacat
 
-## 
-![](images/kafkacat-syntax.svg){style="border:0;box-shadow:none"}
-
-::: notes
-omg, check out <https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz>!
-:::
 
 #
 ## cool pics

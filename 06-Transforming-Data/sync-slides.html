@@ -57,8 +57,12 @@
 </section>
 <section id="section" class="slide level1">
 <h1></h1>
-<section id="pipes-slide" class="level2">
-<h2>Pipes slide</h2>
+<section id="pipes" class="level2">
+<h2>Pipes</h2>
+<pre><code>cat junk.csv | sort | uniq | wc -l</code></pre>
+<aside class="notes">
+
+</aside>
 </section>
 <section id="where-are-we-in-the-pipeline" class="level2">
 <h2>Where are we in the pipeline</h2>
@@ -67,17 +71,32 @@
 <h2></h2>
 <p><img data-src="images/pipeline-overall.svg" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="starting-into-project-2" class="level2">
-<h2>Starting into Project 2</h2>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<section id="starting-into-project-2-tracking-user-activity" class="level2">
+<h2>Starting into Project 2: Tracking User Activity</h2>
 <ul>
-<li>Tracking User Activity</li>
+<li>In this project, you work at an ed tech firm.</li>
+<li>You’ve created a service that delivers assessments.</li>
+<li>Now lots of different customers (e.g., Pearson) want to publish their assessments on it.</li>
+<li>You need to get ready for data scientists who work for these customers to run queries on the data.</li>
 </ul>
 </section>
-<section id="section-2" class="level2">
-<h2></h2>
+<section id="project-2-actitivities" class="level2">
+<h2>Project 2 actitivities</h2>
 <ul>
-<li>img for this pipeline</li>
+<li>Through 3 different activites, you will spin up existing containers and prepare the infrastructure to land the data in the form and structure it needs to be to be queried.
+<ol type="1">
+<li>Publish and consume messages with kafka.</li>
+<li>Use spark to transform the messages.</li>
+<li>Use spark to transform the messages so that you can land them in hdfs.</li>
+</ol></li>
 </ul>
+</section>
+<section id="section-3" class="level2">
+<h2></h2>
+<p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
 <aside class="notes">
 <ul>
 <li>Will take a built pipeline,</li>
@@ -95,7 +114,7 @@
 </ul>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="stand-alone-kafka" class="level2">
 <h2>Stand alone kafka</h2>
@@ -188,7 +207,7 @@ kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Contro
 kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)</code></pre>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="create-a-topic-foo" class="level2">
 <h2>Create a Topic <code>foo</code></h2>
@@ -215,13 +234,18 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="publish-messages" class="level2">
 <h2>Publish Messages</h2>
-<pre><code>docker-compose exec kafka bash -c &quot;seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
+<pre><code>    docker-compose exec kafka \
+    bash -c &quot;seq 42 | kafka-console-producer \
+      --request-required-acks 1 \
+      --broker-list localhost:29092 \
+      --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
 <aside class="notes">
 <p>Use the kafka console producer to publish some test messages to that topic</p>
+<p>docker-compose exec kafka bash -c “seq 42 | kafka-console-producer –request-required-acks 1 –broker-list localhost:29092 –topic foo &amp;&amp; echo ‘Produced 42 messages.’”</p>
 </aside>
 </section>
 <section id="should-see-something-like-5" class="level2">
@@ -229,13 +253,19 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <pre><code>Produced 42 messages.</code></pre>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="consume-messages" class="level2">
 <h2>Consume Messages</h2>
-<pre><code>    docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42</code></pre>
+<pre><code>    docker-compose exec kafka \
+    kafka-console-consumer \
+      --bootstrap-server localhost:29092 \
+      --topic foo \
+      --from-beginning \
+      --max-messages 42</code></pre>
 <aside class="notes">
 <p>Start a consumer to read from that topic</p>
+<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server localhost:29092 –topic foo –from-beginning –max-messages 42</p>
 </aside>
 </section>
 <section id="should-see-something-like-6" class="level2">
@@ -249,14 +279,14 @@ Processed a total of 42 messages</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="tearing-things-down" class="level2">
 <h2>Tearing things down</h2>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="kafka-with-real-messages" class="level2">
 <h2>Kafka with “real” messages</h2>
@@ -266,6 +296,19 @@ Processed a total of 42 messages</code></pre>
 </section>
 <section id="kafka-with-json-example" class="level2">
 <h2>Kafka with json example</h2>
+<ul>
+<li>To address json, we’ll need kafkacat</li>
+</ul>
+</section>
+<section id="kafkacat" class="level2">
+<h2>kafkacat</h2>
+</section>
+<section id="section-10" class="level2">
+<h2></h2>
+<p><img data-src="images/kafkacat-syntax.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<p>omg, check out <a href="https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz">https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz</a>!</p>
+</aside>
 </section>
 <section id="docker-compose.yml-file" class="level2">
 <h2>docker-compose.yml file</h2>
@@ -336,11 +379,21 @@ services:
 </section>
 <section id="use-it" class="level2">
 <h2>use it</h2>
-<section id="create-a-topic" class="level3">
-<h3>create a topic</h3>
-<pre><code>
-    docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
 </section>
+<section id="create-a-topic" class="level2">
+<h2>create a topic</h2>
+<pre><code>
+    docker-compose exec kafka \
+    kafka-topics \
+      --create \
+      --topic foo \
+      --partitions 1 \
+      --replication-factor 1 \
+      --if-not-exists \
+      --zookeeper zookeeper:32181</code></pre>
+<aside class="notes">
+<p>docker-compose exec kafka kafka-topics –create –topic foo –partitions 1 –replication-factor 1 –if-not-exists –zookeeper zookeeper:32181</p>
+</aside>
 </section>
 <section id="should-see-something-like-7" class="level2">
 <h2>Should see something like</h2>
@@ -348,7 +401,14 @@ services:
 </section>
 <section id="check-the-topic-1" class="level2">
 <h2>Check the topic</h2>
-<pre><code>    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181</code></pre>
+<pre><code>    docker-compose exec kafka \
+    kafka-topics \
+      --describe \
+      --topic foo \
+      --zookeeper zookeeper:32181</code></pre>
+<aside class="notes">
+<p>docker-compose exec kafka kafka-topics –describe –topic foo –zookeeper zookeeper:32181</p>
+</aside>
 </section>
 <section id="should-see-something-like-8" class="level2">
 <h2>Should see something like</h2>
@@ -356,7 +416,7 @@ services:
 Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
 <section id="publish-some-stuff-to-kafka" class="level2">
 <h2>Publish some stuff to kafka</h2>
@@ -369,91 +429,92 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </section>
 <section id="publish-some-test-messages-to-that-topic-with-the-kafka-console-producer" class="level2">
 <h2>Publish some test messages to that topic with the kafka console producer</h2>
-<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
+<pre><code>    docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
+<aside class="notes">
+<p>docker-compose exec mids bash -c “cat /w205/github-example-large.json | jq ‘.<a href="#/section-23"></a>’ -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo ‘Produced 100 messages.’”</p>
+</aside>
 </section>
 <section id="should-see-something-like-9" class="level2">
 <h2>Should see something like</h2>
 <pre><code>Produced 100 messages.</code></pre>
 </section>
 </section>
-<section id="section-10" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
 <section id="consume-the-messages" class="level2">
 <h2>Consume the messages</h2>
 </section>
 <section id="we-can-either-do-what-we-did-before" class="level2">
 <h2>We can either do what we did before</h2>
-<pre><code>    docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42</code></pre>
+<pre><code>    docker-compose exec kafka \
+    kafka-console-consumer \
+      --bootstrap-server kafka:29092 \
+      --topic foo \
+      --from-beginning \
+      --max-messages 42</code></pre>
+<aside class="notes">
+<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server kafka:29092 –topic foo –from-beginning –max-messages 42</p>
+</aside>
 </section>
 <section id="or" class="level2">
 <h2>or</h2>
 <pre><code>    docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
+<aside class="notes">
+<p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e”</p>
+</aside>
 </section>
 <section id="and-maybe" class="level2">
 <h2>and maybe</h2>
 <pre><code>    docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; | wc -l</code></pre>
+<aside class="notes">
+<p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e” | wc -l</p>
+</aside>
 </section>
 <section id="down" class="level2">
 <h2>Down</h2>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-11" class="slide level1">
+<section id="section-13" class="slide level1">
 <h1></h1>
 <section id="assignment-06" class="level2">
 <h2>Assignment 06</h2>
 <ul>
 <li>Step through this process using the Project 2 data</li>
-<li>In repo: your <code>docker-compose.yml</code></li>
+<li>What you turn in:</li>
+<li>In your <code>/assignment-05-&lt;user-name&gt;</code> repo:
+<ul>
+<li>your <code>docker-compose.yml</code></li>
+<li>once you’ve run the example on your terminal
+<ul>
+<li>Run <code>history &gt; &lt;user-name&gt;-history.txt</code></li>
+<li>Save the relevant portion of your history as <code>&lt;user-name&gt;-annotations.md</code></li>
+<li>Annotate the file with explanations of what you were doing at each point (See <code>htmartin-annotations.md</code>)</li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
 </section>
-<section id="section-12" class="slide level1">
+<section id="section-14" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 <ul>
 <li>Test that we can spin up containers, publish &amp; consume messages with simple numbers messages.</li>
 <li>Work through some actual data from github</li>
+<li>Prep for assignment</li>
 </ul>
 </section>
-<section id="template-slide" class="level2">
-<h2>Template slide</h2>
-<ul>
-<li>point</li>
-<li>point</li>
-</ul>
-<aside class="notes">
-<p>md works here</p>
-</aside>
 </section>
-</section>
-<section id="section-13" class="slide level1">
+<section id="section-15" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
-<section id="section-14" class="slide level1">
-<h1></h1>
-<section id="pipes" class="level2">
-<h2>pipes</h2>
-<pre><code>cat junk.csv | sort | uniq | wc -l</code></pre>
-</section>
-<section id="section-15" class="level2">
-<h2></h2>
-<p><img data-src="images/pipeline-overall.svg" style="border:0;box-shadow:none" /></p>
-</section>
-</section>
 <section id="section-16" class="slide level1">
 <h1></h1>
-<section id="kafkacat" class="level2">
-<h2>kafkacat</h2>
-</section>
 <section id="section-17" class="level2">
 <h2></h2>
-<p><img data-src="images/kafkacat-syntax.svg" style="border:0;box-shadow:none" /></p>
-<aside class="notes">
-<p>omg, check out <a href="https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz">https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz</a>!</p>
-</aside>
+<p><img data-src="images/pipeline-overall.svg" style="border:0;box-shadow:none" /></p>
 </section>
 </section>
 <section id="section-18" class="slide level1">
