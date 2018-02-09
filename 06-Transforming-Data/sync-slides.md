@@ -35,7 +35,8 @@ do nb and make recommendations
 # 
 ## Where are we in the pipeline
 
-![](images/pipeline-overall.svg)
+##
+![](images/pipeline-overall.svg){style="border:0;box-shadow:none"}
 
 ## Starting into Project 2
 - Tracking User Activity
@@ -390,3 +391,41 @@ md works here
 
 <img class="logo" src="images/berkeley-school-of-information-logo.png"/>
 
+
+#
+## pipes
+
+```
+cat junk.csv | sort | uniq | wc -l
+```
+
+##
+![](images/pipeline-overall.svg){style="border:0;box-shadow:none"}
+
+#
+## kafkacat
+
+## 
+![](images/kafkacat-syntax.svg){style="border:0;box-shadow:none"}
+
+::: notes
+omg, check out <https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz>!
+:::
+
+#
+## cool pics
+
+## 
+![](images/pipeline-ingestion-sourcing.svg){style="border:0;box-shadow:none"}
+
+## 
+![](images/queue-selected.svg){style="border:0;box-shadow:none"}
+
+## 
+![](images/pipeline-ingestion-sourcing-focus.svg){style="border:0;box-shadow:none"}
+
+## 
+![](images/pipeline-ingestion-from-files.svg){style="border:0;box-shadow:none"}
+
+## 
+![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
