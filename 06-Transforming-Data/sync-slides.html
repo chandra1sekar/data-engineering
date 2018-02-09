@@ -48,7 +48,7 @@
 <li>Get ready to share</li>
 </ul>
 <aside class="notes">
-<p>Breakout at about 5 after the hour: - Check in with each group on their solution to the assignment - Answer questions as people have them on what they had trouble with - Usually takes 10-20 minutes</p>
+<p>Breakout at about 5 after the hour: - Check in with each group - Choose 4-5 people with different approaches to present - Usually takes 10-20 minutes</p>
 </aside>
 </section>
 <section id="groups-present-notebooks" class="level2">
@@ -67,14 +67,32 @@
 <h2>Where are we in the pipeline</h2>
 <p><img data-src="images/pipeline-overall.svg" /></p>
 </section>
+<section id="starting-into-project-2" class="level2">
+<h2>Starting into Project 2</h2>
+<ul>
+<li>Tracking User Activity</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Will take a built pipeline,</li>
+<li>Manage data within it</li>
+<li>Using kafka, spark and hdfs</li>
+</ul>
+</aside>
+</section>
+<section id="classes-6-8" class="level2">
+<h2>Classes 6-8</h2>
+<ul>
+<li>Class 6: Today will work with kafka to pull in messages</li>
+<li>Class 7: Start with simple spark</li>
+<li>Class 8: More complex spark, land data in hdfs</li>
+</ul>
+</section>
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
-<section id="docker-compose" class="level2">
-<h2>Docker compose</h2>
-<ul>
-<li>What is docker compose?</li>
-</ul>
+<section id="stand-alone-kafka" class="level2">
+<h2>Stand alone kafka</h2>
 </section>
 <section id="update-your-course-content-repo-in-w205" class="level2">
 <h2>Update your course content repo in w205</h2>
@@ -227,6 +245,148 @@ Processed a total of 42 messages</code></pre>
 </section>
 <section id="section-6" class="slide level1">
 <h1></h1>
+<section id="kafka-with-real-messages" class="level2">
+<h2>Kafka with “real” messages</h2>
+<ul>
+<li>We’ll deal with json for the project</li>
+</ul>
+</section>
+<section id="kafka-with-json-example" class="level2">
+<h2>Kafka with json example</h2>
+</section>
+<section id="docker-compose.yml-file" class="level2">
+<h2>docker-compose.yml file</h2>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - &quot;2181&quot;
+      - &quot;2888&quot;
+      - &quot;32181&quot;
+      - &quot;3888&quot;
+    #ports:
+      #- &quot;32181:32181&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;9092&quot;
+      - &quot;29092&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;</code></pre>
+<aside class="notes">
+<p>Create a <code>docker-compose.yml</code> with the following</p>
+</aside>
+</section>
+<section id="pull-data" class="level2">
+<h2>Pull data</h2>
+<pre><code>curl -L -o github-example-large.json https://goo.gl/WewtYn</code></pre>
+</section>
+<section id="spin-up-the-cluster" class="level2">
+<h2>Spin up the cluster</h2>
+<pre><code>docker-compose up -d</code></pre>
+</section>
+<section id="watch-it-come-up" class="level2">
+<h2>Watch it come up</h2>
+<pre><code>docker-compose logs -f kafka</code></pre>
+<ul>
+<li>Detach with <code>Ctrl-C</code></li>
+</ul>
+<aside class="notes">
+<p>when this looks like it’s done, detach</p>
+</aside>
+</section>
+<section id="use-it" class="level2">
+<h2>use it</h2>
+<section id="create-a-topic" class="level3">
+<h3>create a topic</h3>
+<pre><code>
+    docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
+</section>
+</section>
+<section id="should-see-something-like-7" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Created topic &quot;foo&quot;.</code></pre>
+</section>
+<section id="check-the-topic-1" class="level2">
+<h2>Check the topic</h2>
+<pre><code>    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181</code></pre>
+</section>
+<section id="should-see-something-like-8" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
+Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
+</section>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<section id="publish-some-stuff-to-kafka" class="level2">
+<h2>Publish some stuff to kafka</h2>
+</section>
+<section id="check-out-our-messages" class="level2">
+<h2>Check out our messages</h2>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json&quot;
+docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.&#39;&quot;
+docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c&quot;</code></pre>
+<p>Check this section: ## Temporarily, install kafkacat (this is being baked into the mids image)</p>
+<pre><code>docker-compose exec mids bash -c &quot;apt-get -qq update &amp;&amp; apt-get -yqq install kafkacat&quot;</code></pre>
+<p>Use the kafka console producer to publish some test messages to that topic</p>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
+</section>
+<section id="should-see-something-like-9" class="level2">
+<h2>Should see something like</h2>
+<pre><code>Produced 100 messages.</code></pre>
+</section>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="consume-the-messages" class="level2">
+<h2>Consume the messages</h2>
+</section>
+<section id="we-can-either-do-what-we-did-before" class="level2">
+<h2>We can either do what we did before</h2>
+<pre><code>    docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42</code></pre>
+</section>
+<section id="or" class="level2">
+<h2>or</h2>
+<pre><code>    docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
+</section>
+<section id="and-maybe" class="level2">
+<h2>and maybe</h2>
+<pre><code>    docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; | wc -l</code></pre>
+</section>
+<section id="down" class="level2">
+<h2>Down</h2>
+<pre><code>docker-compose down</code></pre>
+</section>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 </section>
@@ -241,7 +401,7 @@ Processed a total of 42 messages</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

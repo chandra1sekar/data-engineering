@@ -5,10 +5,6 @@ author: Week 06 - sync session
 
 ---
 
-- wrap up Assignment 5
-- intro project 2, 
-- demonstrate what is in the pipeline that's set up
-- How to do project 2, part I assignment
 
 
 ## While we're getting started
@@ -33,12 +29,18 @@ do nb and make recommendations
 
 
 # 
+## Pipes slide
+
 ## Where are we in the pipeline
 
 ![](images/pipeline-overall.svg)
 
 ## Starting into Project 2
 - Tracking User Activity
+
+## 
+
+- img for this pipeline
 
 ::: notes
 - Will take a built pipeline,
@@ -157,7 +159,14 @@ which should show something like
 ## Create a Topic `foo`
 
 ```
-    docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:32181
+    docker-compose exec kafka \
+      kafka-topics \
+        --create \
+        --topic foo \
+        --partitions 1 \
+        --replication-factor 1 \
+        --if-not-exists \
+        --zookeeper localhost:32181
 ```
 
 
@@ -334,12 +343,7 @@ when this looks like it's done, detach
 
 
 
-Check this section:
-## Temporarily, install kafkacat (this is being baked into the mids image)
-
-    docker-compose exec mids bash -c "apt-get -qq update && apt-get -yqq install kafkacat"
-
-Use the kafka console producer to publish some test messages to that topic
+## Publish some test messages to that topic with the kafka console producer
 
     docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
 
@@ -371,9 +375,15 @@ Use the kafka console producer to publish some test messages to that topic
 
     docker-compose down
 
+#
+## Assignment 06
+- Step through this process using the Project 2 data
+- In repo: your `docker-compose.yml` 
 
 #
 ## Summary
+- Test that we can spin up containers, publish & consume messages with simple numbers messages.
+- Work through some actual data from github
 
 ## Template slide
 
