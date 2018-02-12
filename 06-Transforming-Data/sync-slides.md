@@ -37,12 +37,22 @@ cat junk.csv | sort | uniq | wc -l
 ```
 
 ::: notes
+We're going to use kafka
+We used pipes in Week 3.
+We had on cli way to pipe single purpose applications together. 
+Pipe takes what previous thing gave to it and passes it on.
+Kafka is that little pipe.
 :::
 
 ## Where are we in the pipeline
 
 ##
 ![](images/pipeline-overall.svg){style="border:0;box-shadow:none"}
+
+::: notes
+Kafka is the queues
+Maybe put the queue slide here
+:::
 
 #
 ## Starting into Project 2: Tracking User Activity
@@ -59,6 +69,13 @@ cat junk.csv | sort | uniq | wc -l
   2) Use spark to transform the messages.
   3) Use spark to transform the messages so that you can land them in hdfs.
 
+::: notes
+Classes 6-8
+- Class 6: Today will work with kafka to pull in messages
+- Class 7: Start with simple spark
+- Class 8: More complex spark, land data in hdfs
+:::
+
 ## 
 
 ![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
@@ -70,10 +87,6 @@ cat junk.csv | sort | uniq | wc -l
 - Using kafka, spark and hdfs
 :::
 
-##  Classes 6-8
-- Class 6: Today will work with kafka to pull in messages
-- Class 7: Start with simple spark
-- Class 8: More complex spark, land data in hdfs
 
 
 #
@@ -156,7 +169,7 @@ which should show something like
 ## Check zookeeper
 
 ```
-    docker-compose logs zookeeper | grep -i binding
+docker-compose logs zookeeper | grep -i binding
 ```
 
 ## Should see something like
@@ -166,7 +179,7 @@ which should show something like
 ## Check the kafka broker
 
 ```
-    docker-compose logs kafka | grep -i started
+docker-compose logs kafka | grep -i started
 ```
 
 ## Should see something like
@@ -181,14 +194,14 @@ which should show something like
 ## Create a Topic `foo`
 
 ```
-    docker-compose exec kafka \
-      kafka-topics \
-        --create \
-        --topic foo \
-        --partitions 1 \
-        --replication-factor 1 \
-        --if-not-exists \
-        --zookeeper localhost:32181
+docker-compose exec kafka \
+  kafka-topics \
+    --create \
+    --topic foo \
+    --partitions 1 \
+    --replication-factor 1 \
+    --if-not-exists \
+    --zookeeper localhost:32181
 ```
 
 
@@ -199,8 +212,16 @@ which should show something like
 ## Check the topic
 
 ```
-    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
+docker-compose exec kafka \
+  kafka-topics \
+    --describe \
+    --topic foo \
+    --zookeeper localhost:32181
 ```
+
+::: notes
+docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
+:::
 
 ## Should see something like
 
@@ -211,11 +232,11 @@ which should show something like
 ## Publish Messages
 
 ```
-    docker-compose exec kafka \
-    bash -c "seq 42 | kafka-console-producer \
-      --request-required-acks 1 \
-      --broker-list localhost:29092 \
-      --topic foo && echo 'Produced 42 messages.'"
+docker-compose exec kafka \
+  bash -c "seq 42 | kafka-console-producer \
+    --request-required-acks 1 \
+    --broker-list localhost:29092 \
+    --topic foo && echo 'Produced 42 messages.'"
 ```
 
 ::: notes
@@ -234,12 +255,12 @@ docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-req
 ## Consume Messages
 
 ```
-    docker-compose exec kafka \
-    kafka-console-consumer \
-      --bootstrap-server localhost:29092 \
-      --topic foo \
-      --from-beginning \
-      --max-messages 42
+docker-compose exec kafka \
+  kafka-console-consumer \
+    --bootstrap-server localhost:29092 \
+    --topic foo \
+    --from-beginning \
+    --max-messages 42
 ```
 
 ::: notes
@@ -281,6 +302,7 @@ The consumer can be created before, during, or after the producer's run.
 
 ::: notes
 omg, check out <https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz>!
+
 :::
 
 ## docker-compose.yml file
@@ -382,11 +404,11 @@ docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --rep
 ## Check the topic
 
 ```
-    docker-compose exec kafka \
-    kafka-topics \
-      --describe \
-      --topic foo \
-      --zookeeper zookeeper:32181
+docker-compose exec kafka \
+  kafka-topics \
+    --describe \
+    --topic foo \
+    --zookeeper zookeeper:32181
 ```
 
 ::: notes
@@ -403,16 +425,20 @@ docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookee
 
 ## Check out our messages
 
-    docker-compose exec mids bash -c "cat /w205/github-example-large.json"
-    docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
-    docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c"
+```
+docker-compose exec mids bash -c "cat /w205/github-example-large.json"
+docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
+docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c"
+```
 
-
+::: notes
+Go over | jq stuff
+:::
 
 ## Publish some test messages to that topic with the kafka console producer
 
 ```
-    docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
 ```
 
 ::: notes
@@ -429,12 +455,12 @@ docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]'
 ## We can either do what we did before
 
 ```
-    docker-compose exec kafka \
-    kafka-console-consumer \
-      --bootstrap-server kafka:29092 \
-      --topic foo \
-      --from-beginning \
-      --max-messages 42
+docker-compose exec kafka \
+  kafka-console-consumer \
+    --bootstrap-server kafka:29092 \
+    --topic foo \
+    --from-beginning \
+    --max-messages 42
 ```
 
 ::: notes
@@ -444,7 +470,7 @@ docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 
 ## or 
 
 ```
-    docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
 ```
 
 ::: notes
@@ -453,7 +479,7 @@ docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning
 
 ## and maybe
 ```
-    docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
 ```
 
 ::: notes

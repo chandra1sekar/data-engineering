@@ -61,7 +61,7 @@
 <h2>Pipes</h2>
 <pre><code>cat junk.csv | sort | uniq | wc -l</code></pre>
 <aside class="notes">
-
+<p>We’re going to use kafka We used pipes in Week 3. We had on cli way to pipe single purpose applications together. Pipe takes what previous thing gave to it and passes it on. Kafka is that little pipe.</p>
 </aside>
 </section>
 <section id="where-are-we-in-the-pipeline" class="level2">
@@ -70,6 +70,9 @@
 <section id="section-1" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-overall.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<p>Kafka is the queues Maybe put the queue slide here</p>
+</aside>
 </section>
 </section>
 <section id="section-2" class="slide level1">
@@ -93,6 +96,9 @@
 <li>Use spark to transform the messages so that you can land them in hdfs.</li>
 </ol></li>
 </ul>
+<aside class="notes">
+<p>Classes 6-8 - Class 6: Today will work with kafka to pull in messages - Class 7: Start with simple spark - Class 8: More complex spark, land data in hdfs</p>
+</aside>
 </section>
 <section id="section-3" class="level2">
 <h2></h2>
@@ -104,14 +110,6 @@
 <li>Using kafka, spark and hdfs</li>
 </ul>
 </aside>
-</section>
-<section id="classes-6-8" class="level2">
-<h2>Classes 6-8</h2>
-<ul>
-<li>Class 6: Today will work with kafka to pull in messages</li>
-<li>Class 7: Start with simple spark</li>
-<li>Class 8: More complex spark, land data in hdfs</li>
-</ul>
 </section>
 </section>
 <section id="section-4" class="slide level1">
@@ -189,7 +187,7 @@ kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up</code></pre>
 </section>
 <section id="check-zookeeper" class="level2">
 <h2>Check zookeeper</h2>
-<pre><code>    docker-compose logs zookeeper | grep -i binding</code></pre>
+<pre><code>docker-compose logs zookeeper | grep -i binding</code></pre>
 </section>
 <section id="should-see-something-like-1" class="level2">
 <h2>Should see something like</h2>
@@ -197,7 +195,7 @@ kafkasinglenode_zookeeper_1   /etc/confluent/docker/run   Up</code></pre>
 </section>
 <section id="check-the-kafka-broker" class="level2">
 <h2>Check the kafka broker</h2>
-<pre><code>    docker-compose logs kafka | grep -i started</code></pre>
+<pre><code>docker-compose logs kafka | grep -i started</code></pre>
 </section>
 <section id="should-see-something-like-2" class="level2">
 <h2>Should see something like</h2>
@@ -211,14 +209,14 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 <h1></h1>
 <section id="create-a-topic-foo" class="level2">
 <h2>Create a Topic <code>foo</code></h2>
-<pre><code>    docker-compose exec kafka \
-      kafka-topics \
-        --create \
-        --topic foo \
-        --partitions 1 \
-        --replication-factor 1 \
-        --if-not-exists \
-        --zookeeper localhost:32181</code></pre>
+<pre><code>docker-compose exec kafka \
+  kafka-topics \
+    --create \
+    --topic foo \
+    --partitions 1 \
+    --replication-factor 1 \
+    --if-not-exists \
+    --zookeeper localhost:32181</code></pre>
 </section>
 <section id="should-see-something-like-3" class="level2">
 <h2>Should see something like</h2>
@@ -226,7 +224,14 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 </section>
 <section id="check-the-topic" class="level2">
 <h2>Check the topic</h2>
-<pre><code>    docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181</code></pre>
+<pre><code>docker-compose exec kafka \
+  kafka-topics \
+    --describe \
+    --topic foo \
+    --zookeeper localhost:32181</code></pre>
+<aside class="notes">
+<p>docker-compose exec kafka kafka-topics –describe –topic foo –zookeeper localhost:32181</p>
+</aside>
 </section>
 <section id="should-see-something-like-4" class="level2">
 <h2>Should see something like</h2>
@@ -238,11 +243,11 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <h1></h1>
 <section id="publish-messages" class="level2">
 <h2>Publish Messages</h2>
-<pre><code>    docker-compose exec kafka \
-    bash -c &quot;seq 42 | kafka-console-producer \
-      --request-required-acks 1 \
-      --broker-list localhost:29092 \
-      --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
+<pre><code>docker-compose exec kafka \
+  bash -c &quot;seq 42 | kafka-console-producer \
+    --request-required-acks 1 \
+    --broker-list localhost:29092 \
+    --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
 <aside class="notes">
 <p>Use the kafka console producer to publish some test messages to that topic</p>
 <p>docker-compose exec kafka bash -c “seq 42 | kafka-console-producer –request-required-acks 1 –broker-list localhost:29092 –topic foo &amp;&amp; echo ‘Produced 42 messages.’”</p>
@@ -257,12 +262,12 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <h1></h1>
 <section id="consume-messages" class="level2">
 <h2>Consume Messages</h2>
-<pre><code>    docker-compose exec kafka \
-    kafka-console-consumer \
-      --bootstrap-server localhost:29092 \
-      --topic foo \
-      --from-beginning \
-      --max-messages 42</code></pre>
+<pre><code>docker-compose exec kafka \
+  kafka-console-consumer \
+    --bootstrap-server localhost:29092 \
+    --topic foo \
+    --from-beginning \
+    --max-messages 42</code></pre>
 <aside class="notes">
 <p>Start a consumer to read from that topic</p>
 <p>docker-compose exec kafka kafka-console-consumer –bootstrap-server localhost:29092 –topic foo –from-beginning –max-messages 42</p>
@@ -401,11 +406,11 @@ services:
 </section>
 <section id="check-the-topic-1" class="level2">
 <h2>Check the topic</h2>
-<pre><code>    docker-compose exec kafka \
-    kafka-topics \
-      --describe \
-      --topic foo \
-      --zookeeper zookeeper:32181</code></pre>
+<pre><code>docker-compose exec kafka \
+  kafka-topics \
+    --describe \
+    --topic foo \
+    --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
 <p>docker-compose exec kafka kafka-topics –describe –topic foo –zookeeper zookeeper:32181</p>
 </aside>
@@ -426,10 +431,13 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json&quot;
 docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.&#39;&quot;
 docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c&quot;</code></pre>
+<aside class="notes">
+<p>Go over | jq stuff</p>
+</aside>
 </section>
 <section id="publish-some-test-messages-to-that-topic-with-the-kafka-console-producer" class="level2">
 <h2>Publish some test messages to that topic with the kafka console producer</h2>
-<pre><code>    docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
 <aside class="notes">
 <p>docker-compose exec mids bash -c “cat /w205/github-example-large.json | jq ‘.<a href="#/section-23"></a>’ -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo ‘Produced 100 messages.’”</p>
 </aside>
@@ -446,26 +454,26 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </section>
 <section id="we-can-either-do-what-we-did-before" class="level2">
 <h2>We can either do what we did before</h2>
-<pre><code>    docker-compose exec kafka \
-    kafka-console-consumer \
-      --bootstrap-server kafka:29092 \
-      --topic foo \
-      --from-beginning \
-      --max-messages 42</code></pre>
+<pre><code>docker-compose exec kafka \
+  kafka-console-consumer \
+    --bootstrap-server kafka:29092 \
+    --topic foo \
+    --from-beginning \
+    --max-messages 42</code></pre>
 <aside class="notes">
 <p>docker-compose exec kafka kafka-console-consumer –bootstrap-server kafka:29092 –topic foo –from-beginning –max-messages 42</p>
 </aside>
 </section>
 <section id="or" class="level2">
 <h2>or</h2>
-<pre><code>    docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
 <aside class="notes">
 <p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e”</p>
 </aside>
 </section>
 <section id="and-maybe" class="level2">
 <h2>and maybe</h2>
-<pre><code>    docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; | wc -l</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; | wc -l</code></pre>
 <aside class="notes">
 <p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e” | wc -l</p>
 </aside>
