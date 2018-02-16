@@ -439,10 +439,10 @@ We have to add some kafka library dependencies on the cli for now.
 At the pyspark prompt,
 
 ```
-numbers = spark \
+messages = spark \
   .read \
   .format("kafka") \
-  .option("kafka.bootstrap.servers", "kafka:9092") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
   .option("subscribe","foo") \
   .option("startingOffsets", "earliest") \
   .option("endingOffsets", "latest") \
@@ -454,10 +454,10 @@ At the pyspark prompt,
 
 read from kafka
 
-numbers = spark \
+messages = spark \
   .read \
   .format("kafka") \
-  .option("kafka.bootstrap.servers", "kafka:9092") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
   .option("subscribe","foo") \
   .option("startingOffsets", "earliest") \
   .option("endingOffsets", "latest") \
@@ -470,38 +470,38 @@ numbers = spark \
 
 ## See the schema
 
-numbers.printSchema()
+messages.printSchema()
 
 ## Cast it as strings 
 
-- NOTE: we probably wouldn't cast our json messages as strings...
-
-- something like numbers.count()
-- len(df.columns)
 
 ```
-numbers_as_strings=numbers.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+messages_as_strings=messages.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
 ```
 
 ::: notes
 cast it as strings (you can totally use `INT`s if you'd like)
 
-numbers_as_strings=numbers.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+messages_as_strings=messages.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
 :::
 
 ## Take a look
 
-numbers_as_strings.show()
+messages_as_strings.show()
 
-numbers_as_strings.printSchema()
+messages_as_strings.printSchema()
 
 
 ::: notes
 then you can exit pyspark using either `ctrl-d` or `exit()`.
 
-`numbers_as_strings.show()`
+`messages_as_strings.show()`
 
-numbers_as_strings.printSchema()
+messages_as_strings.printSchema()
+
+messages_as_strings.count()
+
+messages_as_strings.select('value').take(1)
 
 :::
 
