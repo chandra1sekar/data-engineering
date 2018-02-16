@@ -5,7 +5,32 @@ author: Week 07 - sync session
 
 ---
 
+## While we're getting started
+
+- Review your Assignment 06
+- Get ready to share
+
+::: notes
+Breakout at about 5 after the hour:
+- Check in with each group 
+- have students share screen
+:::
+
+
+## Due Friday (PR)
  
+#
+## 
+
+![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
+
+
+::: notes
+- Last week we published and consumed messages with kafka
+- Now we'll consume messages with Spark and take a look at them
+- Next week, we'll transform them in spark so we can land them in hdfs
+:::
+
 
 # 
 ## Spark Stack with Kafka
@@ -519,48 +544,35 @@ Nico Williams
     docker-compose down
 
 
+#
+## Assignment 07
+- Step through this process using the Project 2 data
+- What you turn in:
+- In your `/assignment-07-<user-name>` repo:
+  * your `docker-compose.yml` 
+  * once you've run the example on your terminal
+    * Run `history > <user-name>-history.txt`
+    * Save the relevant portion of your history as `<user-name>-annotations.md`
+    * Annotate the file with explanations of what you were doing at each point (See `htmartin-annotations.md`)
 
 
 
+#
+## Summary
+
+![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+::: notes
+- Review what we just did
+:::
 
 
 
 
 
 #
-## Summary
+## 
 
 - 
 
