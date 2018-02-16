@@ -119,13 +119,6 @@ services:
 <p>and save a data file.</p>
 </aside>
 </section>
-<section id="pull-data" class="level2">
-<h2>Pull data</h2>
-<pre><code>curl -L -o trips.csv https://goo.gl/huLPbo</code></pre>
-<aside class="notes">
-<p>We’ll just pull <code>trips.csv</code> again if you don’t already have that in your <code>~/w205</code> folder…</p>
-</aside>
-</section>
 <section id="up" class="level2">
 <h2>up</h2>
 <pre><code>docker-compose up -d
@@ -201,13 +194,14 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <p>docker-compose exec myspark pyspark</p>
 <p>We have to add some kafka library dependencies on the cli for now.</p>
 </aside>
-<section id="read-stuff-from-kafka" class="level3">
-<h3>read stuff from kafka</h3>
+</section>
+<section id="read-stuff-from-kafka" class="level2">
+<h2>read stuff from kafka</h2>
 <p>At the pyspark prompt,</p>
 <pre><code>numbers = spark \
   .read \
   .format(&quot;kafka&quot;) \
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:9092&quot;) \
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;) \
   .option(&quot;subscribe&quot;,&quot;foo&quot;) \
   .option(&quot;startingOffsets&quot;, &quot;earliest&quot;) \
   .option(&quot;endingOffsets&quot;, &quot;latest&quot;) \
@@ -218,17 +212,16 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <p>numbers = spark<br />
 .read<br />
 .format(“kafka”)<br />
-.option(“kafka.bootstrap.servers”, “kafka:9092”)<br />
+.option(“kafka.bootstrap.servers”, “kafka:29092”)<br />
 .option(“subscribe”,“foo”)<br />
 .option(“startingOffsets”, “earliest”)<br />
 .option(“endingOffsets”, “latest”)<br />
 .load()</p>
 </aside>
 </section>
-</section>
 <section id="see-the-schema" class="level2">
 <h2>See the schema</h2>
-<p>numbers.printSchema()</p>
+<pre><code>numbers.printSchema()</code></pre>
 </section>
 <section id="cast-it-as-strings" class="level2">
 <h2>Cast it as strings</h2>
@@ -240,8 +233,9 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 <section id="take-a-look" class="level2">
 <h2>Take a look</h2>
-<p>numbers_as_strings.show()</p>
-<p>numbers_as_strings.printSchema()</p>
+<pre><code>numbers_as_strings.show()</code></pre>
+<pre><code>numbers_as_strings.printSchema()</code></pre>
+<pre><code>numbers_as_strings.count()</code></pre>
 <aside class="notes">
 <p>then you can exit pyspark using either <code>ctrl-d</code> or <code>exit()</code>.</p>
 <p><code>numbers_as_strings.show()</code></p>
@@ -257,16 +251,78 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <h1></h1>
 <section id="spark-stack-with-kafka-with-real-messages" class="level2">
 <h2>Spark stack with Kafka with “real” messages</h2>
-<ul>
-<li>::: notes</li>
-</ul>
-<p>:::</p>
+<aside class="notes">
+
+</aside>
 </section>
 <section id="docker-compose.yml-file" class="level2">
 <h2>docker-compose.yml file</h2>
-<ul>
-<li>Paste here when have final</li>
-</ul>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - &quot;2181&quot;
+      - &quot;2888&quot;
+      - &quot;32181&quot;
+      - &quot;3888&quot;
+    #ports:
+      #- &quot;32181:32181&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;9092&quot;
+      - &quot;29092&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  myhdfs:
+    image: midsw205/cdh-minimal:latest
+    expose:
+      - &quot;8020&quot; # nn
+      - &quot;50070&quot; # nn http
+      - &quot;8888&quot; # hue
+    #ports:
+    #- &quot;8888:8888&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  myspark:
+    image: midsw205/spark-python:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    command: bash
+    depends_on:
+      - myhdfs
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
 <ul>
 <li>See ~/w205/spark-with-kafka-json folder’s docker-compose.yml</li>
@@ -274,7 +330,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </ul>
 </aside>
 </section>
-<section id="pull-data-1" class="level2">
+<section id="pull-data" class="level2">
 <h2>Pull data</h2>
 <pre><code>curl -L -o github-example-large.json https://goo.gl/Hr6erG</code></pre>
 </section>
@@ -358,7 +414,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
     | jq &#39;.[]&#39; -c \
     | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
 <aside class="notes">
-<p>docker-compose exec mids bash -c “cat /w205/github-example-large.json | jq ‘.<a href="#/section-12"></a>’ -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo ‘Produced 100 messages.’”</p>
+<p>docker-compose exec mids bash -c “cat /w205/github-example-large.json | jq ‘.<a href="#/section-9"></a>’ -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo ‘Produced 100 messages.’”</p>
 </aside>
 </section>
 <section id="should-see-something-like-2" class="level2">
@@ -368,46 +424,6 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </section>
 <section id="section-6" class="slide level1">
 <h1></h1>
-<section id="consume-the-messages" class="level2">
-<h2>Consume the messages</h2>
-</section>
-<section id="we-can-either-do-what-we-did-before" class="level2">
-<h2>We can either do what we did before</h2>
-<pre><code>docker-compose exec kafka \
-  kafka-console-consumer \
-    --bootstrap-server kafka:29092 \
-    --topic foo \
-    --from-beginning </code></pre>
-<aside class="notes">
-<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server kafka:29092 –topic foo –from-beginning</p>
-<ul>
-<li>Returns all the messages</li>
-</ul>
-</aside>
-</section>
-<section id="or" class="level2">
-<h2>or</h2>
-<pre><code>docker-compose exec mids \
-  bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
-<aside class="notes">
-<p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e”</p>
-</aside>
-</section>
-<section id="and-maybe" class="level2">
-<h2>and maybe</h2>
-<pre><code>docker-compose exec mids \
-  bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; \
-    | wc -l</code></pre>
-<aside class="notes">
-<p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e” | wc -l</p>
-<ul>
-<li>count the messages</li>
-</ul>
-</aside>
-</section>
-</section>
-<section id="section-7" class="slide level1">
-<h1></h1>
 <section id="run-spark-using-the-myspark-container-1" class="level2">
 <h2>Run spark using the <code>myspark</code> container</h2>
 <pre><code>docker-compose exec myspark pyspark</code></pre>
@@ -416,8 +432,9 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <p>docker-compose exec myspark pyspark</p>
 <p>We have to add some kafka library dependencies on the cli for now.</p>
 </aside>
-<section id="read-stuff-from-kafka-1" class="level3">
-<h3>read stuff from kafka</h3>
+</section>
+<section id="read-stuff-from-kafka-1" class="level2">
+<h2>read stuff from kafka</h2>
 <p>At the pyspark prompt,</p>
 <pre><code>messages = spark \
   .read \
@@ -443,10 +460,9 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </ul>
 </aside>
 </section>
-</section>
 <section id="see-the-schema-1" class="level2">
 <h2>See the schema</h2>
-<p>messages.printSchema()</p>
+<pre><code>messages.printSchema()</code></pre>
 </section>
 <section id="cast-as-strings" class="level2">
 <h2>Cast as strings</h2>
@@ -458,13 +474,25 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </section>
 <section id="take-a-look-1" class="level2">
 <h2>Take a look</h2>
-<p>messages_as_strings.show()</p>
-<p>messages_as_strings.printSchema()</p>
+<pre><code>messages_as_strings.show()</code></pre>
+<pre><code>messages_as_strings.printSchema()</code></pre>
+<pre><code>messages_as_strings.count()</code></pre>
 <aside class="notes">
 <p>then you can exit pyspark using either <code>ctrl-d</code> or <code>exit()</code>.</p>
 <p><code>messages_as_strings.show()</code></p>
 <p>messages_as_strings.printSchema()</p>
 <p>messages_as_strings.count()</p>
+</aside>
+</section>
+<section id="unrolling-json" class="level2">
+<h2>Unrolling json</h2>
+<pre><code>messages_as_strings.select(&#39;value&#39;).take(1)</code></pre>
+<pre><code>messages_as_strings.select(&#39;value&#39;).take(1)[0].value</code></pre>
+<pre><code>import json</code></pre>
+<pre><code>first_message=json.loads(messages_as_strings.select(&#39;value&#39;).take(1)[0].value)</code></pre>
+<pre><code>first_message</code></pre>
+<pre><code>print(first_message[&#39;commit&#39;][&#39;committer&#39;][&#39;name&#39;])</code></pre>
+<aside class="notes">
 <p>messages_as_strings.select(‘value’).take(1)</p>
 <p>messages_as_strings.select(‘value’).take(1)[0].value &gt;&gt;&gt; import json &gt;&gt;&gt; first_message=json.loads(messages_as_strings.select(‘value’).take(1)[0].value) &gt;&gt;&gt; first_message &gt;&gt;&gt; print(first_message[‘commit’][‘committer’][‘name’]) Nico Williams</p>
 </aside>
@@ -474,7 +502,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="assignment-07" class="level2">
 <h2>Assignment 07</h2>
@@ -494,7 +522,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </ul>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
@@ -506,16 +534,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </aside>
 </section>
 </section>
-<section id="section-10" class="slide level1">
-<h1></h1>
-<section id="section-11" class="level2">
-<h2></h2>
-<ul>
-<li></li>
-</ul>
-</section>
-</section>
-<section id="section-12" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

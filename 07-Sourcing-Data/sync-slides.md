@@ -88,15 +88,6 @@ and save a data file.
 :::
 
 
-## Pull data
-
-    curl -L -o trips.csv https://goo.gl/huLPbo
-
-::: notes
-We'll just pull `trips.csv` again if you don't
-already have that in your `~/w205` folder...
-
-:::
 
 ## up
 
@@ -195,7 +186,7 @@ docker-compose exec myspark pyspark
 We have to add some kafka library dependencies on the cli for now.
 :::
 
-### read stuff from kafka
+## read stuff from kafka
 
 At the pyspark prompt,
 
@@ -203,7 +194,7 @@ At the pyspark prompt,
 numbers = spark \
   .read \
   .format("kafka") \
-  .option("kafka.bootstrap.servers", "kafka:9092") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
   .option("subscribe","foo") \
   .option("startingOffsets", "earliest") \
   .option("endingOffsets", "latest") \
@@ -218,7 +209,7 @@ read from kafka
 numbers = spark \
   .read \
   .format("kafka") \
-  .option("kafka.bootstrap.servers", "kafka:9092") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
   .option("subscribe","foo") \
   .option("startingOffsets", "earliest") \
   .option("endingOffsets", "latest") \
@@ -228,7 +219,9 @@ numbers = spark \
 
 ## See the schema
 
+```
 numbers.printSchema()
+```
 
 ## Cast it as strings 
 
@@ -244,11 +237,16 @@ numbers_as_strings=numbers.selectExpr("CAST(key AS STRING)", "CAST(value AS STRI
 
 ## Take a look
 
+```
 numbers_as_strings.show()
-
+```
+```
 numbers_as_strings.printSchema()
+```
 
-
+```
+numbers_as_strings.count()
+```
 ::: notes
 then you can exit pyspark using either `ctrl-d` or `exit()`.
 
@@ -268,14 +266,80 @@ numbers_as_strings.printSchema()
 #
 ## Spark stack with Kafka with "real" messages
 
--
-::: notes
 
+::: notes
 :::
 
 ## docker-compose.yml file
 
-- Paste here when have final
+```
+---
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - "2181"
+      - "2888"
+      - "32181"
+      - "3888"
+    #ports:
+      #- "32181:32181"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "9092"
+      - "29092"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  myhdfs:
+    image: midsw205/cdh-minimal:latest
+    expose:
+      - "8020" # nn
+      - "50070" # nn http
+      - "8888" # hue
+    #ports:
+    #- "8888:8888"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  myspark:
+    image: midsw205/spark-python:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    command: bash
+    depends_on:
+      - myhdfs
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    extra_hosts:
+      - "moby:127.0.0.1"
+```
 
 
 ::: notes
@@ -399,50 +463,6 @@ docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]'
 
 
 
-#
-## Consume the messages
-
-## We can either do what we did before
-
-```
-docker-compose exec kafka \
-  kafka-console-consumer \
-    --bootstrap-server kafka:29092 \
-    --topic foo \
-    --from-beginning 
-```
-
-::: notes
-
-docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning 
-
-- Returns all the messages
-::::
-
-## or 
-
-```
-docker-compose exec mids \
-  bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
-```
-
-::: notes
-docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
-:::
-
-## and maybe
-
-```
-docker-compose exec mids \
-  bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" \
-    | wc -l
-```
-
-::: notes
-docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
-
-- count the messages
-:::
 
 #
 ## Run spark using the `myspark` container
@@ -459,7 +479,7 @@ docker-compose exec myspark pyspark
 We have to add some kafka library dependencies on the cli for now.
 :::
 
-### read stuff from kafka
+## read stuff from kafka
 
 At the pyspark prompt,
 
@@ -495,7 +515,9 @@ messages = spark \
 
 ## See the schema
 
+```
 messages.printSchema()
+```
 
 ## Cast as strings 
 
@@ -512,10 +534,17 @@ messages_as_strings=messages.selectExpr("CAST(key AS STRING)", "CAST(value AS ST
 
 ## Take a look
 
+```
 messages_as_strings.show()
+```
 
+```
 messages_as_strings.printSchema()
+```
 
+```
+messages_as_strings.count()
+```
 
 ::: notes
 then you can exit pyspark using either `ctrl-d` or `exit()`.
@@ -525,7 +554,34 @@ then you can exit pyspark using either `ctrl-d` or `exit()`.
 messages_as_strings.printSchema()
 
 messages_as_strings.count()
+:::
 
+## Unrolling json
+```
+messages_as_strings.select('value').take(1)
+```
+
+```
+messages_as_strings.select('value').take(1)[0].value
+```
+
+```
+import json
+```
+
+```
+first_message=json.loads(messages_as_strings.select('value').take(1)[0].value)
+```
+
+```
+first_message
+```
+
+```
+print(first_message['commit']['committer']['name'])
+```
+
+::: notes
 messages_as_strings.select('value').take(1)
 
 messages_as_strings.select('value').take(1)[0].value
@@ -535,8 +591,6 @@ messages_as_strings.select('value').take(1)[0].value
 >>> print(first_message['commit']['committer']['name'])
 Nico Williams
 :::
-
-
 
 
 ## Down
@@ -568,13 +622,6 @@ Nico Williams
 :::
 
 
-
-
-
-#
-## 
-
-- 
 
 #
 
