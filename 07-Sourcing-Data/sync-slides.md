@@ -65,7 +65,7 @@ and save a data file.
 
 ## Pull data
 
-    curl -L -o trips.csv https://goo.gl/MVNVhW
+    curl -L -o trips.csv https://goo.gl/huLPbo
 
 ::: notes
 We'll just pull `trips.csv` again if you don't
@@ -262,7 +262,7 @@ numbers_as_strings.printSchema()
 ## Pull data
 
 ```
-curl -L -o github-example-large.json https://goo.gl/WewtYn
+curl -L -o github-example-large.json https://goo.gl/Hr6erG
 ```
 
 ## Spin up the cluster
