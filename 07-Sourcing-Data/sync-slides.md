@@ -40,46 +40,59 @@ Breakout at about 5 after the hour:
 
 ## `docker-compose.yml` 
 
-    ---
-    version: '2'
-    services:
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        environment:
-          ZOOKEEPER_CLIENT_PORT: 32181
-          ZOOKEEPER_TICK_TIME: 2000
-        expose:
-          - "2181"
-          - "2888"
-          - "32181"
-          - "3888"
-        extra_hosts:
-          - "moby:127.0.0.1"
+```
+---
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - "2181"
+      - "2888"
+      - "32181"
+      - "3888"
+    extra_hosts:
+      - "moby:127.0.0.1"
 
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        depends_on:
-          - zookeeper
-        environment:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        expose:
-          - "9092"
-          - "29092"
-        extra_hosts:
-          - "moby:127.0.0.1"
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "9092"
+      - "29092"
+    extra_hosts:
+      - "moby:127.0.0.1"
 
-      myspark:
-        image: midsw205/spark-python:0.0.5
-        stdin_open: true
-        tty: true
-        volumes:
-          - ~/w205:/w205
-        command: bash
-        extra_hosts:
-          - "moby:127.0.0.1"
+  spark:
+    image: midsw205/spark-python:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    command: bash
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    extra_hosts:
+      - "moby:127.0.0.1"
+```
 
 ::: notes
 and save a data file.  
@@ -172,15 +185,15 @@ docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-req
 
 
 #
-## Run spark using the `myspark` container
+## Run spark using the `spark` container
 
-    docker-compose exec myspark pyspark
+    docker-compose exec spark pyspark
 
 
 ::: notes
-Spin up a pyspark process using the `myspark` container
+Spin up a pyspark process using the `spark` container
 
-docker-compose exec myspark pyspark
+docker-compose exec spark pyspark
 
 We have to add some kafka library dependencies on the cli for now.
 :::
@@ -285,8 +298,6 @@ services:
       - "2888"
       - "32181"
       - "3888"
-    #ports:
-      #- "32181:32181"
     extra_hosts:
       - "moby:127.0.0.1"
 
@@ -307,26 +318,13 @@ services:
     extra_hosts:
       - "moby:127.0.0.1"
 
-  myhdfs:
-    image: midsw205/cdh-minimal:latest
-    expose:
-      - "8020" # nn
-      - "50070" # nn http
-      - "8888" # hue
-    #ports:
-    #- "8888:8888"
-    extra_hosts:
-      - "moby:127.0.0.1"
-
-  myspark:
+  spark:
     image: midsw205/spark-python:latest
     stdin_open: true
     tty: true
     volumes:
       - ~/w205:/w205
     command: bash
-    depends_on:
-      - myhdfs
     extra_hosts:
       - "moby:127.0.0.1"
 
@@ -340,10 +338,8 @@ services:
       - "moby:127.0.0.1"
 ```
 
-
 ::: notes
-- See ~/w205/spark-with-kafka-json folder's docker-compose.yml
-- may use this cluster, may have it working w/o myhdfs container
+- same `docker-compose.yml` from above
 :::
 
 
@@ -464,16 +460,16 @@ docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]'
 
 
 #
-## Run spark using the `myspark` container
+## Run spark using the `spark` container
 
 ```
-docker-compose exec myspark pyspark
+docker-compose exec spark pyspark
 ```
 
 ::: notes
-Spin up a pyspark process using the `myspark` container
+Spin up a pyspark process using the `spark` container
 
-docker-compose exec myspark pyspark
+docker-compose exec spark pyspark
 
 We have to add some kafka library dependencies on the cli for now.
 :::

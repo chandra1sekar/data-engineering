@@ -31,7 +31,7 @@ services:
     extra_hosts:
       - "moby:127.0.0.1"
 
-  myspark:
+  spark:
     image: midsw205/spark-python:0.0.5
     stdin_open: true
     tty: true

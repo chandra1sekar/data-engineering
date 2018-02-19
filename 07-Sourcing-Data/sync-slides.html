@@ -98,19 +98,30 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
     expose:
       - &quot;9092&quot;
       - &quot;29092&quot;
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;
 
-  myspark:
-    image: midsw205/spark-python:0.0.5
+  spark:
+    image: midsw205/spark-python:latest
     stdin_open: true
     tty: true
     volumes:
       - ~/w205:/w205
     command: bash
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
@@ -184,12 +195,12 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
-<section id="run-spark-using-the-myspark-container" class="level2">
-<h2>Run spark using the <code>myspark</code> container</h2>
-<pre><code>docker-compose exec myspark pyspark</code></pre>
+<section id="run-spark-using-the-spark-container" class="level2">
+<h2>Run spark using the <code>spark</code> container</h2>
+<pre><code>docker-compose exec spark pyspark</code></pre>
 <aside class="notes">
-<p>Spin up a pyspark process using the <code>myspark</code> container</p>
-<p>docker-compose exec myspark pyspark</p>
+<p>Spin up a pyspark process using the <code>spark</code> container</p>
+<p>docker-compose exec spark pyspark</p>
 <p>We have to add some kafka library dependencies on the cli for now.</p>
 </aside>
 </section>
@@ -268,8 +279,6 @@ services:
       - &quot;2888&quot;
       - &quot;32181&quot;
       - &quot;3888&quot;
-    #ports:
-      #- &quot;32181:32181&quot;
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;
 
@@ -290,26 +299,13 @@ services:
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;
 
-  myhdfs:
-    image: midsw205/cdh-minimal:latest
-    expose:
-      - &quot;8020&quot; # nn
-      - &quot;50070&quot; # nn http
-      - &quot;8888&quot; # hue
-    #ports:
-    #- &quot;8888:8888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  myspark:
+  spark:
     image: midsw205/spark-python:latest
     stdin_open: true
     tty: true
     volumes:
       - ~/w205:/w205
     command: bash
-    depends_on:
-      - myhdfs
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;
 
@@ -323,8 +319,7 @@ services:
       - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
 <ul>
-<li>See ~/w205/spark-with-kafka-json folder’s docker-compose.yml</li>
-<li>may use this cluster, may have it working w/o myhdfs container</li>
+<li>same <code>docker-compose.yml</code> from above</li>
 </ul>
 </aside>
 </section>
@@ -422,12 +417,12 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </section>
 <section id="section-7" class="slide level1">
 <h1></h1>
-<section id="run-spark-using-the-myspark-container-1" class="level2">
-<h2>Run spark using the <code>myspark</code> container</h2>
-<pre><code>docker-compose exec myspark pyspark</code></pre>
+<section id="run-spark-using-the-spark-container-1" class="level2">
+<h2>Run spark using the <code>spark</code> container</h2>
+<pre><code>docker-compose exec spark pyspark</code></pre>
 <aside class="notes">
-<p>Spin up a pyspark process using the <code>myspark</code> container</p>
-<p>docker-compose exec myspark pyspark</p>
+<p>Spin up a pyspark process using the <code>spark</code> container</p>
+<p>docker-compose exec spark pyspark</p>
 <p>We have to add some kafka library dependencies on the cli for now.</p>
 </aside>
 </section>
