@@ -11,8 +11,6 @@ services:
       - "2888"
       - "32181"
       - "3888"
-    #ports:
-      #- "32181:32181"
     extra_hosts:
       - "moby:127.0.0.1"
 
@@ -33,17 +31,6 @@ services:
     extra_hosts:
       - "moby:127.0.0.1"
 
-  myhdfs:
-    image: midsw205/cdh-minimal:latest
-    expose:
-      - "8020" # nn
-      - "50070" # nn http
-      - "8888" # hue
-    #ports:
-    #- "8888:8888"
-    extra_hosts:
-      - "moby:127.0.0.1"
-
   myspark:
     image: midsw205/spark-python:latest
     stdin_open: true
@@ -51,8 +38,6 @@ services:
     volumes:
       - ~/w205:/w205
     command: bash
-    depends_on:
-      - myhdfs
     extra_hosts:
       - "moby:127.0.0.1"
 
