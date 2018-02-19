@@ -32,7 +32,7 @@ services:
       - "moby:127.0.0.1"
 
   myspark:
-    image: midsw205/spark-python:latest
+    image: midsw205/spark-python:0.0.5
     stdin_open: true
     tty: true
     volumes:

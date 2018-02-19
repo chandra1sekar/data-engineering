@@ -52,8 +52,6 @@ Breakout at about 5 after the hour:
           - "2888"
           - "32181"
           - "3888"
-        #ports:
-          #- "32181:32181"
         extra_hosts:
           - "moby:127.0.0.1"
 
@@ -73,7 +71,7 @@ Breakout at about 5 after the hour:
           - "moby:127.0.0.1"
 
       myspark:
-        image: midsw205/spark-python:latest
+        image: midsw205/spark-python:0.0.5
         stdin_open: true
         tty: true
         volumes:
