@@ -5,6 +5,7 @@ author: Week 07 - sync session
 
 ---
 
+#
 ## While we're getting started
 
 - Review your Assignment 06
