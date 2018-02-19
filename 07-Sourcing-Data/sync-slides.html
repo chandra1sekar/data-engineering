@@ -70,6 +70,9 @@
 </section>
 <section id="setup" class="level2">
 <h2>Setup</h2>
+<p><code>mkdir ~/w205/spark-with-kafka</code></p>
+<p><code>cd ~/w205/spark-with-kafka</code></p>
+<p><code>cp ~/w205/course-content/07-Sourcing-Data/docker-compose.yml .</code></p>
 </section>
 <section id="docker-compose.yml" class="level2">
 <h2><code>docker-compose.yml</code></h2>
@@ -107,7 +110,7 @@ services:
       - &quot;moby:127.0.0.1&quot;
 
   spark:
-    image: midsw205/spark-python:latest
+    image: midsw205/spark-python:0.0.5
     stdin_open: true
     tty: true
     volumes:
@@ -125,7 +128,7 @@ services:
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
-<p>and save a data file.</p>
+<p>and save as data file.</p>
 </aside>
 </section>
 <section id="up" class="level2">
@@ -140,9 +143,6 @@ docker-compose logs -f kafka</code></pre>
 <pre><code>docker-compose logs -f kafka</code></pre>
 <p>when this looks like it’s done, you can safely detach with <code>Ctrl-C</code>.</p>
 </aside>
-</section>
-<section id="use-it" class="level2">
-<h2>use it</h2>
 </section>
 <section id="create-a-topic" class="level2">
 <h2>create a topic</h2>
@@ -266,57 +266,10 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 <section id="docker-compose.yml-file" class="level2">
 <h2>docker-compose.yml file</h2>
-<pre><code>---
-version: &#39;2&#39;
-services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
-    expose:
-      - &quot;2181&quot;
-      - &quot;2888&quot;
-      - &quot;32181&quot;
-      - &quot;3888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    volumes:
-      - ~/w205:/w205
-    expose:
-      - &quot;9092&quot;
-      - &quot;29092&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  spark:
-    image: midsw205/spark-python:latest
-    stdin_open: true
-    tty: true
-    volumes:
-      - ~/w205:/w205
-    command: bash
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  mids:
-    image: midsw205/base:latest
-    stdin_open: true
-    tty: true
-    volumes:
-      - ~/w205:/w205
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+<ul>
+<li>same</li>
+<li>still in your <code>~/w205/spark-with-kafka</code></li>
+</ul>
 <aside class="notes">
 <ul>
 <li>same <code>docker-compose.yml</code> from above</li>
@@ -327,34 +280,24 @@ services:
 <h2>Pull data</h2>
 <pre><code>curl -L -o github-example-large.json https://goo.gl/Hr6erG</code></pre>
 </section>
-<section id="spin-up-the-cluster" class="level2">
-<h2>Spin up the cluster</h2>
+<section id="spin-up-the-cluster-check" class="level2">
+<h2>Spin up the cluster &amp; check</h2>
 <pre><code>docker-compose up -d</code></pre>
-</section>
-<section id="watch-it-come-up" class="level2">
-<h2>Watch it come up</h2>
 <pre><code>docker-compose logs -f kafka</code></pre>
-<ul>
-<li>Detach with <code>Ctrl-C</code></li>
-</ul>
 <aside class="notes">
-<p>when this looks like it’s done, detach</p>
+<p>when this looks like it’s done, detach with <code>Ctrl-C</code></p>
 </aside>
-</section>
-<section id="use-it-1" class="level2">
-<h2>use it</h2>
 </section>
 <section id="create-a-topic-1" class="level2">
 <h2>create a topic</h2>
-<pre><code>
-docker-compose exec kafka \
+<pre><code>docker-compose exec kafka \
   kafka-topics \
     --create \
-    --topic foo \
-    --partitions 1 \
-    --replication-factor 1 \
-    --if-not-exists \
-    --zookeeper zookeeper:32181</code></pre>
+      --topic foo \
+      --partitions 1 \
+      --replication-factor 1 \
+      --if-not-exists \
+      --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
 <p>docker-compose exec kafka kafka-topics –create –topic foo –partitions 1 –replication-factor 1 –if-not-exists –zookeeper zookeeper:32181</p>
 </aside>
@@ -448,9 +391,6 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 .option(“startingOffsets”, “earliest”)<br />
 .option(“endingOffsets”, “latest”)<br />
 .load()</p>
-<ul>
-<li>NOTE: change the name of the df - gitmessages or something</li>
-</ul>
 </aside>
 </section>
 <section id="see-the-schema-1" class="level2">
@@ -509,7 +449,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <ul>
 <li>Run <code>history &gt; &lt;user-name&gt;-history.txt</code></li>
 <li>Save the relevant portion of your history as <code>&lt;user-name&gt;-annotations.md</code></li>
-<li>Annotate the file with explanations of what you were doing at each point (See <code>htmartin-annotations.md</code>)</li>
+<li>Annotate the file with explanations of what you were doing at each point.</li>
 </ul></li>
 </ul></li>
 </ul>

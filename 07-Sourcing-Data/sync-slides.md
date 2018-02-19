@@ -38,6 +38,14 @@ Breakout at about 5 after the hour:
 
 ## Setup
 
+`mkdir ~/w205/spark-with-kafka`
+
+`cd ~/w205/spark-with-kafka`
+
+`cp ~/w205/course-content/07-Sourcing-Data/docker-compose.yml .`
+
+
+
 ## `docker-compose.yml` 
 
 ```
@@ -75,7 +83,7 @@ services:
       - "moby:127.0.0.1"
 
   spark:
-    image: midsw205/spark-python:latest
+    image: midsw205/spark-python:0.0.5
     stdin_open: true
     tty: true
     volumes:
@@ -95,7 +103,7 @@ services:
 ```
 
 ::: notes
-and save a data file.  
+and save as data file.  
 
 :::
 
@@ -120,7 +128,6 @@ when this looks like it's done, you can safely detach with `Ctrl-C`.
 
 :::
 
-## use it
 
 ## create a topic
 
@@ -187,8 +194,9 @@ docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-req
 #
 ## Run spark using the `spark` container
 
-    docker-compose exec spark pyspark
-
+```
+docker-compose exec spark pyspark
+```
 
 ::: notes
 Spin up a pyspark process using the `spark` container
@@ -284,59 +292,8 @@ numbers_as_strings.printSchema()
 
 ## docker-compose.yml file
 
-```
----
-version: '2'
-services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
-    expose:
-      - "2181"
-      - "2888"
-      - "32181"
-      - "3888"
-    extra_hosts:
-      - "moby:127.0.0.1"
-
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    volumes:
-      - ~/w205:/w205
-    expose:
-      - "9092"
-      - "29092"
-    extra_hosts:
-      - "moby:127.0.0.1"
-
-  spark:
-    image: midsw205/spark-python:latest
-    stdin_open: true
-    tty: true
-    volumes:
-      - ~/w205:/w205
-    command: bash
-    extra_hosts:
-      - "moby:127.0.0.1"
-
-  mids:
-    image: midsw205/base:latest
-    stdin_open: true
-    tty: true
-    volumes:
-      - ~/w205:/w205
-    extra_hosts:
-      - "moby:127.0.0.1"
-```
+- same 
+- still in your `~/w205/spark-with-kafka`
 
 ::: notes
 - same `docker-compose.yml` from above
@@ -349,38 +306,32 @@ services:
 curl -L -o github-example-large.json https://goo.gl/Hr6erG
 ```
 
-## Spin up the cluster
+## Spin up the cluster & check
 
 ```
 docker-compose up -d
 ```
 
-
-## Watch it come up
-
-    docker-compose logs -f kafka
-
-- Detach with `Ctrl-C`
-
+```
+docker-compose logs -f kafka
+```
 
 ::: notes
-when this looks like it's done, detach
+when this looks like it's done, detach with `Ctrl-C`
 :::
 
-## use it
 
 ## create a topic
 
 ```
-
 docker-compose exec kafka \
   kafka-topics \
     --create \
-	--topic foo \
-	--partitions 1 \
-	--replication-factor 1 \
-	--if-not-exists \
-	--zookeeper zookeeper:32181
+	  --topic foo \
+	  --partitions 1 \
+	  --replication-factor 1 \
+	  --if-not-exists \
+	  --zookeeper zookeeper:32181
 ```
 
 ::: notes
@@ -503,9 +454,6 @@ messages = spark \
   .option("endingOffsets", "latest") \
   .load() 
 
-
-- NOTE: change the name of the df - gitmessages or something
-
 :::
 
 ## See the schema
@@ -602,7 +550,7 @@ Nico Williams
   * once you've run the example on your terminal
     * Run `history > <user-name>-history.txt`
     * Save the relevant portion of your history as `<user-name>-annotations.md`
-    * Annotate the file with explanations of what you were doing at each point (See `htmartin-annotations.md`)
+    * Annotate the file with explanations of what you were doing at each point.
 
 
 
