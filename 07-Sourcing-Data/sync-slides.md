@@ -278,9 +278,9 @@ numbers_as_strings.printSchema()
 
 
 ## down
-
-    docker-compose down
-
+```
+docker-compose down
+```
 
 
 #
@@ -462,6 +462,12 @@ messages = spark \
 messages.printSchema()
 ```
 
+## See the messages
+
+```
+messages.show()
+```
+
 ## Cast as strings 
 
 
@@ -535,6 +541,9 @@ messages_as_strings.select('value').take(1)[0].value
 Nico Williams
 :::
 
+## Breakout
+
+- Change around some of the fields to print different aspects of the commit
 
 ## Down
 
