@@ -8,6 +8,18 @@ author: Week 07 - sync session
 #
 ## While we're getting started
 
+
+- Mid-Course Survey
+
+- Section W205.2:
+https://www.surveymonkey.com/r/K98FVLW
+
+- Section W205.6:
+https://www.surveymonkey.com/r/K97L9RC
+
+
+
+## Assignment Review
 - Review your Assignment 06
 - Get ready to share
 
@@ -109,21 +121,24 @@ and save as data file.
 
 
 
-## up
+## Spin up the cluster
 
-    docker-compose up -d
-
-    docker-compose logs -f kafka
+```
+docker-compose up -d
+```
+```
+docker-compose logs -f kafka
+```
 
 ::: notes
 Now spin up the cluster
-
-    docker-compose up -d
-
+```
+docker-compose up -d
+```
 and watch it come up
-
+```
     docker-compose logs -f kafka
-
+```
 when this looks like it's done, you can safely detach with `Ctrl-C`.
 
 :::

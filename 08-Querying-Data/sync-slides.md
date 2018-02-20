@@ -6,114 +6,449 @@ author: Week 08 - sync session
 ---
 
 #
-## Business Decisions
+## Homework - What were we doing to go over that?
 
-<div class="notes">
-All about the business
-</div>
-
-##
-
-Data-Driven
-
+#
 ## 
 
-Data-Driven Business Decisions
-...are queries
+![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
 
-<div class="notes">
-in order for 
-business decisions to be based on data,
-you have to be able to interact with the data.
 
-business requirements get encoded as queries of data
-</div>
+::: notes
+- Last week we  consume messages with Spark and take a look at them
+- Now, we'll transform them in spark so we can land them in hdfs
+:::
+
+# 
+## Spark Stack with Kafka and HDFS
+
+## Setup
+
+`mkdir ~/w205/spark-with-kafka-and-hdfs`
+
+`cd ~/w205/spark-with-kafka-and-hdfs`
+
+`cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .`
+
+
+
+
+## Spin up the cluster
+
+```
+docker-compose up -d
+```
+```
+docker-compose logs -f kafka
+```
+
+- NOTES: Why are we looking at kafka logs here?
+
+
+::: notes
+Now spin up the cluster
+```
+docker-compose up -d
+```
+and watch it come up
+```
+    docker-compose logs -f kafka
+```
+when this looks like it's done, you can safely detach with `Ctrl-C`.
+
+:::
+
+
+## Example: World Cup Players
+
+### Check out Hadoop
+
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+
+- NOTES: I get 
+
+	funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/
+	Found 2 items
+	drwxrwxrwt   - mapred mapred              0 2018-02-06 18:27 /tmp/hadoop-yarn
+	drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive
+
+::: notes
+Let's check out hdfs before we write anything to it
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+:::
+
+### Create a topic `players`
+
+```
+docker-compose exec kafka \
+  kafka-topics \
+    --create \
+    --topic players \
+    --partitions 1 \
+    --replication-factor 1 \
+    --if-not-exists \
+    --zookeeper zookeeper:32181
+```
+
+::: notes
+First, create a topic `players`
+```
+docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
+:::
+
+## Should show
+
+    Created topic "players".
+
+## Download the dataset for github players
+
+- In `~/w205/`
+
+```
+curl -L -o players.json https://goo.gl/jSVrAe
+```
+
+## Use kafkacat to produce test messages to the `players` topic
+
+```
+docker-compose exec mids 
+  bash -c "cat /w205/players.json \
+    | jq '.[]' -c \
+    | kafkacat -P -b kafka:29092 -t players"
+```
+
+- NOTES: This split up of command not working, but command works
+
+::: notes
+```
+docker-compose exec mids bash -c "cat /w205/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+```
+:::
+
 
 #
-## Interfaces for data analysis:
+## Spin up a pyspark process using the `spark` container
+```
+docker-compose exec spark pyspark
+```
 
-- SQL
+::: notes
+```
+docker-compose exec spark pyspark
+```
 
-- DataFrames
+:::
 
-<div class="notes">
-We'd like to go over a few ways in which you'll interact directly with
-data when analyzing datasets.
-</div>
+## At the pyspark prompt, read from kafka
 
+```
+raw_players = spark \
+  .read \
+  .format("kafka") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
+  .option("subscribe","players") \
+  .option("startingOffsets", "earliest") \
+  .option("endingOffsets", "latest") \
+  .load() 
+```
 
-#
-## Some General Considerations
-
-- what functionality does it support?
-- how well does it perform?
-- how well does it handle scale?
-- how well does it handle change?
-
-
-
-#
-## functionality
-
-<div class="notes">
-mind-numbing number of tools coming out every day
-to "help" you work with data
-
-I'd like to fold them into two categories:
-
-- presentation...
-    dashboards, reports, graphs, etc
-    you are supporting business decisions
-
-- analysis... 
-    - exploration, what-if, ad-hoc
-    - classifying things, etc
-    - developing/training models for ML/AI
-
-Avoid the comprehensive environments that "do it all"
-
-Take the unix tooling approach
-</div>
+::: notes
+or, without the line-conitunations,
+```
+raw_players = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","players").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+```
+:::
 
 
-#
-## performance
+## Cache this to cut back on warnings later
 
-<div class="notes">
-- interactive
+raw_players.cache()
 
-- modern query tools perform well enough to, in some cases, completely remove
-  the need for yesterday's heavy ETL pipelines
-</div>
+see what we got
 
+raw_players.printSchema()
 
-#
-## scale
+## Cast it as strings (you can totally use `INT`s if you'd like)
 
+players = raw_players.select(raw_players.value.cast('string'))
 
-#
-## change
+or
 
-<div class="notes">
-</div>
+players = raw_players.selectExpr("CAST(value AS STRING)")
+
+## Write this to hdfs
+
+players.write.parquet("/tmp/players")
 
 
 
 #
-## summary
+## Check out results (from another terminal window)
 
-- data-driven business decisions are encoded as queries
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+- NOTES: Same problem here
 
-- query engines and interfaces play a critical role in data pipelines they
-  allow you to interact directly with data
+    funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/
+	Found 3 items
+	drwxrwxrwt   - mapred mapred              0 2018-02-06 18:27 /tmp/hadoop-yarn
+	drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive
+	drwxr-xr-x   - root   supergroup          0 2018-02-20 22:47 /tmp/players
 
-- modern query tools perform well enough to, in some cases, completely remove
-  the need for heavy ETL pipelines
+and
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/players/
+```
 
-- avoid comprehensive environments that "do it all"... prefer the unix tooling
-  approach
+::: notes
+You can see results in hadoop (from another terminal window)
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+and
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/players/
+```
+:::
 
-- prefer your data raw
+### However
+
+What did we actually write?
+
+players.show()
+
+That's pretty ugly... let's extract the data, promote data cols to be
+real dataframe columns.
+
+### Extract Data
+
+Take a look at
+
+    import json
+    players.rdd.map(lambda x: json.loads(x.value)).toDF().show()
+
+So
+
+    extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()
+    
+Note that this is deprecated.  It's easier to look at though.  The current
+recommended approach to this is to explicitly create our `Row` objects
+from the json fields
+
+    from pyspark.sql import Row
+    extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
+
+    extracted_players.show()
+
+### Save that
+
+    extracted_players.write.parquet("/tmp/extracted_players")
+
+which will be much easier to query.
+
+### we might need to deal with some unicode stuff
+
+If a dataset gripes about parsing `ascii` characters, you might need to default
+to unicode... it's good practice in any case
+
+    import sys
+    sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
+
+
+## Example: GitHub Commits
+
+### check out hadoop
+
+Let's check out hdfs before we write anything to it
+
+    docker-compose exec cloudera hadoop fs -ls /tmp/
+
+### create a topic
+
+First, create a topic `commits`
+
+    docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+
+which should show
+
+    Created topic "commits".
+
+### download the dataset for github commits
+```
+curl -L -o github-example-large.json https://goo.gl/Hr6erG
+```
+
+### publish some stuff to kafka
+
+Use kafkacat to produce test messages to the `commits` topic
+
+```
+docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+```
+
+### run spark
+
+Spin up a pyspark process using the `spark` container
+
+    docker-compose exec spark pyspark
+
+### read stuff from kafka
+
+At the pyspark prompt,
+
+read from kafka
+
+    raw_commits = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","commits").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+
+    raw_commits = spark \
+      .read \
+      .format("kafka") \
+      .option("kafka.bootstrap.servers", "kafka:29092") \
+      .option("subscribe","commits") \
+      .option("startingOffsets", "earliest") \
+      .option("endingOffsets", "latest") \
+      .load() 
+
+cache this to cut back on warnings
+
+    raw_commits.cache()
+
+see what we got
+
+    raw_commits.printSchema()
+
+take the `value`s as strings
+
+    commits = raw_commits.select(raw_commits.value.cast('string'))
+
+and, of course, we _could_ just write this to hdfs
+
+    commits.write.parquet("/tmp/commits")
+
+but let's extract the data a bit first.
+
+### extract more fields
+
+Let's extract our json fields again
+
+    extracted_commits = commits.rdd.map(lambda x: json.loads(x.value)).toDF()
+    
+and see
+
+    extracted_commits.show()
+
+hmmm... did all of our stuff get extracted?
+
+    extracted_commits.printSchema()
+
+what's going on?
+The problem is more nested json than before.
+Here's a nice way to deal with that.
+
+### Use SparkSQL
+
+We'll use `SparkSQL` to let us easily pick and choose the fields we want to
+promote to columns.
+
+Note that there are other ways to extract nested data, but `SparkSQL` is the
+easiest way to see what's going on.
+
+First, create a Spark "TempTable" (aka "View")
+
+    extracted_commits.registerTempTable('commits')
+
+Then we can create DataFrames from queries
+
+    spark.sql("select commit.committer.name from commits limit 10").show()
+
+    spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10").show()
+
+Grab what we want
+
+    some_commit_info = spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10")
+
+
+### write to hdfs
+
+We can write that out
+
+    some_commit_info.write.parquet("/tmp/some_commit_info")
+
+
+### check out results
+
+You can see results in hadoop
+
+    docker-compose exec cloudera hadoop fs -ls /tmp/
+
+and
+
+    docker-compose exec cloudera hadoop fs -ls /tmp/commits/
+
+
+### exit
+
+Remember, you can exit pyspark using either `ctrl-d` or `exit()`.
+
+
+## down
+
+    docker-compose down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+## Summary
+
 
 
 #
