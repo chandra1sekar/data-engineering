@@ -67,7 +67,7 @@ when this looks like it's done, you can safely detach with `Ctrl-C`.
 docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
 
-- NOTES: I get 
+- NOTES: I get  (you'll see something like this...)
 
 	funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/
 	Found 2 items
