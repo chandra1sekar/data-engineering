@@ -11,12 +11,7 @@ author: Week 07 - sync session
 
 - Mid-Course Survey
 
-- Section W205.2:
-https://www.surveymonkey.com/r/K98FVLW
-
-- Section W205.6:
-https://www.surveymonkey.com/r/K97L9RC
-
+Please get course-eval links from slack
 
 
 ## Assignment Review

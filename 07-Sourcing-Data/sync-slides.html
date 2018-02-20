@@ -38,6 +38,13 @@
 <section id="while-were-getting-started" class="level2">
 <h2>While we’re getting started</h2>
 <ul>
+<li>Mid-Course Survey</li>
+</ul>
+<p>Please get course-eval links from slack</p>
+</section>
+<section id="assignment-review" class="level2">
+<h2>Assignment Review</h2>
+<ul>
 <li>Review your Assignment 06</li>
 <li>Get ready to share</li>
 </ul>
@@ -131,16 +138,15 @@ services:
 <p>and save as data file.</p>
 </aside>
 </section>
-<section id="up" class="level2">
-<h2>up</h2>
-<pre><code>docker-compose up -d
-
-docker-compose logs -f kafka</code></pre>
+<section id="spin-up-the-cluster" class="level2">
+<h2>Spin up the cluster</h2>
+<pre><code>docker-compose up -d</code></pre>
+<pre><code>docker-compose logs -f kafka</code></pre>
 <aside class="notes">
 <p>Now spin up the cluster</p>
 <pre><code>docker-compose up -d</code></pre>
 <p>and watch it come up</p>
-<pre><code>docker-compose logs -f kafka</code></pre>
+<pre><code>    docker-compose logs -f kafka</code></pre>
 <p>when this looks like it’s done, you can safely detach with <code>Ctrl-C</code>.</p>
 </aside>
 </section>
@@ -397,6 +403,10 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <h2>See the schema</h2>
 <pre><code>messages.printSchema()</code></pre>
 </section>
+<section id="see-the-messages" class="level2">
+<h2>See the messages</h2>
+<pre><code>messages.show()</code></pre>
+</section>
 <section id="cast-as-strings" class="level2">
 <h2>Cast as strings</h2>
 <pre><code>messages_as_strings=messages.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)</code></pre>
@@ -429,6 +439,12 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <p>messages_as_strings.select(‘value’).take(1)</p>
 <p>messages_as_strings.select(‘value’).take(1)[0].value &gt;&gt;&gt; import json &gt;&gt;&gt; first_message=json.loads(messages_as_strings.select(‘value’).take(1)[0].value) &gt;&gt;&gt; first_message &gt;&gt;&gt; print(first_message[‘commit’][‘committer’][‘name’]) Nico Williams</p>
 </aside>
+</section>
+<section id="breakout" class="level2">
+<h2>Breakout</h2>
+<ul>
+<li>Change around some of the fields to print different aspects of the commit</li>
+</ul>
 </section>
 <section id="down-1" class="level2">
 <h2>Down</h2>
