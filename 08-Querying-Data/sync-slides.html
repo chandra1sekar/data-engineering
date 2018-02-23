@@ -38,7 +38,7 @@
 <section id="assignment-review" class="level2">
 <h2>Assignment Review</h2>
 <ul>
-<li>Review your Assignment 06</li>
+<li>Review your Assignment 07</li>
 <li>Get ready to share</li>
 </ul>
 <aside class="notes">
@@ -71,15 +71,12 @@
 <h2>Setup</h2>
 <p><code>mkdir ~/w205/spark-with-kafka-and-hdfs</code></p>
 <p><code>cd ~/w205/spark-with-kafka-and-hdfs</code></p>
-<p><code>cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .</code></p>
+<pre><code>cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .</code></pre>
 </section>
 <section id="spin-up-the-cluster" class="level2">
 <h2>Spin up the cluster</h2>
 <pre><code>docker-compose up -d</code></pre>
 <pre><code>docker-compose logs -f kafka</code></pre>
-<ul>
-<li>NOTES: Why are we looking at kafka logs here?</li>
-</ul>
 <aside class="notes">
 <p>Now spin up the cluster</p>
 <pre><code>docker-compose up -d</code></pre>
@@ -90,10 +87,10 @@
 </section>
 <section id="example-world-cup-players" class="level2">
 <h2>Example: World Cup Players</h2>
-<section id="check-out-hadoop" class="level3">
-<h3>Check out Hadoop</h3>
-<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 </section>
+<section id="check-out-hadoop" class="level2">
+<h2>Check out Hadoop</h2>
+<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 </section>
 <section id="should-see-something-like" class="level2">
 <h2>Should see something like:</h2>
@@ -105,8 +102,9 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <p>Let’s check out hdfs before we write anything to it</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 </aside>
-<section id="create-a-topic-players" class="level3">
-<h3>Create a topic <code>players</code></h3>
+</section>
+<section id="create-a-topic-players" class="level2">
+<h2>Create a topic <code>players</code></h2>
 <pre><code>docker-compose exec kafka \
   kafka-topics \
     --create \
@@ -119,7 +117,6 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <p>First, create a topic <code>players</code></p>
 <pre><code>docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
 </aside>
-</section>
 </section>
 <section id="should-show" class="level2">
 <h2>Should show</h2>
@@ -200,8 +197,9 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 <p>and</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 </aside>
-<section id="however-back-in-spark-terminal-window" class="level3">
-<h3>However (back in spark terminal window)</h3>
+</section>
+<section id="however-back-in-spark-terminal-window" class="level2">
+<h2>However (back in spark terminal window)</h2>
 <ul>
 <li>What did we actually write?</li>
 </ul>
@@ -209,7 +207,6 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 <aside class="notes">
 <p>That’s pretty ugly… let’s extract the data, promote data cols to be real dataframe columns.</p>
 </aside>
-</section>
 </section>
 <section id="extract-data" class="level2">
 <h2>Extract Data</h2>
@@ -244,9 +241,8 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 <h2>Save that</h2>
 <pre><code>extracted_players.write.parquet(&quot;/tmp/extracted_players&quot;)</code></pre>
 <aside class="notes">
-<p>which will be much easier to query.</p>
+<p>which will be much easier to query. NOTES: hmmm, we’re switching contexts, but don’t query this or do a docker-compose down</p>
 </aside>
-<p>NOTES: hmmm, we’re switching contexts, but don’t query this or do a docker-compose down</p>
 </section>
 </section>
 <section id="section-7" class="slide level1">
@@ -384,11 +380,9 @@ Created topic “commits”.</li>
 <section id="check-out-results" class="level2">
 <h2>Check out results</h2>
 <p>-You can see results in hadoop</p>
-<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/
-``
-and
-``
-docker-compose exec cloudera hadoop fs -ls /tmp/commits/</code></pre>
+<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
+<p>and</p>
+<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/commits/</code></pre>
 </section>
 <section id="exit" class="level2">
 <h2>Exit</h2>

@@ -7,7 +7,7 @@ author: Week 08 - sync session
 
 #
 ## Assignment Review
-- Review your Assignment 06
+- Review your Assignment 07
 - Get ready to share
 
 ::: notes
@@ -39,7 +39,9 @@ Breakout at about 5 after the hour:
 
 `cd ~/w205/spark-with-kafka-and-hdfs`
 
-`cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .`
+```
+cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .
+```
 
 
 
@@ -53,7 +55,6 @@ docker-compose up -d
 docker-compose logs -f kafka
 ```
 
-- NOTES: Why are we looking at kafka logs here?
 
 
 ::: notes
@@ -72,7 +73,7 @@ when this looks like it's done, you can safely detach with `Ctrl-C`.
 
 ## Example: World Cup Players
 
-### Check out Hadoop
+## Check out Hadoop
 
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
@@ -92,7 +93,7 @@ docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
 :::
 
-### Create a topic `players`
+## Create a topic `players`
 
 ```
 docker-compose exec kafka \
@@ -225,7 +226,7 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/
 ```
 :::
 
-### However (back in spark terminal window)
+## However (back in spark terminal window)
 
 - What did we actually write?
 
@@ -286,9 +287,10 @@ extracted_players.write.parquet("/tmp/extracted_players")
 
 ::: notes
 which will be much easier to query.
+NOTES: hmmm, we're switching contexts, but don't query this or do a docker-compose down
+
 :::
 
-NOTES: hmmm, we're switching contexts, but don't query this or do a docker-compose down
 
 #
 ## Example: GitHub Commits
@@ -460,9 +462,9 @@ some_commit_info.write.parquet("/tmp/some_commit_info")
 
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
-``
+```
 and
-``
+```
 docker-compose exec cloudera hadoop fs -ls /tmp/commits/
 ```
 
