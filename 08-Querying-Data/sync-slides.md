@@ -492,7 +492,8 @@ spark.sql("select commit.committer.name, commit.committer.date, sha from commits
 
 ::: notes
 - 1st just mines commits
-- View what you'd really like to see
+- View what you'd really like to see 
+- Where spark sql can really benefit you in your job.
 :::
 
 
@@ -500,6 +501,10 @@ spark.sql("select commit.committer.name, commit.committer.date, sha from commits
 ```
 some_commit_info = spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10")
 ```
+
+::: notes
+- Compare to last week looking at this stuff using jq
+::: 
 
 ## Write to hdfs
 
