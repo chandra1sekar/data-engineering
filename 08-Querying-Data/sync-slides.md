@@ -6,7 +6,18 @@ author: Week 08 - sync session
 ---
 
 #
-## Homework - What were we doing to go over that?
+## Assignment Review
+- Review your Assignment 06
+- Get ready to share
+
+::: notes
+Breakout at about 5 after the hour:
+- Check in with each group 
+- have students share screen
+:::
+
+
+## Due Friday (PR)
 
 #
 ## 
@@ -67,7 +78,7 @@ when this looks like it's done, you can safely detach with `Ctrl-C`.
 docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
 
-- NOTES: I get  (you'll see something like this...)
+## Should see something like:
 
 	funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/
 	Found 2 items
@@ -116,13 +127,12 @@ curl -L -o players.json https://goo.gl/jSVrAe
 ## Use kafkacat to produce test messages to the `players` topic
 
 ```
-docker-compose exec mids 
+docker-compose exec mids \
   bash -c "cat /w205/players.json \
     | jq '.[]' -c \
     | kafkacat -P -b kafka:29092 -t players"
 ```
 
-- NOTES: This split up of command not working, but command works
 
 ::: notes
 ```
@@ -166,25 +176,29 @@ raw_players = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafk
 
 
 ## Cache this to cut back on warnings later
-
+```
 raw_players.cache()
+```
 
-see what we got
-
+## See what we got
+```
 raw_players.printSchema()
+```
 
 ## Cast it as strings (you can totally use `INT`s if you'd like)
-
+```
 players = raw_players.select(raw_players.value.cast('string'))
+```
 
 or
-
+```
 players = raw_players.selectExpr("CAST(value AS STRING)")
+```
 
 ## Write this to hdfs
-
+```
 players.write.parquet("/tmp/players")
-
+```
 
 
 #
@@ -193,16 +207,10 @@ players.write.parquet("/tmp/players")
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
-- NOTES: Same problem here
-
-    funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/
-	Found 3 items
-	drwxrwxrwt   - mapred mapred              0 2018-02-06 18:27 /tmp/hadoop-yarn
-	drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive
-	drwxr-xr-x   - root   supergroup          0 2018-02-20 22:47 /tmp/players
 
 and
 ```
+
 docker-compose exec cloudera hadoop fs -ls /tmp/players/
 ```
 
@@ -217,190 +225,256 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/
 ```
 :::
 
-### However
+### However (back in spark terminal window)
 
-What did we actually write?
+- What did we actually write?
 
+```
 players.show()
+```
 
+::: notes
 That's pretty ugly... let's extract the data, promote data cols to be
 real dataframe columns.
+:::
 
-### Extract Data
+## Extract Data
 
-Take a look at
+## Deal with unicode 
 
-    import json
-    players.rdd.map(lambda x: json.loads(x.value)).toDF().show()
+```
+import sys
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
+```
 
-So
+::: notes
+If a dataset gripes about parsing `ascii` characters, you might need to default
+to unicode... it's good practice in any case
+:::
 
-    extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()
-    
+
+## What do we have?
+- Take a look at
+
+```
+import json
+players.rdd.map(lambda x: json.loads(x.value)).toDF().show()
+```
+
+##
+```
+extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()
+```
+```
+from pyspark.sql import Row
+extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
+```
+```
+extracted_players.show()
+```
+::: notes    
 Note that this is deprecated.  It's easier to look at though.  The current
 recommended approach to this is to explicitly create our `Row` objects
 from the json fields
+:::
 
-    from pyspark.sql import Row
-    extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 
-    extracted_players.show()
+## Save that
+```
+extracted_players.write.parquet("/tmp/extracted_players")
+```
 
-### Save that
-
-    extracted_players.write.parquet("/tmp/extracted_players")
-
+::: notes
 which will be much easier to query.
+:::
 
-### we might need to deal with some unicode stuff
+NOTES: hmmm, we're switching contexts, but don't query this or do a docker-compose down
 
-If a dataset gripes about parsing `ascii` characters, you might need to default
-to unicode... it's good practice in any case
-
-    import sys
-    sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
-
-
+#
 ## Example: GitHub Commits
 
-### check out hadoop
+## check out hadoop
 
 Let's check out hdfs before we write anything to it
 
     docker-compose exec cloudera hadoop fs -ls /tmp/
 
-### create a topic
+## Create a topic
 
+```
+docker-compose exec kafka \
+  kafka-topics \
+    --create \
+    --topic commits \
+    --partitions 1 \
+    --replication-factor 1 \
+    --if-not-exists \
+    --zookeeper zookeeper:32181
+```
+
+::: notes
 First, create a topic `commits`
-
-    docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
-
-which should show
+```
+docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
+- which should show
 
     Created topic "commits".
+:::
 
-### download the dataset for github commits
+## Download the dataset for github commits
 ```
 curl -L -o github-example-large.json https://goo.gl/Hr6erG
 ```
 
-### publish some stuff to kafka
+## Publish some stuff to kafka
 
+```
+docker-compose exec mids \
+  bash -c "cat /w205/github-example-large.json \
+    | jq '.[]' -c \
+    | kafkacat -P -b kafka:29092 -t commits"
+```
+
+::: notes
 Use kafkacat to produce test messages to the `commits` topic
 
 ```
 docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
 ```
+:::
 
-### run spark
+## Spin up a pyspark process using the `spark` container
+```
+docker-compose exec spark pyspark
+```
 
-Spin up a pyspark process using the `spark` container
+## Read stuff from kafka
 
-    docker-compose exec spark pyspark
+- At the pyspark prompt, read from kafka
 
-### read stuff from kafka
+```
+raw_commits = spark \
+  .read \
+  .format("kafka") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
+  .option("subscribe","commits") \
+  .option("startingOffsets", "earliest") \
+  .option("endingOffsets", "latest") \
+  .load() 
+```
 
-At the pyspark prompt,
+::: notes
+```
+raw_commits = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","commits").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+```
+:::
 
-read from kafka
+## Cache this to cut back on warnings
+```
+raw_commits.cache()
+```
 
-    raw_commits = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","commits").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
+## See what we got
+```
+raw_commits.printSchema()
+```
 
-    raw_commits = spark \
-      .read \
-      .format("kafka") \
-      .option("kafka.bootstrap.servers", "kafka:29092") \
-      .option("subscribe","commits") \
-      .option("startingOffsets", "earliest") \
-      .option("endingOffsets", "latest") \
-      .load() 
+## Take the `value`s as strings
+```
+commits = raw_commits.select(raw_commits.value.cast('string'))
+```
 
-cache this to cut back on warnings
+## Of course, we _could_ just write this to hdfs
+```
+commits.write.parquet("/tmp/commits")
+```
 
-    raw_commits.cache()
+- but let's extract the data a bit first...
 
-see what we got
+## Extract more fields
 
-    raw_commits.printSchema()
+- Let's extract our json fields again
+```
+extracted_commits = commits.rdd.map(lambda x: json.loads(x.value)).toDF()
+```
 
-take the `value`s as strings
+## and see
+```
+extracted_commits.show()
+```
 
-    commits = raw_commits.select(raw_commits.value.cast('string'))
+## hmmm... did all of our stuff get extracted?
+```
+extracted_commits.printSchema()
+```
 
-and, of course, we _could_ just write this to hdfs
+- Problem: more nested json than before
 
-    commits.write.parquet("/tmp/commits")
-
-but let's extract the data a bit first.
-
-### extract more fields
-
-Let's extract our json fields again
-
-    extracted_commits = commits.rdd.map(lambda x: json.loads(x.value)).toDF()
-    
-and see
-
-    extracted_commits.show()
-
-hmmm... did all of our stuff get extracted?
-
-    extracted_commits.printSchema()
-
+::: notes
 what's going on?
 The problem is more nested json than before.
 Here's a nice way to deal with that.
+:::
 
-### Use SparkSQL
+## Use SparkSQL
 
+- First, create a Spark "TempTable" (aka "View")
+```
+extracted_commits.registerTempTable('commits')
+```
+
+::: notes
 We'll use `SparkSQL` to let us easily pick and choose the fields we want to
 promote to columns.
 
 Note that there are other ways to extract nested data, but `SparkSQL` is the
 easiest way to see what's going on.
-
-First, create a Spark "TempTable" (aka "View")
-
-    extracted_commits.registerTempTable('commits')
-
-Then we can create DataFrames from queries
-
-    spark.sql("select commit.committer.name from commits limit 10").show()
-
-    spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10").show()
-
-Grab what we want
-
-    some_commit_info = spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10")
+:::
 
 
-### write to hdfs
 
-We can write that out
+## Then we can create DataFrames from queries
+```
+spark.sql("select commit.committer.name from commits limit 10").show()
+```
+```
+spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10").show()
+```
 
-    some_commit_info.write.parquet("/tmp/some_commit_info")
+## Grab what we want
+```
+some_commit_info = spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10")
+```
 
+## Write to hdfs
 
-### check out results
+- We can write that out
+```
+some_commit_info.write.parquet("/tmp/some_commit_info")
+```
 
-You can see results in hadoop
+## Check out results
 
-    docker-compose exec cloudera hadoop fs -ls /tmp/
+-You can see results in hadoop
 
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+``
 and
+``
+docker-compose exec cloudera hadoop fs -ls /tmp/commits/
+```
 
-    docker-compose exec cloudera hadoop fs -ls /tmp/commits/
+## Exit
+
+- Remember, you can exit pyspark using either `ctrl-d` or `exit()`.
 
 
-### exit
-
-Remember, you can exit pyspark using either `ctrl-d` or `exit()`.
-
-
-## down
-
-    docker-compose down
-
+## Down
+```
+docker-compose down
+```
 
 
 
@@ -449,7 +523,14 @@ Remember, you can exit pyspark using either `ctrl-d` or `exit()`.
 #
 ## Summary
 
+## 
 
+![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
+
+
+::: notes
+- What did we do in this pipeline this week
+:::
 
 #
 

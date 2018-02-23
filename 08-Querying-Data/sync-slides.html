@@ -35,8 +35,18 @@
 
 <section id="section" class="slide level1">
 <h1></h1>
-<section id="homework---what-were-we-doing-to-go-over-that" class="level2">
-<h2>Homework - What were we doing to go over that?</h2>
+<section id="assignment-review" class="level2">
+<h2>Assignment Review</h2>
+<ul>
+<li>Review your Assignment 06</li>
+<li>Get ready to share</li>
+</ul>
+<aside class="notes">
+<p>Breakout at about 5 after the hour: - Check in with each group - have students share screen</p>
+</aside>
+</section>
+<section id="due-friday-pr" class="level2">
+<h2>Due Friday (PR)</h2>
 </section>
 </section>
 <section id="section-1" class="slide level1">
@@ -83,15 +93,18 @@
 <section id="check-out-hadoop" class="level3">
 <h3>Check out Hadoop</h3>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
-<ul>
-<li><p>NOTES: I get (you’ll see something like this…)</p>
-<p>funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/ Found 2 items drwxrwxrwt - mapred mapred 0 2018-02-06 18:27 /tmp/hadoop-yarn drwx-wx-wx - root supergroup 0 2018-02-20 22:31 /tmp/hive</p></li>
-</ul>
+</section>
+</section>
+<section id="should-see-something-like" class="level2">
+<h2>Should see something like:</h2>
+<pre><code>funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/
+Found 2 items
+drwxrwxrwt   - mapred mapred              0 2018-02-06 18:27 /tmp/hadoop-yarn
+drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></pre>
 <aside class="notes">
 <p>Let’s check out hdfs before we write anything to it</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 </aside>
-</section>
 <section id="create-a-topic-players" class="level3">
 <h3>Create a topic <code>players</code></h3>
 <pre><code>docker-compose exec kafka \
@@ -121,13 +134,10 @@
 </section>
 <section id="use-kafkacat-to-produce-test-messages-to-the-players-topic" class="level2">
 <h2>Use kafkacat to produce test messages to the <code>players</code> topic</h2>
-<pre><code>docker-compose exec mids 
+<pre><code>docker-compose exec mids \
   bash -c &quot;cat /w205/players.json \
     | jq &#39;.[]&#39; -c \
     | kafkacat -P -b kafka:29092 -t players&quot;</code></pre>
-<ul>
-<li>NOTES: This split up of command not working, but command works</li>
-</ul>
 <aside class="notes">
 <pre><code>docker-compose exec mids bash -c &quot;cat /w205/players.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t players&quot;</code></pre>
 </aside>
@@ -159,19 +169,21 @@
 </section>
 <section id="cache-this-to-cut-back-on-warnings-later" class="level2">
 <h2>Cache this to cut back on warnings later</h2>
-<p>raw_players.cache()</p>
-<p>see what we got</p>
-<p>raw_players.printSchema()</p>
+<pre><code>raw_players.cache()</code></pre>
+</section>
+<section id="see-what-we-got" class="level2">
+<h2>See what we got</h2>
+<pre><code>raw_players.printSchema()</code></pre>
 </section>
 <section id="cast-it-as-strings-you-can-totally-use-ints-if-youd-like" class="level2">
 <h2>Cast it as strings (you can totally use <code>INT</code>s if you’d like)</h2>
-<p>players = raw_players.select(raw_players.value.cast(‘string’))</p>
+<pre><code>players = raw_players.select(raw_players.value.cast(&#39;string&#39;))</code></pre>
 <p>or</p>
-<p>players = raw_players.selectExpr(“CAST(value AS STRING)”)</p>
+<pre><code>players = raw_players.selectExpr(&quot;CAST(value AS STRING)&quot;)</code></pre>
 </section>
 <section id="write-this-to-hdfs" class="level2">
 <h2>Write this to hdfs</h2>
-<p>players.write.parquet(“/tmp/players”)</p>
+<pre><code>players.write.parquet(&quot;/tmp/players&quot;)</code></pre>
 </section>
 </section>
 <section id="section-5" class="slide level1">
@@ -179,84 +191,118 @@
 <section id="check-out-results-from-another-terminal-window" class="level2">
 <h2>Check out results (from another terminal window)</h2>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
-<ul>
-<li><p>NOTES: Same problem here</p>
-<p>funwithflags:~/w205/spark-with-kafka-and-hdfs $ docker-compose exec cloudera hadoop fs -ls /tmp/ Found 3 items drwxrwxrwt - mapred mapred 0 2018-02-06 18:27 /tmp/hadoop-yarn drwx-wx-wx - root supergroup 0 2018-02-20 22:31 /tmp/hive drwxr-xr-x - root supergroup 0 2018-02-20 22:47 /tmp/players</p></li>
-</ul>
 <p>and</p>
-<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
+<pre><code>
+docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 <aside class="notes">
 <p>You can see results in hadoop (from another terminal window)</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 <p>and</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 </aside>
-<section id="however" class="level3">
-<h3>However</h3>
-<p>What did we actually write?</p>
-<p>players.show()</p>
+<section id="however-back-in-spark-terminal-window" class="level3">
+<h3>However (back in spark terminal window)</h3>
+<ul>
+<li>What did we actually write?</li>
+</ul>
+<pre><code>players.show()</code></pre>
+<aside class="notes">
 <p>That’s pretty ugly… let’s extract the data, promote data cols to be real dataframe columns.</p>
+</aside>
 </section>
-<section id="extract-data" class="level3">
-<h3>Extract Data</h3>
-<p>Take a look at</p>
-<pre><code>import json
-players.rdd.map(lambda x: json.loads(x.value)).toDF().show()</code></pre>
-<p>So</p>
-<pre><code>extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()</code></pre>
-<p>Note that this is deprecated. It’s easier to look at though. The current recommended approach to this is to explicitly create our <code>Row</code> objects from the json fields</p>
-<pre><code>from pyspark.sql import Row
-extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
-
-extracted_players.show()</code></pre>
 </section>
-<section id="save-that" class="level3">
-<h3>Save that</h3>
-<pre><code>extracted_players.write.parquet(&quot;/tmp/extracted_players&quot;)</code></pre>
-<p>which will be much easier to query.</p>
+<section id="extract-data" class="level2">
+<h2>Extract Data</h2>
 </section>
-<section id="we-might-need-to-deal-with-some-unicode-stuff" class="level3">
-<h3>we might need to deal with some unicode stuff</h3>
-<p>If a dataset gripes about parsing <code>ascii</code> characters, you might need to default to unicode… it’s good practice in any case</p>
+<section id="deal-with-unicode" class="level2">
+<h2>Deal with unicode</h2>
 <pre><code>import sys
 sys.stdout = open(sys.stdout.fileno(), mode=&#39;w&#39;, encoding=&#39;utf8&#39;, buffering=1)</code></pre>
+<aside class="notes">
+<p>If a dataset gripes about parsing <code>ascii</code> characters, you might need to default to unicode… it’s good practice in any case</p>
+</aside>
+</section>
+<section id="what-do-we-have" class="level2">
+<h2>What do we have?</h2>
+<ul>
+<li>Take a look at</li>
+</ul>
+<pre><code>import json
+players.rdd.map(lambda x: json.loads(x.value)).toDF().show()</code></pre>
+</section>
+<section id="section-6" class="level2">
+<h2></h2>
+<pre><code>extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()</code></pre>
+<pre><code>from pyspark.sql import Row
+extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()</code></pre>
+<pre><code>extracted_players.show()</code></pre>
+<aside class="notes">
+<p>Note that this is deprecated. It’s easier to look at though. The current recommended approach to this is to explicitly create our <code>Row</code> objects from the json fields</p>
+</aside>
+</section>
+<section id="save-that" class="level2">
+<h2>Save that</h2>
+<pre><code>extracted_players.write.parquet(&quot;/tmp/extracted_players&quot;)</code></pre>
+<aside class="notes">
+<p>which will be much easier to query.</p>
+</aside>
+<p>NOTES: hmmm, we’re switching contexts, but don’t query this or do a docker-compose down</p>
 </section>
 </section>
+<section id="section-7" class="slide level1">
+<h1></h1>
 <section id="example-github-commits" class="level2">
 <h2>Example: GitHub Commits</h2>
-<section id="check-out-hadoop-1" class="level3">
-<h3>check out hadoop</h3>
+</section>
+<section id="check-out-hadoop-1" class="level2">
+<h2>check out hadoop</h2>
 <p>Let’s check out hdfs before we write anything to it</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 </section>
-<section id="create-a-topic" class="level3">
-<h3>create a topic</h3>
+<section id="create-a-topic" class="level2">
+<h2>Create a topic</h2>
+<pre><code>docker-compose exec kafka \
+  kafka-topics \
+    --create \
+    --topic commits \
+    --partitions 1 \
+    --replication-factor 1 \
+    --if-not-exists \
+    --zookeeper zookeeper:32181</code></pre>
+<aside class="notes">
 <p>First, create a topic <code>commits</code></p>
 <pre><code>docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
-<p>which should show</p>
-<pre><code>Created topic &quot;commits&quot;.</code></pre>
+<ul>
+<li><p>which should show</p>
+Created topic “commits”.</li>
+</ul>
+</aside>
 </section>
-<section id="download-the-dataset-for-github-commits" class="level3">
-<h3>download the dataset for github commits</h3>
+<section id="download-the-dataset-for-github-commits" class="level2">
+<h2>Download the dataset for github commits</h2>
 <pre><code>curl -L -o github-example-large.json https://goo.gl/Hr6erG</code></pre>
 </section>
-<section id="publish-some-stuff-to-kafka" class="level3">
-<h3>publish some stuff to kafka</h3>
+<section id="publish-some-stuff-to-kafka" class="level2">
+<h2>Publish some stuff to kafka</h2>
+<pre><code>docker-compose exec mids \
+  bash -c &quot;cat /w205/github-example-large.json \
+    | jq &#39;.[]&#39; -c \
+    | kafkacat -P -b kafka:29092 -t commits&quot;</code></pre>
+<aside class="notes">
 <p>Use kafkacat to produce test messages to the <code>commits</code> topic</p>
 <pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t commits&quot;</code></pre>
+</aside>
 </section>
-<section id="run-spark" class="level3">
-<h3>run spark</h3>
-<p>Spin up a pyspark process using the <code>spark</code> container</p>
+<section id="spin-up-a-pyspark-process-using-the-spark-container-1" class="level2">
+<h2>Spin up a pyspark process using the <code>spark</code> container</h2>
 <pre><code>docker-compose exec spark pyspark</code></pre>
 </section>
-<section id="read-stuff-from-kafka" class="level3">
-<h3>read stuff from kafka</h3>
-<p>At the pyspark prompt,</p>
-<p>read from kafka</p>
-<pre><code>raw_commits = spark.read.format(&quot;kafka&quot;).option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;).option(&quot;subscribe&quot;,&quot;commits&quot;).option(&quot;startingOffsets&quot;, &quot;earliest&quot;).option(&quot;endingOffsets&quot;, &quot;latest&quot;).load() 
-
-raw_commits = spark \
+<section id="read-stuff-from-kafka" class="level2">
+<h2>Read stuff from kafka</h2>
+<ul>
+<li>At the pyspark prompt, read from kafka</li>
+</ul>
+<pre><code>raw_commits = spark \
   .read \
   .format(&quot;kafka&quot;) \
   .option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;) \
@@ -264,68 +310,113 @@ raw_commits = spark \
   .option(&quot;startingOffsets&quot;, &quot;earliest&quot;) \
   .option(&quot;endingOffsets&quot;, &quot;latest&quot;) \
   .load() </code></pre>
-<p>cache this to cut back on warnings</p>
+<aside class="notes">
+<pre><code>raw_commits = spark.read.format(&quot;kafka&quot;).option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;).option(&quot;subscribe&quot;,&quot;commits&quot;).option(&quot;startingOffsets&quot;, &quot;earliest&quot;).option(&quot;endingOffsets&quot;, &quot;latest&quot;).load() </code></pre>
+</aside>
+</section>
+<section id="cache-this-to-cut-back-on-warnings" class="level2">
+<h2>Cache this to cut back on warnings</h2>
 <pre><code>raw_commits.cache()</code></pre>
-<p>see what we got</p>
+</section>
+<section id="see-what-we-got-1" class="level2">
+<h2>See what we got</h2>
 <pre><code>raw_commits.printSchema()</code></pre>
-<p>take the <code>value</code>s as strings</p>
+</section>
+<section id="take-the-values-as-strings" class="level2">
+<h2>Take the <code>value</code>s as strings</h2>
 <pre><code>commits = raw_commits.select(raw_commits.value.cast(&#39;string&#39;))</code></pre>
-<p>and, of course, we <em>could</em> just write this to hdfs</p>
+</section>
+<section id="of-course-we-could-just-write-this-to-hdfs" class="level2">
+<h2>Of course, we <em>could</em> just write this to hdfs</h2>
 <pre><code>commits.write.parquet(&quot;/tmp/commits&quot;)</code></pre>
-<p>but let’s extract the data a bit first.</p>
+<ul>
+<li>but let’s extract the data a bit first…</li>
+</ul>
 </section>
-<section id="extract-more-fields" class="level3">
-<h3>extract more fields</h3>
-<p>Let’s extract our json fields again</p>
+<section id="extract-more-fields" class="level2">
+<h2>Extract more fields</h2>
+<ul>
+<li>Let’s extract our json fields again</li>
+</ul>
 <pre><code>extracted_commits = commits.rdd.map(lambda x: json.loads(x.value)).toDF()</code></pre>
-<p>and see</p>
-<pre><code>extracted_commits.show()</code></pre>
-<p>hmmm… did all of our stuff get extracted?</p>
-<pre><code>extracted_commits.printSchema()</code></pre>
-<p>what’s going on? The problem is more nested json than before. Here’s a nice way to deal with that.</p>
 </section>
-<section id="use-sparksql" class="level3">
-<h3>Use SparkSQL</h3>
+<section id="and-see" class="level2">
+<h2>and see</h2>
+<pre><code>extracted_commits.show()</code></pre>
+</section>
+<section id="hmmm-did-all-of-our-stuff-get-extracted" class="level2">
+<h2>hmmm… did all of our stuff get extracted?</h2>
+<pre><code>extracted_commits.printSchema()</code></pre>
+<ul>
+<li>Problem: more nested json than before</li>
+</ul>
+<aside class="notes">
+<p>what’s going on? The problem is more nested json than before. Here’s a nice way to deal with that.</p>
+</aside>
+</section>
+<section id="use-sparksql" class="level2">
+<h2>Use SparkSQL</h2>
+<ul>
+<li>First, create a Spark “TempTable” (aka “View”)</li>
+</ul>
+<pre><code>extracted_commits.registerTempTable(&#39;commits&#39;)</code></pre>
+<aside class="notes">
 <p>We’ll use <code>SparkSQL</code> to let us easily pick and choose the fields we want to promote to columns.</p>
 <p>Note that there are other ways to extract nested data, but <code>SparkSQL</code> is the easiest way to see what’s going on.</p>
-<p>First, create a Spark “TempTable” (aka “View”)</p>
-<pre><code>extracted_commits.registerTempTable(&#39;commits&#39;)</code></pre>
-<p>Then we can create DataFrames from queries</p>
-<pre><code>spark.sql(&quot;select commit.committer.name from commits limit 10&quot;).show()
-
-spark.sql(&quot;select commit.committer.name, commit.committer.date, sha from commits limit 10&quot;).show()</code></pre>
-<p>Grab what we want</p>
+</aside>
+</section>
+<section id="then-we-can-create-dataframes-from-queries" class="level2">
+<h2>Then we can create DataFrames from queries</h2>
+<pre><code>spark.sql(&quot;select commit.committer.name from commits limit 10&quot;).show()</code></pre>
+<pre><code>spark.sql(&quot;select commit.committer.name, commit.committer.date, sha from commits limit 10&quot;).show()</code></pre>
+</section>
+<section id="grab-what-we-want" class="level2">
+<h2>Grab what we want</h2>
 <pre><code>some_commit_info = spark.sql(&quot;select commit.committer.name, commit.committer.date, sha from commits limit 10&quot;)</code></pre>
 </section>
-<section id="write-to-hdfs" class="level3">
-<h3>write to hdfs</h3>
-<p>We can write that out</p>
+<section id="write-to-hdfs" class="level2">
+<h2>Write to hdfs</h2>
+<ul>
+<li>We can write that out</li>
+</ul>
 <pre><code>some_commit_info.write.parquet(&quot;/tmp/some_commit_info&quot;)</code></pre>
 </section>
-<section id="check-out-results" class="level3">
-<h3>check out results</h3>
-<p>You can see results in hadoop</p>
-<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
-<p>and</p>
-<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/commits/</code></pre>
+<section id="check-out-results" class="level2">
+<h2>Check out results</h2>
+<p>-You can see results in hadoop</p>
+<pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/
+``
+and
+``
+docker-compose exec cloudera hadoop fs -ls /tmp/commits/</code></pre>
 </section>
-<section id="exit" class="level3">
-<h3>exit</h3>
-<p>Remember, you can exit pyspark using either <code>ctrl-d</code> or <code>exit()</code>.</p>
-</section>
+<section id="exit" class="level2">
+<h2>Exit</h2>
+<ul>
+<li>Remember, you can exit pyspark using either <code>ctrl-d</code> or <code>exit()</code>.</li>
+</ul>
 </section>
 <section id="down" class="level2">
-<h2>down</h2>
+<h2>Down</h2>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 </section>
+<section id="section-9" class="level2">
+<h2></h2>
+<p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<ul>
+<li>What did we do in this pipeline this week</li>
+</ul>
+</aside>
 </section>
-<section id="section-7" class="slide level1">
+</section>
+<section id="section-10" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
