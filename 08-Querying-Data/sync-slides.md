@@ -78,6 +78,9 @@ when this looks like it's done, you can safely detach with `Ctrl-C`.
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
+::: notes
+look at tmp/ dir in hdfs and see that what we want to write isn't there already
+:::
 
 ## Should see something like:
 
@@ -111,6 +114,8 @@ First, create a topic `players`
 ```
 docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
 ```
+
+- Benefit, now don't have to tear this down, we'll have 2 different topics in the same kafka broker
 :::
 
 ## Should show
@@ -124,6 +129,10 @@ docker-compose exec kafka kafka-topics --create --topic players --partitions 1 -
 ```
 curl -L -o players.json https://goo.gl/jSVrAe
 ```
+
+::: notes
+easier than github dataset b/c it's flat
+:::
 
 ## Use kafkacat to produce test messages to the `players` topic
 
@@ -153,6 +162,7 @@ docker-compose exec spark pyspark
 docker-compose exec spark pyspark
 ```
 
+- Will move to ipython shell around week 9
 :::
 
 ## At the pyspark prompt, read from kafka
@@ -181,6 +191,13 @@ raw_players = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafk
 raw_players.cache()
 ```
 
+::: notes
+- Caching this to avoid warnings bc trying to hold a persistent handle to this topic.
+- What is caching?
+- Lazy evaluation
+  * You won't always get errors (it will be quiet) often until you do eval.
+:::
+
 ## See what we got
 ```
 raw_players.printSchema()
@@ -201,6 +218,9 @@ players = raw_players.selectExpr("CAST(value AS STRING)")
 players.write.parquet("/tmp/players")
 ```
 
+::: notes
+- this is writing it out to hadoop
+:::
 
 #
 ## Check out results (from another terminal window)
@@ -235,8 +255,7 @@ players.show()
 ```
 
 ::: notes
-That's pretty ugly... let's extract the data, promote data cols to be
-real dataframe columns.
+That's pretty ugly... let's extract the data, promote data cols to be real dataframe columns.
 :::
 
 ## Extract Data
@@ -249,8 +268,7 @@ sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
 ```
 
 ::: notes
-If a dataset gripes about parsing `ascii` characters, you might need to default
-to unicode... it's good practice in any case
+If a dataset gripes about parsing `ascii` characters, you might need to default to unicode... it's good practice in any case
 :::
 
 
@@ -274,9 +292,12 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 extracted_players.show()
 ```
 ::: notes    
-Note that this is deprecated.  It's easier to look at though.  The current
-recommended approach to this is to explicitly create our `Row` objects
-from the json fields
+- Note that first one is deprecated.  It's easier to look at though.  
+- The current recommended approach to this is to explicitly create our `Row` objects from the json fields (like in 2nd example)
+
+- Now we're going to catch that and assign it to something. 
+- This is just our player data.
+- ** on top of dict will return key:value pairs, but that's done in 1st row as well
 :::
 
 
@@ -286,14 +307,32 @@ extracted_players.write.parquet("/tmp/extracted_players")
 ```
 
 ::: notes
-which will be much easier to query.
+- This will be much easier to query.
 NOTES: hmmm, we're switching contexts, but don't query this or do a docker-compose down
+- So, goal in landing this into storage is to make it efficiently querieable
+- the first one wasn't bc nested
+- but this is nice parquet that's flat and has nice columns
+:::
 
+## Do
+```
+players
+```
+```
+extracted_players.show()
+```
+
+::: notes
+- Compare these 2 based on notes in last slide.
 :::
 
 
 #
 ## Example: GitHub Commits
+
+::: notes
+- Note that we didn't have to bring the cluster down bc we have 2 topics on our kafka broker now.
+:::
 
 ## check out hadoop
 
@@ -376,6 +415,9 @@ raw_commits = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafk
 ```
 raw_commits.cache()
 ```
+::: notes
+- Can try it w/o caching in class to show warnings we get
+:::
 
 ## See what we got
 ```
@@ -394,6 +436,7 @@ commits.write.parquet("/tmp/commits")
 
 - but let's extract the data a bit first...
 
+
 ## Extract more fields
 
 - Let's extract our json fields again
@@ -406,6 +449,10 @@ extracted_commits = commits.rdd.map(lambda x: json.loads(x.value)).toDF()
 extracted_commits.show()
 ```
 
+::: notes
+- We see it's useless because of the nesting. 
+:::
+
 ## hmmm... did all of our stuff get extracted?
 ```
 extracted_commits.printSchema()
@@ -414,9 +461,10 @@ extracted_commits.printSchema()
 - Problem: more nested json than before
 
 ::: notes
-what's going on?
-The problem is more nested json than before.
-Here's a nice way to deal with that.
+- what's going on?
+- The problem is more nested json than before.
+- Point of the project. Deal with this nested array. Which might change the cardinality of the dataset. (Discuss what that means)
+- Here's a nice way to deal with that.
 :::
 
 ## Use SparkSQL
@@ -427,11 +475,9 @@ extracted_commits.registerTempTable('commits')
 ```
 
 ::: notes
-We'll use `SparkSQL` to let us easily pick and choose the fields we want to
-promote to columns.
+- We'll use `SparkSQL` to let us easily pick and choose the fields we want to promote to columns.
 
-Note that there are other ways to extract nested data, but `SparkSQL` is the
-easiest way to see what's going on.
+- Note that there are other ways to extract nested data, but `SparkSQL` is the easiest way to see what's going on.
 :::
 
 
@@ -443,6 +489,12 @@ spark.sql("select commit.committer.name from commits limit 10").show()
 ```
 spark.sql("select commit.committer.name, commit.committer.date, sha from commits limit 10").show()
 ```
+
+::: notes
+- 1st just mines commits
+- View what you'd really like to see
+:::
+
 
 ## Grab what we want
 ```
