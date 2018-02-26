@@ -22,7 +22,7 @@ Breakout at about 5 after the hour:
 #
 ## { data-background="images/streaming-bare.svg" } 
 
-## { data-background="images/streaming-bare-logos.svg" } 
+## { data-background="images/streaming-bare-logos.jpg" } 
 
 ::: notes
 - Last week we  consume messages with Spark and take a look at them
@@ -535,54 +535,10 @@ docker-compose down
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #
 ## Summary
 
-
-## { data-background="images/streaming-bare-logos.svg" } 
+## { data-background="images/streaming-bare-logos.jpg" } 
 
 ::: notes
 - What did we do in this pipeline this week
