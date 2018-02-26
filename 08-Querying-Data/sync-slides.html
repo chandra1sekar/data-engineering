@@ -51,9 +51,11 @@
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
-<section id="section-2" class="level2">
+<section id="section-2" class="level2" data-background="images/streaming-bare.svg">
 <h2></h2>
-<p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
+</section>
+<section id="section-3" class="level2" data-background="images/streaming-bare-logos.svg">
+<h2></h2>
 <aside class="notes">
 <ul>
 <li>Last week we consume messages with Spark and take a look at them</li>
@@ -62,7 +64,7 @@
 </aside>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="spark-stack-with-kafka-and-hdfs" class="level2">
 <h2>Spark Stack with Kafka and HDFS</h2>
@@ -149,7 +151,7 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="spin-up-a-pyspark-process-using-the-spark-container" class="level2">
 <h2>Spin up a pyspark process using the <code>spark</code> container</h2>
@@ -210,7 +212,7 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 </aside>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="check-out-results-from-another-terminal-window" class="level2">
 <h2>Check out results (from another terminal window)</h2>
@@ -254,7 +256,7 @@ sys.stdout = open(sys.stdout.fileno(), mode=&#39;w&#39;, encoding=&#39;utf8&#39;
 <pre><code>import json
 players.rdd.map(lambda x: json.loads(x.value)).toDF().show()</code></pre>
 </section>
-<section id="section-6" class="level2">
+<section id="section-7" class="level2">
 <h2></h2>
 <pre><code>extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()</code></pre>
 <pre><code>from pyspark.sql import Row
@@ -294,7 +296,7 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="example-github-commits" class="level2">
 <h2>Example: GitHub Commits</h2>
@@ -478,14 +480,13 @@ Created topic “commits”.</li>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 </section>
-<section id="section-9" class="level2">
+<section id="section-10" class="level2" data-background="images/streaming-bare-logos.svg">
 <h2></h2>
-<p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
 <aside class="notes">
 <ul>
 <li>What did we do in this pipeline this week</li>
@@ -493,7 +494,7 @@ Created topic “commits”.</li>
 </aside>
 </section>
 </section>
-<section id="section-10" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

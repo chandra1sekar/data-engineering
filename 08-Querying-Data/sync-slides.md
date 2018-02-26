@@ -20,10 +20,9 @@ Breakout at about 5 after the hour:
 ## Due Friday (PR)
 
 #
-## 
+## { data-background="images/streaming-bare.svg" } 
 
-![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
-
+## { data-background="images/streaming-bare-logos.svg" } 
 
 ::: notes
 - Last week we  consume messages with Spark and take a look at them
@@ -582,10 +581,8 @@ docker-compose down
 #
 ## Summary
 
-## 
 
-![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
-
+## { data-background="images/streaming-bare-logos.svg" } 
 
 ::: notes
 - What did we do in this pipeline this week
