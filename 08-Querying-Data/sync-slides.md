@@ -590,6 +590,7 @@ docker-compose down
 - this is super clean for querying, but I've lost the data
 - so a lot of people leave the data in kakfa as well so they can go back and check it again
 - kafka has the same kind of replicaton factors and partitions as hadoop
+- gives you the choice 
 :::
 
 #
