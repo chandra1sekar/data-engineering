@@ -279,7 +279,7 @@ GET /purchase_a_sword</li>
 <ul>
 <li>Use the python <code>flask</code> library to write our simple API server.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">#!/usr/bin/env python3</span></a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"></a>
@@ -296,7 +296,7 @@ GET /purchase_a_sword</li>
 <ul>
 <li>Save this as <code>~/w205/flask-with-kafka/game_api.py</code> and run it via</li>
 </ul>
-<pre><code>docker-compose exec mids pip3 install Flask</code></pre>
+<pre><code>docker-compose exec mids pip install Flask kafka-python</code></pre>
 <pre><code>docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run</code></pre>
 </section>
 <section id="test-it-out" class="level2">
@@ -313,7 +313,7 @@ GET /purchase_a_sword</li>
 <ul>
 <li>Let’s add kafka into the mix</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">#!/usr/bin/env python3</span></a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>

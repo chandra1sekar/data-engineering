@@ -194,7 +194,7 @@ GET /purchase_a_sword
 - Use the python `flask` library to write our simple API server.
 
 ```python
-#!/usr/bin/env python3
+#!/usr/bin/env python
 from flask import Flask
 app = Flask(__name__)
 
@@ -210,7 +210,7 @@ def purchase-a-sword():
 ##
 - Save this as `~/w205/flask-with-kafka/game_api.py` and run it via
 ```
-docker-compose exec mids pip3 install Flask
+docker-compose exec mids pip install Flask kafka-python
 ```
 ```
 docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
@@ -235,7 +235,7 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 - Let's add kafka into the mix
 
 ```python
-#!/usr/bin/env python3
+#!/usr/bin/env python
 from kafka import KafkaProducer
 from flask import Flask
 app = Flask(__name__)
