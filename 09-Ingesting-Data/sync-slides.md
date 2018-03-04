@@ -263,6 +263,8 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 :::
 
 
+#
+
 ## Generate events from our webapp
 
 - Let's add kafka into the mix
