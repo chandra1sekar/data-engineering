@@ -39,6 +39,7 @@ Breakout at about 5 after the hour:
 
 ::: notes
 NOTE: need image
+- What we need to have an end to end pipeline is something up front and something to query out the back end.
 :::
 
 ## Project 3 Setup
@@ -58,8 +59,17 @@ options to decide before presenting to students:
 - mix these events on a single topic -vs- event-specific topics
 - latency requirements of queries
 - ?
-For class activities -vs- homework, let's use health data: `patient check-in`
+- What data? For class activities -vs- homework, let's use health data: `patient check-in`
 and `code blue`.
+:::
+
+## Project 3 options
+
+
+::: notes
+- All: Shopping cart data for homework
+- Advanced option: Shopping cart data & track state
+- Advanced option is not about getting more points, it's just if you want that challenge
 :::
 
 # 
@@ -173,6 +183,8 @@ some generic API endpoint like
 
 - that would also include a json payload describing the purchase... it'd list out
 things like the quantity and items purchased.
+- What is an api server?
+- how do web addresses map to apis?
 :::
 
 ## To keep it simple
@@ -187,6 +199,8 @@ GET /purchase_a_sword
 "purchase a sword" each corresponding to a single (hard-coded) API call such as
 
     GET /purchase_a_sword
+
+- We'll use gets for everything though usually you'd do put or post
 :::
 
 ## Flask
@@ -207,6 +221,14 @@ def purchase-a-sword():
     return "Sword Purchased!"
 ```
 
+::: notes
+- Adding comments in functions
+- Normal business logic if you e.g. purchase something, it would trigger put that thing in your inventory, charge you for whatever that would be etc. 
+- But here, we're ...
+- What is happening here (need visuals from API async materials)
+- Introducing Python, Chapter 9, The Web Untangled is good for this
+:::
+
 ##
 - Save this as `~/w205/flask-with-kafka/game_api.py` and run it via
 ```
@@ -216,6 +238,11 @@ docker-compose exec mids pip3 install Flask
 docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
 ```
 
+::: notes
+- There are other ways to run the flask 
+- Discuss what is its own container (service), pattern we've followed so far, how is this the same (mids is the container for flask here the same way it was for bash, kafkacat etc before)
+:::
+
 ## Test it out 
 ```
 docker-compose exec mids curl http://localhost:5000/
@@ -223,6 +250,12 @@ docker-compose exec mids curl http://localhost:5000/
 ```
 docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 ```
+
+::: notes
+- Where are our data coming from this time
+- Mobile app is hitting browser port 5000
+- Mocking that up using curl locally
+:::
 
 ## Stop flask
 -Kill flask with `ctrl-c`.
@@ -253,6 +286,10 @@ def purchase_a_sword():
     return "Sword Purchased!"
 ```
 ::: notes
+- We added one line per action in the api
+- The act we're taking here is to log an event
+- We're publishing to kafka because we want to implement for analytics
+- Take that same python file and edit it to add these pieces 
 :::
 
 ## Run that
