@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="picture-of-new-pipeline" class="level2">
 <h2>Picture of new pipeline</h2>
 <aside class="notes">
-<p>NOTE: need image</p>
+<p>NOTE: need image - What we need to have an end to end pipeline is something up front and something to query out the back end.</p>
 </aside>
 </section>
 <section id="project-3-setup" class="level2">
@@ -153,7 +153,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Your task: instrument your API server to catch and analyze these two event types.</li>
 </ul>
 <aside class="notes">
-<p>options to decide before presenting to students: - Using the containers provided -vs- freeform other containers - mix these events on a single topic -vs- event-specific topics - latency requirements of queries - ? For class activities -vs- homework, let’s use health data: <code>patient check-in</code> and <code>code blue</code>.</p>
+<p>options to decide before presenting to students: - Using the containers provided -vs- freeform other containers - mix these events on a single topic -vs- event-specific topics - latency requirements of queries - ? - What data? For class activities -vs- homework, let’s use health data: <code>patient check-in</code> and <code>code blue</code>.</p>
+</aside>
+</section>
+<section id="project-3-options" class="level2">
+<h2>Project 3 options</h2>
+<aside class="notes">
+<ul>
+<li>All: Shopping cart data for homework</li>
+<li>Advanced option: Shopping cart data &amp; track state</li>
+<li>Advanced option is not about getting more points, it’s just if you want that challenge</li>
+</ul>
 </aside>
 </section>
 </section>
@@ -197,7 +207,7 @@ services:
       - &quot;moby:127.0.0.1&quot;
 
   mids:
-    image: midsw205/base:latest
+    image: midsw205/base:0.1.8
     stdin_open: true
     tty: true
     volumes:
@@ -258,6 +268,8 @@ services:
 <li><p>User actions associated with purchases, for example, would generally map to some generic API endpoint like</p>
 <p>POST /purchase</p></li>
 <li>that would also include a json payload describing the purchase… it’d list out things like the quantity and items purchased.</li>
+<li>What is an api server?</li>
+<li>how do web addresses map to apis?</li>
 </ul>
 </aside>
 </section>
@@ -270,7 +282,8 @@ services:
 <aside class="notes">
 <ul>
 <li><p>However, in order to keep things simple for now, we’ll start with actions like “purchase a sword” each corresponding to a single (hard-coded) API call such as</p>
-GET /purchase_a_sword</li>
+<p>GET /purchase_a_sword</p></li>
+<li>We’ll use gets for everything though usually you’d do put or post</li>
 </ul>
 </aside>
 </section>
@@ -290,47 +303,76 @@ GET /purchase_a_sword</li>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw">def</span> purchase<span class="op">-</span>a<span class="op">-</span>sword():</a>
 <a class="sourceLine" id="cb8-11" data-line-number="11">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
+<aside class="notes">
+<ul>
+<li>Adding comments in functions</li>
+<li>Normal business logic if you e.g. purchase something, it would trigger put that thing in your inventory, charge you for whatever that would be etc.</li>
+<li>But here, we’re …</li>
+<li>What is happening here (need visuals from API async materials)</li>
+<li>Introducing Python, Chapter 9, The Web Untangled is good for this</li>
+</ul>
+</aside>
 </section>
 <section id="section-6" class="level2">
 <h2></h2>
 <ul>
 <li>Save this as <code>~/w205/flask-with-kafka/game_api.py</code> and run it via</li>
 </ul>
-<pre><code>docker-compose exec mids pip install Flask kafka-python</code></pre>
 <pre><code>docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run</code></pre>
+<aside class="notes">
+<ul>
+<li>There are other ways to run the flask</li>
+<li>Discuss what is its own container (service), pattern we’ve followed so far, how is this the same (mids is the container for flask here the same way it was for bash, kafkacat etc before)</li>
+</ul>
+</aside>
 </section>
 <section id="test-it-out" class="level2">
 <h2>Test it out</h2>
 <pre><code>docker-compose exec mids curl http://localhost:5000/</code></pre>
 <pre><code>docker-compose exec mids curl http://localhost:5000/purchase_a_sword</code></pre>
+<aside class="notes">
+<ul>
+<li>Where are our data coming from this time</li>
+<li>Mobile app is hitting browser port 5000</li>
+<li>Mocking that up using curl locally</li>
+</ul>
+</aside>
 </section>
 <section id="stop-flask" class="level2">
 <h2>Stop flask</h2>
 <p>-Kill flask with <code>ctrl-c</code>. ::: notes :::</p>
 </section>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
 <section id="generate-events-from-our-webapp" class="level2">
 <h2>Generate events from our webapp</h2>
 <ul>
 <li>Let’s add kafka into the mix</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">producer <span class="op">=</span> KafkaProducer(bootstrap_servers<span class="op">=</span><span class="st">&#39;kafka:29092&#39;</span>)</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">topic <span class="op">=</span> <span class="st">&#39;events&#39;</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="at">@app.route</span>(<span class="st">&quot;/&quot;</span>)</a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="kw">def</span> default_response():</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">    producer.send(topic, <span class="st">&#39;default&#39;</span>.encode())</a>
-<a class="sourceLine" id="cb13-11" data-line-number="11">    <span class="cf">return</span> <span class="st">&quot;This is the default response!&quot;</span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
-<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="kw">def</span> purchase_a_sword():</a>
-<a class="sourceLine" id="cb13-15" data-line-number="15">    producer.send(topic, <span class="st">&#39;purchased_sword&#39;</span>.encode())</a>
-<a class="sourceLine" id="cb13-16" data-line-number="16">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">producer <span class="op">=</span> KafkaProducer(bootstrap_servers<span class="op">=</span><span class="st">&#39;kafka:29092&#39;</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">topic <span class="op">=</span> <span class="st">&#39;events&#39;</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="at">@app.route</span>(<span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">def</span> default_response():</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">    producer.send(topic, <span class="st">&#39;default&#39;</span>.encode())</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">    <span class="cf">return</span> <span class="st">&quot;This is the default response!&quot;</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="kw">def</span> purchase_a_sword():</a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">    producer.send(topic, <span class="st">&#39;purchased_sword&#39;</span>.encode())</a>
+<a class="sourceLine" id="cb12-16" data-line-number="16">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
 <aside class="notes">
-
+<ul>
+<li>We added one line per action in the api</li>
+<li>The act we’re taking here is to log an event</li>
+<li>We’re publishing to kafka because we want to implement for analytics</li>
+<li>Take that same python file and edit it to add these pieces</li>
+</ul>
 </aside>
 </section>
 <section id="run-that" class="level2">
@@ -358,7 +400,7 @@ GET /purchase_a_sword</li>
 
 </aside>
 </section>
-<section id="section-7" class="level2">
+<section id="section-8" class="level2">
 <h2></h2>
 </section>
 <section id="notes" class="level2">
@@ -391,7 +433,7 @@ GET /purchase_a_sword</li>
 </aside>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

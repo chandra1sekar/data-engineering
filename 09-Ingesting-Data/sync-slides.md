@@ -111,7 +111,7 @@ services:
       - "moby:127.0.0.1"
 
   mids:
-    image: midsw205/base:latest
+    image: midsw205/base:0.1.8
     stdin_open: true
     tty: true
     volumes:
@@ -231,9 +231,6 @@ def purchase-a-sword():
 
 ##
 - Save this as `~/w205/flask-with-kafka/game_api.py` and run it via
-```
-docker-compose exec mids pip install Flask kafka-python
-```
 ```
 docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run
 ```
