@@ -441,21 +441,6 @@ services:
 
 </aside>
 </section>
-<section id="section-16" class="level2">
-<h2></h2>
-</section>
-<section id="notes" class="level2">
-<h2>Notes</h2>
-<p>TBD:</p>
-<ul>
-<li><p>install flask into the base image</p></li>
-<li><p>set unicode locale..</p>
-<p>export LC_ALL=C.UTF-8 export LANG=C.UTF-8</p></li>
-</ul>
-<aside class="notes">
-
-</aside>
-</section>
 <section id="read-from-kafka" class="level2">
 <h2>read from kafka</h2>
 <ul>
@@ -476,14 +461,14 @@ services:
 </section>
 <section id="summary" class="slide level1">
 <h1>Summary</h1>
-<section id="section-17" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<section id="section-16" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 <aside class="notes">
 <p>(repeat from earlier)</p>
 <p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
 </aside>
 </section>
-<section id="section-18" class="level2">
+<section id="section-17" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-events-ingestion-from-app-server-more-detail.svg" style="border:0;box-shadow:none" /></p>
 <aside class="notes">
@@ -493,7 +478,7 @@ services:
 </aside>
 </section>
 </section>
-<section id="section-19" class="slide level1">
+<section id="section-18" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

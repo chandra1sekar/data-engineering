@@ -365,22 +365,6 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 ::: notes
 :::
 
-##
-## Notes
-
-TBD:
-
-- install flask into the base image
-
-- set unicode locale..
-
-    export LC_ALL=C.UTF-8
-    export LANG=C.UTF-8
-
-::: notes
-:::
-
-
 ## read from kafka
 
 - Use kafkacat to consume events from the `events` topic
