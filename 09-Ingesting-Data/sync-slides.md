@@ -25,6 +25,7 @@ Breakout at about 5 after the hour:
 
 ## Project Transition
 
+## { data-background="images/pipeline-overall.svg" } 
 
 ## { data-background="images/streaming-bare.svg" } 
 
@@ -35,11 +36,28 @@ Breakout at about 5 after the hour:
 - Now going to move to new pipeline
 :::
 
-## Picture of new pipeline
+## { data-background="images/pipeline-simple-steel-thread.svg" } 
 
 ::: notes
-NOTE: need image
-- What we need to have an end to end pipeline is something up front and something to query out the back end.
+What we need to have an end to end pipeline is:
+- something up front generating events
+- something to query out the back end
+:::
+
+## { data-background="images/pipeline-steel-thread-for-mobile-app.svg" } 
+
+::: notes
+Let's walk through this
+- user interacts with mobile app
+- mobile app makes API calls to web services
+- API server handles requests:
+    - handles actual business requirements (e.g., process purchase)
+    - logs events to kafka
+- spark then:
+    - pulls events from kafka
+    - filters/flattens/transforms events
+    - writes them to storage
+- presto then queries those events
 :::
 
 ## Project 3 Setup
@@ -167,6 +185,23 @@ actions such as
 - To process these actions, your mobile app makes API calls to a web-based
 API-server.  
 
+## { data-background="images/pipeline-steel-thread-for-mobile-app.svg" } 
+
+##
+![](images/mobile-app-server-events.svg){style="border:0;box-shadow:none"}
+
+##
+![](images/webserver.png){style="border:0;box-shadow:none"}
+
+##
+![](images/pipeline-events-ingestion-from-app-server-more-detail.svg){style="border:0;box-shadow:none"}
+
+::: notes
+Remember, the API server's _primary_ job is to handle user requests.
+Logging events to kafka is usually a secondary concern.
+:::
+
+
 ## An API server - usual case
 
 - User actions map to API endpoints
@@ -217,7 +252,8 @@ def default_response():
     return "This is the default response!"
 
 @app.route("/purchase_a_sword")
-def purchase-a-sword():
+def purchase_sword():
+    # business logic to purchase sword
     return "Sword Purchased!"
 ```
 
@@ -261,34 +297,37 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 
 
 #
-
 ## Generate events from our webapp
 
+##
 - Let's add kafka into the mix
 
+##
 ```python
 #!/usr/bin/env python
 from kafka import KafkaProducer
 from flask import Flask
 app = Flask(__name__)
-producer = KafkaProducer(bootstrap_servers='kafka:29092')
-topic = 'events'
+event_logger = KafkaProducer(bootstrap_servers='kafka:29092')
+events_topic = 'events'
 
 @app.route("/")
 def default_response():
-    producer.send(topic, 'default'.encode())
+    event_logger.send(events_topic, 'default'.encode())
     return "This is the default response!"
 
 @app.route("/purchase_a_sword")
-def purchase_a_sword():
-    producer.send(topic, 'purchased_sword'.encode())
+def purchase_sword():
+    # business logic to purchase sword
+    # log event to kafka
+    event_logger.send(events_topic, 'purchased_sword'.encode())
     return "Sword Purchased!"
 ```
 ::: notes
-- We added one line per action in the api
-- The act we're taking here is to log an event
-- We're publishing to kafka because we want to implement for analytics
-- Take that same python file and edit it to add these pieces 
+- We still want to handle user events
+- We _also_ wanna log events to kafka for analytics
+- Let's instrument our code with an event logger
+- Just edit the same file to add a couple of lines for kafka
 :::
 
 ## Run that

@@ -119,10 +119,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="project-transition" class="level2">
 <h2>Project Transition</h2>
 </section>
-<section id="section-2" class="level2" data-background="images/streaming-bare.svg">
+<section id="section-2" class="level2" data-background="images/pipeline-overall.svg">
 <h2></h2>
 </section>
-<section id="section-3" class="level2" data-background="images/streaming-bare-logos.jpg">
+<section id="section-3" class="level2" data-background="images/streaming-bare.svg">
+<h2></h2>
+</section>
+<section id="section-4" class="level2" data-background="images/streaming-bare-logos.jpg">
 <h2></h2>
 <aside class="notes">
 <ul>
@@ -131,10 +134,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </aside>
 </section>
-<section id="picture-of-new-pipeline" class="level2">
-<h2>Picture of new pipeline</h2>
+<section id="section-5" class="level2" data-background="images/pipeline-simple-steel-thread.svg">
+<h2></h2>
 <aside class="notes">
-<p>NOTE: need image - What we need to have an end to end pipeline is something up front and something to query out the back end.</p>
+<p>What we need to have an end to end pipeline is: - something up front generating events - something to query out the back end</p>
+</aside>
+</section>
+<section id="section-6" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<h2></h2>
+<aside class="notes">
+<p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
 </aside>
 </section>
 <section id="project-3-setup" class="level2">
@@ -167,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="flask-with-kafka" class="level2">
 <h2>Flask with Kafka</h2>
@@ -241,7 +250,7 @@ services:
 <pre><code>Created topic &quot;events&quot;.</code></pre>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="lets-create-a-web-based-application" class="level2">
 <h2>Let’s create a web-based application</h2>
@@ -256,6 +265,24 @@ services:
 <li><p>etc</p></li>
 <li><p>To process these actions, your mobile app makes API calls to a web-based API-server.</p></li>
 </ul>
+</section>
+<section id="section-9" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<h2></h2>
+</section>
+<section id="section-10" class="level2">
+<h2></h2>
+<p><img data-src="images/mobile-app-server-events.svg" style="border:0;box-shadow:none" /></p>
+</section>
+<section id="section-11" class="level2">
+<h2></h2>
+<p><img data-src="images/webserver.png" style="border:0;box-shadow:none" /></p>
+</section>
+<section id="section-12" class="level2">
+<h2></h2>
+<p><img data-src="images/pipeline-events-ingestion-from-app-server-more-detail.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<p>Remember, the API server’s <em>primary</em> job is to handle user requests. Logging events to kafka is usually a secondary concern.</p>
+</aside>
 </section>
 <section id="an-api-server---usual-case" class="level2">
 <h2>An API server - usual case</h2>
@@ -301,8 +328,9 @@ services:
 <a class="sourceLine" id="cb8-7" data-line-number="7">    <span class="cf">return</span> <span class="st">&quot;This is the default response!&quot;</span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw">def</span> purchase<span class="op">-</span>a<span class="op">-</span>sword():</a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw">def</span> purchase_sword():</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">    <span class="co"># business logic to purchase sword</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
 <aside class="notes">
 <ul>
 <li>Adding comments in functions</li>
@@ -313,7 +341,7 @@ services:
 </ul>
 </aside>
 </section>
-<section id="section-6" class="level2">
+<section id="section-13" class="level2">
 <h2></h2>
 <ul>
 <li>Save this as <code>~/w205/flask-with-kafka/game_api.py</code> and run it via</li>
@@ -343,35 +371,43 @@ services:
 <p>-Kill flask with <code>ctrl-c</code>. ::: notes :::</p>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-14" class="slide level1">
 <h1></h1>
 <section id="generate-events-from-our-webapp" class="level2">
 <h2>Generate events from our webapp</h2>
+</section>
+<section id="section-15" class="level2">
+<h2></h2>
 <ul>
 <li>Let’s add kafka into the mix</li>
 </ul>
+</section>
+<section id="section-16" class="level2">
+<h2></h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
 <a class="sourceLine" id="cb12-4" data-line-number="4">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">producer <span class="op">=</span> KafkaProducer(bootstrap_servers<span class="op">=</span><span class="st">&#39;kafka:29092&#39;</span>)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">topic <span class="op">=</span> <span class="st">&#39;events&#39;</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">event_logger <span class="op">=</span> KafkaProducer(bootstrap_servers<span class="op">=</span><span class="st">&#39;kafka:29092&#39;</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">events_topic <span class="op">=</span> <span class="st">&#39;events&#39;</span></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8"><span class="at">@app.route</span>(<span class="st">&quot;/&quot;</span>)</a>
 <a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">def</span> default_response():</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10">    producer.send(topic, <span class="st">&#39;default&#39;</span>.encode())</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">    event_logger.send(events_topic, <span class="st">&#39;default&#39;</span>.encode())</a>
 <a class="sourceLine" id="cb12-11" data-line-number="11">    <span class="cf">return</span> <span class="st">&quot;This is the default response!&quot;</span></a>
 <a class="sourceLine" id="cb12-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb12-13" data-line-number="13"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="kw">def</span> purchase_a_sword():</a>
-<a class="sourceLine" id="cb12-15" data-line-number="15">    producer.send(topic, <span class="st">&#39;purchased_sword&#39;</span>.encode())</a>
-<a class="sourceLine" id="cb12-16" data-line-number="16">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="kw">def</span> purchase_sword():</a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">    <span class="co"># business logic to purchase sword</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16">    <span class="co"># log event to kafka</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">    event_logger.send(events_topic, <span class="st">&#39;purchased_sword&#39;</span>.encode())</a>
+<a class="sourceLine" id="cb12-18" data-line-number="18">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
 <aside class="notes">
 <ul>
-<li>We added one line per action in the api</li>
-<li>The act we’re taking here is to log an event</li>
-<li>We’re publishing to kafka because we want to implement for analytics</li>
-<li>Take that same python file and edit it to add these pieces</li>
+<li>We still want to handle user events</li>
+<li>We <em>also</em> wanna log events to kafka for analytics</li>
+<li>Let’s instrument our code with an event logger</li>
+<li>Just edit the same file to add a couple of lines for kafka</li>
 </ul>
 </aside>
 </section>
@@ -400,7 +436,7 @@ services:
 
 </aside>
 </section>
-<section id="section-8" class="level2">
+<section id="section-17" class="level2">
 <h2></h2>
 </section>
 <section id="notes" class="level2">
@@ -433,7 +469,7 @@ services:
 </aside>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-18" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
