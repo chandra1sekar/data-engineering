@@ -221,6 +221,10 @@ services:
     tty: true
     volumes:
       - ~/w205:/w205
+    expose:
+      - &quot;5000&quot;
+    ports:
+      - &quot;5000:5000&quot;
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
@@ -363,6 +367,7 @@ services:
 <li>Where are our data coming from this time</li>
 <li>Mobile app is hitting browser port 5000</li>
 <li>Mocking that up using curl locally</li>
+<li>Note we have also exposed the port out to the host</li>
 </ul>
 </aside>
 </section>

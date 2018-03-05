@@ -134,6 +134,10 @@ services:
     tty: true
     volumes:
       - ~/w205:/w205
+    expose:
+      - "5000"
+    ports:
+      - "5000:5000"
     extra_hosts:
       - "moby:127.0.0.1"
 ```
@@ -290,6 +294,7 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 - Where are our data coming from this time
 - Mobile app is hitting browser port 5000
 - Mocking that up using curl locally
+- Note we have also exposed the port out to the host
 :::
 
 ## Stop flask
