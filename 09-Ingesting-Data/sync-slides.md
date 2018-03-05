@@ -299,8 +299,6 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 
 ## Stop flask
 -Kill flask with `ctrl-c`.
-::: notes
-:::
 
 
 #
@@ -353,15 +351,6 @@ docker-compose exec mids curl http://localhost:5000/
 ```
 docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 ```
-
-::: notes
-:::
-
-## Reading the events from kafka
-```
-docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
-```
-
 ::: notes
 :::
 

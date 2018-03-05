@@ -373,7 +373,7 @@ services:
 </section>
 <section id="stop-flask" class="level2">
 <h2>Stop flask</h2>
-<p>-Kill flask with <code>ctrl-c</code>. ::: notes :::</p>
+<p>-Kill flask with <code>ctrl-c</code>.</p>
 </section>
 </section>
 <section id="section-13" class="slide level1">
@@ -430,13 +430,6 @@ services:
 </ul>
 <pre><code>docker-compose exec mids curl http://localhost:5000/</code></pre>
 <pre><code>docker-compose exec mids curl http://localhost:5000/purchase_a_sword</code></pre>
-<aside class="notes">
-
-</aside>
-</section>
-<section id="reading-the-events-from-kafka" class="level2">
-<h2>Reading the events from kafka</h2>
-<pre><code>docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e</code></pre>
 <aside class="notes">
 
 </aside>
