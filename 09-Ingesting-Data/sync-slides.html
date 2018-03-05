@@ -119,28 +119,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="project-transition" class="level2">
 <h2>Project Transition</h2>
 </section>
-<section id="section-2" class="level2" data-background="images/pipeline-overall.svg">
+<section id="section-2" class="level2" data-background="images/streaming-bare.svg">
 <h2></h2>
 </section>
-<section id="section-3" class="level2" data-background="images/streaming-bare.svg">
-<h2></h2>
-</section>
-<section id="section-4" class="level2" data-background="images/streaming-bare-logos.jpg">
+<section id="section-3" class="level2" data-background="images/streaming-bare-logos.jpg">
 <h2></h2>
 <aside class="notes">
 <ul>
-<li>We walked through this pipeline</li>
+<li>We’ve assembled and used this pipeline</li>
 <li>Now going to move to new pipeline</li>
 </ul>
 </aside>
 </section>
-<section id="section-5" class="level2" data-background="images/pipeline-simple-steel-thread.svg">
+<section id="section-4" class="level2" data-background="images/pipeline-simple-steel-thread.svg">
 <h2></h2>
 <aside class="notes">
 <p>What we need to have an end to end pipeline is: - something up front generating events - something to query out the back end</p>
 </aside>
 </section>
-<section id="section-6" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<section id="section-5" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 <aside class="notes">
 <p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
@@ -169,14 +166,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Project 3 options</h2>
 <aside class="notes">
 <ul>
-<li>All: Shopping cart data for homework</li>
-<li>Advanced option: Shopping cart data &amp; track state</li>
+<li>All: Essential game shopping cart data for homework</li>
+<li>There are plenty of ways to take this further…</li>
+<li>Advanced option: Generate and filter more types of items</li>
+<li>Advanced option: Enhance the API to accept parameters for purchases (sword/item type)</li>
+<li>Advanced option: Shopping cart data &amp; track state (e.g., user’s inventory)</li>
 <li>Advanced option is not about getting more points, it’s just if you want that challenge</li>
 </ul>
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="flask-with-kafka" class="level2">
 <h2>Flask with Kafka</h2>
@@ -224,7 +224,7 @@ services:
     extra_hosts:
       - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
-<p>and with no need for a datafile on this one.</p>
+<p>We’re <em>generating</em> the data, so there’s no need for a datafile on this one.</p>
 </aside>
 </section>
 <section id="spin-up-the-cluster" class="level2">
@@ -250,7 +250,7 @@ services:
 <pre><code>Created topic &quot;events&quot;.</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="lets-create-a-web-based-application" class="level2">
 <h2>Let’s create a web-based application</h2>
@@ -266,22 +266,23 @@ services:
 <li><p>To process these actions, your mobile app makes API calls to a web-based API-server.</p></li>
 </ul>
 </section>
-<section id="section-9" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<section id="section-8" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 </section>
-<section id="section-10" class="level2">
+<section id="section-9" class="level2">
 <h2></h2>
 <p><img data-src="images/mobile-app-server-events.svg" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="section-11" class="level2">
+<section id="section-10" class="level2">
 <h2></h2>
 <p><img data-src="images/webserver.png" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="section-12" class="level2">
+<section id="section-11" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-events-ingestion-from-app-server-more-detail.svg" style="border:0;box-shadow:none" /></p>
 <aside class="notes">
 <p>Remember, the API server’s <em>primary</em> job is to handle user requests. Logging events to kafka is usually a secondary concern.</p>
+<p>For w205, we care about analytics. We’re asking you to focus only on the event logging… no need to write the business logic needed for purchasing items.</p>
 </aside>
 </section>
 <section id="an-api-server---usual-case" class="level2">
@@ -294,7 +295,7 @@ services:
 <ul>
 <li><p>User actions associated with purchases, for example, would generally map to some generic API endpoint like</p>
 <p>POST /purchase</p></li>
-<li>that would also include a json payload describing the purchase… it’d list out things like the quantity and items purchased.</li>
+<li>that would also include a json payload describing the purchase… it’d list out things like the quantity and details of items purchased.</li>
 <li>What is an api server?</li>
 <li>how do web addresses map to apis?</li>
 </ul>
@@ -333,15 +334,14 @@ services:
 <a class="sourceLine" id="cb8-12" data-line-number="12">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
 <aside class="notes">
 <ul>
-<li>Adding comments in functions</li>
 <li>Normal business logic if you e.g. purchase something, it would trigger put that thing in your inventory, charge you for whatever that would be etc.</li>
-<li>But here, we’re …</li>
-<li>What is happening here (need visuals from API async materials)</li>
+<li>But here, we care about events… we’re focusing on only logging the events</li>
+<li>async 9.2.3 might be useful here</li>
 <li>Introducing Python, Chapter 9, The Web Untangled is good for this</li>
 </ul>
 </aside>
 </section>
-<section id="section-13" class="level2">
+<section id="section-12" class="level2">
 <h2></h2>
 <ul>
 <li>Save this as <code>~/w205/flask-with-kafka/game_api.py</code> and run it via</li>
@@ -371,18 +371,18 @@ services:
 <p>-Kill flask with <code>ctrl-c</code>. ::: notes :::</p>
 </section>
 </section>
-<section id="section-14" class="slide level1">
+<section id="section-13" class="slide level1">
 <h1></h1>
 <section id="generate-events-from-our-webapp" class="level2">
 <h2>Generate events from our webapp</h2>
 </section>
-<section id="section-15" class="level2">
+<section id="section-14" class="level2">
 <h2></h2>
 <ul>
 <li>Let’s add kafka into the mix</li>
 </ul>
 </section>
-<section id="section-16" class="level2">
+<section id="section-15" class="level2">
 <h2></h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</a>
@@ -436,7 +436,7 @@ services:
 
 </aside>
 </section>
-<section id="section-17" class="level2">
+<section id="section-16" class="level2">
 <h2></h2>
 </section>
 <section id="notes" class="level2">
@@ -469,7 +469,26 @@ services:
 </aside>
 </section>
 </section>
-<section id="section-18" class="slide level1">
+<section id="summary" class="slide level1">
+<h1>Summary</h1>
+<section id="section-17" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<h2></h2>
+<aside class="notes">
+<p>(repeat from earlier)</p>
+<p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
+</aside>
+</section>
+<section id="section-18" class="level2">
+<h2></h2>
+<p><img data-src="images/pipeline-events-ingestion-from-app-server-more-detail.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<p>(repeat from earlier)</p>
+<p>Remember, the API server’s <em>primary</em> job is to handle user requests. Logging events to kafka is usually a secondary concern.</p>
+<p>For w205, we care about analytics. We’re asking you to focus only on the event logging… no need to write the business logic needed for purchasing items.</p>
+</aside>
+</section>
+</section>
+<section id="section-19" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

@@ -25,14 +25,12 @@ Breakout at about 5 after the hour:
 
 ## Project Transition
 
-## { data-background="images/pipeline-overall.svg" } 
-
 ## { data-background="images/streaming-bare.svg" } 
 
 ## { data-background="images/streaming-bare-logos.jpg" } 
 
 ::: notes
-- We walked through this pipeline
+- We've assembled and used this pipeline
 - Now going to move to new pipeline
 :::
 
@@ -83,10 +81,12 @@ and `code blue`.
 
 ## Project 3 options
 
-
 ::: notes
-- All: Shopping cart data for homework
-- Advanced option: Shopping cart data & track state
+- All: Essential game shopping cart data for homework
+- There are plenty of ways to take this further...
+- Advanced option: Generate and filter more types of items
+- Advanced option: Enhance the API to accept parameters for purchases (sword/item type)
+- Advanced option: Shopping cart data & track state (e.g., user's inventory)
 - Advanced option is not about getting more points, it's just if you want that challenge
 :::
 
@@ -139,7 +139,7 @@ services:
 ```
 
 ::: notes
-and with no need for a datafile on this one.
+We're _generating_ the data, so there's no need for a datafile on this one.
 :::
 
 ## Spin up the cluster
@@ -199,6 +199,9 @@ API-server.
 ::: notes
 Remember, the API server's _primary_ job is to handle user requests.
 Logging events to kafka is usually a secondary concern.
+
+For w205, we care about analytics.  We're asking you to focus only on the event
+logging... no need to write the business logic needed for purchasing items.
 :::
 
 
@@ -217,7 +220,7 @@ some generic API endpoint like
     POST /purchase
 
 - that would also include a json payload describing the purchase... it'd list out
-things like the quantity and items purchased.
+things like the quantity and details of items purchased.
 - What is an api server?
 - how do web addresses map to apis?
 :::
@@ -258,10 +261,9 @@ def purchase_sword():
 ```
 
 ::: notes
-- Adding comments in functions
 - Normal business logic if you e.g. purchase something, it would trigger put that thing in your inventory, charge you for whatever that would be etc. 
-- But here, we're ...
-- What is happening here (need visuals from API async materials)
+- But here, we care about events... we're focusing on only logging the events
+- async 9.2.3 might be useful here
 - Introducing Python, Chapter 9, The Web Untangled is good for this
 :::
 
@@ -395,6 +397,39 @@ docker-compose exec mids "kafkacat -C -b kafka:29092 -t events -o beginning -e"
 ::: notes
 :::
 
+
+# Summary
+
+## { data-background="images/pipeline-steel-thread-for-mobile-app.svg" } 
+
+::: notes
+(repeat from earlier)
+
+Let's walk through this
+- user interacts with mobile app
+- mobile app makes API calls to web services
+- API server handles requests:
+    - handles actual business requirements (e.g., process purchase)
+    - logs events to kafka
+- spark then:
+    - pulls events from kafka
+    - filters/flattens/transforms events
+    - writes them to storage
+- presto then queries those events
+:::
+
+##
+![](images/pipeline-events-ingestion-from-app-server-more-detail.svg){style="border:0;box-shadow:none"}
+
+::: notes
+(repeat from earlier)
+
+Remember, the API server's _primary_ job is to handle user requests.
+Logging events to kafka is usually a secondary concern.
+
+For w205, we care about analytics.  We're asking you to focus only on the event
+logging... no need to write the business logic needed for purchasing items.
+:::
 
 #
 
