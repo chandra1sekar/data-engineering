@@ -439,9 +439,9 @@ services:
 <ul>
 <li>Use kafkacat to consume events from the <code>events</code> topic</li>
 </ul>
-<pre><code>docker-compose exec mids &quot;kafkacat -C -b kafka:29092 -t events -o beginning -e&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t events -o beginning -e&quot;</code></pre>
 <aside class="notes">
-<pre><code>docker-compose exec mids &quot;kafkacat -C -b kafka:29092 -t events -o beginning -e&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t events -o beginning -e&quot;</code></pre>
 </aside>
 </section>
 <section id="down" class="level2">

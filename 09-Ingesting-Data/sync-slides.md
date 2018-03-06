@@ -359,12 +359,12 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 - Use kafkacat to consume events from the `events` topic
 
 ```
-docker-compose exec mids "kafkacat -C -b kafka:29092 -t events -o beginning -e"
+docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t events -o beginning -e"
 ```
 
 ::: notes
 ```
-docker-compose exec mids "kafkacat -C -b kafka:29092 -t events -o beginning -e"
+docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t events -o beginning -e"
 ```
 :::
 
