@@ -35,9 +35,13 @@ Breakout at about 5 after the hour:
 
 ## Setup
 
-`mkdir ~/w205/spark-with-kafka-and-hdfs`
+```
+mkdir ~/w205/spark-with-kafka-and-hdfs
+```
 
-`cd ~/w205/spark-with-kafka-and-hdfs`
+```
+cd ~/w205/spark-with-kafka-and-hdfs
+```
 
 ```
 cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .
