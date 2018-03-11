@@ -467,10 +467,6 @@ the live classroom for specific weeks in the term.
 >   Chapter 2. How Spark Works
 >   https://www.safaribooksonline.com/library/view/high-performance-spark/9781491943199/ch02.html
 
->   Learning Spark
->   by Andy Konwinski, Holden Karau, Matei Zaharia, Patrick Wendell
->   Chapter 10. Spark Streaming
->   https://www.safaribooksonline.com/library/view/learning-spark/9781449359034/ch10.html
 
 #### Asynchronous Content
 

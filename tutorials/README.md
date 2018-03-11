@@ -51,3 +51,9 @@ screencasts:
 - docker-in-the-cloud
 - docker-volumes
 
+
+## Misc
+
+- [ML flask app on GCP](https://codelabs.developers.google.com/codelabs/cloud-vision-app-engine/)
+
+

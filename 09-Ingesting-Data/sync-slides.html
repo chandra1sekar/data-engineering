@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Week 09 - sync session">
+  <title>Fundamentals of Data Engineering</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/mids.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Fundamentals of Data Engineering</h1>
+  <h2 class="author">Week 09 - sync session</h2>
+  <img class="frontPageSlogan" src="http://people.ischool.berkeley.edu/~mark.mims/course-development/2017-mids-w205/media/datascience-at-berkeley.png"/>
+</section>
+
+<section id="section" class="slide level1">
+<h1></h1>
+<section id="assignment-review" class="level2">
+<h2>Assignment Review</h2>
+<ul>
+<li>Review your Assignment 08</li>
+<li>Get ready to share</li>
+</ul>
+<aside class="notes">
+<p>Breakout at about 5 after the hour: - Check in with each group - have students share screen</p>
+</aside>
+</section>
+<section id="due-friday-pr" class="level2">
+<h2>Due Friday (PR)</h2>
+</section>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<section id="project-transition" class="level2">
+<h2>Project Transition</h2>
+</section>
+<section id="section-2" class="level2" data-background="images/streaming-bare.svg">
+<h2></h2>
+</section>
+<section id="section-3" class="level2" data-background="images/streaming-bare-logos.jpg">
+<h2></h2>
+<aside class="notes">
+<ul>
+<li>We’ve assembled and used this pipeline</li>
+<li>Now going to move to new pipeline</li>
+</ul>
+</aside>
+</section>
+<section id="section-4" class="level2" data-background="images/pipeline-simple-steel-thread.svg">
+<h2></h2>
+<aside class="notes">
+<p>What we need to have an end to end pipeline is: - something up front generating events - something to query out the back end</p>
+</aside>
+</section>
+<section id="section-5" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<h2></h2>
+<aside class="notes">
+<p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
+</aside>
+</section>
+<section id="project-3-setup" class="level2">
+<h2>Project 3 Setup</h2>
+<ul>
+<li>You’re a data scientist at a game development company.<br />
+</li>
+<li>Your latest mobile game has two events you’re interested in tracking:</li>
+<li><code>buy a sword</code> &amp; <code>join guild</code>…</li>
+<li>Each has metadata</li>
+</ul>
+</section>
+<section id="project-3-task" class="level2">
+<h2>Project 3 Task</h2>
+<ul>
+<li>Your task: instrument your API server to catch and analyze these two event types.</li>
+</ul>
+<aside class="notes">
+<p>options to decide before presenting to students: - Using the containers provided -vs- freeform other containers - mix these events on a single topic -vs- event-specific topics - latency requirements of queries - ? - What data? For class activities -vs- homework, let’s use health data: <code>patient check-in</code> and <code>code blue</code>.</p>
+</aside>
+</section>
+<section id="project-3-options" class="level2">
+<h2>Project 3 options</h2>
+<aside class="notes">
+<ul>
+<li>All: Essential game shopping cart data for homework</li>
+<li>There are plenty of ways to take this further…</li>
+<li>Advanced option: Generate and filter more types of items</li>
+<li>Advanced option: Enhance the API to accept parameters for purchases (sword/item type)</li>
+<li>Advanced option: Shopping cart data &amp; track state (e.g., user’s inventory)</li>
+<li>Advanced option is not about getting more points, it’s just if you want that challenge</li>
+</ul>
+</aside>
+</section>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<section id="flask-with-kafka" class="level2">
+<h2>Flask with Kafka</h2>
+</section>
+<section id="setup" class="level2">
+<h2>Setup</h2>
+<p>Create a <code>docker-compose.yml</code> with the following</p>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - &quot;2181&quot;
+      - &quot;2888&quot;
+      - &quot;32181&quot;
+      - &quot;3888&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    expose:
+      - &quot;9092&quot;
+      - &quot;29092&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  mids:
+    image: midsw205/base:0.1.8
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;5000&quot;
+    ports:
+      - &quot;5000:5000&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;</code></pre>
+<aside class="notes">
+<p>We’re <em>generating</em> the data, so there’s no need for a datafile on this one.</p>
+</aside>
+</section>
+<section id="spin-up-the-cluster" class="level2">
+<h2>Spin up the cluster</h2>
+<pre><code>docker-compose up -d</code></pre>
+</section>
+<section id="create-a-topic-events" class="level2">
+<h2>Create a topic <code>events</code></h2>
+<pre><code> docker-compose exec kafka \
+   kafka-topics \
+     --create \
+     --topic events \
+     --partitions 1 \
+     --replication-factor 1 \
+     --if-not-exists \
+     --zookeeper zookeeper:32181</code></pre>
+<aside class="notes">
+<pre><code> docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
+</aside>
+</section>
+<section id="should-show" class="level2">
+<h2>Should show</h2>
+<pre><code>Created topic &quot;events&quot;.</code></pre>
+</section>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<section id="lets-create-a-web-based-application" class="level2">
+<h2>Let’s create a web-based application</h2>
+</section>
+<section id="an-example-scenario" class="level2">
+<h2>An example scenario</h2>
+<ul>
+<li><p>You’re a mobile game developer. During gameplay, your users perform various actions such as</p></li>
+<li>purchase a sword</li>
+<li>purchase a knife</li>
+<li>join a guild</li>
+<li><p>etc</p></li>
+<li><p>To process these actions, your mobile app makes API calls to a web-based API-server.</p></li>
+</ul>
+</section>
+<section id="section-8" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<h2></h2>
+</section>
+<section id="section-9" class="level2">
+<h2></h2>
+<p><img data-src="images/mobile-app-server-events.svg" style="border:0;box-shadow:none" /></p>
+</section>
+<section id="section-10" class="level2">
+<h2></h2>
+<p><img data-src="images/webserver.png" style="border:0;box-shadow:none" /></p>
+</section>
+<section id="section-11" class="level2">
+<h2></h2>
+<p><img data-src="images/pipeline-events-ingestion-from-app-server-more-detail.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<p>Remember, the API server’s <em>primary</em> job is to handle user requests. Logging events to kafka is usually a secondary concern.</p>
+<p>For w205, we care about analytics. We’re asking you to focus only on the event logging… no need to write the business logic needed for purchasing items.</p>
+</aside>
+</section>
+<section id="an-api-server---usual-case" class="level2">
+<h2>An API server - usual case</h2>
+<ul>
+<li>User actions map to API endpoints</li>
+</ul>
+<pre><code>POST /purchase</code></pre>
+<aside class="notes">
+<ul>
+<li><p>User actions associated with purchases, for example, would generally map to some generic API endpoint like</p>
+<p>POST /purchase</p></li>
+<li>that would also include a json payload describing the purchase… it’d list out things like the quantity and details of items purchased.</li>
+<li>What is an api server?</li>
+<li>how do web addresses map to apis?</li>
+</ul>
+</aside>
+</section>
+<section id="to-keep-it-simple" class="level2">
+<h2>To keep it simple</h2>
+<ul>
+<li>Our actions will map to single API calls</li>
+</ul>
+<pre><code>GET /purchase_a_sword</code></pre>
+<aside class="notes">
+<ul>
+<li><p>However, in order to keep things simple for now, we’ll start with actions like “purchase a sword” each corresponding to a single (hard-coded) API call such as</p>
+<p>GET /purchase_a_sword</p></li>
+<li>We’ll use gets for everything though usually you’d do put or post</li>
+</ul>
+</aside>
+</section>
+<section id="flask" class="level2">
+<h2>Flask</h2>
+<ul>
+<li>Use the python <code>flask</code> library to write our simple API server.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="at">@app.route</span>(<span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">def</span> default_response():</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">    <span class="cf">return</span> <span class="st">&quot;This is the default response!&quot;</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw">def</span> purchase_sword():</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">    <span class="co"># business logic to purchase sword</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
+<aside class="notes">
+<ul>
+<li>Normal business logic if you e.g. purchase something, it would trigger put that thing in your inventory, charge you for whatever that would be etc.</li>
+<li>But here, we care about events… we’re focusing on only logging the events</li>
+<li>async 9.2.3 might be useful here</li>
+<li>Introducing Python, Chapter 9, The Web Untangled is good for this</li>
+</ul>
+</aside>
+</section>
+<section id="section-12" class="level2">
+<h2></h2>
+<ul>
+<li>Save this as <code>~/w205/flask-with-kafka/game_api.py</code> and run it via</li>
+</ul>
+<pre><code>docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run</code></pre>
+<aside class="notes">
+<ul>
+<li>There are other ways to run the flask</li>
+<li>Discuss what is its own container (service), pattern we’ve followed so far, how is this the same (mids is the container for flask here the same way it was for bash, kafkacat etc before)</li>
+</ul>
+</aside>
+</section>
+<section id="test-it-out" class="level2">
+<h2>Test it out</h2>
+<pre><code>docker-compose exec mids curl http://localhost:5000/</code></pre>
+<pre><code>docker-compose exec mids curl http://localhost:5000/purchase_a_sword</code></pre>
+<aside class="notes">
+<ul>
+<li>Where are our data coming from this time</li>
+<li>Mobile app is hitting browser port 5000</li>
+<li>Mocking that up using curl locally</li>
+<li>Note we have also exposed the port out to the host</li>
+</ul>
+</aside>
+</section>
+<section id="stop-flask" class="level2">
+<h2>Stop flask</h2>
+<p>-Kill flask with <code>ctrl-c</code>.</p>
+</section>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<section id="generate-events-from-our-webapp" class="level2">
+<h2>Generate events from our webapp</h2>
+</section>
+<section id="section-14" class="level2">
+<h2></h2>
+<ul>
+<li>Let’s add kafka into the mix</li>
+</ul>
+</section>
+<section id="section-15" class="level2">
+<h2></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="im">from</span> flask <span class="im">import</span> Flask</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">app <span class="op">=</span> Flask(<span class="va">__name__</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">event_logger <span class="op">=</span> KafkaProducer(bootstrap_servers<span class="op">=</span><span class="st">&#39;kafka:29092&#39;</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">events_topic <span class="op">=</span> <span class="st">&#39;events&#39;</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="at">@app.route</span>(<span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">def</span> default_response():</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">    event_logger.send(events_topic, <span class="st">&#39;default&#39;</span>.encode())</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">    <span class="cf">return</span> <span class="st">&quot;This is the default response!&quot;</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="at">@app.route</span>(<span class="st">&quot;/purchase_a_sword&quot;</span>)</a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="kw">def</span> purchase_sword():</a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">    <span class="co"># business logic to purchase sword</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16">    <span class="co"># log event to kafka</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">    event_logger.send(events_topic, <span class="st">&#39;purchased_sword&#39;</span>.encode())</a>
+<a class="sourceLine" id="cb12-18" data-line-number="18">    <span class="cf">return</span> <span class="st">&quot;Sword Purchased!&quot;</span></a></code></pre></div>
+<aside class="notes">
+<ul>
+<li>We still want to handle user events</li>
+<li>We <em>also</em> wanna log events to kafka for analytics</li>
+<li>Let’s instrument our code with an event logger</li>
+<li>Just edit the same file to add a couple of lines for kafka</li>
+</ul>
+</aside>
+</section>
+<section id="run-that" class="level2">
+<h2>Run that</h2>
+<pre><code>docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka/game_api.py flask run</code></pre>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="test-it-out-1" class="level2">
+<h2>Test it out</h2>
+<ul>
+<li>Generate events</li>
+</ul>
+<pre><code>docker-compose exec mids curl http://localhost:5000/</code></pre>
+<pre><code>docker-compose exec mids curl http://localhost:5000/purchase_a_sword</code></pre>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="read-from-kafka" class="level2">
+<h2>read from kafka</h2>
+<ul>
+<li>Use kafkacat to consume events from the <code>events</code> topic</li>
+</ul>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t events -o beginning -e&quot;</code></pre>
+<aside class="notes">
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t events -o beginning -e&quot;</code></pre>
+</aside>
+</section>
+<section id="down" class="level2">
+<h2>down</h2>
+<pre><code>docker-compose down</code></pre>
+<aside class="notes">
+
+</aside>
+</section>
+</section>
+<section id="summary" class="slide level1">
+<h1>Summary</h1>
+<section id="section-16" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<h2></h2>
+<aside class="notes">
+<p>(repeat from earlier)</p>
+<p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
+</aside>
+</section>
+<section id="section-17" class="level2">
+<h2></h2>
+<p><img data-src="images/pipeline-events-ingestion-from-app-server-more-detail.svg" style="border:0;box-shadow:none" /></p>
+<aside class="notes">
+<p>(repeat from earlier)</p>
+<p>Remember, the API server’s <em>primary</em> job is to handle user requests. Logging events to kafka is usually a secondary concern.</p>
+<p>For w205, we care about analytics. We’re asking you to focus only on the event logging… no need to write the business logic needed for purchasing items.</p>
+</aside>
+</section>
+</section>
+<section id="section-18" class="slide level1">
+<h1></h1>
+<p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Transition style
+        transition: 'linear', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

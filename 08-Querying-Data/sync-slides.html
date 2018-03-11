@@ -51,9 +51,11 @@
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
-<section id="section-2" class="level2">
+<section id="section-2" class="level2" data-background="images/streaming-bare.svg">
 <h2></h2>
-<p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
+</section>
+<section id="section-3" class="level2" data-background="images/streaming-bare-logos.jpg">
+<h2></h2>
 <aside class="notes">
 <ul>
 <li>Last week we consume messages with Spark and take a look at them</li>
@@ -62,7 +64,7 @@
 </aside>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="spark-stack-with-kafka-and-hdfs" class="level2">
 <h2>Spark Stack with Kafka and HDFS</h2>
@@ -91,6 +93,9 @@
 <section id="check-out-hadoop" class="level2">
 <h2>Check out Hadoop</h2>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
+<aside class="notes">
+<p>look at tmp/ dir in hdfs and see that what we want to write isn’t there already</p>
+</aside>
 </section>
 <section id="should-see-something-like" class="level2">
 <h2>Should see something like:</h2>
@@ -116,6 +121,9 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <aside class="notes">
 <p>First, create a topic <code>players</code></p>
 <pre><code>docker-compose exec kafka kafka-topics --create --topic players --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
+<ul>
+<li>Benefit, now don’t have to tear this down, we’ll have 2 different topics in the same kafka broker</li>
+</ul>
 </aside>
 </section>
 <section id="should-show" class="level2">
@@ -128,6 +136,9 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <li>In <code>~/w205/</code></li>
 </ul>
 <pre><code>curl -L -o players.json https://goo.gl/jSVrAe</code></pre>
+<aside class="notes">
+<p>easier than github dataset b/c it’s flat</p>
+</aside>
 </section>
 <section id="use-kafkacat-to-produce-test-messages-to-the-players-topic" class="level2">
 <h2>Use kafkacat to produce test messages to the <code>players</code> topic</h2>
@@ -140,13 +151,16 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="spin-up-a-pyspark-process-using-the-spark-container" class="level2">
 <h2>Spin up a pyspark process using the <code>spark</code> container</h2>
 <pre><code>docker-compose exec spark pyspark</code></pre>
 <aside class="notes">
 <pre><code>docker-compose exec spark pyspark</code></pre>
+<ul>
+<li>Will move to ipython shell around week 9</li>
+</ul>
 </aside>
 </section>
 <section id="at-the-pyspark-prompt-read-from-kafka" class="level2">
@@ -167,6 +181,16 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <section id="cache-this-to-cut-back-on-warnings-later" class="level2">
 <h2>Cache this to cut back on warnings later</h2>
 <pre><code>raw_players.cache()</code></pre>
+<aside class="notes">
+<ul>
+<li>Caching this to avoid warnings bc trying to hold a persistent handle to this topic.</li>
+<li>What is caching?</li>
+<li>Lazy evaluation
+<ul>
+<li>You won’t always get errors (it will be quiet) often until you do eval.</li>
+</ul></li>
+</ul>
+</aside>
 </section>
 <section id="see-what-we-got" class="level2">
 <h2>See what we got</h2>
@@ -181,9 +205,14 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <section id="write-this-to-hdfs" class="level2">
 <h2>Write this to hdfs</h2>
 <pre><code>players.write.parquet(&quot;/tmp/players&quot;)</code></pre>
+<aside class="notes">
+<ul>
+<li>this is writing it out to hadoop</li>
+</ul>
+</aside>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="check-out-results-from-another-terminal-window" class="level2">
 <h2>Check out results (from another terminal window)</h2>
@@ -227,28 +256,55 @@ sys.stdout = open(sys.stdout.fileno(), mode=&#39;w&#39;, encoding=&#39;utf8&#39;
 <pre><code>import json
 players.rdd.map(lambda x: json.loads(x.value)).toDF().show()</code></pre>
 </section>
-<section id="section-6" class="level2">
+<section id="section-7" class="level2">
 <h2></h2>
 <pre><code>extracted_players = players.rdd.map(lambda x: json.loads(x.value)).toDF()</code></pre>
 <pre><code>from pyspark.sql import Row
 extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()</code></pre>
 <pre><code>extracted_players.show()</code></pre>
 <aside class="notes">
-<p>Note that this is deprecated. It’s easier to look at though. The current recommended approach to this is to explicitly create our <code>Row</code> objects from the json fields</p>
+<ul>
+<li>Note that first one is deprecated. It’s easier to look at though.<br />
+</li>
+<li><p>The current recommended approach to this is to explicitly create our <code>Row</code> objects from the json fields (like in 2nd example)</p></li>
+<li>Now we’re going to catch that and assign it to something.</li>
+<li>This is just our player data.</li>
+<li>** on top of dict will return key:value pairs, but that’s done in 1st row as well</li>
+</ul>
 </aside>
 </section>
 <section id="save-that" class="level2">
 <h2>Save that</h2>
 <pre><code>extracted_players.write.parquet(&quot;/tmp/extracted_players&quot;)</code></pre>
 <aside class="notes">
-<p>which will be much easier to query. NOTES: hmmm, we’re switching contexts, but don’t query this or do a docker-compose down</p>
+<ul>
+<li>This will be much easier to query. NOTES: hmmm, we’re switching contexts, but don’t query this or do a docker-compose down</li>
+<li>So, goal in landing this into storage is to make it efficiently querieable</li>
+<li>the first one wasn’t bc nested</li>
+<li>but this is nice parquet that’s flat and has nice columns</li>
+</ul>
+</aside>
+</section>
+<section id="do" class="level2">
+<h2>Do</h2>
+<pre><code>players</code></pre>
+<pre><code>extracted_players.show()</code></pre>
+<aside class="notes">
+<ul>
+<li>Compare these 2 based on notes in last slide.</li>
+</ul>
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="example-github-commits" class="level2">
 <h2>Example: GitHub Commits</h2>
+<aside class="notes">
+<ul>
+<li>Note that we didn’t have to bring the cluster down bc we have 2 topics on our kafka broker now.</li>
+</ul>
+</aside>
 </section>
 <section id="check-out-hadoop-1" class="level2">
 <h2>check out hadoop</h2>
@@ -313,6 +369,11 @@ Created topic “commits”.</li>
 <section id="cache-this-to-cut-back-on-warnings" class="level2">
 <h2>Cache this to cut back on warnings</h2>
 <pre><code>raw_commits.cache()</code></pre>
+<aside class="notes">
+<ul>
+<li>Can try it w/o caching in class to show warnings we get</li>
+</ul>
+</aside>
 </section>
 <section id="see-what-we-got-1" class="level2">
 <h2>See what we got</h2>
@@ -339,6 +400,11 @@ Created topic “commits”.</li>
 <section id="and-see" class="level2">
 <h2>and see</h2>
 <pre><code>extracted_commits.show()</code></pre>
+<aside class="notes">
+<ul>
+<li>We see it’s useless because of the nesting.</li>
+</ul>
+</aside>
 </section>
 <section id="hmmm-did-all-of-our-stuff-get-extracted" class="level2">
 <h2>hmmm… did all of our stuff get extracted?</h2>
@@ -347,7 +413,12 @@ Created topic “commits”.</li>
 <li>Problem: more nested json than before</li>
 </ul>
 <aside class="notes">
-<p>what’s going on? The problem is more nested json than before. Here’s a nice way to deal with that.</p>
+<ul>
+<li>what’s going on?</li>
+<li>The problem is more nested json than before.</li>
+<li>Point of the project. Deal with this nested array. Which might change the cardinality of the dataset. (Discuss what that means)</li>
+<li>Here’s a nice way to deal with that.</li>
+</ul>
 </aside>
 </section>
 <section id="use-sparksql" class="level2">
@@ -357,18 +428,32 @@ Created topic “commits”.</li>
 </ul>
 <pre><code>extracted_commits.registerTempTable(&#39;commits&#39;)</code></pre>
 <aside class="notes">
-<p>We’ll use <code>SparkSQL</code> to let us easily pick and choose the fields we want to promote to columns.</p>
-<p>Note that there are other ways to extract nested data, but <code>SparkSQL</code> is the easiest way to see what’s going on.</p>
+<ul>
+<li><p>We’ll use <code>SparkSQL</code> to let us easily pick and choose the fields we want to promote to columns.</p></li>
+<li>Note that there are other ways to extract nested data, but <code>SparkSQL</code> is the easiest way to see what’s going on.</li>
+</ul>
 </aside>
 </section>
 <section id="then-we-can-create-dataframes-from-queries" class="level2">
 <h2>Then we can create DataFrames from queries</h2>
 <pre><code>spark.sql(&quot;select commit.committer.name from commits limit 10&quot;).show()</code></pre>
 <pre><code>spark.sql(&quot;select commit.committer.name, commit.committer.date, sha from commits limit 10&quot;).show()</code></pre>
+<aside class="notes">
+<ul>
+<li>1st just mines commits</li>
+<li>View what you’d really like to see</li>
+<li>Where spark sql can really benefit you in your job.</li>
+</ul>
+</aside>
 </section>
 <section id="grab-what-we-want" class="level2">
 <h2>Grab what we want</h2>
 <pre><code>some_commit_info = spark.sql(&quot;select commit.committer.name, commit.committer.date, sha from commits limit 10&quot;)</code></pre>
+<aside class="notes">
+<ul>
+<li>Compare to last week looking at this stuff using jq</li>
+</ul>
+</aside>
 </section>
 <section id="write-to-hdfs" class="level2">
 <h2>Write to hdfs</h2>
@@ -395,14 +480,13 @@ Created topic “commits”.</li>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 </section>
-<section id="section-9" class="level2">
+<section id="section-10" class="level2" data-background="images/streaming-bare-logos.jpg">
 <h2></h2>
-<p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
 <aside class="notes">
 <ul>
 <li>What did we do in this pipeline this week</li>
@@ -410,7 +494,7 @@ Created topic “commits”.</li>
 </aside>
 </section>
 </section>
-<section id="section-10" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
