@@ -51,12 +51,21 @@ Let's walk through this
 :::
 
 #
-## More on Project 3 options
+## Project 3 options
+
+- All: Essential game shopping cart data for homework
+- Advanced option 1: Generate and filter more types of items
+- Advanced option 2: Enhance the API to accept parameters for purchases (sword/item type)
+- Advanced option 3: Shopping cart data & track state (e.g., user's inventory)
+
 
 ::: notes
-- NOTE: This is placeholder slide
-:::
+- All: Game shopping cart data used for homework (flask app) 
+- Advanced option 1: Generate (in flask) and filter (in spark) more types of items.
+- Advanced option 2: Enhance the API (in flask) to accept parameters for purchases (sword/item type) and filter (in spark) 
+- Advanced option 3: Shopping cart data & track state (e.g., user's inventory) and filter (in spark) 
 
+:::
 
 
 # 
@@ -257,8 +266,7 @@ let's get that to generate slightly more realistic events
 ```
 docker-compose exec mids \
   env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_json_events.py \
-  flask run \
-    --host 0.0.0.0
+  flask run --host 0.0.0.0
 ```
 
 ::: notes
@@ -316,19 +324,38 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 ```
 
 # 
-## Breakout
+
+## Add more events
 
 - Let's add more stuff to the events we're sending.
+- Will do this over 2 breakouts.
 
-- In breakout:
-    - discuss business requirements for the project
-	- what info is available with these events?
-	- which fields should we include?
-	- how should the events be structured?
+## Breakout 1 Discussion
+
+- Discuss business requirements for the project
+- Which fields should we include?
 
 ::: notes
-(is this worth moving to _after_ the following section?)
-(should we split this up into two breakouts?)
+- What are the kinds of events that I need to track as data scientist at the game company?
+  * List events
+  * Give business reasons for tracking them 
+  * Groups report out
+      * e.g., one event is "join a guild", what sort of business reason would you be tracking "join a guild"?
+      * What other events other than the ones we're tracking now would you want to track?
+:::
+
+
+## Breakout 2 Discussion
+
+- What info is available with these events?
+- How should the events be structured?
+
+
+::: notes
+- 2nd breakout is the tech version - 
+  * what flask request objects?
+  * what info do they have?
+  * what is the schema?
 :::
 
 
@@ -369,8 +396,7 @@ def purchase_a_sword():
 ```
 docker-compose exec mids \
   env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py \
-  flask run \
-    --host 0.0.0.0
+  flask run --host 0.0.0.0
 ```
 
 ::: notes
@@ -395,6 +421,12 @@ docker-compose exec mids curl http://localhost:5000/purchase_a_sword
 :::
 
 ## Read from kafka
+```
+docker-compose exec mids \
+  kafkacat -C -b kafka:29092 -t events -o beginning -e
+```
+
+
 ::: notes
 ```
 docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e

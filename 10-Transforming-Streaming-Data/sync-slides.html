@@ -140,11 +140,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
-<section id="more-on-project-3-options" class="level2">
-<h2>More on Project 3 options</h2>
+<section id="project-3-options" class="level2">
+<h2>Project 3 options</h2>
+<ul>
+<li>All: Essential game shopping cart data for homework</li>
+<li>Advanced option 1: Generate and filter more types of items</li>
+<li>Advanced option 2: Enhance the API to accept parameters for purchases (sword/item type)</li>
+<li>Advanced option 3: Shopping cart data &amp; track state (e.g., user’s inventory)</li>
+</ul>
 <aside class="notes">
 <ul>
-<li>NOTE: This is placeholder slide</li>
+<li>All: Game shopping cart data used for homework (flask app)</li>
+<li>Advanced option 1: Generate (in flask) and filter (in spark) more types of items.</li>
+<li>Advanced option 2: Enhance the API (in flask) to accept parameters for purchases (sword/item type) and filter (in spark)</li>
+<li>Advanced option 3: Shopping cart data &amp; track state (e.g., user’s inventory) and filter (in spark)</li>
 </ul>
 </aside>
 </section>
@@ -317,8 +326,7 @@ services:
 <h2>Run it</h2>
 <pre><code>docker-compose exec mids \
   env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_json_events.py \
-  flask run \
-    --host 0.0.0.0</code></pre>
+  flask run --host 0.0.0.0</code></pre>
 <aside class="notes">
 <pre><code>docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_json_events.py flask run --host 0.0.0.0</code></pre>
 </aside>
@@ -361,20 +369,49 @@ services:
 </section>
 <section id="section-7" class="slide level1">
 <h1></h1>
-<section id="breakout" class="level2">
-<h2>Breakout</h2>
+<section id="add-more-events" class="level2">
+<h2>Add more events</h2>
 <ul>
-<li><p>Let’s add more stuff to the events we’re sending.</p></li>
-<li>In breakout:
+<li>Let’s add more stuff to the events we’re sending.</li>
+<li>Will do this over 2 breakouts.</li>
+</ul>
+</section>
+<section id="breakout-1-discussion" class="level2">
+<h2>Breakout 1 Discussion</h2>
 <ul>
-<li>discuss business requirements for the project</li>
-<li>what info is available with these events?</li>
-<li>which fields should we include?</li>
-<li>how should the events be structured?</li>
-</ul></li>
+<li>Discuss business requirements for the project</li>
+<li>Which fields should we include?</li>
 </ul>
 <aside class="notes">
-<p>(is this worth moving to <em>after</em> the following section?) (should we split this up into two breakouts?)</p>
+<ul>
+<li>What are the kinds of events that I need to track as data scientist at the game company?
+<ul>
+<li>List events</li>
+<li>Give business reasons for tracking them</li>
+<li>Groups report out
+<ul>
+<li>e.g., one event is “join a guild”, what sort of business reason would you be tracking “join a guild”?</li>
+<li>What other events other than the ones we’re tracking now would you want to track?</li>
+</ul></li>
+</ul></li>
+</ul>
+</aside>
+</section>
+<section id="breakout-2-discussion" class="level2">
+<h2>Breakout 2 Discussion</h2>
+<ul>
+<li>What info is available with these events?</li>
+<li>How should the events be structured?</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>2nd breakout is the tech version -
+<ul>
+<li>what flask request objects?</li>
+<li>what info do they have?</li>
+<li>what is the schema?</li>
+</ul></li>
+</ul>
 </aside>
 </section>
 </section>
@@ -413,8 +450,7 @@ services:
 <h2>Run it</h2>
 <pre><code>docker-compose exec mids \
   env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py \
-  flask run \
-    --host 0.0.0.0</code></pre>
+  flask run --host 0.0.0.0</code></pre>
 <aside class="notes">
 <pre><code>docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py flask run --host 0.0.0.0</code></pre>
 </aside>
@@ -430,6 +466,8 @@ services:
 </section>
 <section id="read-from-kafka-1" class="level2">
 <h2>Read from kafka</h2>
+<pre><code>docker-compose exec mids \
+  kafkacat -C -b kafka:29092 -t events -o beginning -e</code></pre>
 <aside class="notes">
 <pre><code>docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e</code></pre>
 </aside>
