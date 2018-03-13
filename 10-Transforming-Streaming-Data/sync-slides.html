@@ -516,7 +516,8 @@ services:
 <pre><code>extracted_events = events.rdd.map(lambda x: json.loads(x.value)).toDF()</code></pre>
 <pre><code>extracted_events.show()</code></pre>
 <aside class="notes">
-<p>maybe turn on streaming? (add the console appender as a sink)</p>
+<p>maybe turn on streaming? (add the console appender as a sink) <code>import json</code> - Cache this to cut back on warnings</p>
+<pre><code>raw_events.cache()</code></pre>
 </aside>
 </section>
 <section id="down" class="level2">
