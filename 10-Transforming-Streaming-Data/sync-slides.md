@@ -453,8 +453,9 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 ## Spark it up
 
 ## Run a spark shell
-
-    docker-compose exec spark pyspark
+```
+docker-compose exec spark pyspark
+```
 
 ::: notes
 check out `course-content/tutorials/tutorial-alternative-spark-clients.md` to
@@ -463,16 +464,16 @@ spin up the pyspark shell with `ipython` or `jupyter`!
 
 ## Read from kafka
 
-
-    raw_events = spark \
-      .read \
-      .format("kafka") \
-      .option("kafka.bootstrap.servers", "kafka:29092") \
-      .option("subscribe","events") \
-      .option("startingOffsets", "earliest") \
-      .option("endingOffsets", "latest") \
-      .load() 
-
+```
+raw_events = spark \
+  .read \
+  .format("kafka") \
+  .option("kafka.bootstrap.servers", "kafka:29092") \
+  .option("subscribe","events") \
+  .option("startingOffsets", "earliest") \
+  .option("endingOffsets", "latest") \
+  .load() 
+```
 
 ::: notes
 ```
@@ -494,6 +495,11 @@ extracted_events.show()
 ::: notes
 maybe turn on streaming?
 (add the console appender as a sink)
+`import json`
+- Cache this to cut back on warnings
+```
+raw_events.cache()
+```
 :::
 
 ## down

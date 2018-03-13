@@ -70,7 +70,7 @@ docker-compose up -d
 ```
 and watch it come up
 ```
-    docker-compose logs -f kafka
+docker-compose logs -f kafka
 ```
 when this looks like it's done, you can safely detach with `Ctrl-C`.
 
@@ -383,6 +383,7 @@ docker-compose exec kafka \
     --if-not-exists \
     --zookeeper zookeeper:32181
 ```
+
 
 ::: notes
 - First, create a topic `commits`
