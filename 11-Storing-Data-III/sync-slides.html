@@ -370,8 +370,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 {&quot;Host&quot;: &quot;localhost:5000&quot;, &quot;event_type&quot;: &quot;purchase_sword&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;curl/7.47.0&quot;}
 {&quot;Host&quot;: &quot;localhost:5000&quot;, &quot;event_type&quot;: &quot;purchase_sword&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;curl/7.47.0&quot;}
 ...</code></pre>
-<section id="capture-our-pyspark-code-in-a-file-this-time" class="level3">
-<h3>Capture our pyspark code in a file this time</h3>
+</section>
+<section id="capture-our-pyspark-code-in-a-file-this-time" class="level2">
+<h2>Capture our pyspark code in a file this time</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka and write them to hdfs</span></a>
 <a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co">&quot;&quot;&quot;</span></a>
@@ -408,12 +409,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb21-34" data-line-number="34"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
 <a class="sourceLine" id="cb21-35" data-line-number="35">    main()</a></code></pre></div>
 </section>
-<section id="run-it-1" class="level3">
-<h3>run it</h3>
+<section id="run-it-1" class="level2">
+<h2>run it</h2>
 <pre><code>docker-compose exec spark spark-submit /w205/spark-from-files/extract_events.py</code></pre>
 </section>
-<section id="if-you-didnt-generate-any-events" class="level3">
-<h3>if you didn’t generate any events</h3>
+<section id="if-you-didnt-generate-any-events" class="level2">
+<h2>if you didn’t generate any events</h2>
 <pre><code>Traceback (most recent call last):
   File &quot;/w205/spark-from-files/extract_events.py&quot;, line 35, in &lt;module&gt;
     main()
@@ -426,8 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   File &quot;/spark-2.2.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/rdd.py&quot;, line 1364, in first
 ValueError: RDD is empty</code></pre>
 </section>
-<section id="check-out-results-in-hadoop" class="level3">
-<h3>check out results in hadoop</h3>
+<section id="check-out-results-in-hadoop" class="level2">
+<h2>check out results in hadoop</h2>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 <p>and</p>
 <pre><code>    docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/</code></pre>
@@ -435,10 +436,20 @@ ValueError: RDD is empty</code></pre>
 
 </aside>
 </section>
-</section>
 <section id="down" class="level2">
 <h2>down</h2>
 <pre><code>docker-compose down</code></pre>
+<aside class="notes">
+<ul>
+<li>Problem here is if you’re exploding flat json, you’ll have some decisions to make</li>
+<li></li>
+<li>Add examples for adding master for yarn, for stand alone spark, eventually kubernetes</li>
+<li>Need to create a spark session when you use spark submit</li>
+<li>What’s a spark session? (pyspark automatically creates it)</li>
+<li>some printSchemas and some shows that allow you to debug along the way</li>
+<li>do on empty topic, then generate some data and see that the parquet file is in here</li>
+</ul>
+</aside>
 </section>
 </section>
 <section id="section-5" class="slide level1">

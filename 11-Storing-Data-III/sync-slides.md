@@ -327,7 +327,7 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 
 
 
-### Capture our pyspark code in a file this time
+## Capture our pyspark code in a file this time
 
 ```python
 #!/usr/bin/env python
@@ -367,13 +367,13 @@ if __name__ == "__main__":
     main()
 ```
 
-### run it
+## run it
 
 ```
 docker-compose exec spark spark-submit /w205/spark-from-files/extract_events.py
 ```
 
-### if you didn't generate any events
+## if you didn't generate any events
 
 ```
 Traceback (most recent call last):
@@ -389,7 +389,7 @@ Traceback (most recent call last):
 ValueError: RDD is empty
 ```
 
-### check out results in hadoop
+## check out results in hadoop
 
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
@@ -406,7 +406,16 @@ and
 
     docker-compose down
 
-
+::: notes
+- Problem here is if you're exploding flat json, you'll have some decisions to make
+- 
+- Add examples for adding master for yarn, for stand alone spark, eventually kubernetes
+- Need to create a spark session when you use spark submit
+- What's a spark session? (pyspark automatically creates it)
+- some printSchemas and some shows that allow you to debug along the way
+- do on empty topic, then generate some data and see that the parquet file is in here
+- 
+:::
 
 
 
