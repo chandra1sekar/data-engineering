@@ -68,23 +68,24 @@ Let's walk through this
 
 
 # 
-## Flask with Kafka and Spark - More Filtering with Spark
+## Spark from files
 
 
 ## Set up directory, get docker-compose
 ```
-mkdir ~/w205/flask-with-kafka-and-spark/
+mkdir ~/w205/spark-from-files/
 ```
 ```
-cd ~/w205/flask-with-kafka-and-spark/
+cd ~/w205/spark-from-files
 ```
 ```
-cp ~/w205/course-content/10-Transforming-Streaming-Data/docker-compose.yml .
+cp ~/w205/course-content/11-Storing-Data-III/docker-compose.yml .
 ```
 
 ## The `docker-compose.yml` 
 
-```
+Create a `docker-compose.yml` with the following
+```yaml
 ---
 version: '2'
 services:
@@ -116,33 +117,49 @@ services:
     extra_hosts:
       - "moby:127.0.0.1"
 
+  cloudera:
+    image: midsw205/cdh-minimal:latest
+    expose:
+      - "8020" # nn
+      - "50070" # nn http
+      - "8888" # hue
+    #ports:
+    #- "8888:8888"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
   spark:
     image: midsw205/spark-python:0.0.5
     stdin_open: true
     tty: true
-    volumes:
-      - ~/w205:/w205
     expose:
       - "8888"
     ports:
       - "8888:8888"
+    volumes:
+      - "~/w205:/w205"
+    command: bash
+    depends_on:
+      - cloudera
+    environment:
+      HADOOP_NAMENODE: cloudera
     extra_hosts:
       - "moby:127.0.0.1"
-    command: bash
 
   mids:
-    image: midsw205/base:0.1.8
+    image: midsw205/base:latest
     stdin_open: true
     tty: true
-    volumes:
-      - ~/w205:/w205
     expose:
       - "5000"
     ports:
       - "5000:5000"
+    volumes:
+      - "~/w205:/w205"
     extra_hosts:
       - "moby:127.0.0.1"
 ```
+
 
 ::: notes
 - no need for a datafile on this one.
@@ -169,7 +186,34 @@ docker-compose up -d
 ```
 :::
 
+## Example: Flask Events
 
+
+## Let's look at logs
+```
+docker-compose logs -f cloudera
+```
+::: notes
+- Go through what's happening in logs
+```
+docker-compose logs -f cloudera
+```
+
+:::
+
+## Check out hadoop
+
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+
+::: notes
+Let's check out hdfs before we write anything to it
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+
+:::
 
 ## Create a topic
 
@@ -197,10 +241,7 @@ docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --
 
 
 
-# 
-
-
-## Informative events
+## Take our flask app - with request.headers
 
 ```python
 #!/usr/bin/env python
@@ -286,75 +327,84 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 
 
 
-# NOTES: This is the part that needs to be updated
-## Spark it up
+### Capture our pyspark code in a file this time
+
+```python
+#!/usr/bin/env python
+"""Extract events from kafka and write them to hdfs
+"""
+
+import json
+from pyspark.sql import SparkSession
 
 
-## Run a spark shell
+def main():
+    """main
+    """
+    spark = SparkSession \
+        .builder \
+        .appName("ExtractEventsJob") \
+        .getOrCreate()
+
+    raw_events = spark \
+        .read \
+        .format("kafka") \
+        .option("kafka.bootstrap.servers", "kafka:29092") \
+        .option("subscribe", "events") \
+        .option("startingOffsets", "earliest") \
+        .option("endingOffsets", "latest") \
+        .load()
+
+    events = raw_events.select(raw_events.value.cast('string'))
+    extracted_events = events.rdd.map(lambda x: json.loads(x.value)).toDF()
+
+    extracted_events \
+        .write \
+        .parquet("/tmp/extracted_events")
+
+
+if __name__ == "__main__":
+    main()
 ```
-docker-compose exec spark pyspark
+
+### run it
+
+```
+docker-compose exec spark spark-submit /w205/spark-from-files/extract_events.py
+```
+
+### if you didn't generate any events
+
+```
+Traceback (most recent call last):
+  File "/w205/spark-from-files/extract_events.py", line 35, in <module>
+    main()
+  File "/w205/spark-from-files/extract_events.py", line 27, in main
+    extracted_events = events.rdd.map(lambda x: json.loads(x.value)).toDF()
+  File "/spark-2.2.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/session.py", line 57, in toDF
+  File "/spark-2.2.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/session.py", line 535, in createDataFrame
+  File "/spark-2.2.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/session.py", line 375, in _createFromRDD
+  File "/spark-2.2.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/sql/session.py", line 346, in _inferSchema
+  File "/spark-2.2.0-bin-hadoop2.6/python/lib/pyspark.zip/pyspark/rdd.py", line 1364, in first
+ValueError: RDD is empty
+```
+
+### check out results in hadoop
+
+```
+docker-compose exec cloudera hadoop fs -ls /tmp/
+```
+and
+```
+    docker-compose exec cloudera hadoop fs -ls /tmp/extracted_events/
 ```
 
 ::: notes
-check out `course-content/tutorials/tutorial-alternative-spark-clients.md` to
-spin up the pyspark shell with `ipython` or `jupyter`!
-:::
-
-## Read from kafka
-
-```
-raw_events = spark \
-  .read \
-  .format("kafka") \
-  .option("kafka.bootstrap.servers", "kafka:29092") \
-  .option("subscribe","events") \
-  .option("startingOffsets", "earliest") \
-  .option("endingOffsets", "latest") \
-  .load() 
-```
-
-::: notes
-```
- raw_events = spark.read.format("kafka").option("kafka.bootstrap.servers", "kafka:29092").option("subscribe","events").option("startingOffsets", "earliest").option("endingOffsets", "latest").load() 
-```
-:::
-
-## Explore our events
-```
-events = raw_events.select(raw_events.value.cast('string'))
-```
-```
-extracted_events = events.rdd.map(lambda x: json.loads(x.value)).toDF()
-```
-```
-extracted_events.show()
-```    
-
-::: notes
-maybe turn on streaming?
-(add the console appender as a sink)
-`import json`
-- Cache this to cut back on warnings
-```
-raw_events.cache()
-```
 :::
 
 ## down
 
     docker-compose down
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
