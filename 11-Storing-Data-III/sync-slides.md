@@ -182,9 +182,6 @@ docker-compose up -d
 ```
 :::
 
-## Example: Flask Events
-
-
 ## Wait for things to come up
 ```
 docker-compose logs -f cloudera
