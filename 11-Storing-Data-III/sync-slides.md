@@ -77,12 +77,9 @@ Let's walk through this
 ## Set up directory, get docker-compose
 ```
 mkdir ~/w205/spark-from-files/
-```
-```
 cd ~/w205/spark-from-files
-```
-```
 cp ~/w205/course-content/11-Storing-Data-III/docker-compose.yml .
+cp ~/w205/course-content/11-Storing-Data-III/*.py .
 ```
 
 ## The `docker-compose.yml` 
@@ -267,13 +264,13 @@ def purchase_a_sword():
 ## Run it
 ```
 docker-compose exec mids \
-  env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py \
+  env FLASK_APP=/w205/spark-from-files/game_api.py \
   flask run --host 0.0.0.0
 ```
 
 ::: notes
 ```
-docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api_with_extended_json_events.py flask run --host 0.0.0.0
+docker-compose exec mids env FLASK_APP=/w205/spark-from-files/game_api.py flask run --host 0.0.0.0
 ```
 :::
 
