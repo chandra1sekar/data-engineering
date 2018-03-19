@@ -68,8 +68,11 @@ Let's walk through this
 
 
 # 
-## Spark from files
+## Running Spark Jobs
 
+
+#
+## Setup
 
 ## Set up directory, get docker-compose
 ```
@@ -160,13 +163,10 @@ services:
       - "moby:127.0.0.1"
 ```
 
-
 ::: notes
 - no need for a datafile on this one.
 - Walk through the docker-compose.yml file
 :::
-
-
 
 
 ## Spin up the cluster
@@ -174,10 +174,6 @@ services:
 ```
 docker-compose up -d
 ```
-
-::: notes
-:::
-
 
 ::: notes
 Now spin up the cluster
@@ -189,7 +185,7 @@ docker-compose up -d
 ## Example: Flask Events
 
 
-## Let's look at logs
+## Wait for things to come up
 ```
 docker-compose logs -f cloudera
 ```
@@ -198,7 +194,6 @@ docker-compose logs -f cloudera
 ```
 docker-compose logs -f cloudera
 ```
-
 :::
 
 ## Check out hadoop
@@ -212,7 +207,6 @@ Let's check out hdfs before we write anything to it
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
-
 :::
 
 ## Create a topic
@@ -227,7 +221,6 @@ docker-compose exec kafka \
     --if-not-exists --zookeeper zookeeper:32181
 ```
 
-
 ::: notes
 - First, create a topic `events`
 ```
@@ -240,6 +233,8 @@ docker-compose exec kafka kafka-topics --create --topic events --partitions 1 --
     Created topic "events".
 
 
+#
+## Flask
 
 ## Take our flask app - with request.headers
 
@@ -290,8 +285,6 @@ docker-compose exec mids env FLASK_APP=/w205/flask-with-kafka-and-spark/game_api
 - localhost:5000/purchase_a_sword
 
 ::: notes
-NOTES: Add other events?
-
 ```
     docker-compose exec mids curl http://localhost:5000/
     docker-compose exec mids curl http://localhost:5000/purchase_a_sword
@@ -304,8 +297,9 @@ docker-compose exec mids \
   kafkacat -C -b kafka:29092 -t events -o beginning -e
 ```
 
-
 ::: notes
+ok to skip this
+
 ```
 docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 ```
@@ -325,7 +319,8 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 ```
 
 
-
+#
+## Spark
 
 ## Capture our pyspark code in a file this time
 
@@ -333,7 +328,6 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e
 #!/usr/bin/env python
 """Extract events from kafka and write them to hdfs
 """
-
 import json
 from pyspark.sql import SparkSession
 
@@ -367,11 +361,26 @@ if __name__ == "__main__":
     main()
 ```
 
+::: notes
+- Same as before, but you need to create a spark session when you use spark submit
+- What's a spark session?
+- add `printSchema()` and `show()` liberally throughout the rest of these examples
+- [optional] run against an empty topic first to show spark exceptions
+:::
+
 ## run it
 
 ```
+docker-compose exec spark \
+  spark-submit \
+    /w205/spark-from-files/extract_events.py
+```
+
+::: notes
+```
 docker-compose exec spark spark-submit /w205/spark-from-files/extract_events.py
 ```
+:::
 
 ## if you didn't generate any events
 
@@ -402,23 +411,242 @@ and
 ::: notes
 :::
 
-## down
 
-    docker-compose down
+#
+## Deploying a Spark job to a cluster
+
+##
+
+```
+docker-compose exec spark spark-submit filename.py
+```
+
+is really just
+
+
+```
+docker-compose exec spark \
+  spark-submit \
+    --master 'local[*]' \
+    filename.py
+```
 
 ::: notes
-- Problem here is if you're exploding flat json, you'll have some decisions to make
-- 
-- Add examples for adding master for yarn, for stand alone spark, eventually kubernetes
-- Need to create a spark session when you use spark submit
-- What's a spark session? (pyspark automatically creates it)
-- some printSchemas and some shows that allow you to debug along the way
-- do on empty topic, then generate some data and see that the parquet file is in here
-- working through examples with different schemas (i.e., the spark for that)
-- because there's decisions re: 2 spark jobs for different event types or do 1 more complicated spark job
+To submit a spark job to a cluster, you need a "master"
+:::
+
+## standalone
+
+```
+docker-compose exec spark \
+  spark-submit \
+    --master spark://23.195.26.187:7077 \
+    filename.py
+```
+(this won't work here)
+
+::: notes
+In a spark standalone cluster, there are multiple containers... a single
+spark "master" and many spark "workers"
+
+To submit a job, you point to the spark "master"
+
+Of course, in `docker-compose` you'd use a dns name `spark://spark-master:7077`
+:::
+
+## yarn
+
+```
+docker-compose exec spark \
+  spark-submit \
+    --master yarn \
+    --deploy-mode cluster \
+    filename.py
+```
+(this won't work here)
+
+::: notes
+In a yarn cluster, you tell it to talk to the cluster's ResourceManager
+(address is usually already set in hadoop config)
+:::
+
+## mesos
+
+```
+docker-compose exec spark \
+  spark-submit \
+    --master mesos://mesos-master:7077 \
+    --deploy-mode cluster \
+    filename.py
+```
+(this won't work here)
+
+::: notes
+In a mesos cluster, you tell it to talk to the mesos master
+:::
+
+## kubernetes
+
+```
+docker-compose exec spark \
+  spark-submit \
+    --master k8s://kubernetes-master:443 \
+    --deploy-mode cluster \
+    filename.py
+```
+(this won't work here)
+
+
+#
+## More Spark!
+
+##
+
+```python
+#!/usr/bin/env python
+"""Extract events from kafka, transform, and write to hdfs
+"""
+import json
+from pyspark.sql import SparkSession, Row
+from pyspark.sql.functions import udf
+
+
+@udf('string')
+def munge_event(event_as_json):
+    event = json.loads(event_as_json)
+    event['Host'] = "moe" # silly change to show it works
+    return json.dumps(event)
+
+
+def main():
+    """main
+    """
+    spark = SparkSession \
+        .builder \
+        .appName("ExtractEventsJob") \
+        .getOrCreate()
+
+    raw_events = spark \
+        .read \
+        .format("kafka") \
+        .option("kafka.bootstrap.servers", "kafka:29092") \
+        .option("subscribe", "events") \
+        .option("startingOffsets", "earliest") \
+        .option("endingOffsets", "latest") \
+        .load()
+
+    munged_events = raw_events \
+        .select(raw_events.value.cast('string').alias('raw'),
+                raw_events.timestamp.cast('string')) \
+        .withColumn('munged', munge_event('raw'))
+    munged_events.show()
+
+    extracted_events = munged_events \
+        .rdd \
+        .map(lambda r: Row(timestamp=r.timestamp, **json.loads(r.munged))) \
+        .toDF()
+    extracted_events.show()
+
+    extracted_events \
+        .write \
+        .mode("overwrite") \
+        .parquet("/tmp/extracted_events")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+::: notes
+Here's an example that allows arbitrary tranformation of the json `value`
+_before_ extraction.
 :::
 
 
+## Let's look at separating events
+
+##
+
+```python
+#!/usr/bin/env python
+"""Extract events from kafka and write them to hdfs
+"""
+import json
+from pyspark.sql import SparkSession, Row
+from pyspark.sql.functions import udf
+
+
+@udf('string')
+def munge_event(event_as_json):
+    event = json.loads(event_as_json)
+    event['Host'] = "moe" # silly change to show it works
+    return json.dumps(event)
+
+
+def main():
+    """main
+    """
+    spark = SparkSession \
+        .builder \
+        .appName("ExtractEventsJob") \
+        .getOrCreate()
+
+    raw_events = spark \
+        .read \
+        .format("kafka") \
+        .option("kafka.bootstrap.servers", "kafka:29092") \
+        .option("subscribe", "events") \
+        .option("startingOffsets", "earliest") \
+        .option("endingOffsets", "latest") \
+        .load()
+
+    munged_events = raw_events \
+        .select(raw_events.value.cast('string').alias('raw'),
+                raw_events.timestamp.cast('string')) \
+        .withColumn('munged', munge_event('raw'))
+
+    extracted_events = munged_events \
+        .rdd \
+        .map(lambda r: Row(timestamp=r.timestamp, **json.loads(r.munged))) \
+        .toDF()
+
+    sword_purchases = extracted_events \
+        .filter(extracted_events.event_type == 'purchase_sword')
+    sword_purchases.show()
+    # sword_purchases \
+        # .write \
+        # .mode("overwrite") \
+        # .parquet("/tmp/sword_purchases")
+
+    default_hits = extracted_events \
+        .filter(extracted_events.event_type == 'default')
+    default_hits.show()
+    # default_hits \
+        # .write \
+        # .mode("overwrite") \
+        # .parquet("/tmp/default_hits")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+::: notes
+And here's one that filters out multiple events.
+
+This works, but...
+
+Question:  What happens with events that have different schema?
+
+- Problem here is if you're exploding flat json, you'll have some decisions to make
+
+:::
+
+
+#
+## Remember to tear down your cluster
+
+    docker-compose down
 
 
 #
@@ -439,11 +667,10 @@ Let's walk through this
 - spark then:
     - pulls events from kafka
     - filters/flattens/transforms events
-    - writes them to storage
+    - separates event types
+    - writes to storage
 - presto then queries those events
 :::
-
-
 
 
 #

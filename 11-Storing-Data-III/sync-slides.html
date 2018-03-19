@@ -159,8 +159,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
-<section id="spark-from-files" class="level2">
-<h2>Spark from files</h2>
+<section id="running-spark-jobs" class="level2">
+<h2>Running Spark Jobs</h2>
+</section>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<section id="setup" class="level2">
+<h2>Setup</h2>
 </section>
 <section id="set-up-directory-get-docker-compose" class="level2">
 <h2>Set up directory, get docker-compose</h2>
@@ -254,9 +260,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Spin up the cluster</h2>
 <pre><code>docker-compose up -d</code></pre>
 <aside class="notes">
-
-</aside>
-<aside class="notes">
 <p>Now spin up the cluster</p>
 <pre><code>docker-compose up -d</code></pre>
 </aside>
@@ -264,8 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="example-flask-events" class="level2">
 <h2>Example: Flask Events</h2>
 </section>
-<section id="lets-look-at-logs" class="level2">
-<h2>Let’s look at logs</h2>
+<section id="wait-for-things-to-come-up" class="level2">
+<h2>Wait for things to come up</h2>
 <pre><code>docker-compose logs -f cloudera</code></pre>
 <aside class="notes">
 <ul>
@@ -301,6 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="should-show" class="level2">
 <h2>Should show</h2>
 <pre><code>Created topic &quot;events&quot;.</code></pre>
+</section>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<section id="flask" class="level2">
+<h2>Flask</h2>
 </section>
 <section id="take-our-flask-app---with-request.headers" class="level2">
 <h2>Take our flask app - with request.headers</h2>
@@ -347,7 +356,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>localhost:5000/purchase_a_sword</li>
 </ul>
 <aside class="notes">
-<p>NOTES: Add other events?</p>
 <pre><code>    docker-compose exec mids curl http://localhost:5000/
     docker-compose exec mids curl http://localhost:5000/purchase_a_sword</code></pre>
 </aside>
@@ -357,6 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>docker-compose exec mids \
   kafkacat -C -b kafka:29092 -t events -o beginning -e</code></pre>
 <aside class="notes">
+<p>ok to skip this</p>
 <pre><code>docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning -e</code></pre>
 </aside>
 </section>
@@ -371,47 +380,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 {&quot;Host&quot;: &quot;localhost:5000&quot;, &quot;event_type&quot;: &quot;purchase_sword&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;curl/7.47.0&quot;}
 ...</code></pre>
 </section>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<section id="spark" class="level2">
+<h2>Spark</h2>
+</section>
 <section id="capture-our-pyspark-code-in-a-file-this-time" class="level2">
 <h2>Capture our pyspark code in a file this time</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka and write them to hdfs</span></a>
 <a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="im">import</span> json</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="im">import</span> json</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb21-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="kw">def</span> main():</a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">    <span class="co">&quot;&quot;&quot;main</span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb21-12" data-line-number="12">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-13" data-line-number="13">        .builder <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-14" data-line-number="14">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-15" data-line-number="15">        .getOrCreate()</a>
-<a class="sourceLine" id="cb21-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb21-17" data-line-number="17">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-18" data-line-number="18">        .read <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-19" data-line-number="19">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-20" data-line-number="20">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-21" data-line-number="21">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-22" data-line-number="22">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-23" data-line-number="23">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-24" data-line-number="24">        .load()</a>
-<a class="sourceLine" id="cb21-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb21-26" data-line-number="26">    events <span class="op">=</span> raw_events.select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>))</a>
-<a class="sourceLine" id="cb21-27" data-line-number="27">    extracted_events <span class="op">=</span> events.rdd.<span class="bu">map</span>(<span class="kw">lambda</span> x: json.loads(x.value)).toDF()</a>
-<a class="sourceLine" id="cb21-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb21-29" data-line-number="29">    extracted_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-30" data-line-number="30">        .write <span class="op">\</span></a>
-<a class="sourceLine" id="cb21-31" data-line-number="31">        .parquet(<span class="st">&quot;/tmp/extracted_events&quot;</span>)</a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="kw">def</span> main():</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">    <span class="co">&quot;&quot;&quot;main</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">        .builder <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">        .getOrCreate()</a>
+<a class="sourceLine" id="cb21-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb21-16" data-line-number="16">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-17" data-line-number="17">        .read <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-18" data-line-number="18">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-19" data-line-number="19">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-21" data-line-number="21">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-23" data-line-number="23">        .load()</a>
+<a class="sourceLine" id="cb21-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb21-25" data-line-number="25">    events <span class="op">=</span> raw_events.select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>))</a>
+<a class="sourceLine" id="cb21-26" data-line-number="26">    extracted_events <span class="op">=</span> events.rdd.<span class="bu">map</span>(<span class="kw">lambda</span> x: json.loads(x.value)).toDF()</a>
+<a class="sourceLine" id="cb21-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb21-28" data-line-number="28">    extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-29" data-line-number="29">        .write <span class="op">\</span></a>
+<a class="sourceLine" id="cb21-30" data-line-number="30">        .parquet(<span class="st">&quot;/tmp/extracted_events&quot;</span>)</a>
+<a class="sourceLine" id="cb21-31" data-line-number="31"></a>
 <a class="sourceLine" id="cb21-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb21-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb21-34" data-line-number="34"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
-<a class="sourceLine" id="cb21-35" data-line-number="35">    main()</a></code></pre></div>
+<a class="sourceLine" id="cb21-33" data-line-number="33"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
+<a class="sourceLine" id="cb21-34" data-line-number="34">    main()</a></code></pre></div>
+<aside class="notes">
+<ul>
+<li>Same as before, but you need to create a spark session when you use spark submit</li>
+<li>What’s a spark session?</li>
+<li>add <code>printSchema()</code> and <code>show()</code> liberally throughout the rest of these examples</li>
+<li>[optional] run against an empty topic first to show spark exceptions</li>
+</ul>
+</aside>
 </section>
 <section id="run-it-1" class="level2">
 <h2>run it</h2>
+<pre><code>docker-compose exec spark \
+  spark-submit \
+    /w205/spark-from-files/extract_events.py</code></pre>
+<aside class="notes">
 <pre><code>docker-compose exec spark spark-submit /w205/spark-from-files/extract_events.py</code></pre>
+</aside>
 </section>
 <section id="if-you-didnt-generate-any-events" class="level2">
 <h2>if you didn’t generate any events</h2>
@@ -436,38 +463,231 @@ ValueError: RDD is empty</code></pre>
 
 </aside>
 </section>
-<section id="down" class="level2">
-<h2>down</h2>
-<pre><code>docker-compose down</code></pre>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="deploying-a-spark-job-to-a-cluster" class="level2">
+<h2>Deploying a Spark job to a cluster</h2>
+</section>
+<section id="section-9" class="level2">
+<h2></h2>
+<pre><code>docker-compose exec spark spark-submit filename.py</code></pre>
+<p>is really just</p>
+<pre><code>docker-compose exec spark \
+  spark-submit \
+    --master &#39;local[*]&#39; \
+    filename.py</code></pre>
 <aside class="notes">
+<p>To submit a spark job to a cluster, you need a “master”</p>
+</aside>
+</section>
+<section id="standalone" class="level2">
+<h2>standalone</h2>
+<pre><code>docker-compose exec spark \
+  spark-submit \
+    --master spark://23.195.26.187:7077 \
+    filename.py</code></pre>
+<p>(this won’t work here)</p>
+<aside class="notes">
+<p>In a spark standalone cluster, there are multiple containers… a single spark “master” and many spark “workers”</p>
+<p>To submit a job, you point to the spark “master”</p>
+<p>Of course, in <code>docker-compose</code> you’d use a dns name <code>spark://spark-master:7077</code></p>
+</aside>
+</section>
+<section id="yarn" class="level2">
+<h2>yarn</h2>
+<pre><code>docker-compose exec spark \
+  spark-submit \
+    --master yarn \
+    --deploy-mode cluster \
+    filename.py</code></pre>
+<p>(this won’t work here)</p>
+<aside class="notes">
+<p>In a yarn cluster, you tell it to talk to the cluster’s ResourceManager (address is usually already set in hadoop config)</p>
+</aside>
+</section>
+<section id="mesos" class="level2">
+<h2>mesos</h2>
+<pre><code>docker-compose exec spark \
+  spark-submit \
+    --master mesos://mesos-master:7077 \
+    --deploy-mode cluster \
+    filename.py</code></pre>
+<p>(this won’t work here)</p>
+<aside class="notes">
+<p>In a mesos cluster, you tell it to talk to the mesos master</p>
+</aside>
+</section>
+<section id="kubernetes" class="level2">
+<h2>kubernetes</h2>
+<pre><code>docker-compose exec spark \
+  spark-submit \
+    --master k8s://kubernetes-master:443 \
+    --deploy-mode cluster \
+    filename.py</code></pre>
+<p>(this won’t work here)</p>
+</section>
+</section>
+<section id="section-10" class="slide level1">
+<h1></h1>
+<section id="more-spark" class="level2">
+<h2>More Spark!</h2>
+</section>
+<section id="section-11" class="level2">
+<h2></h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka, transform, and write to hdfs</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="im">import</span> json</a>
+<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession, Row</a>
+<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf</a>
+<a class="sourceLine" id="cb33-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb33-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="at">@udf</span>(<span class="st">&#39;string&#39;</span>)</a>
+<a class="sourceLine" id="cb33-10" data-line-number="10"><span class="kw">def</span> munge_event(event_as_json):</a>
+<a class="sourceLine" id="cb33-11" data-line-number="11">    event <span class="op">=</span> json.loads(event_as_json)</a>
+<a class="sourceLine" id="cb33-12" data-line-number="12">    event[<span class="st">&#39;Host&#39;</span>] <span class="op">=</span> <span class="st">&quot;moe&quot;</span> <span class="co"># silly change to show it works</span></a>
+<a class="sourceLine" id="cb33-13" data-line-number="13">    <span class="cf">return</span> json.dumps(event)</a>
+<a class="sourceLine" id="cb33-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb33-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb33-16" data-line-number="16"><span class="kw">def</span> main():</a>
+<a class="sourceLine" id="cb33-17" data-line-number="17">    <span class="co">&quot;&quot;&quot;main</span></a>
+<a class="sourceLine" id="cb33-18" data-line-number="18"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb33-19" data-line-number="19">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-20" data-line-number="20">        .builder <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-21" data-line-number="21">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-22" data-line-number="22">        .getOrCreate()</a>
+<a class="sourceLine" id="cb33-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb33-24" data-line-number="24">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-25" data-line-number="25">        .read <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-26" data-line-number="26">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-27" data-line-number="27">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-28" data-line-number="28">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-29" data-line-number="29">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-30" data-line-number="30">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-31" data-line-number="31">        .load()</a>
+<a class="sourceLine" id="cb33-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb33-33" data-line-number="33">    munged_events <span class="op">=</span> raw_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-34" data-line-number="34">        .select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>).alias(<span class="st">&#39;raw&#39;</span>),</a>
+<a class="sourceLine" id="cb33-35" data-line-number="35">                raw_events.timestamp.cast(<span class="st">&#39;string&#39;</span>)) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-36" data-line-number="36">        .withColumn(<span class="st">&#39;munged&#39;</span>, munge_event(<span class="st">&#39;raw&#39;</span>))</a>
+<a class="sourceLine" id="cb33-37" data-line-number="37">    munged_events.show()</a>
+<a class="sourceLine" id="cb33-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb33-39" data-line-number="39">    extracted_events <span class="op">=</span> munged_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-40" data-line-number="40">        .rdd <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-41" data-line-number="41">        .<span class="bu">map</span>(<span class="kw">lambda</span> r: Row(timestamp<span class="op">=</span>r.timestamp, <span class="op">**</span>json.loads(r.munged))) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-42" data-line-number="42">        .toDF()</a>
+<a class="sourceLine" id="cb33-43" data-line-number="43">    extracted_events.show()</a>
+<a class="sourceLine" id="cb33-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb33-45" data-line-number="45">    extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-46" data-line-number="46">        .write <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-47" data-line-number="47">        .mode(<span class="st">&quot;overwrite&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb33-48" data-line-number="48">        .parquet(<span class="st">&quot;/tmp/extracted_events&quot;</span>)</a>
+<a class="sourceLine" id="cb33-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb33-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb33-51" data-line-number="51"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
+<a class="sourceLine" id="cb33-52" data-line-number="52">    main()</a></code></pre></div>
+<aside class="notes">
+<p>Here’s an example that allows arbitrary tranformation of the json <code>value</code> <em>before</em> extraction.</p>
+</aside>
+</section>
+<section id="lets-look-at-separating-events" class="level2">
+<h2>Let’s look at separating events</h2>
+</section>
+<section id="section-12" class="level2">
+<h2></h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka and write them to hdfs</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="im">import</span> json</a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession, Row</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> udf</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="at">@udf</span>(<span class="st">&#39;string&#39;</span>)</a>
+<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="kw">def</span> munge_event(event_as_json):</a>
+<a class="sourceLine" id="cb34-11" data-line-number="11">    event <span class="op">=</span> json.loads(event_as_json)</a>
+<a class="sourceLine" id="cb34-12" data-line-number="12">    event[<span class="st">&#39;Host&#39;</span>] <span class="op">=</span> <span class="st">&quot;moe&quot;</span> <span class="co"># silly change to show it works</span></a>
+<a class="sourceLine" id="cb34-13" data-line-number="13">    <span class="cf">return</span> json.dumps(event)</a>
+<a class="sourceLine" id="cb34-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb34-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb34-16" data-line-number="16"><span class="kw">def</span> main():</a>
+<a class="sourceLine" id="cb34-17" data-line-number="17">    <span class="co">&quot;&quot;&quot;main</span></a>
+<a class="sourceLine" id="cb34-18" data-line-number="18"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb34-19" data-line-number="19">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-20" data-line-number="20">        .builder <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-21" data-line-number="21">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-22" data-line-number="22">        .getOrCreate()</a>
+<a class="sourceLine" id="cb34-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb34-24" data-line-number="24">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-25" data-line-number="25">        .read <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-26" data-line-number="26">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-27" data-line-number="27">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-28" data-line-number="28">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-29" data-line-number="29">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-30" data-line-number="30">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-31" data-line-number="31">        .load()</a>
+<a class="sourceLine" id="cb34-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb34-33" data-line-number="33">    munged_events <span class="op">=</span> raw_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-34" data-line-number="34">        .select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>).alias(<span class="st">&#39;raw&#39;</span>),</a>
+<a class="sourceLine" id="cb34-35" data-line-number="35">                raw_events.timestamp.cast(<span class="st">&#39;string&#39;</span>)) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-36" data-line-number="36">        .withColumn(<span class="st">&#39;munged&#39;</span>, munge_event(<span class="st">&#39;raw&#39;</span>))</a>
+<a class="sourceLine" id="cb34-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb34-38" data-line-number="38">    extracted_events <span class="op">=</span> munged_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-39" data-line-number="39">        .rdd <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-40" data-line-number="40">        .<span class="bu">map</span>(<span class="kw">lambda</span> r: Row(timestamp<span class="op">=</span>r.timestamp, <span class="op">**</span>json.loads(r.munged))) <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-41" data-line-number="41">        .toDF()</a>
+<a class="sourceLine" id="cb34-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb34-43" data-line-number="43">    sword_purchases <span class="op">=</span> extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-44" data-line-number="44">        .<span class="bu">filter</span>(extracted_events.event_type <span class="op">==</span> <span class="st">&#39;purchase_sword&#39;</span>)</a>
+<a class="sourceLine" id="cb34-45" data-line-number="45">    sword_purchases.show()</a>
+<a class="sourceLine" id="cb34-46" data-line-number="46">    <span class="co"># sword_purchases \</span></a>
+<a class="sourceLine" id="cb34-47" data-line-number="47">        <span class="co"># .write \</span></a>
+<a class="sourceLine" id="cb34-48" data-line-number="48">        <span class="co"># .mode(&quot;overwrite&quot;) \</span></a>
+<a class="sourceLine" id="cb34-49" data-line-number="49">        <span class="co"># .parquet(&quot;/tmp/sword_purchases&quot;)</span></a>
+<a class="sourceLine" id="cb34-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb34-51" data-line-number="51">    default_hits <span class="op">=</span> extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb34-52" data-line-number="52">        .<span class="bu">filter</span>(extracted_events.event_type <span class="op">==</span> <span class="st">&#39;default&#39;</span>)</a>
+<a class="sourceLine" id="cb34-53" data-line-number="53">    default_hits.show()</a>
+<a class="sourceLine" id="cb34-54" data-line-number="54">    <span class="co"># default_hits \</span></a>
+<a class="sourceLine" id="cb34-55" data-line-number="55">        <span class="co"># .write \</span></a>
+<a class="sourceLine" id="cb34-56" data-line-number="56">        <span class="co"># .mode(&quot;overwrite&quot;) \</span></a>
+<a class="sourceLine" id="cb34-57" data-line-number="57">        <span class="co"># .parquet(&quot;/tmp/default_hits&quot;)</span></a>
+<a class="sourceLine" id="cb34-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb34-59" data-line-number="59"></a>
+<a class="sourceLine" id="cb34-60" data-line-number="60"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
+<a class="sourceLine" id="cb34-61" data-line-number="61">    main()</a></code></pre></div>
+<aside class="notes">
+<p>And here’s one that filters out multiple events.</p>
+<p>This works, but…</p>
+<p>Question: What happens with events that have different schema?</p>
 <ul>
 <li>Problem here is if you’re exploding flat json, you’ll have some decisions to make</li>
-<li></li>
-<li>Add examples for adding master for yarn, for stand alone spark, eventually kubernetes</li>
-<li>Need to create a spark session when you use spark submit</li>
-<li>What’s a spark session? (pyspark automatically creates it)</li>
-<li>some printSchemas and some shows that allow you to debug along the way</li>
-<li>do on empty topic, then generate some data and see that the parquet file is in here</li>
-<li>working through examples with different schemas (i.e., the spark for that)</li>
-<li>because there’s decisions re: 2 spark jobs for different event types or do 1 more complicated spark job</li>
 </ul>
 </aside>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-13" class="slide level1">
+<h1></h1>
+<section id="remember-to-tear-down-your-cluster" class="level2">
+<h2>Remember to tear down your cluster</h2>
+<pre><code>docker-compose down</code></pre>
+</section>
+</section>
+<section id="section-14" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 </section>
-<section id="section-6" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<section id="section-15" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 <aside class="notes">
 <p>(repeat from earlier)</p>
-<p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - writes them to storage - presto then queries those events</p>
+<p>Let’s walk through this - user interacts with mobile app - mobile app makes API calls to web services - API server handles requests: - handles actual business requirements (e.g., process purchase) - logs events to kafka - spark then: - pulls events from kafka - filters/flattens/transforms events - separates event types - writes to storage - presto then queries those events</p>
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
