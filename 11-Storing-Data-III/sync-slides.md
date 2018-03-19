@@ -414,7 +414,8 @@ and
 - What's a spark session? (pyspark automatically creates it)
 - some printSchemas and some shows that allow you to debug along the way
 - do on empty topic, then generate some data and see that the parquet file is in here
-- 
+- working through examples with different schemas (i.e., the spark for that)
+- because there's decisions re: 2 spark jobs for different event types or do 1 more complicated spark job
 :::
 
 
