@@ -545,46 +545,47 @@ ValueError: RDD is empty</code></pre>
 <a class="sourceLine" id="cb31-10" data-line-number="10"><span class="kw">def</span> munge_event(event_as_json):</a>
 <a class="sourceLine" id="cb31-11" data-line-number="11">    event <span class="op">=</span> json.loads(event_as_json)</a>
 <a class="sourceLine" id="cb31-12" data-line-number="12">    event[<span class="st">&#39;Host&#39;</span>] <span class="op">=</span> <span class="st">&quot;moe&quot;</span> <span class="co"># silly change to show it works</span></a>
-<a class="sourceLine" id="cb31-13" data-line-number="13">    <span class="cf">return</span> json.dumps(event)</a>
-<a class="sourceLine" id="cb31-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb31-13" data-line-number="13">    event[<span class="st">&#39;Cache-Control&#39;</span>] <span class="op">=</span> <span class="st">&quot;no-cache&quot;</span></a>
+<a class="sourceLine" id="cb31-14" data-line-number="14">    <span class="cf">return</span> json.dumps(event)</a>
 <a class="sourceLine" id="cb31-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb31-16" data-line-number="16"><span class="kw">def</span> main():</a>
-<a class="sourceLine" id="cb31-17" data-line-number="17">    <span class="co">&quot;&quot;&quot;main</span></a>
-<a class="sourceLine" id="cb31-18" data-line-number="18"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb31-19" data-line-number="19">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-20" data-line-number="20">        .builder <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-21" data-line-number="21">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-22" data-line-number="22">        .getOrCreate()</a>
-<a class="sourceLine" id="cb31-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb31-24" data-line-number="24">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-25" data-line-number="25">        .read <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-26" data-line-number="26">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-27" data-line-number="27">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-28" data-line-number="28">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-29" data-line-number="29">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-30" data-line-number="30">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-31" data-line-number="31">        .load()</a>
-<a class="sourceLine" id="cb31-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb31-33" data-line-number="33">    munged_events <span class="op">=</span> raw_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-34" data-line-number="34">        .select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>).alias(<span class="st">&#39;raw&#39;</span>),</a>
-<a class="sourceLine" id="cb31-35" data-line-number="35">                raw_events.timestamp.cast(<span class="st">&#39;string&#39;</span>)) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-36" data-line-number="36">        .withColumn(<span class="st">&#39;munged&#39;</span>, munge_event(<span class="st">&#39;raw&#39;</span>))</a>
-<a class="sourceLine" id="cb31-37" data-line-number="37">    munged_events.show()</a>
-<a class="sourceLine" id="cb31-38" data-line-number="38"></a>
-<a class="sourceLine" id="cb31-39" data-line-number="39">    extracted_events <span class="op">=</span> munged_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-40" data-line-number="40">        .rdd <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-41" data-line-number="41">        .<span class="bu">map</span>(<span class="kw">lambda</span> r: Row(timestamp<span class="op">=</span>r.timestamp, <span class="op">**</span>json.loads(r.munged))) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-42" data-line-number="42">        .toDF()</a>
-<a class="sourceLine" id="cb31-43" data-line-number="43">    extracted_events.show()</a>
-<a class="sourceLine" id="cb31-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb31-45" data-line-number="45">    extracted_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-46" data-line-number="46">        .write <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-47" data-line-number="47">        .mode(<span class="st">&quot;overwrite&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb31-48" data-line-number="48">        .parquet(<span class="st">&quot;/tmp/extracted_events&quot;</span>)</a>
-<a class="sourceLine" id="cb31-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb31-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb31-17" data-line-number="17"><span class="kw">def</span> main():</a>
+<a class="sourceLine" id="cb31-18" data-line-number="18">    <span class="co">&quot;&quot;&quot;main</span></a>
+<a class="sourceLine" id="cb31-19" data-line-number="19"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb31-20" data-line-number="20">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-21" data-line-number="21">        .builder <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-22" data-line-number="22">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-23" data-line-number="23">        .getOrCreate()</a>
+<a class="sourceLine" id="cb31-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb31-25" data-line-number="25">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-26" data-line-number="26">        .read <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-27" data-line-number="27">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-28" data-line-number="28">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-29" data-line-number="29">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-30" data-line-number="30">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-31" data-line-number="31">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-32" data-line-number="32">        .load()</a>
+<a class="sourceLine" id="cb31-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb31-34" data-line-number="34">    munged_events <span class="op">=</span> raw_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-35" data-line-number="35">        .select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>).alias(<span class="st">&#39;raw&#39;</span>),</a>
+<a class="sourceLine" id="cb31-36" data-line-number="36">                raw_events.timestamp.cast(<span class="st">&#39;string&#39;</span>)) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-37" data-line-number="37">        .withColumn(<span class="st">&#39;munged&#39;</span>, munge_event(<span class="st">&#39;raw&#39;</span>))</a>
+<a class="sourceLine" id="cb31-38" data-line-number="38">    munged_events.show()</a>
+<a class="sourceLine" id="cb31-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb31-40" data-line-number="40">    extracted_events <span class="op">=</span> munged_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-41" data-line-number="41">        .rdd <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-42" data-line-number="42">        .<span class="bu">map</span>(<span class="kw">lambda</span> r: Row(timestamp<span class="op">=</span>r.timestamp, <span class="op">**</span>json.loads(r.munged))) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-43" data-line-number="43">        .toDF()</a>
+<a class="sourceLine" id="cb31-44" data-line-number="44">    extracted_events.show()</a>
+<a class="sourceLine" id="cb31-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb31-46" data-line-number="46">    extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-47" data-line-number="47">        .write <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-48" data-line-number="48">        .mode(<span class="st">&quot;overwrite&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb31-49" data-line-number="49">        .parquet(<span class="st">&quot;/tmp/extracted_events&quot;</span>)</a>
 <a class="sourceLine" id="cb31-50" data-line-number="50"></a>
-<a class="sourceLine" id="cb31-51" data-line-number="51"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
-<a class="sourceLine" id="cb31-52" data-line-number="52">    main()</a></code></pre></div>
+<a class="sourceLine" id="cb31-51" data-line-number="51"></a>
+<a class="sourceLine" id="cb31-52" data-line-number="52"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
+<a class="sourceLine" id="cb31-53" data-line-number="53">    main()</a></code></pre></div>
 <aside class="notes">
 <p>Here’s an example that allows arbitrary tranformation of the json <code>value</code> <em>before</em> extraction.</p>
 </aside>
@@ -606,55 +607,56 @@ ValueError: RDD is empty</code></pre>
 <a class="sourceLine" id="cb32-10" data-line-number="10"><span class="kw">def</span> munge_event(event_as_json):</a>
 <a class="sourceLine" id="cb32-11" data-line-number="11">    event <span class="op">=</span> json.loads(event_as_json)</a>
 <a class="sourceLine" id="cb32-12" data-line-number="12">    event[<span class="st">&#39;Host&#39;</span>] <span class="op">=</span> <span class="st">&quot;moe&quot;</span> <span class="co"># silly change to show it works</span></a>
-<a class="sourceLine" id="cb32-13" data-line-number="13">    <span class="cf">return</span> json.dumps(event)</a>
-<a class="sourceLine" id="cb32-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb32-13" data-line-number="13">    event[<span class="st">&#39;Cache-Control&#39;</span>] <span class="op">=</span> <span class="st">&quot;no-cache&quot;</span></a>
+<a class="sourceLine" id="cb32-14" data-line-number="14">    <span class="cf">return</span> json.dumps(event)</a>
 <a class="sourceLine" id="cb32-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb32-16" data-line-number="16"><span class="kw">def</span> main():</a>
-<a class="sourceLine" id="cb32-17" data-line-number="17">    <span class="co">&quot;&quot;&quot;main</span></a>
-<a class="sourceLine" id="cb32-18" data-line-number="18"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb32-19" data-line-number="19">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-20" data-line-number="20">        .builder <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-21" data-line-number="21">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-22" data-line-number="22">        .getOrCreate()</a>
-<a class="sourceLine" id="cb32-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb32-24" data-line-number="24">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-25" data-line-number="25">        .read <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-26" data-line-number="26">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-27" data-line-number="27">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-28" data-line-number="28">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-29" data-line-number="29">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-30" data-line-number="30">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-31" data-line-number="31">        .load()</a>
-<a class="sourceLine" id="cb32-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb32-33" data-line-number="33">    munged_events <span class="op">=</span> raw_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-34" data-line-number="34">        .select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>).alias(<span class="st">&#39;raw&#39;</span>),</a>
-<a class="sourceLine" id="cb32-35" data-line-number="35">                raw_events.timestamp.cast(<span class="st">&#39;string&#39;</span>)) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-36" data-line-number="36">        .withColumn(<span class="st">&#39;munged&#39;</span>, munge_event(<span class="st">&#39;raw&#39;</span>))</a>
-<a class="sourceLine" id="cb32-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb32-38" data-line-number="38">    extracted_events <span class="op">=</span> munged_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-39" data-line-number="39">        .rdd <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-40" data-line-number="40">        .<span class="bu">map</span>(<span class="kw">lambda</span> r: Row(timestamp<span class="op">=</span>r.timestamp, <span class="op">**</span>json.loads(r.munged))) <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-41" data-line-number="41">        .toDF()</a>
-<a class="sourceLine" id="cb32-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb32-43" data-line-number="43">    sword_purchases <span class="op">=</span> extracted_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-44" data-line-number="44">        .<span class="bu">filter</span>(extracted_events.event_type <span class="op">==</span> <span class="st">&#39;purchase_sword&#39;</span>)</a>
-<a class="sourceLine" id="cb32-45" data-line-number="45">    sword_purchases.show()</a>
-<a class="sourceLine" id="cb32-46" data-line-number="46">    <span class="co"># sword_purchases \</span></a>
-<a class="sourceLine" id="cb32-47" data-line-number="47">        <span class="co"># .write \</span></a>
-<a class="sourceLine" id="cb32-48" data-line-number="48">        <span class="co"># .mode(&quot;overwrite&quot;) \</span></a>
-<a class="sourceLine" id="cb32-49" data-line-number="49">        <span class="co"># .parquet(&quot;/tmp/sword_purchases&quot;)</span></a>
-<a class="sourceLine" id="cb32-50" data-line-number="50"></a>
-<a class="sourceLine" id="cb32-51" data-line-number="51">    default_hits <span class="op">=</span> extracted_events <span class="op">\</span></a>
-<a class="sourceLine" id="cb32-52" data-line-number="52">        .<span class="bu">filter</span>(extracted_events.event_type <span class="op">==</span> <span class="st">&#39;default&#39;</span>)</a>
-<a class="sourceLine" id="cb32-53" data-line-number="53">    default_hits.show()</a>
-<a class="sourceLine" id="cb32-54" data-line-number="54">    <span class="co"># default_hits \</span></a>
-<a class="sourceLine" id="cb32-55" data-line-number="55">        <span class="co"># .write \</span></a>
-<a class="sourceLine" id="cb32-56" data-line-number="56">        <span class="co"># .mode(&quot;overwrite&quot;) \</span></a>
-<a class="sourceLine" id="cb32-57" data-line-number="57">        <span class="co"># .parquet(&quot;/tmp/default_hits&quot;)</span></a>
-<a class="sourceLine" id="cb32-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb32-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb32-17" data-line-number="17"><span class="kw">def</span> main():</a>
+<a class="sourceLine" id="cb32-18" data-line-number="18">    <span class="co">&quot;&quot;&quot;main</span></a>
+<a class="sourceLine" id="cb32-19" data-line-number="19"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb32-20" data-line-number="20">    spark <span class="op">=</span> SparkSession <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-21" data-line-number="21">        .builder <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-22" data-line-number="22">        .appName(<span class="st">&quot;ExtractEventsJob&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-23" data-line-number="23">        .getOrCreate()</a>
+<a class="sourceLine" id="cb32-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb32-25" data-line-number="25">    raw_events <span class="op">=</span> spark <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-26" data-line-number="26">        .read <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-27" data-line-number="27">        .<span class="bu">format</span>(<span class="st">&quot;kafka&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-28" data-line-number="28">        .option(<span class="st">&quot;kafka.bootstrap.servers&quot;</span>, <span class="st">&quot;kafka:29092&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-29" data-line-number="29">        .option(<span class="st">&quot;subscribe&quot;</span>, <span class="st">&quot;events&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-30" data-line-number="30">        .option(<span class="st">&quot;startingOffsets&quot;</span>, <span class="st">&quot;earliest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-31" data-line-number="31">        .option(<span class="st">&quot;endingOffsets&quot;</span>, <span class="st">&quot;latest&quot;</span>) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-32" data-line-number="32">        .load()</a>
+<a class="sourceLine" id="cb32-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb32-34" data-line-number="34">    munged_events <span class="op">=</span> raw_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-35" data-line-number="35">        .select(raw_events.value.cast(<span class="st">&#39;string&#39;</span>).alias(<span class="st">&#39;raw&#39;</span>),</a>
+<a class="sourceLine" id="cb32-36" data-line-number="36">                raw_events.timestamp.cast(<span class="st">&#39;string&#39;</span>)) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-37" data-line-number="37">        .withColumn(<span class="st">&#39;munged&#39;</span>, munge_event(<span class="st">&#39;raw&#39;</span>))</a>
+<a class="sourceLine" id="cb32-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb32-39" data-line-number="39">    extracted_events <span class="op">=</span> munged_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-40" data-line-number="40">        .rdd <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-41" data-line-number="41">        .<span class="bu">map</span>(<span class="kw">lambda</span> r: Row(timestamp<span class="op">=</span>r.timestamp, <span class="op">**</span>json.loads(r.munged))) <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-42" data-line-number="42">        .toDF()</a>
+<a class="sourceLine" id="cb32-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb32-44" data-line-number="44">    sword_purchases <span class="op">=</span> extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-45" data-line-number="45">        .<span class="bu">filter</span>(extracted_events.event_type <span class="op">==</span> <span class="st">&#39;purchase_sword&#39;</span>)</a>
+<a class="sourceLine" id="cb32-46" data-line-number="46">    sword_purchases.show()</a>
+<a class="sourceLine" id="cb32-47" data-line-number="47">    <span class="co"># sword_purchases \</span></a>
+<a class="sourceLine" id="cb32-48" data-line-number="48">        <span class="co"># .write \</span></a>
+<a class="sourceLine" id="cb32-49" data-line-number="49">        <span class="co"># .mode(&quot;overwrite&quot;) \</span></a>
+<a class="sourceLine" id="cb32-50" data-line-number="50">        <span class="co"># .parquet(&quot;/tmp/sword_purchases&quot;)</span></a>
+<a class="sourceLine" id="cb32-51" data-line-number="51"></a>
+<a class="sourceLine" id="cb32-52" data-line-number="52">    default_hits <span class="op">=</span> extracted_events <span class="op">\</span></a>
+<a class="sourceLine" id="cb32-53" data-line-number="53">        .<span class="bu">filter</span>(extracted_events.event_type <span class="op">==</span> <span class="st">&#39;default&#39;</span>)</a>
+<a class="sourceLine" id="cb32-54" data-line-number="54">    default_hits.show()</a>
+<a class="sourceLine" id="cb32-55" data-line-number="55">    <span class="co"># default_hits \</span></a>
+<a class="sourceLine" id="cb32-56" data-line-number="56">        <span class="co"># .write \</span></a>
+<a class="sourceLine" id="cb32-57" data-line-number="57">        <span class="co"># .mode(&quot;overwrite&quot;) \</span></a>
+<a class="sourceLine" id="cb32-58" data-line-number="58">        <span class="co"># .parquet(&quot;/tmp/default_hits&quot;)</span></a>
 <a class="sourceLine" id="cb32-59" data-line-number="59"></a>
-<a class="sourceLine" id="cb32-60" data-line-number="60"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
-<a class="sourceLine" id="cb32-61" data-line-number="61">    main()</a></code></pre></div>
+<a class="sourceLine" id="cb32-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb32-61" data-line-number="61"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
+<a class="sourceLine" id="cb32-62" data-line-number="62">    main()</a></code></pre></div>
 <aside class="notes">
 <p>And here’s one that filters out multiple events.</p>
 <p>This works, but…</p>

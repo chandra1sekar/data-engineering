@@ -509,6 +509,7 @@ from pyspark.sql.functions import udf
 def munge_event(event_as_json):
     event = json.loads(event_as_json)
     event['Host'] = "moe" # silly change to show it works
+    event['Cache-Control'] = "no-cache"
     return json.dumps(event)
 
 
@@ -574,6 +575,7 @@ from pyspark.sql.functions import udf
 def munge_event(event_as_json):
     event = json.loads(event_as_json)
     event['Host'] = "moe" # silly change to show it works
+    event['Cache-Control'] = "no-cache"
     return json.dumps(event)
 
 
