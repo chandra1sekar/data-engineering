@@ -15,7 +15,7 @@ author: Week 12 - sync session
 
 ::: notes
 
-#### Breakout at about 5 after the hour:
+- Breakout at about 5 after the hour:
 - Check in with each group 
 - have students share screen
 :::
@@ -45,7 +45,10 @@ Let's walk through this
 
 # 
 ## Flask-Kafka-Spark-Hadoop-Presto Part I
-
+::: notes
+- last week we did spark from files
+- ended with spark files reading from kafka, did some munging events, extracted events, json explode, did some filtering for event types.
+:::
 
 #
 ## Setup
@@ -57,6 +60,10 @@ cd ~/w205/full-stack
 cp ~/w205/course-content/12-Querying-Data-II/docker-compose.yml .
 cp ~/w205/course-content/12-Querying-Data-II/*.py .
 ```
+
+::: notes
+:::
+
 
 ## The `docker-compose.yml` 
 
@@ -138,6 +145,9 @@ services:
 
 and with no need for a datafile on this one.
 
+::: notes
+:::
+
 ## Spin up the cluster
 
 ```
@@ -204,6 +214,10 @@ def purchase_a_sword():
     return "Sword Purchased!\n"
 ```
 
+::: notes
+full blown one that adds in request headers
+:::
+
 ## run flask
 ```
 docker-compose exec mids \
@@ -229,6 +243,7 @@ docker-compose exec mids \
 
 ::: notes
 - new terminal window, leave up
+- running kafkacat without -e so it will run continuously
 
 ```
 docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning
@@ -271,7 +286,22 @@ docker-compose exec mids ab -n 10 -H "Host: user2.att.com" http://localhost:5000
 ```
 
 ::: notes
-- Choose to generate events with docker-compose exec or from browser window, but not both.
+- Choose to generate events with apache bench, curl from browser, but not mixing for now.
+- generating 10 events for now, can up that as much as needed, e.g., 100K
+
+```
+docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/
+```
+```
+docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/purchase_a_sword
+```
+```
+docker-compose exec mids ab -n 10 -H "Host: user2.att.com" http://localhost:5000/
+```
+```
+docker-compose exec mids ab -n 10 -H "Host: user2.att.com" http://localhost:5000/purchase_a_sword
+```
+
 :::
 
 # 
@@ -345,11 +375,20 @@ if __name__ == "__main__":
     main()
 ```
 
+
+::: notes
+- single data frame created
+- filter on event type
+:::
+
 ## which we ran
 
 ```
 docker-compose exec spark spark-submit /w205/spark-from-files/separate_events.py
 ```
+
+::: notes
+:::
 
 ## what if different event types have different schema?
 
@@ -408,9 +447,12 @@ if __name__ == "__main__":
 ```
 
 ::: notes
-this is just one approach
-
-what's another?
+- usually going to have default responses with our events
+- so will have different schemas,
+- going to start doing filtering on the raw json before we explode it up into schema aware df
+- send it through boolean udf here to filter on event type
+- also write to hdfs as before
+- this is just one approach, what's another?
 :::
 
 ## run this
@@ -418,6 +460,9 @@ what's another?
 ```
 docker-compose exec spark spark-submit /w205/full-stack/just_filtering.py
 ```
+
+::: notes
+:::
 
 ## we play with this
 
@@ -432,9 +477,19 @@ def purchase_a_knife():
     return "Knife Purchased!\n"
 ```
 
+::: notes
+- optional
+- can experiment with different event types
+- ok with data already in kafka
+- now trick is how do we get that all the way through spark
+:::
+
 
 # 
 ## Write Events
+
+::: notes
+:::
 
 ##
 `full-stack/filtered_writes.py`
@@ -495,11 +550,22 @@ if __name__ == "__main__":
     main()
 ```
 
+::: notes
+:::
+
 ## run this
 
 ```
+docker-compose exec spark \
+spark-submit /w205/full-stack/filtered_writes.py
+```
+
+::: notes
+```
 docker-compose exec spark spark-submit /w205/full-stack/filtered_writes.py
 ```
+
+:::
 
 
 ## should see purchases in hdfs
@@ -508,8 +574,14 @@ docker-compose exec spark spark-submit /w205/full-stack/filtered_writes.py
 docker-compose exec cloudera hadoop fs -ls /tmp/purchases/
 ```
 
+::: notes
+:::
 
-# Queries From Spark
+# 
+## Queries From Spark
+
+::: notes
+:::
 
 ## spin up a notebook
 
@@ -525,6 +597,8 @@ docker-compose exec spark \
 ```
 docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root' pyspark
 ```
+
+- nb is our pyspark driver from spark
 :::
 
 
@@ -540,11 +614,17 @@ newdf = purchases_by_example2.toPandas()
 newdf.describe()
 ```
 
+::: notes
+:::
+
 
 # 
 ## down
 
     docker-compose down
+
+::: notes
+:::
 
 
 # 
@@ -629,6 +709,12 @@ and a secret key
 public key safe to share/post
 :::
 
+## also add pubkey to github
+
+::: notes
+now no more passwords for git commands
+:::
+
 ## add pubkey to instance
 
 From your laptop
@@ -648,11 +734,6 @@ then, on your cloud instance, run
 from your laptop
 :::
 
-## also add pubkey to github
-
-::: notes
-now no more passwords for git commands
-:::
 
 
 
