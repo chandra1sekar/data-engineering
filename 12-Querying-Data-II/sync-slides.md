@@ -8,7 +8,7 @@ author: Week 12 - sync session
 
 #
 ## Assignment Review
-- Review your Assignment 10
+- Review your Assignment 11
 - Get ready to share
 - `docker pull midsw205/base:latest`
 - `git pull` in `~/w205/course-content`
@@ -130,7 +130,7 @@ services:
     command: bash
 
   mids:
-    image: midsw205/base:0.1.8
+    image: midsw205/base:0.1.9
     stdin_open: true
     tty: true
     volumes:
@@ -250,30 +250,14 @@ docker-compose exec mids kafkacat -C -b kafka:29092 -t events -o beginning
 ```
 :::
 
-## install apache bench
-
-- Will be in `midsw205/base` later, but for now:
-- install `ab`...
+## Apache Bench to generate data
 
 ```
 docker-compose exec mids \
-  bash -c "apt-get update && apt-get install -y apache2-utils"
-```
-
-::: notes
-```
-docker-compose exec mids bash -c "apt-get update && apt-get install -y apache2-utils"
-```
-
-- For us later:
-- install `ab` into the `midsw205/base` image
-- and remove this section
-:::
-
-## generate some data
-
-```
-docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/
+  ab \
+    -n 10 \
+    -H "Host: user1.comcast.com" \
+    http://localhost:5000/
 ```
 ```
 docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/purchase_a_sword
@@ -384,10 +368,14 @@ if __name__ == "__main__":
 ## which we ran
 
 ```
-docker-compose exec spark spark-submit /w205/spark-from-files/separate_events.py
+docker-compose exec spark \
+  spark-submit /w205/spark-from-files/separate_events.py
 ```
 
 ::: notes
+```
+docker-compose exec spark spark-submit /w205/spark-from-files/separate_events.py
+```
 :::
 
 ## what if different event types have different schema?
@@ -458,13 +446,17 @@ if __name__ == "__main__":
 ## run this
 
 ```
-docker-compose exec spark spark-submit /w205/full-stack/just_filtering.py
+docker-compose exec spark \
+  spark-submit /w205/full-stack/just_filtering.py
 ```
 
 ::: notes
+```
+docker-compose exec spark spark-submit /w205/full-stack/just_filtering.py
+```
 :::
 
-## we play with this
+## we can play with this
 
 add a new event type to the flask app...
 
@@ -557,7 +549,7 @@ if __name__ == "__main__":
 
 ```
 docker-compose exec spark \
-spark-submit /w205/full-stack/filtered_writes.py
+  spark-submit /w205/full-stack/filtered_writes.py
 ```
 
 ::: notes
@@ -598,7 +590,7 @@ docker-compose exec spark \
 docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root' pyspark
 ```
 
-- nb is our pyspark driver from spark
+- use a notebook as our pyspark driver
 :::
 
 
