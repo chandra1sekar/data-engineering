@@ -713,19 +713,31 @@ newdf.describe()</code></pre>
 <p>public key safe to share/post</p>
 </aside>
 </section>
-<section id="also-add-pubkey-to-github" class="level2">
-<h2>also add pubkey to github</h2>
+<section id="add-your-pubkey-to-github" class="level2">
+<h2>add your pubkey to github</h2>
+</section>
+<section id="verify-your-pubkey-is-on-github" class="level2">
+<h2>verify your pubkey is on github</h2>
+<pre><code>curl https://github.com/&lt;your-gh-id&gt;.keys</code></pre>
+<p>(note the <code>https</code>!)</p>
 <aside class="notes">
 <p>now no more passwords for git commands</p>
 </aside>
 </section>
 <section id="add-pubkey-to-instance" class="level2">
 <h2>add pubkey to instance</h2>
-<p>From your laptop</p>
-<pre><code>scp id_rsa.pub science@xxx.xxx.xxx.xxx:
-ssh science@xxx.xxx.xxx.xxx</code></pre>
-<p>then, on your cloud instance, run</p>
-<pre><code>cat id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</code></pre>
+<p>On your cloud instance, run</p>
+<pre><code>ssh-import-id-gh &lt;your-gh-id&gt;</code></pre>
+<aside class="notes">
+
+</aside>
+</section>
+<section id="you-should-see-something-like" class="level2">
+<h2>you should see something like</h2>
+<pre><code>science@smmm-mmm-1:~$ ssh-import-id-gh mmm
+2018-04-02 18:09:29,091 INFO Starting new HTTPS connection (1): api.github.com
+2018-04-02 18:09:29,285 INFO Authorized key [&#39;4096&#39;, &#39;SHA256:51JGHgluZZRHkyxT9rA5FGi0fIX2/Nm4wCaeu7GsiN0&#39;, &#39;mmm@github/26661056&#39;, &#39;(RSA)&#39;]
+2018-04-02 18:09:29,287 INFO [1] SSH keys [Authorized]  </code></pre>
 </section>
 <section id="now-no-more-passwords" class="level2">
 <h2>now no more passwords</h2>
@@ -739,9 +751,6 @@ ssh science@xxx.xxx.xxx.xxx</code></pre>
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
-<ul>
-<li></li>
-</ul>
 </section>
 </section>
 <section id="section-20" class="slide level1">

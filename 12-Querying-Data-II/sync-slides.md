@@ -701,7 +701,15 @@ and a secret key
 public key safe to share/post
 :::
 
-## also add pubkey to github
+## add your pubkey to github
+
+
+## verify your pubkey is on github
+
+```
+curl https://github.com/<your-gh-id>.keys
+```
+(note the `https`!)
 
 ::: notes
 now no more passwords for git commands
@@ -709,14 +717,23 @@ now no more passwords for git commands
 
 ## add pubkey to instance
 
-From your laptop
+On your cloud instance, run
 
-    scp id_rsa.pub science@xxx.xxx.xxx.xxx:
-    ssh science@xxx.xxx.xxx.xxx
+    ssh-import-id-gh <your-gh-id>
 
-then, on your cloud instance, run
+::: notes
 
-    cat id_rsa.pub >> ~/.ssh/authorized_keys
+:::
+
+## you should see something like
+
+```
+science@smmm-mmm-1:~$ ssh-import-id-gh mmm
+2018-04-02 18:09:29,091 INFO Starting new HTTPS connection (1): api.github.com
+2018-04-02 18:09:29,285 INFO Authorized key ['4096', 'SHA256:51JGHgluZZRHkyxT9rA5FGi0fIX2/Nm4wCaeu7GsiN0', 'mmm@github/26661056', '(RSA)']
+2018-04-02 18:09:29,287 INFO [1] SSH keys [Authorized]  
+```
+
 
 ## now no more passwords
 
@@ -727,12 +744,8 @@ from your laptop
 :::
 
 
-
-
 #
 ## Summary
-
-- 
 
 
 #
