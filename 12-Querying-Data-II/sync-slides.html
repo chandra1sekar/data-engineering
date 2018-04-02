@@ -320,9 +320,21 @@ services:
     -n 10 \
     -H &quot;Host: user1.comcast.com&quot; \
     http://localhost:5000/</code></pre>
-<pre><code>docker-compose exec mids ab -n 10 -H &quot;Host: user1.comcast.com&quot; http://localhost:5000/purchase_a_sword</code></pre>
-<pre><code>docker-compose exec mids ab -n 10 -H &quot;Host: user2.att.com&quot; http://localhost:5000/</code></pre>
-<pre><code>docker-compose exec mids ab -n 10 -H &quot;Host: user2.att.com&quot; http://localhost:5000/purchase_a_sword</code></pre>
+<pre><code>docker-compose exec mids \
+  ab \
+    -n 10 \
+    -H &quot;Host: user1.comcast.com&quot; \
+    http://localhost:5000/purchase_a_sword</code></pre>
+<pre><code>docker-compose exec mids \
+  ab \
+    -n 10 \
+    -H &quot;Host: user2.att.com&quot; \
+    http://localhost:5000/</code></pre>
+<pre><code>docker-compose exec mids \
+  ab \
+    -n 10 \
+    -H &quot;Host: user2.att.com&quot; \
+    http://localhost:5000/purchase_a_sword</code></pre>
 <aside class="notes">
 <ul>
 <li>Choose to generate events with apache bench, curl from browser, but not mixing for now.</li>
