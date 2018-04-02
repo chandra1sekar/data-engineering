@@ -612,7 +612,6 @@ docker-compose exec spark env PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHO
 purchases = spark.read.parquet('/tmp/purchases')
 purchases.show()
 purchases.registerTempTable('purchases')
-purchases_by_example2 = spark.sql("select * from purchases where Host = 'user2.att.com'")
 purchases_by_example2.show()
 newdf = purchases_by_example2.toPandas()
 newdf.describe()

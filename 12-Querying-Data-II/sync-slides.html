@@ -635,7 +635,6 @@ services:
 <pre><code>purchases = spark.read.parquet(&#39;/tmp/purchases&#39;)
 purchases.show()
 purchases.registerTempTable(&#39;purchases&#39;)
-purchases_by_example2 = spark.sql(&quot;select * from purchases where Host = &#39;user2.att.com&#39;&quot;)
 purchases_by_example2.show()
 newdf = purchases_by_example2.toPandas()
 newdf.describe()</code></pre>
