@@ -11,8 +11,8 @@ author: Week 13 - sync session
 git pull in ~/w205/course-content
 mkdir ~/w205/full-stack2/
 cd ~/w205/full-stack2
-docker-compose pull
 cp ~/w205/course-content/13-Understanding-Data/docker-compose.yml .
+docker-compose pull
 cp ~/w205/course-content/13-Understanding-Data/*.py .
 
 ```
@@ -148,6 +148,10 @@ services:
 ```
 
 ::: notes
+k, z same
+- cloudera a little thinner, a few extra environment variables
+- presto new conainer
+
 :::
 
 ## Spin up the cluster
@@ -157,10 +161,11 @@ docker-compose up -d
 ```
 
 ::: notes
-Now spin up the cluster
+- Now spin up the cluster
 ```
 docker-compose up -d
 ```
+- Notice we didn't actually create a topic as the broker does this for you
 :::
 
 ## Web-app
@@ -198,7 +203,7 @@ def purchase_a_sword():
 ```
 
 ::: notes
-full blown one that adds in request headers
+- same web app as before
 :::
 
 ## run flask
@@ -265,8 +270,7 @@ docker-compose exec mids \
 ```
 
 ::: notes
-- Choose to generate events with apache bench, curl from browser, but not mixing for now.
-- generating 10 events for now, can up that as much as needed, e.g., 100K
+- Will do lots more events with streaming later in class.
 
 ```
 docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" http://localhost:5000/
@@ -341,7 +345,11 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
+::: notes
+- Reminder of pieces and parts
+- Filtering on is_purchase
+- Write to tmp/purchases in hdfs
+:::
 ## Run this
 
 ```
@@ -355,23 +363,7 @@ docker-compose exec spark spark-submit /w205/full-stack2/filtered_writes.py
 docker-compose exec cloudera hadoop fs -ls /tmp/purchases/
 ```
 
-# 
-## Queries from Spark
 
-We ran this in a notebook
-
-```
-purchases = spark.read.parquet('/tmp/purchases')
-purchases.show()
-purchases.registerTempTable('purchases')
-purchases_by_example2 = spark.sql("select * from purchases where Host = 'example2.com'")
-purchases_by_example2.show()
-newdf = purchases_by_example2.toPandas()
-newdf.describe()
-```
-::: notes
-- Transition here?
-:::
 
 
 #
@@ -384,12 +376,15 @@ newdf.describe()
 
 ::: notes
 - The Hive metastore is a really common tool used to keep track of schema for
-tables used throughout the Hadoop and Spark ecosystem.
+tables used throughout the Hadoop and Spark ecosystem (schema registry).
 
 - To "expose" the schema for our "purchases"... we need to create a table in the
 hive metastore.
 
 - There are two ways
+  * Run hive explicitly and create an external table
+  * Run spark, create a 
+
 :::
 
 ## Hard Way
@@ -402,6 +397,7 @@ docker-compose exec cloudera hive
 
 ::: notes
 - Run hive in the hadoop container
+- This is what you would do, don't need to actually do it, skip to easier way
 :::
 
 ## 
@@ -423,15 +419,18 @@ create external table if not exists default.purchases2 (
 ```
 create external table if not exists default.purchases2 (Accept string, Host string, User_Agent string, event_type string, timestamp string) stored as parquet location '/tmp/purchases'  tblproperties ("parquet.compress"="SNAPPY");
 ```
+
+
 :::
 
 ## Or... we can do this an easier way
 
 
-
 ```
 docker-compose exec spark pyspark
 ```
+
+
 ::: notes
 - run spark
 :::
@@ -522,6 +521,10 @@ if __name__ == "__main__":
     main()
 ```
 
+::: notes
+- Modified filtered_writes.py to register a temp table and then run it from w/in spark itself
+:::
+
 ## Run this
 
 ```
@@ -533,7 +536,9 @@ docker-compose exec spark spark-submit /w205/full-stack2/write_hive_table.py
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/
 ```
-
+::: notes
+- This is the first spark job to run - it does it all, read, flatten, write, ?query
+:::
 ## and now ...
 
 - Query this with presto
@@ -542,7 +547,15 @@ docker-compose exec cloudera hadoop fs -ls /tmp/
 docker-compose exec presto presto --server presto:8080 --catalog hive --schema default
 ```
 
-## experiment
+::: notes
+- Presto just a query engine
+- it's talking to the hive thrift server to get the table we just added
+- connected to hdfs to get the data
+- Querying with presto instead of spark bc presto scales well, handles a wider range of sql syntax, can start treating like a database, can configure it to talk to cassandra, s3 directly, kafka directly, mysql, good front end for your company's data lake
+
+:::
+
+## What tables do we have in Presto?
 
 ```
 presto:default> show tables;
@@ -556,7 +569,7 @@ Splits: 2 total, 1 done (50.00%)
 0:00 [1 rows, 34B] [10 rows/s, 342B/s]
 ```
 
-##
+## Describe `purchases` table
 
 ```
 presto:default> describe purchases;
@@ -574,7 +587,7 @@ Splits: 2 total, 1 done (50.00%)
 0:00 [5 rows, 344B] [34 rows/s, 2.31KB/s]
 ```
 
-##
+## Query `purchases` table
 
 ```
 presto:default> select * from purchases;
@@ -664,11 +677,30 @@ if __name__ == "__main__":
     main()
 ```
 
+::: notes
+- specify purchase_sword_event_schema schema in the job (before were inferring schema)
+- rename is_purchase so specific to swords
+- Combining a bunch of steps from before
+- Not going to the rdd
+- Start with raw events, filter whether they're sword purchases, 
+- The from json has two pieces - the actual column and the schema
+- select 3 columns: value, timestamp, the json created
+- Best practices
+- Robust against different schema, but that can be a gotcha if you end up with data that isn't formatted how you thought it was
+- Streaming datasets don't allow you to access the rdd as we did before
+- This isn't writing the hive table for us
+:::
+
+
 ## Run
 
 ```
 docker-compose exec spark spark-submit /w205/full-stack2/filter_swords_batch.py
 ```
+::: notes
+
+:::
+
 
 ## Turn that into a stream
 
@@ -744,11 +776,23 @@ if __name__ == "__main__":
     main()
 ```
 
+::: notes
+- In batch one, we tell it offsets, and tell it to read
+- In streaming, no offsets
+- query = and query.awaitTermination are differences
+:::
+
+
 ## Run it
 
 ```
-docker-compose exec spark spark-submit /w205/full-stack/filter_swords_stream.py
+docker-compose exec spark spark-submit /w205/full-stack2/filter_swords_stream.py
 ```
+::: notes
+- run in stream,
+- kick some events 
+- feed it to automaically generate events, can see that grow in hdfs
+:::
 
 ## Kick some more events
 
