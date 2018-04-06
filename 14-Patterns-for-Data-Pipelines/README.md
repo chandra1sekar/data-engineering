@@ -28,15 +28,9 @@
 
     14.1 DevOps
       14.1.1 - Infrastructure as Code [screencast]
-      14.1.2 - Testing [screencast]
-      14.1.3 - CI/CD  [screencast]
-      14.1.4 - Logging and Monitoring [screencast]
-      14.1.5 - Automation [screencast]
-      14.1.6 - The Development Process [screencast]
 
-    14.2 Serverless Architectures
-      14.2.1 - The Future of Data Engineering [screencast]
-      14.2.2 - AWS Kool-aid stack [screencast]
-      14.2.3 - GCP Kool-aid stack [screencast]
+    14.2 Cluster Examples
+      14.2.1 - Docker Swarm
+      14.2.2 - Kubernetes
 
 

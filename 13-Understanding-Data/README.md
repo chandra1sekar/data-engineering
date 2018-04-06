@@ -21,13 +21,10 @@
 
     13.2 Sessionization and State
       13.2.1 - Sessionization and state for action [lecture]
-      13.2.2 - Ingested Events [screencast]
-      13.2.3 - Low Latency Ingested Events [screencast]
-      13.2.4 - Architectural Patterns for Action [screencast]
 
-    13.3 Models
-      13.3.1 - Model Validation [screencast]
-      13.3.2 - Model Management [screencast]
+    13.3 Using Public Clouds
+      13.3.1 - AWS
+      13.3.2 - GCP
 
 #### Due Friday after Week 13 Synchronous Session: 
 - Assignment 12 - Synthesis Assignment (Understanding User Behavior Project)
