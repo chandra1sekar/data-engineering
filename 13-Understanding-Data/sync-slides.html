@@ -102,10 +102,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1></h1>
 <section id="get-started" class="level2">
 <h2>Get Started</h2>
-<ul>
-<li><code>docker pull midsw205/base:latest</code></li>
-<li><code>git pull</code> in <code>~/w205/course-content</code></li>
-</ul>
+<pre><code>git pull in ~/w205/course-content
+mkdir ~/w205/full-stack2/
+cd ~/w205/full-stack2
+docker-compose pull
+cp ~/w205/course-content/13-Understanding-Data/docker-compose.yml .
+cp ~/w205/course-content/13-Understanding-Data/*.py .
+</code></pre>
 <aside class="notes">
 
 </aside>
@@ -136,16 +139,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1></h1>
 <section id="setup" class="level2">
 <h2>Setup</h2>
-</section>
-<section id="set-up-directory-get-docker-compose" class="level2">
-<h2>Set up directory, get docker-compose</h2>
-<pre><code>mkdir ~/w205/full-stack2/
-cd ~/w205/full-stack2
-cp ~/w205/course-content/13-Understanding-Data/docker-compose.yml .
-cp ~/w205/course-content/13-Understanding-Data/*.py .</code></pre>
-<aside class="notes">
-
-</aside>
 </section>
 <section id="the-docker-compose.yml" class="level2">
 <h2>The <code>docker-compose.yml</code></h2>

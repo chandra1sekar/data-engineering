@@ -574,13 +574,10 @@ the live classroom for specific weeks in the term.
 
     13.2 Sessionization and State
       13.2.1 - Sessionization and state for action [lecture]
-      13.2.2 - Ingested Events [screencast]
-      13.2.3 - Low Latency Ingested Events [screencast]
-      13.2.4 - Architectural Patterns for Action [screencast]
 
-    13.3 Models
-      13.3.1 - Model Validation [screencast]
-      13.3.2 - Model Management [screencast]
+    13.3 Using Public Clouds
+      13.3.1 - AWS
+      13.3.2 - GCP
 
 #### Due Friday after Week 13 Synchronous Session: 
 - Assignment 12 - Synthesis Assignment (Understanding User Behavior Project)
@@ -616,16 +613,10 @@ the live classroom for specific weeks in the term.
 
     14.1 DevOps
       14.1.1 - Infrastructure as Code [screencast]
-      14.1.2 - Testing [screencast]
-      14.1.3 - CI/CD  [screencast]
-      14.1.4 - Logging and Monitoring [screencast]
-      14.1.5 - Automation [screencast]
-      14.1.6 - The Development Process [screencast]
 
-    14.2 Serverless Architectures
-      14.2.1 - The Future of Data Engineering [screencast]
-      14.2.2 - AWS Kool-aid stack [screencast]
-      14.2.3 - GCP Kool-aid stack [screencast]
+    14.2 Cluster Examples
+      14.2.1 - Docker Swarm
+      14.2.2 - Kubernetes
 
 
 ## Academic Integrity

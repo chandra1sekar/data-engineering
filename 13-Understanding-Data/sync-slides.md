@@ -7,11 +7,20 @@ author: Week 13 - sync session
 
 #
 ## Get Started
-- `docker pull midsw205/base:latest`
-- `git pull` in `~/w205/course-content`
+```
+git pull in ~/w205/course-content
+mkdir ~/w205/full-stack2/
+cd ~/w205/full-stack2
+docker-compose pull
+cp ~/w205/course-content/13-Understanding-Data/docker-compose.yml .
+cp ~/w205/course-content/13-Understanding-Data/*.py .
+
+```
 
 ::: notes
 :::
+
+
 
 
 #
@@ -43,18 +52,6 @@ Let's walk through this
 
 #
 ## Setup
-
-## Set up directory, get docker-compose
-```
-mkdir ~/w205/full-stack2/
-cd ~/w205/full-stack2
-cp ~/w205/course-content/13-Understanding-Data/docker-compose.yml .
-cp ~/w205/course-content/13-Understanding-Data/*.py .
-```
-
-::: notes
-:::
-
 
 ## The `docker-compose.yml` 
 
@@ -375,6 +372,8 @@ newdf.describe()
 ::: notes
 - Transition here?
 :::
+
+
 #
 ## Queries from Presto
 

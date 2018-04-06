@@ -60,6 +60,7 @@
 <ul>
 <li>Last week we consume messages with Spark and take a look at them</li>
 <li>Now, we’ll transform them in spark so we can land them in hdfs</li>
+<li>added cloudera but that’s just a distribution of hadoop</li>
 </ul>
 </aside>
 </section>
@@ -71,9 +72,12 @@
 </section>
 <section id="setup" class="level2">
 <h2>Setup</h2>
-<p><code>mkdir ~/w205/spark-with-kafka-and-hdfs</code></p>
-<p><code>cd ~/w205/spark-with-kafka-and-hdfs</code></p>
+<pre><code>mkdir ~/w205/spark-with-kafka-and-hdfs</code></pre>
+<pre><code>cd ~/w205/spark-with-kafka-and-hdfs</code></pre>
 <pre><code>cp ~/w205/course-content//08-Querying-Data/docker-compose.yml .</code></pre>
+<aside class="notes">
+<p>Walk through the docker-compose.yml file</p>
+</aside>
 </section>
 <section id="spin-up-the-cluster" class="level2">
 <h2>Spin up the cluster</h2>
@@ -83,7 +87,7 @@
 <p>Now spin up the cluster</p>
 <pre><code>docker-compose up -d</code></pre>
 <p>and watch it come up</p>
-<pre><code>    docker-compose logs -f kafka</code></pre>
+<pre><code>docker-compose logs -f kafka</code></pre>
 <p>when this looks like it’s done, you can safely detach with <code>Ctrl-C</code>.</p>
 </aside>
 </section>
@@ -94,7 +98,10 @@
 <h2>Check out Hadoop</h2>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 <aside class="notes">
-<p>look at tmp/ dir in hdfs and see that what we want to write isn’t there already</p>
+<ul>
+<li>look at tmp/ dir in hdfs and see that what we want to write isn’t there already</li>
+<li>Can do ls options (h etc) to find out more</li>
+</ul>
 </aside>
 </section>
 <section id="should-see-something-like" class="level2">
@@ -184,6 +191,7 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <aside class="notes">
 <ul>
 <li>Caching this to avoid warnings bc trying to hold a persistent handle to this topic.</li>
+<li>Warning messages, e.g., you haven’t set your state to be good with kafka etc</li>
 <li>What is caching?</li>
 <li>Lazy evaluation
 <ul>
@@ -225,6 +233,9 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/</code></pre>
 <p>and</p>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
+<ul>
+<li>Can do our h option for human readable</li>
+</ul>
 </aside>
 </section>
 <section id="however-back-in-spark-terminal-window" class="level2">
@@ -234,7 +245,14 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 </ul>
 <pre><code>players.show()</code></pre>
 <aside class="notes">
-<p>That’s pretty ugly… let’s extract the data, promote data cols to be real dataframe columns.</p>
+<ul>
+<li>That’s pretty ugly… let’s extract the data, promote data cols to be real dataframe columns.</li>
+<li>We have a single column which is a strign, our jsonlines,</li>
+<li>can do the take 1, take players, get value etc</li>
+<li>But that’s kinda lame</li>
+<li>We want it to be easily queriable,</li>
+<li>So, now let’s go in and unroll the json but let’s do it a dataframe at a time instead of a row at a time</li>
+</ul>
 </aside>
 </section>
 <section id="extract-data" class="level2">
@@ -245,7 +263,10 @@ docker-compose exec cloudera hadoop fs -ls /tmp/players/</code></pre>
 <pre><code>import sys
 sys.stdout = open(sys.stdout.fileno(), mode=&#39;w&#39;, encoding=&#39;utf8&#39;, buffering=1)</code></pre>
 <aside class="notes">
-<p>If a dataset gripes about parsing <code>ascii</code> characters, you might need to default to unicode… it’s good practice in any case</p>
+<ul>
+<li>If a dataset gripes about parsing <code>ascii</code> characters, you might need to default to unicode…</li>
+<li>it’s good practice in any case</li>
+</ul>
 </aside>
 </section>
 <section id="what-do-we-have" class="level2">
@@ -255,6 +276,15 @@ sys.stdout = open(sys.stdout.fileno(), mode=&#39;w&#39;, encoding=&#39;utf8&#39;
 </ul>
 <pre><code>import json
 players.rdd.map(lambda x: json.loads(x.value)).toDF().show()</code></pre>
+<aside class="notes">
+<ul>
+<li>from the dataset, I’m going to get rdd (spark’s distributed dataset), apply a map to it (to work a df at a time)</li>
+<li>taken a df, mapped it onto an rdd, ….., convert back to a spark dataframe and now we’re goig to show that</li>
+<li>OK,so we have our unicode errors showing up, so go back to our unicode slide, and rerun</li>
+<li>this is a df that looks like the content of our json and that’s nice</li>
+<li>have to go through mapping bc you won;t have huge json file, you’ll have events that are json coming from kafka etc</li>
+</ul>
+</aside>
 </section>
 <section id="section-7" class="level2">
 <h2></h2>
@@ -278,7 +308,7 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 <pre><code>extracted_players.write.parquet(&quot;/tmp/extracted_players&quot;)</code></pre>
 <aside class="notes">
 <ul>
-<li>This will be much easier to query. NOTES: hmmm, we’re switching contexts, but don’t query this or do a docker-compose down</li>
+<li>This will be much easier to query.</li>
 <li>So, goal in landing this into storage is to make it efficiently querieable</li>
 <li>the first one wasn’t bc nested</li>
 <li>but this is nice parquet that’s flat and has nice columns</li>
@@ -287,11 +317,15 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 </section>
 <section id="do" class="level2">
 <h2>Do</h2>
-<pre><code>players</code></pre>
+<pre><code>players.show()</code></pre>
 <pre><code>extracted_players.show()</code></pre>
 <aside class="notes">
 <ul>
 <li>Compare these 2 based on notes in last slide.</li>
+<li>This is great, but json is rarely flat,</li>
+<li>So how do wee do all this with nested dataset?</li>
+<li>We’ll have to make some choices.</li>
+<li>Now we’re going to work through the whole dataframe (that’s what is different)</li>
 </ul>
 </aside>
 </section>
@@ -303,6 +337,7 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
 <aside class="notes">
 <ul>
 <li>Note that we didn’t have to bring the cluster down bc we have 2 topics on our kafka broker now.</li>
+<li>I’m going to leave spark running and go over here to new container</li>
 </ul>
 </aside>
 </section>
@@ -322,7 +357,11 @@ extracted_players = players.rdd.map(lambda x: Row(**json.loads(x.value))).toDF()
     --if-not-exists \
     --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
-<p>First, create a topic <code>commits</code></p>
+<ul>
+<li>First, create a topic <code>commits</code></li>
+<li>Now actually naming our topics (ie not foo)</li>
+<li>Fine to have multiple topics</li>
+</ul>
 <pre><code>docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
 <ul>
 <li><p>which should show</p>
@@ -364,6 +403,15 @@ Created topic “commits”.</li>
   .load() </code></pre>
 <aside class="notes">
 <pre><code>raw_commits = spark.read.format(&quot;kafka&quot;).option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;).option(&quot;subscribe&quot;,&quot;commits&quot;).option(&quot;startingOffsets&quot;, &quot;earliest&quot;).option(&quot;endingOffsets&quot;, &quot;latest&quot;).load() </code></pre>
+<ul>
+<li>We’re selecting the value by name</li>
+<li>befor we were casting, very sql like</li>
+<li>syntax for this in pyspark has changed greatly over time, keep an eye out for that
+<ul>
+<li>show structured streaming programming guides, <span class="citation" data-cites="spark/apache.org">@spark/apache.org</span></li>
+</ul></li>
+<li>Show can choose code in python (instead of scala etc)</li>
+</ul>
 </aside>
 </section>
 <section id="cache-this-to-cut-back-on-warnings" class="level2">
@@ -431,6 +479,7 @@ Created topic “commits”.</li>
 <ul>
 <li><p>We’ll use <code>SparkSQL</code> to let us easily pick and choose the fields we want to promote to columns.</p></li>
 <li>Note that there are other ways to extract nested data, but <code>SparkSQL</code> is the easiest way to see what’s going on.</li>
+<li>Now we can start doing more freeform sql</li>
 </ul>
 </aside>
 </section>
@@ -442,6 +491,8 @@ Created topic “commits”.</li>
 <ul>
 <li>1st just mines commits</li>
 <li>View what you’d really like to see</li>
+<li>You’re transforming the data in subh a way that you’re throwing things away.</li>
+<li>When we read from kafka with spark did the data leave kafka (ie could we just rerun it all)</li>
 <li>Where spark sql can really benefit you in your job.</li>
 </ul>
 </aside>
@@ -490,6 +541,15 @@ Created topic “commits”.</li>
 <aside class="notes">
 <ul>
 <li>What did we do in this pipeline this week</li>
+<li>Persistence of data in our pipeline</li>
+<li>We can set the retention in kafka</li>
+<li>currently we’re using it as a buffer so keeping it for like an hour</li>
+<li>say we chose to do the summary, we threw a lot of the data away</li>
+<li>say I land that into hadoop to store long term</li>
+<li>this is super clean for querying, but I’ve lost the data</li>
+<li>so a lot of people leave the data in kakfa as well so they can go back and check it again</li>
+<li>kafka has the same kind of replicaton factors and partitions as hadoop</li>
+<li>gives you the choice</li>
 </ul>
 </aside>
 </section>
