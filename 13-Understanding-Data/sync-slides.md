@@ -89,7 +89,7 @@ services:
       - "moby:127.0.0.1"
 
   cloudera:
-    image: midsw205/hadoop:0.0.1
+    image: midsw205/hadoop:0.0.2
     hostname: cloudera
     expose:
       - "8020" # nn
