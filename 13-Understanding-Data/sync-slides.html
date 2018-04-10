@@ -923,9 +923,10 @@ Splits: 2 total, 1 done (50.00%)
   docker-compose exec mids \
     ab -n 10 -H &quot;Host: user1.comcast.com&quot; \
       http://localhost:5000/purchase_a_sword
+  sleep 10
 done</code></pre>
 <aside class="notes">
-<pre><code>while true; do docker-compose exec mids ab -n 10 -H &quot;Host: user1.comcast.com&quot; http://localhost:5000/purchase_a_sword; done</code></pre>
+<pre><code>while true; do docker-compose exec mids ab -n 10 -H &quot;Host: user1.comcast.com&quot; http://localhost:5000/purchase_a_sword; sleep 10; done</code></pre>
 </aside>
 </section>
 <section id="check-what-it-wrote-to-hadoop" class="level2">
