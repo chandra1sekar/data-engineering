@@ -428,6 +428,12 @@ services:
 <ul>
 <li><p>The Hive metastore is a really common tool used to keep track of schema for tables used throughout the Hadoop and Spark ecosystem (schema registry).</p></li>
 <li><p>To “expose” the schema for our “purchases”… we need to create a table in the hive metastore.</p></li>
+<li>In hadoop ecosystem,</li>
+<li>hive is a full on query engine, we don’t use it any longer b/c it’s slow, but we use the schema registry</li>
+<li>The hive metastore is friendly with multiple partitions being stored on the fs, everything that talks to hadoop can talk to the hive metastore.</li>
+<li>We write it with spark and we want to read it with presto, to get them to agree we track the schema with hive metastore</li>
+<li>Hive server you usually interface with the thrift server (a seriazation critter) but it’s actually set up as a relational db, mysql or postgresql, tracking these table names have these fields etc</li>
+<li><p>We have a hive metastore spun up in our cloudera container(that’s why we needed a new cloudera container)</p></li>
 <li>There are two ways
 <ul>
 <li>Run hive explicitly and create an external table</li>
@@ -441,8 +447,9 @@ services:
 <pre><code>docker-compose exec cloudera hive</code></pre>
 <aside class="notes">
 <ul>
-<li>Run hive in the hadoop container</li>
+<li>Run hive in the hadoop container using the hive command line</li>
 <li>This is what you would do, don’t need to actually do it, skip to easier way</li>
+<li>This is deprecated at this point</li>
 </ul>
 </aside>
 </section>
@@ -468,6 +475,7 @@ services:
 <aside class="notes">
 <ul>
 <li>run spark</li>
+<li>what we want to do is run another spark job to start up pyspark, could do spark nb etc</li>
 </ul>
 </aside>
 </section>
@@ -485,10 +493,18 @@ services:
 <a class="sourceLine" id="cb25-10" data-line-number="10">spark.sql(query)</a></code></pre></div>
 <aside class="notes">
 <pre><code>spark.sql(&quot;create external table purchase_events stored as parquet location &#39;/tmp/purchase_events&#39; as select * from purchases&quot;)</code></pre>
+<ul>
+<li>read parquet from what we wrote into hdfs</li>
+<li>register temp table</li>
+<li>create external table purchase event</li>
+<li>store as parquet</li>
+<li>similar to what we saw in hard example</li>
+<li>we’re still going to cheat and implicitly infer schema - but just getting it by select * from another df</li>
+</ul>
 </aside>
 </section>
-<section id="can-just-include-in-job" class="level2">
-<h2>Can just include in job</h2>
+<section id="can-just-include-all-that-in-job" class="level2">
+<h2>Can just include all that in job</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka and write them to hdfs</span></a>
 <a class="sourceLine" id="cb27-3" data-line-number="3"><span class="co">&quot;&quot;&quot;</span></a>
@@ -579,6 +595,7 @@ services:
 <li>it’s talking to the hive thrift server to get the table we just added</li>
 <li>connected to hdfs to get the data</li>
 <li>Querying with presto instead of spark bc presto scales well, handles a wider range of sql syntax, can start treating like a database, can configure it to talk to cassandra, s3 directly, kafka directly, mysql, good front end for your company’s data lake</li>
+<li>We’re overloading the word presto here</li>
 </ul>
 </aside>
 </section>
@@ -627,9 +644,19 @@ Splits: 2 total, 1 done (50.00%)
 <h1></h1>
 <section id="streaming" class="level2">
 <h2>Streaming</h2>
+<aside class="notes">
+<ul>
+<li>Back at the pipeline pic:</li>
+<li>scale well: spark, kafka &amp; presto (linear up to 200 machines or so); hadoop (not great),<br />
+</li>
+<li>run same stack in different execution context - wouldn’t have to use fundamentally different tools (except flask really, I’d use go or something else)</li>
+<li>write stateless applications</li>
+<li>behind load balancers</li>
+</ul>
+</aside>
 </section>
-<section id="simpler-spark" class="level2">
-<h2>Simpler spark</h2>
+<section id="getting-our-spark-ready-for-streaming" class="level2">
+<h2>Getting our spark ready for streaming</h2>
 <div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka and write them to hdfs</span></a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">&quot;&quot;&quot;</span></a>
@@ -699,11 +726,13 @@ Splits: 2 total, 1 done (50.00%)
 <a class="sourceLine" id="cb34-67" data-line-number="67">    main()</a></code></pre></div>
 <aside class="notes">
 <ul>
-<li>specify purchase_sword_event_schema schema in the job (before were inferring schema)</li>
+<li>specify purchase_sword_event_schema schema in the job (before were inferring schema - doing that in the ‘.rdd  .map(etc)  .toDF()’ this is fine but fairly brittle. In a production pipeline you want to explictly specify the schema.)</li>
 <li>rename is_purchase so specific to swords</li>
 <li>Combining a bunch of steps from before</li>
 <li>Not going to the rdd</li>
 <li>Start with raw events, filter whether they’re sword purchases,</li>
+<li>Doing a lot (both the select and the filter we did in 2 steps before) in that one step for filtering sword purchases</li>
+<li>will have a column in the output of keep the raw event, can always go back and reexamine</li>
 <li>The from json has two pieces - the actual column and the schema</li>
 <li>select 3 columns: value, timestamp, the json created</li>
 <li>Best practices</li>
@@ -717,7 +746,9 @@ Splits: 2 total, 1 done (50.00%)
 <h2>Run</h2>
 <pre><code>docker-compose exec spark spark-submit /w205/full-stack2/filter_swords_batch.py</code></pre>
 <aside class="notes">
-
+<ul>
+<li>This isn’t yet streaming, we were just cleaning up particulary explicitly specifying schema</li>
+</ul>
 </aside>
 </section>
 <section id="turn-that-into-a-stream" class="level2">
@@ -793,9 +824,10 @@ Splits: 2 total, 1 done (50.00%)
 <a class="sourceLine" id="cb36-69" data-line-number="69">    main()</a></code></pre></div>
 <aside class="notes">
 <ul>
+<li>What’s different: <code>raw_events = spark.readStream ...</code> instead of just read</li>
 <li>In batch one, we tell it offsets, and tell it to read</li>
 <li>In streaming, no offsets</li>
-<li>query = and query.awaitTermination are differences</li>
+<li><code>query =</code> section &amp; <code>query.awaitTermination</code> sections are differences</li>
 </ul>
 </aside>
 </section>
@@ -932,6 +964,14 @@ done</code></pre>
 <section id="check-what-it-wrote-to-hadoop" class="level2">
 <h2>Check what it wrote to Hadoop</h2>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/sword_purchases</code></pre>
+<aside class="notes">
+<ul>
+<li>Hadoop is unhappy with lots of small (e.g., like this 2.7K) files,</li>
+<li>but the size of the files that we’re writing have to do with the processing time</li>
+<li>been writing batch jobs using structured streaming type syntax</li>
+<li>show different ways to partition with day or hour etc</li>
+</ul>
+</aside>
 </section>
 </section>
 <section id="section-10" class="slide level1">

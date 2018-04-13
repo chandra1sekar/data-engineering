@@ -381,6 +381,13 @@ tables used throughout the Hadoop and Spark ecosystem (schema registry).
 - To "expose" the schema for our "purchases"... we need to create a table in the
 hive metastore.
 
+- In hadoop ecosystem, 
+- hive is a full on query engine, we don't use it any longer b/c it's slow, but we use the schema registry
+- The hive metastore is friendly with multiple partitions being stored on the fs, everything that talks to hadoop can talk to the hive metastore. 
+- We write it with spark and we want to read it with presto, to get them to agree we track the schema with hive metastore
+- Hive server you usually interface with the thrift server (a seriazation critter) but it's actually set up as a relational db, mysql or postgresql, tracking these table names have these fields etc
+- We have a hive metastore spun up in our cloudera container(that's why we needed a new cloudera container)
+
 - There are two ways
   * Run hive explicitly and create an external table
   * Run spark, create a 
@@ -396,8 +403,9 @@ docker-compose exec cloudera hive
 
 
 ::: notes
-- Run hive in the hadoop container
+- Run hive in the hadoop container using the hive command line
 - This is what you would do, don't need to actually do it, skip to easier way
+- This is deprecated at this point
 :::
 
 ## 
@@ -433,6 +441,7 @@ docker-compose exec spark pyspark
 
 ::: notes
 - run spark
+- what we want to do is run another spark job to start up pyspark, could do spark nb etc
 :::
 
 
@@ -455,9 +464,15 @@ spark.sql(query)
 ```
 spark.sql("create external table purchase_events stored as parquet location '/tmp/purchase_events' as select * from purchases")
 ```
+- read parquet from what we wrote into hdfs
+- register temp table
+- create external table purchase event
+- store as parquet
+- similar to what we saw in hard example
+- we're still going to cheat and implicitly infer schema - but just getting it by select * from another df
 :::
 
-## Can just include in job
+## Can just include all that in job
 
 ```python
 #!/usr/bin/env python
@@ -523,6 +538,7 @@ if __name__ == "__main__":
 
 ::: notes
 - Modified filtered_writes.py to register a temp table and then run it from w/in spark itself
+
 :::
 
 ## Run this
@@ -552,6 +568,7 @@ docker-compose exec presto presto --server presto:8080 --catalog hive --schema d
 - it's talking to the hive thrift server to get the table we just added
 - connected to hdfs to get the data
 - Querying with presto instead of spark bc presto scales well, handles a wider range of sql syntax, can start treating like a database, can configure it to talk to cassandra, s3 directly, kafka directly, mysql, good front end for your company's data lake
+- We're overloading the word presto here
 
 :::
 
@@ -605,7 +622,15 @@ presto:default> select * from purchases;
 # 
 ## Streaming
 
-## Simpler spark
+::: notes
+- Back at the pipeline pic:
+- scale well: spark, kafka & presto (linear up to 200 machines or so); hadoop (not great),  
+- run same stack in different execution context - wouldn't have to use fundamentally different tools (except flask really, I'd use go or something else)
+- write stateless applications
+- behind load balancers
+:::
+
+## Getting our spark ready for streaming
 
 ```python
 #!/usr/bin/env python
@@ -678,11 +703,13 @@ if __name__ == "__main__":
 ```
 
 ::: notes
-- specify purchase_sword_event_schema schema in the job (before were inferring schema)
+- specify purchase_sword_event_schema schema in the job (before were inferring schema - doing that in the '.rdd \ .map(etc) \ .toDF()' this is fine but fairly brittle. In a production pipeline you want to explictly specify the schema.)
 - rename is_purchase so specific to swords
 - Combining a bunch of steps from before
 - Not going to the rdd
 - Start with raw events, filter whether they're sword purchases, 
+- Doing a lot (both the select and the filter we did in 2 steps before) in that one step for filtering sword purchases
+- will have a column in the output of keep the raw event, can always go back and reexamine
 - The from json has two pieces - the actual column and the schema
 - select 3 columns: value, timestamp, the json created
 - Best practices
@@ -698,7 +725,7 @@ if __name__ == "__main__":
 docker-compose exec spark spark-submit /w205/full-stack2/filter_swords_batch.py
 ```
 ::: notes
-
+- This isn't yet streaming, we were just cleaning up particulary explicitly specifying schema
 :::
 
 
@@ -777,9 +804,11 @@ if __name__ == "__main__":
 ```
 
 ::: notes
+- What's different:
+`raw_events = spark.readStream ...` instead of just read
 - In batch one, we tell it offsets, and tell it to read
 - In streaming, no offsets
-- query = and query.awaitTermination are differences
+- `query =` section & `query.awaitTermination` sections are differences
 :::
 
 
@@ -946,6 +975,12 @@ while true; do docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" ht
 ```
 docker-compose exec cloudera hadoop fs -ls /tmp/sword_purchases
 ```
+::: notes
+- Hadoop is unhappy with lots of small (e.g., like this 2.7K) files,
+- but the size of the files that we're writing have to do with the processing time 
+- been writing batch jobs using structured streaming type syntax
+- show different ways to partition with day or hour etc
+:::
 
 # 
 ## down
