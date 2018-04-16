@@ -379,6 +379,17 @@ while true; do docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" ht
 ```
 :::
 
+## Watch presto grow
+
+```
+presto:default> select count(*) from sword_purchases;
+```
+
+::: notes
+remember, there's a two minute stream interval
+:::
+
+
 # 
 ## down
 
@@ -388,13 +399,150 @@ while true; do docker-compose exec mids ab -n 10 -H "Host: user1.comcast.com" ht
 :::
 
 
-
 #
 ## summary
 
 ## { data-background="images/pipeline-steel-thread-for-mobile-app.svg" } 
 
 
+#
+## Building Docker Images
+
+## Setup
+
+```
+mkdir ~/w205/docker/mytools
+cd ~/w205/docker/mytools
+```
+
+::: notes
+let's create a little workspace
+:::
+
+## The `Dockerfile`
+
+Save this as `Dockerfile` in `~/w205/docker/mytools/`
+
+```Dockerfile
+FROM ubuntu:xenial
+MAINTAINER Mark Mims <mark@digitalocean.com>
+
+RUN apt-get -qq update \
+  && apt-get -qq install -y jq apache2-utils
+```
+
+::: notes
+rules to build docker images... we'll see more examples below
+:::
+
+## Build
+
+```
+docker build -t <tag> <path>
+```
+
+so, from a folder containing a `Dockerfile`,
+
+```
+docker build -t mytools .
+```
+
+::: notes
+we've gone over `.` before, but reiterate
+
+also, tag can include namespace and versions...
+- `mytools` is implicitly `mytools:latest`
+- `mytools:0.0.1` or `mytools:some-string-here`
+- `markmims/mytools:0.0.1` or `midsw205/mytools:0.0.1`
+
+:::
+
+## check build ids and tags
+
+```
+docker images | grep mytools
+```
+
+## test a build
+
+```
+docker run -it --rm mytools bash
+```
+
+then at the prompt
+```
+which jq
+```
+
+## Iterate
+
+## You can do more in a `Dockerfile`
+
+```Dockerfile
+FROM ubuntu:16.04
+MAINTAINER Mark Mims <mark@digitalocean.com>
+
+ENV SPARK_VERSION        2.2.0
+ENV SPARK_HADOOP_VERSION 2.6
+
+ENV SPARK_HOME /spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION
+ENV JAVA_HOME  /usr/lib/jvm/java-8-oracle
+
+ENV SPARK_TEMPLATE_PATH $SPARK_HOME/templates
+ENV SPARK_CONF_PATH $SPARK_HOME/conf
+
+ENV PATH $SPARK_HOME/bin:$PATH
+
+RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
+  && apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y software-properties-common \
+  && add-apt-repository -y ppa:webupd8team/java \
+  && apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \
+  && apt-get update \
+  && apt-get install -y \
+      curl \
+      dnsutils \
+      oracle-java8-installer \
+  && apt-get purge -y software-properties-common \
+  && apt-get autoremove -y \
+  && curl -OL http://www-us.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz \
+  && tar xf spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz \
+  && rm spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz
+
+COPY *-site.xml            $SPARK_TEMPLATE_PATH/
+COPY *.properties          $SPARK_CONF_PATH/
+COPY spark-defaults.conf   $SPARK_CONF_PATH
+COPY spark-env.sh          $SPARK_CONF_PATH
+
+COPY jars/* $SPARK_HOME/jars/
+
+WORKDIR $SPARK_HOME
+
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/docker-entrypoint.sh entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["spark-shell"]
+```
+
+::: notes
+this is our `midsw205/spark-minimal` docker image
+
+note some of the primitives:
+- `ENV`
+- `RUN`
+- `COPY`
+- `CMD`
+
+:::
+
+## Examples of different `Dockerfile`s
+
+- [nginx](https://github.com/docker-library/nginx/blob/master/1.7/Dockerfile)
+- [mongo](https://github.com/docker-library/mongo/blob/master/3.7/Dockerfile)
+- [mysql](https://github.com/docker-library/mysql/blob/master/8.0/Dockerfile)
+- [python](https://github.com/docker-library/python/blob/master/3.6/jessie/Dockerfile)
+- [etc...](https://github.com/docker-library/)
 
 
 #
