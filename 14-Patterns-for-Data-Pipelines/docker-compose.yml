@@ -1,0 +1,89 @@
+---
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - "2181"
+      - "2888"
+      - "32181"
+      - "3888"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    expose:
+      - "9092"
+      - "29092"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  cloudera:
+    image: midsw205/hadoop:0.0.2
+    hostname: cloudera
+    expose:
+      - "8020" # nn
+      - "8888" # hue
+      - "9083" # hive thrift
+      - "10000" # hive jdbc
+      - "50070" # nn http
+    ports:
+      - "8888:8888"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  spark:
+    image: midsw205/spark-python:0.0.6
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "8888"
+    ports:
+      - "8889:8888" # 8888 conflicts with hue
+    depends_on:
+      - cloudera
+    environment:
+      HADOOP_NAMENODE: cloudera
+      HIVE_THRIFTSERVER: cloudera:9083
+    extra_hosts:
+      - "moby:127.0.0.1"
+    command: bash
+
+  presto:
+    image: midsw205/presto:0.0.1
+    hostname: presto
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "8080"
+    environment:
+      HIVE_THRIFTSERVER: cloudera:9083
+    extra_hosts:
+      - "moby:127.0.0.1"
+
+  mids:
+    image: midsw205/base:0.1.9
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "5000"
+    ports:
+      - "5000:5000"
+    extra_hosts:
+      - "moby:127.0.0.1"
+
