@@ -116,14 +116,28 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
-<section id="section-2" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<section id="announcements" class="level2">
+<h2>Announcements</h2>
+<ul>
+<li>droplets - copy all your stuff out this week</li>
+<li>repos - fork or clone your repos this week</li>
+<li>future - <code>course-content</code> tagged by semester</li>
+</ul>
+<aside class="notes">
+<p>You’ll maintain access to <code>mids-w205-&lt;instructor&gt;/course-content</code> and this semester will be tagged <code>spring2018</code></p>
+</aside>
+</section>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<section id="section-3" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 <aside class="notes">
 <p>review pipeline summary</p>
 </aside>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="full-stack-streaming" class="level2">
 <h2>Full-Stack Streaming</h2>
@@ -134,7 +148,7 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
+<section id="section-5" class="slide level1">
 <h1></h1>
 <section id="setup" class="level2">
 <h2>Setup</h2>
@@ -307,12 +321,12 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 </aside>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="streaming" class="level2">
 <h2>Streaming</h2>
 </section>
-<section id="section-6" class="level2">
+<section id="section-7" class="level2">
 <h2></h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">&quot;&quot;&quot;Extract events from kafka and write them to hdfs</span></a>
@@ -401,7 +415,7 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/sword_purchases</code></pre>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="set-up-presto" class="level2">
 <h2>Set up Presto</h2>
@@ -416,7 +430,7 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 </ul>
 </aside>
 </section>
-<section id="section-8" class="level2">
+<section id="section-9" class="level2">
 <h2></h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">create</span> external <span class="kw">table</span> <span class="kw">if</span> <span class="kw">not</span> <span class="kw">exists</span> default.sword_purchases (</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">    Accept string,</a>
@@ -453,7 +467,7 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <pre><code>presto:default&gt; select * from sword_purchases;</code></pre>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
 <section id="add-some-data" class="level2">
 <h2>Add some data</h2>
@@ -498,7 +512,7 @@ docker-compose exec mids ab -n 10 -H &quot;Host: user2.att.com&quot; http://loca
 </aside>
 </section>
 </section>
-<section id="section-10" class="slide level1">
+<section id="section-11" class="slide level1">
 <h1></h1>
 <section id="more-data" class="level2">
 <h2>More data</h2>
@@ -525,7 +539,7 @@ done</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-11" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
 <section id="down" class="level2">
 <h2>down</h2>
@@ -535,13 +549,13 @@ done</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-12" class="slide level1">
+<section id="section-13" class="slide level1">
 <h1></h1>
-<section id="section-13" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
+<section id="section-14" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 </section>
 </section>
-<section id="section-14" class="slide level1">
+<section id="section-15" class="slide level1">
 <h1></h1>
 <section id="building-docker-images" class="level2">
 <h2>Building Docker Images</h2>
@@ -666,7 +680,7 @@ docker run -it --rm mytools which jq</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-15" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

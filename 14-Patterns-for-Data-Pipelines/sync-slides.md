@@ -22,10 +22,19 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 
 
 
+#
+## Announcements
+
+- droplets - copy all your stuff out this week
+- repos - fork or clone your repos this week
+- future - `course-content` tagged by semester
+
+::: notes
+You'll maintain access to `mids-w205-<instructor>/course-content` and this
+semester will be tagged `spring2018`
+:::
 
 #
-
-
 ## { data-background="images/pipeline-steel-thread-for-mobile-app.svg" } 
 
 ::: notes
