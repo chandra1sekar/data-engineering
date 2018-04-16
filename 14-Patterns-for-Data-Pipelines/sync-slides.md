@@ -569,12 +569,20 @@ then at the prompt
 which jq
 ```
 
+::: notes
+`exit` or `ctl-d` to get out of the container after running this command
+:::
+
 ## What did we do?
 
 ```
 docker run -it --rm ubuntu:xenial which jq
 docker run -it --rm mytools which jq
 ```
+
+::: notes
+bare `ubuntu` doesn't have `jq`, but ours does now
+:::
 
 
 ## Iterate

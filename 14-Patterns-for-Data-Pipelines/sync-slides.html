@@ -585,11 +585,17 @@ cd ~/w205/docker/mytools</code></pre>
 <pre><code>docker run -it --rm mytools bash</code></pre>
 <p>then at the prompt</p>
 <pre><code>which jq</code></pre>
+<aside class="notes">
+<p><code>exit</code> or <code>ctl-d</code> to get out of the container after running this command</p>
+</aside>
 </section>
 <section id="what-did-we-do" class="level2">
 <h2>What did we do?</h2>
 <pre><code>docker run -it --rm ubuntu:xenial which jq
 docker run -it --rm mytools which jq</code></pre>
+<aside class="notes">
+<p>bare <code>ubuntu</code> doesn’t have <code>jq</code>, but ours does now</p>
+</aside>
 </section>
 <section id="iterate" class="level2">
 <h2>Iterate</h2>
