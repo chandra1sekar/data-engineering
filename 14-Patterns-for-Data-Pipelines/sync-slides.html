@@ -142,7 +142,94 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <section id="the-docker-compose.yml" class="level2">
 <h2>The <code>docker-compose.yml</code></h2>
 <p>Create a <code>docker-compose.yml</code> with the following</p>
-<pre><code>---</code></pre>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - &quot;2181&quot;
+      - &quot;2888&quot;
+      - &quot;32181&quot;
+      - &quot;3888&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    expose:
+      - &quot;9092&quot;
+      - &quot;29092&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  cloudera:
+    image: midsw205/hadoop:0.0.2
+    hostname: cloudera
+    expose:
+      - &quot;8020&quot; # nn
+      - &quot;8888&quot; # hue
+      - &quot;9083&quot; # hive thrift
+      - &quot;10000&quot; # hive jdbc
+      - &quot;50070&quot; # nn http
+    ports:
+      - &quot;8888:8888&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  spark:
+    image: midsw205/spark-python:0.0.6
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;8888&quot;
+    ports:
+      - &quot;8889:8888&quot; # 8888 conflicts with hue
+    depends_on:
+      - cloudera
+    environment:
+      HADOOP_NAMENODE: cloudera
+      HIVE_THRIFTSERVER: cloudera:9083
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+    command: bash
+
+  presto:
+    image: midsw205/presto:0.0.1
+    hostname: presto
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;8080&quot;
+    environment:
+      HIVE_THRIFTSERVER: cloudera:9083
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;
+
+  mids:
+    image: midsw205/base:0.1.9
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;5000&quot;
+    ports:
+      - &quot;5000:5000&quot;
+    extra_hosts:
+      - &quot;moby:127.0.0.1&quot;</code></pre>
 <aside class="notes">
 <p>same as last week.. except for a port mapping to expose jupyter notebooks from the spark container</p>
 </aside>
@@ -345,6 +432,8 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <aside class="notes">
 <pre><code>create external table if not exists default.sword_purchases (Accept string, Host string, User_Agent string, event_type string, timestamp string, raw_event string) stored as parquet location &#39;/tmp/sword_purchases&#39;  tblproperties (&quot;parquet.compress&quot;=&quot;SNAPPY&quot;);</code></pre>
 <p>and then <code>ctrl-D</code> to exit the hive shell</p>
+<p>Note: you might browse the metastore in hue… <code>open http://localhost:8888/</code> (login/pw is <code>cloudera/cloudera</code>)</p>
+<p>for droplets, <code>s/localhost/&lt;droplet_ip&gt;/</code></p>
 </aside>
 </section>
 <section id="query-this-with-presto" class="level2">
@@ -426,6 +515,15 @@ done</code></pre>
 <pre><code>while true; do docker-compose exec mids ab -n 10 -H &quot;Host: user1.comcast.com&quot; http://localhost:5000/purchase_a_sword; sleep 10; done</code></pre>
 </aside>
 </section>
+<section id="watch-presto-grow" class="level2">
+<h2>Watch presto grow</h2>
+<pre><code>presto:default&gt; select count(*) from sword_purchases;</code></pre>
+<aside class="notes">
+<p>remember, there’s a two minute stream interval</p>
+<p>Note: you might run hive directly from hue… <code>open http://localhost:8888/</code> (login/pw is <code>cloudera/cloudera</code>). We recommend Presto as a much better query option in general, but hue has its uses.</p>
+<p>for droplets, <code>s/localhost/&lt;droplet_ip&gt;/</code></p>
+</aside>
+</section>
 </section>
 <section id="section-11" class="slide level1">
 <h1></h1>
@@ -439,14 +537,129 @@ done</code></pre>
 </section>
 <section id="section-12" class="slide level1">
 <h1></h1>
-<section id="summary" class="level2">
-<h2>summary</h2>
-</section>
 <section id="section-13" class="level2" data-background="images/pipeline-steel-thread-for-mobile-app.svg">
 <h2></h2>
 </section>
 </section>
 <section id="section-14" class="slide level1">
+<h1></h1>
+<section id="building-docker-images" class="level2">
+<h2>Building Docker Images</h2>
+</section>
+<section id="setup-1" class="level2">
+<h2>Setup</h2>
+<pre><code>mkdir -p ~/w205/docker/mytools
+cd ~/w205/docker/mytools</code></pre>
+<aside class="notes">
+<p>let’s create a little workspace</p>
+</aside>
+</section>
+<section id="the-dockerfile" class="level2">
+<h2>The <code>Dockerfile</code></h2>
+<p>Save this as <code>Dockerfile</code> in <code>~/w205/docker/mytools/</code></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">FROM</span> ubuntu:xenial</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">MAINTAINER</span> Mark Mims &lt;mark@digitalocean.com&gt;</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="kw">RUN</span> apt-get -qq update \</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">  &amp;&amp; apt-get -qq install -y jq apache2-utils</a></code></pre></div>
+<aside class="notes">
+<p>rules to build docker images… we’ll see more examples below</p>
+</aside>
+</section>
+<section id="build" class="level2">
+<h2>Build</h2>
+<pre><code>docker build -t &lt;tag&gt; &lt;path&gt;</code></pre>
+<p>so, from a folder containing a <code>Dockerfile</code>,</p>
+<pre><code>docker build -t mytools .</code></pre>
+<aside class="notes">
+<p>we’ve gone over <code>.</code> before, but reiterate</p>
+<p>also, tag can include namespace and versions… - <code>mytools</code> is implicitly <code>mytools:latest</code> - <code>mytools:0.0.1</code> or <code>mytools:some-string-here</code> - <code>markmims/mytools:0.0.1</code> or <code>midsw205/mytools:0.0.1</code></p>
+</aside>
+</section>
+<section id="check-build-ids-and-tags" class="level2">
+<h2>check build ids and tags</h2>
+<pre><code>docker images | grep mytools</code></pre>
+</section>
+<section id="test-a-build" class="level2">
+<h2>test a build</h2>
+<pre><code>docker run -it --rm mytools bash</code></pre>
+<p>then at the prompt</p>
+<pre><code>which jq</code></pre>
+</section>
+<section id="what-did-we-do" class="level2">
+<h2>What did we do?</h2>
+<pre><code>docker run -it --rm ubuntu:xenial which jq
+docker run -it --rm mytools which jq</code></pre>
+</section>
+<section id="iterate" class="level2">
+<h2>Iterate</h2>
+</section>
+<section id="you-can-do-more-in-a-dockerfile" class="level2">
+<h2>You can do more in a <code>Dockerfile</code></h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">FROM</span> ubuntu:16.04</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">MAINTAINER</span> Mark Mims &lt;mark@digitalocean.com&gt;</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw">ENV</span> SPARK_VERSION        2.2.0</a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="kw">ENV</span> SPARK_HADOOP_VERSION 2.6</a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="kw">ENV</span> SPARK_HOME /spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION</a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="kw">ENV</span> JAVA_HOME  /usr/lib/jvm/java-8-oracle</a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="kw">ENV</span> SPARK_TEMPLATE_PATH $SPARK_HOME/templates</a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="kw">ENV</span> SPARK_CONF_PATH $SPARK_HOME/conf</a>
+<a class="sourceLine" id="cb38-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="kw">ENV</span> PATH $SPARK_HOME/bin:$PATH</a>
+<a class="sourceLine" id="cb38-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb38-15" data-line-number="15"><span class="kw">RUN</span> echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \</a>
+<a class="sourceLine" id="cb38-16" data-line-number="16">  &amp;&amp; apt-get update \</a>
+<a class="sourceLine" id="cb38-17" data-line-number="17">  &amp;&amp; apt-get upgrade -y \</a>
+<a class="sourceLine" id="cb38-18" data-line-number="18">  &amp;&amp; apt-get install -y software-properties-common \</a>
+<a class="sourceLine" id="cb38-19" data-line-number="19">  &amp;&amp; add-apt-repository -y ppa:webupd8team/java \</a>
+<a class="sourceLine" id="cb38-20" data-line-number="20">  &amp;&amp; apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF \</a>
+<a class="sourceLine" id="cb38-21" data-line-number="21">  &amp;&amp; apt-get update \</a>
+<a class="sourceLine" id="cb38-22" data-line-number="22">  &amp;&amp; apt-get install -y \</a>
+<a class="sourceLine" id="cb38-23" data-line-number="23">      curl \</a>
+<a class="sourceLine" id="cb38-24" data-line-number="24">      dnsutils \</a>
+<a class="sourceLine" id="cb38-25" data-line-number="25">      oracle-java8-installer \</a>
+<a class="sourceLine" id="cb38-26" data-line-number="26">  &amp;&amp; apt-get purge -y software-properties-common \</a>
+<a class="sourceLine" id="cb38-27" data-line-number="27">  &amp;&amp; apt-get autoremove -y \</a>
+<a class="sourceLine" id="cb38-28" data-line-number="28">  &amp;&amp; curl -OL http://www-us.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz \</a>
+<a class="sourceLine" id="cb38-29" data-line-number="29">  &amp;&amp; tar xf spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz \</a>
+<a class="sourceLine" id="cb38-30" data-line-number="30">  &amp;&amp; rm spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz</a>
+<a class="sourceLine" id="cb38-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb38-32" data-line-number="32"><span class="kw">COPY</span> *-site.xml            $SPARK_TEMPLATE_PATH/</a>
+<a class="sourceLine" id="cb38-33" data-line-number="33"><span class="kw">COPY</span> *.properties          $SPARK_CONF_PATH/</a>
+<a class="sourceLine" id="cb38-34" data-line-number="34"><span class="kw">COPY</span> spark-defaults.conf   $SPARK_CONF_PATH</a>
+<a class="sourceLine" id="cb38-35" data-line-number="35"><span class="kw">COPY</span> spark-env.sh          $SPARK_CONF_PATH</a>
+<a class="sourceLine" id="cb38-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb38-37" data-line-number="37"><span class="kw">COPY</span> jars/* $SPARK_HOME/jars/</a>
+<a class="sourceLine" id="cb38-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb38-39" data-line-number="39"><span class="kw">WORKDIR</span> $SPARK_HOME</a>
+<a class="sourceLine" id="cb38-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb38-41" data-line-number="41"><span class="kw">COPY</span> docker-entrypoint.sh /usr/local/bin/</a>
+<a class="sourceLine" id="cb38-42" data-line-number="42"><span class="kw">RUN</span> ln -s usr/local/bin/docker-entrypoint.sh entrypoint.sh</a>
+<a class="sourceLine" id="cb38-43" data-line-number="43"><span class="kw">ENTRYPOINT</span> [<span class="st">&quot;docker-entrypoint.sh&quot;</span>]</a>
+<a class="sourceLine" id="cb38-44" data-line-number="44"><span class="kw">CMD</span> [<span class="st">&quot;spark-shell&quot;</span>]</a></code></pre></div>
+<aside class="notes">
+<p>this is our <code>midsw205/spark-minimal</code> docker image</p>
+<p>note some of the primitives: - <code>ENV</code> - <code>RUN</code> - <code>COPY</code> - <code>CMD</code></p>
+</aside>
+</section>
+<section id="examples-of-different-dockerfiles" class="level2">
+<h2>Examples of different <code>Dockerfile</code>s</h2>
+<ul>
+<li><a href="https://github.com/docker-library/nginx/blob/master/1.7/Dockerfile">nginx</a></li>
+<li><a href="https://github.com/docker-library/mongo/blob/master/3.7/Dockerfile">mongo</a></li>
+<li><a href="https://github.com/docker-library/mysql/blob/master/8.0/Dockerfile">mysql</a></li>
+<li><a href="https://github.com/docker-library/python/blob/master/3.6/jessie/Dockerfile">python</a></li>
+<li><a href="https://github.com/docker-library/">etc…</a></li>
+</ul>
+<aside class="notes">
+<p>Check out <a href="https://docs.docker.com/compose/gettingstarted/" class="uri">https://docs.docker.com/compose/gettingstarted/</a> for a good example of integrating a container you <em>build</em> into a cluster of containers.</p>
+</aside>
+</section>
+</section>
+<section id="section-15" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

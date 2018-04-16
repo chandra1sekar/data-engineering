@@ -365,7 +365,9 @@ create external table if not exists default.sword_purchases (Accept string, Host
 ```
 and then `ctrl-D` to exit the hive shell
 
-Note: you might want to look at `hue` on `8888`... `open http://localhost:8888/` (login/pw is `cloudera/cloudera`)
+Note: you might browse the metastore in hue... `open http://localhost:8888/` (login/pw is `cloudera/cloudera`)
+
+for droplets, `s/localhost/<droplet_ip>/`
 :::
 
 ## Query this with presto
@@ -477,6 +479,11 @@ presto:default> select count(*) from sword_purchases;
 
 ::: notes
 remember, there's a two minute stream interval
+
+Note: you might run hive directly from hue... `open http://localhost:8888/` (login/pw is `cloudera/cloudera`).
+We recommend Presto as a much better query option in general, but hue has its uses.
+
+for droplets, `s/localhost/<droplet_ip>/`
 :::
 
 
@@ -490,8 +497,6 @@ remember, there's a two minute stream interval
 
 
 #
-## summary
-
 ## { data-background="images/pipeline-steel-thread-for-mobile-app.svg" } 
 
 
@@ -501,7 +506,7 @@ remember, there's a two minute stream interval
 ## Setup
 
 ```
-mkdir ~/w205/docker/mytools
+mkdir -p ~/w205/docker/mytools
 cd ~/w205/docker/mytools
 ```
 
@@ -564,7 +569,16 @@ then at the prompt
 which jq
 ```
 
+## What did we do?
+
+```
+docker run -it --rm ubuntu:xenial which jq
+docker run -it --rm mytools which jq
+```
+
+
 ## Iterate
+
 
 ## You can do more in a `Dockerfile`
 
@@ -626,6 +640,7 @@ note some of the primitives:
 
 :::
 
+
 ## Examples of different `Dockerfile`s
 
 - [nginx](https://github.com/docker-library/nginx/blob/master/1.7/Dockerfile)
@@ -633,6 +648,12 @@ note some of the primitives:
 - [mysql](https://github.com/docker-library/mysql/blob/master/8.0/Dockerfile)
 - [python](https://github.com/docker-library/python/blob/master/3.6/jessie/Dockerfile)
 - [etc...](https://github.com/docker-library/)
+
+
+::: notes
+Check out <https://docs.docker.com/compose/gettingstarted/> for a good example
+of integrating a container you _build_ into a cluster of containers.
+:::
 
 
 #
