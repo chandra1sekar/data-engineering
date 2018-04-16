@@ -46,7 +46,7 @@ review pipeline summary
 ## The `docker-compose.yml` 
 
 Create a `docker-compose.yml` with the following
-```
+```yml
 ---
 version: '2'
 services:
@@ -638,6 +638,7 @@ note some of the primitives:
 - `COPY`
 - `CMD`
 
+Perhaps discuss chaining images.. i.e., use `FROM openjdk:8` instead of installing java the way we do here
 :::
 
 
