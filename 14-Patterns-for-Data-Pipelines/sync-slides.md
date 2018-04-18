@@ -30,8 +30,11 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 - future - `course-content` tagged by semester
 
 ::: notes
-You'll maintain access to `mids-w205-<instructor>/course-content` and this
-semester will be tagged `spring2018`
+- You'll maintain access to `mids-w205-<instructor>/course-content` 
+- This semester will be tagged `spring2018`
+- Explain will add read access for main course content (fund of data eng)
+- Explain tagging
+- Will have access to the version you had + updates for the future
 :::
 
 #
@@ -316,7 +319,8 @@ if __name__ == "__main__":
 ```
 
 ::: notes
-same as last week except `processingTime`
+- same as last week except `processingTime`
+- Also 120 second window
 :::
 
 
@@ -559,6 +563,8 @@ also, tag can include namespace and versions...
 - `mytools:0.0.1` or `mytools:some-string-here`
 - `markmims/mytools:0.0.1` or `midsw205/mytools:0.0.1`
 
+- Need to tag mytools, fix permissions to do this
+- `docker images | grep mytools`
 :::
 
 ## check build ids and tags
@@ -579,6 +585,7 @@ which jq
 ```
 
 ::: notes
+- show with `which jq` that the container we built is different than the ubuntu base container
 `exit` or `ctl-d` to get out of the container after running this command
 :::
 
@@ -647,15 +654,17 @@ CMD ["spark-shell"]
 ```
 
 ::: notes
-this is our `midsw205/spark-minimal` docker image
+- this is our `midsw205/spark-minimal` docker image
 
-note some of the primitives:
+- note some of the primitives:
 - `ENV`
 - `RUN`
 - `COPY`
 - `CMD`
 
-Perhaps discuss chaining images.. i.e., use `FROM openjdk:8` instead of installing java the way we do here
+- show that it starts a spark shell (focus on `CMD` & `RUN`)
+
+- Perhaps discuss chaining images.. i.e., use `FROM openjdk:8` instead of installing java the way we do here
 :::
 
 

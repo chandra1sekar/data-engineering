@@ -124,7 +124,13 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <li>future - <code>course-content</code> tagged by semester</li>
 </ul>
 <aside class="notes">
-<p>You’ll maintain access to <code>mids-w205-&lt;instructor&gt;/course-content</code> and this semester will be tagged <code>spring2018</code></p>
+<ul>
+<li>You’ll maintain access to <code>mids-w205-&lt;instructor&gt;/course-content</code></li>
+<li>This semester will be tagged <code>spring2018</code></li>
+<li>Explain will add read access for main course content (fund of data eng)</li>
+<li>Explain tagging</li>
+<li>Will have access to the version you had + updates for the future</li>
+</ul>
 </aside>
 </section>
 </section>
@@ -400,7 +406,10 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <a class="sourceLine" id="cb10-70" data-line-number="70"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</a>
 <a class="sourceLine" id="cb10-71" data-line-number="71">    main()</a></code></pre></div>
 <aside class="notes">
-<p>same as last week except <code>processingTime</code></p>
+<ul>
+<li>same as last week except <code>processingTime</code></li>
+<li>Also 120 second window</li>
+</ul>
 </aside>
 </section>
 <section id="run-it" class="level2">
@@ -588,6 +597,10 @@ cd ~/w205/docker/mytools</code></pre>
 <aside class="notes">
 <p>we’ve gone over <code>.</code> before, but reiterate</p>
 <p>also, tag can include namespace and versions… - <code>mytools</code> is implicitly <code>mytools:latest</code> - <code>mytools:0.0.1</code> or <code>mytools:some-string-here</code> - <code>markmims/mytools:0.0.1</code> or <code>midsw205/mytools:0.0.1</code></p>
+<ul>
+<li>Need to tag mytools, fix permissions to do this</li>
+<li><code>docker images | grep mytools</code></li>
+</ul>
 </aside>
 </section>
 <section id="check-build-ids-and-tags" class="level2">
@@ -600,7 +613,9 @@ cd ~/w205/docker/mytools</code></pre>
 <p>then at the prompt</p>
 <pre><code>which jq</code></pre>
 <aside class="notes">
-<p><code>exit</code> or <code>ctl-d</code> to get out of the container after running this command</p>
+<ul>
+<li>show with <code>which jq</code> that the container we built is different than the ubuntu base container <code>exit</code> or <code>ctl-d</code> to get out of the container after running this command</li>
+</ul>
 </aside>
 </section>
 <section id="what-did-we-do" class="level2">
@@ -661,9 +676,16 @@ docker run -it --rm mytools which jq</code></pre>
 <a class="sourceLine" id="cb38-43" data-line-number="43"><span class="kw">ENTRYPOINT</span> [<span class="st">&quot;docker-entrypoint.sh&quot;</span>]</a>
 <a class="sourceLine" id="cb38-44" data-line-number="44"><span class="kw">CMD</span> [<span class="st">&quot;spark-shell&quot;</span>]</a></code></pre></div>
 <aside class="notes">
-<p>this is our <code>midsw205/spark-minimal</code> docker image</p>
-<p>note some of the primitives: - <code>ENV</code> - <code>RUN</code> - <code>COPY</code> - <code>CMD</code></p>
-<p>Perhaps discuss chaining images.. i.e., use <code>FROM openjdk:8</code> instead of installing java the way we do here</p>
+<ul>
+<li><p>this is our <code>midsw205/spark-minimal</code> docker image</p></li>
+<li>note some of the primitives:</li>
+<li><code>ENV</code></li>
+<li><code>RUN</code></li>
+<li><code>COPY</code></li>
+<li><p><code>CMD</code></p></li>
+<li><p>show that it starts a spark shell (focus on <code>CMD</code> &amp; <code>RUN</code>)</p></li>
+<li>Perhaps discuss chaining images.. i.e., use <code>FROM openjdk:8</code> instead of installing java the way we do here</li>
+</ul>
 </aside>
 </section>
 <section id="examples-of-different-dockerfiles" class="level2">
