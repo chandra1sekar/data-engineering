@@ -150,6 +150,7 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <aside class="notes">
 <ul>
 <li>last week we introduced Presto and Spark Streaming</li>
+<li>Set up tmux session to have a pane for each service</li>
 </ul>
 </aside>
 </section>
@@ -422,6 +423,9 @@ cp ~/w205/course-content/14-Patterns-for-Data-Pipelines/*.py .
 <section id="check-what-it-wrote-to-hadoop" class="level2">
 <h2>Check what it wrote to Hadoop</h2>
 <pre><code>docker-compose exec cloudera hadoop fs -ls /tmp/sword_purchases</code></pre>
+<aside class="notes">
+
+</aside>
 </section>
 </section>
 <section id="section-8" class="slide level1">
@@ -544,7 +548,7 @@ done</code></pre>
 <aside class="notes">
 <p>remember, there’s a two minute stream interval</p>
 <p>Note: you might run hive directly from hue… <code>open http://localhost:8888/</code> (login/pw is <code>cloudera/cloudera</code>). We recommend Presto as a much better query option in general, but hue has its uses.</p>
-<p>for droplets, <code>s/localhost/&lt;droplet_ip&gt;/</code></p>
+<p>for droplets, <code>s/localhost/&lt;droplet_ip&gt;/</code> - hue can be used as a gui to browse the hdfs file directory, can upload and download files, change permissions, a lot of complications with hdfs are about permissions, so this easy access to what’s up can be really helpful. - That’s why we’ve been writing to the tmp directory is to avoid dealing with permissions for this class. - can also do a query editor in hue - e.g., select * from default.sword_purchases. - hive will try to kick off a bunch of map reduce jobs under the hood, and we haven’t set up the resources to handle that. - therefore, Presto is better.</p>
 </aside>
 </section>
 </section>
@@ -698,7 +702,17 @@ docker run -it --rm mytools which jq</code></pre>
 <li><a href="https://github.com/docker-library/">etc…</a></li>
 </ul>
 <aside class="notes">
-<p>Check out <a href="https://docs.docker.com/compose/gettingstarted/" class="uri">https://docs.docker.com/compose/gettingstarted/</a> for a good example of integrating a container you <em>build</em> into a cluster of containers.</p>
+<ul>
+<li>Check out docker hub (hub.docker.com)</li>
+<li>search for e.g., mongo etc, see how many there are</li>
+<li>any big open source project is likely to have an image on docker hub</li>
+<li>also great place to see examples of Dockerfiles</li>
+<li>What is the process, you can keep images around - you only need to build once until you change it.</li>
+<li>Then you spin up containers from them.</li>
+<li>(show could do RUN… then another RUN…) but that would be bloated. These files start wiht one image and they layer other file systems on top of it. Try to be efficient. Every RUN command is another file system layer. Trying to make each layer as minimal and efficient as possible.</li>
+<li>Our main image does not follow these guidelines :)</li>
+<li>Check out <a href="https://docs.docker.com/compose/gettingstarted/" class="uri">https://docs.docker.com/compose/gettingstarted/</a> for a good example of integrating a container you <em>build</em> into a cluster of containers.</li>
+</ul>
 </aside>
 </section>
 </section>

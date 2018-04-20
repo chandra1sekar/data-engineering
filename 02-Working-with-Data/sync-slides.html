@@ -328,7 +328,8 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <section id="section-11" class="level2">
 <h2></h2>
 <pre><code>#standardSQL
-SELECT station_id, (docks_available + bikes_available) as total_bikes
+SELECT station_id, 
+(docks_available + bikes_available) as total_bikes
 FROM `bigquery-public-data.san_francisco.bikeshare_status`
 WHERE station_id = 90</code></pre>
 <aside class="notes">
@@ -373,7 +374,8 @@ ORDER BY total_bikes</code></pre>
 <section id="section-13" class="level2">
 <h2></h2>
 <pre><code>#standardSQL
-SELECT station_id, docks_available, bikes_available, time, (docks_available + bikes_available) as total_bikes
+SELECT station_id, docks_available, bikes_available, time, 
+(docks_available + bikes_available) as total_bikes
 FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 <aside class="notes">
 <ul>
@@ -403,12 +405,6 @@ WHERE station_id = 22</code></pre>
 <p>This lets you explore each station’s total number of bikes</p>
 </aside>
 </section>
-<section id="section-16" class="level2">
-<h2></h2>
-<pre><code>#standardSQL
-SELECT *
-FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
-</section>
 <section id="independent-queries" class="level2">
 <h2>Independent Queries</h2>
 <p><a href="https://www.w3schools.com/sql/default.asp" class="uri">https://www.w3schools.com/sql/default.asp</a></p>
@@ -417,7 +413,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-17" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
@@ -429,7 +425,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`</code></pre>
 </ul>
 </section>
 </section>
-<section id="section-18" class="slide level1">
+<section id="section-17" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>

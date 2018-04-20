@@ -49,6 +49,7 @@ review pipeline summary
 ## Full-Stack Streaming
 ::: notes
 - last week we introduced Presto and Spark Streaming
+- Set up tmux session to have a pane for each service
 :::
 
 
@@ -340,6 +341,8 @@ wait a bit for the first stream interval to finish saving data
 docker-compose exec cloudera hadoop fs -ls /tmp/sword_purchases
 ```
 
+::: notes
+:::
 
 #
 ## Set up Presto
@@ -497,6 +500,11 @@ Note: you might run hive directly from hue... `open http://localhost:8888/` (log
 We recommend Presto as a much better query option in general, but hue has its uses.
 
 for droplets, `s/localhost/<droplet_ip>/`
+- hue can be used as a gui to browse the hdfs file directory, can upload and download files, change permissions, a lot of complications with hdfs are about permissions, so this easy access to what's up can be really helpful.
+- That's why we've been writing to the tmp directory is to avoid dealing with permissions for this class.
+- can also do a query editor in hue - e.g., select * from default.sword_purchases.
+- hive will try to kick off a bunch of map reduce jobs under the hood, and we haven't set up the resources to handle that. 
+- therefore, Presto is better.
 :::
 
 
@@ -678,8 +686,16 @@ CMD ["spark-shell"]
 
 
 ::: notes
-Check out <https://docs.docker.com/compose/gettingstarted/> for a good example
-of integrating a container you _build_ into a cluster of containers.
+- Check out docker hub (hub.docker.com)
+- search for e.g., mongo etc, see how many there are
+- any big open source project is likely to have an image on docker hub
+- also great place to see examples of Dockerfiles
+- What is the process, you can keep images around - you only need to build once until you change it. 
+- Then you spin up containers from them.
+- (show could do RUN... then another RUN...) but that would be bloated. These files start wiht one image and they layer other file systems on top of it. Try to be efficient. Every RUN command is another file system layer. Trying to make each layer as minimal and efficient as possible.
+- Our main image does not follow these guidelines :)
+- Check out <https://docs.docker.com/compose/gettingstarted/> for a good example of integrating a container you _build_ into a cluster of containers.
+
 :::
 
 
