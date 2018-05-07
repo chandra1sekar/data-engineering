@@ -61,43 +61,64 @@ Here, we're trying to follow good practices for data engineering and use appropr
 this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)
 :::
 
-## Approach
-
-- Github-centric content
-- Cloud accounts
-- Dockerhub
-- Activity submissions
-
 ## Activities
 
 - Let's get going!
 
 ::: notes
 With all of that in mind, let's get going!
-(Cloud accounts is covered in the what is Data Engineering section)
 :::
+
+
+#
+## Slack
+
+::: notes
+We're using slack for this class
+
+Instructors specify each section's slack channel
+:::
+
+
+#
+## Cloud Instances
+
+::: notes
+We'll be working from cloud instances ("Droplets") in this class
+:::
+
+
+## Access
+
+- URL:
+  ```
+  http://<ip_address>:8000/
+  ```
+
+- Login: `science`
+
+- Password: (provided over slack)
+
+::: notes
+Instructors hand out ip addresses and passwords
+
+Students familiar with SecureShell can ssh directly to the droplets
+:::
+
+## JupyterHub Terminal
+
+::: notes
+copy/paste files via the jupyterhub file browser
+
+We'll use SecureShell for this in the future
+:::
+
 
 #
 ## Docker
 
-- What is docker?
-
 ::: notes
 What is docker? Very brief version
-:::
-
-## Install docker
-
-- Windows 
-
-    https://store.docker.com/editions/community/docker-ce-desktop-windows
-
-- Mac 
-
-    https://store.docker.com/editions/community/docker-ce-desktop-mac
-
-::: notes
-Send this out on wall notice ahead, but just in case.
 :::
 
 ##
@@ -112,7 +133,7 @@ Don't worry about it, we will review....blah, blah,
 For now, just follow along
 :::
 
-## Docker set up (from a terminal)
+##
 
 - pull the image:
   ```
@@ -127,7 +148,7 @@ For now, just follow along
   docker run \
     -it \
     --rm \
-    -v /Users/<user>/w205:/w205 \
+    -v /home/science/w205:/w205 \
     midsw205/base:latest \
     bash
   ```
@@ -135,41 +156,59 @@ For now, just follow along
 
 ::: notes
 Like we said, we'll get into what all those options mean etc, just keep track for now
+
+```
+docker run -it --rm -v /home/science/w205:/w205 midsw205/base:latest bash
+```
 :::
 
 
 #
-## git
-
-- What is git?
+## Git
 
 ::: notes
-We'll go over set up of folders, install git if needed, show git hub...
+What is git?
+
+go over set up of folders, show git hub...
 :::
 
 ## Git set up
 
-## Get started
+## Clone the `course-content` repo
+- `cd w205`
+- Clone the `course-content` repo into your mids-w205 workspace:
+```
+git clone https://github.com/mids-w205- \
+  <instructor-last-name>/course-content
+```
 
-- If working on Mac or Linux, or have git installed, go to w205 folder.
-- If windows or no git, 
-  ```
-  docker run \
-    -it \
-    --rm \
-    -v /Users/<user>/w205:/w205 \
-    midsw205/base:latest \
-    bash
-  ```
+::: notes
+```
+git clone https://github.com/mids-w205-<instructor-last-name>/course-content
+```
+
+You can copy/paste complex commands from the markdown version of these lecture notes
+in the course-content repo
+:::
+
+
+#
+## Signup Assignment
 
 ## Clone the repo
 - `cd w205`
 - Clone the repo into your mids-w205 workspace:
-  ```
-  git clone https://github.com/mids-w205- \
-    <instructor-last-name>/ \
-    signup-<git-user-name>
-  ```
+```
+git clone https://github.com/mids-w205- \
+  <instructor-last-name>/ \
+  signup-<git-user-name>
+```
+
+::: notes
+```
+git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-name>
+```
+:::
 
 ## Open, Change, Close  `README.md` 
 - `nano README.md`
@@ -198,16 +237,6 @@ Or just use whatever text editor you have, these are basically directions for do
 - `git commit -m 'my new readme'`
 - `git push`
 
-## After all that,
-- Mac & Linux users
-- Windows users
-- for today, you used docker, 
-- What do we need to do going forward...
-
-::: notes
-- What do windows users need to do?
-- Will have droplet for web login if nothing else works (which we will slack to other instructors)
-:::
 
 ## Git: submit a PR
 - All assignments submitted as PRs
@@ -225,55 +254,6 @@ Or just use whatever text editor you have, these are basically directions for do
 
 ::: notes
 Do this in the gui
-:::
-
-
-# 
-## What is Data Engineering?
-
-## Things are changing quickly
-```
-https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
-```
-
-::: notes
-Watch the preview video for Google's Coursera course as a group
-
-- What surprised you about the points made?
-- Slides on gcp, DO, & aws
-- What they will set up for gcp???
-:::
-
-## What surprised you about the points made?
-
-- Enter 2 things on chat that you noticed.
-
-## Virtualization
-
-::: notes
-- We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way
-- You will use accts for all of these, but what set up today?
-:::
-
-## GCP
-
-::: notes
-What is it?
-Link?
-:::
-
-## DO
-
-::: notes
-What is it?
-Link?
-:::
-
-## AWS
-
-::: notes
-What is it?
-Link?
 :::
 
 
@@ -308,7 +288,6 @@ blob/master/01-Introduction/async-videos.md
 - `https://www.safaribooksonline.com/pricing/`
 - Two Options:
 - Individual option: $39/month (can stop whenever you want)
-- Team option: (up to 25 people) - 1 year subscription for $399
 - Quick note: Get the mobile apps.
 
 ## Prerequisites
