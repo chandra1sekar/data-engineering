@@ -5,6 +5,7 @@ author: Week 01 - sync session
 
 ---
 
+
 # 
 ## Week 1 - Overview
 
@@ -12,85 +13,80 @@ author: Week 01 - sync session
 - Set up your working environment for this class
 - Review syllabus, course goals, processes & tools ...
 
-<div class="notes">
+::: notes
 See ~/taylor-oreilly/data-engineering-course/solutions/setup.md
-</div>
+:::
 
 ## Introductions
 
-<div class="notes">
+::: notes
 Introduce yourself :)
 Student introductions
-</div>
+:::
 
 ## In this class, you will
 
-> - Gain exposure to basic problems associated with data and data-driven decision-making
-> - Develop a working knowledge of some tools/techniques used to solve these problems
-> - Learn where to go for help and more info
+- Gain exposure to basic problems associated with data and data-driven decision-making
+- Develop a working knowledge of some tools/techniques used to solve these problems
+- Learn where to go for help and more info
 
-<div class="notes">
+::: notes
 
-</div>
-
+:::
 
 ## Just enough
 
-<div class="notes">
+::: notes
 You'll hear this over and over, but basics of worldview
 ...
-</div>
+:::
 
-## Pipeline: Contextual Anchor
+## { data-background="images/pipeline-overall.svg" } 
 
-![](images/pipeline-overall.svg)
-
-
-<div class="notes">
+::: notes
 This pipeline is your anchor, basically where are we and how does here relate to the rest of the class
-</div>
-
-
+:::
 
 ## Process/Procedures
 
-> - Good practices
-> - Appropriate tools
-> - Getting used to
+- Good practices
+- Appropriate tools
+- Getting used to
 
-<div class="notes">
+::: notes
 For your other classes, they may use a variety of ways to get content, turn in assignments etc. 
+
 Here, we're trying to follow good practices for data engineering and use appropriate tools. 
+
 this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)
-</div>
+:::
 
 ## Approach
 
-> - Github-centric content
-> - Cloud accounts
-> - Dockerhub
-> - Activity submissions
+- Github-centric content
+- Cloud accounts
+- Dockerhub
+- Activity submissions
 
 ## Activities
 
 - Let's get going!
 
-<div class="notes">
+::: notes
 With all of that in mind, let's get going!
 (Cloud accounts is covered in the what is Data Engineering section)
-</div>
+:::
 
 #
 ## Docker
 
 - What is docker?
 
-<div class="notes">
+::: notes
 What is docker? Very brief version
-</div>
+:::
 
 ## Install docker
-
 
 - Windows 
 
@@ -100,22 +96,21 @@ What is docker? Very brief version
 
     https://store.docker.com/editions/community/docker-ce-desktop-mac
 
-
-<div class="notes">
+::: notes
 Send this out on wall notice ahead, but just in case.
-</div>
+:::
 
 ##
 
 ![](images/dontpanic.jpeg)
 
-
-<div class="notes">
+::: notes
 These commands will look gnarly.
-Don't worry about it, we will review....blah, blah,
-For now, just follow along
-</div>
 
+Don't worry about it, we will review....blah, blah,
+
+For now, just follow along
+:::
 
 ## Docker set up (from a terminal)
 
@@ -138,10 +133,9 @@ For now, just follow along
   ```
 - `exit` (or `ctrl-d`)
 
-<div class="notes">
+::: notes
 Like we said, we'll get into what all those options mean etc, just keep track for now
-</div>
-
+:::
 
 
 #
@@ -149,12 +143,12 @@ Like we said, we'll get into what all those options mean etc, just keep track fo
 
 - What is git?
 
-<div class="notes">
+::: notes
 We'll go over set up of folders, install git if needed, show git hub...
-</div>
-
+:::
 
 ## Git set up
+
 ## Get started
 
 - If working on Mac or Linux, or have git installed, go to w205 folder.
@@ -168,7 +162,6 @@ We'll go over set up of folders, install git if needed, show git hub...
     bash
   ```
 
-
 ## Clone the repo
 - `cd w205`
 - Clone the repo into your mids-w205 workspace:
@@ -178,18 +171,17 @@ We'll go over set up of folders, install git if needed, show git hub...
     signup-<git-user-name>
   ```
 
-
 ## Open, Change, Close  `README.md` 
-> - `nano README.md`
-> - change line
-> - `ctrl-o`
-> - return
-> - `ctrl-x`
-> - Now you're out of nano, but still in the container.
+- `nano README.md`
+- change line
+- `ctrl-o`
+- return
+- `ctrl-x`
+- Now you're out of nano, but still in the container.
 
-<div class="notes">
+::: notes
 Or just use whatever text editor you have, these are basically directions for doing this in the container.
-</div>
+:::
 
 ## Git: commit changes
 
@@ -206,17 +198,16 @@ Or just use whatever text editor you have, these are basically directions for do
 - `git commit -m 'my new readme'`
 - `git push`
 
-
 ## After all that,
 - Mac & Linux users
 - Windows users
 - for today, you used docker, 
 - What do we need to do going forward...
 
-<div class="notes">
+::: notes
 - What do windows users need to do?
 - Will have droplet for web login if nothing else works (which we will slack to other instructors)
-</div>
+:::
 
 ## Git: submit a PR
 - All assignments submitted as PRs
@@ -232,161 +223,151 @@ Or just use whatever text editor you have, these are basically directions for do
 - Assign instructors as reviewers
 - Click "Create pull request" button
 
-<div class="notes">
+::: notes
 Do this in the gui
-</div>
-
-
-
+:::
 
 
 # 
 ## What is Data Engineering?
 
 ## Things are changing quickly
-  ```
-  https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
-  ```
+```
+https://www.coursera.org/learn/gcp-big-data-ml-fundamentals
+```
 
-<div class="notes">
+::: notes
 Watch the preview video for Google's Coursera course as a group
 
 - What surprised you about the points made?
 - Slides on gcp, DO, & aws
 - What they will set up for gcp???
-
-</div>
+:::
 
 ## What surprised you about the points made?
 
 - Enter 2 things on chat that you noticed.
 
 ## Virtualization
-<div class="notes">
+
+::: notes
 - We'll talk a lot about virtualization later, but important to understand that many orgs are going totally this way
 - You will use accts for all of these, but what set up today?
-</div>
+:::
 
 ## GCP
 
-<div class="notes">
+::: notes
 What is it?
 Link?
-</div>
+:::
 
 ## DO
 
-<div class="notes">
+::: notes
 What is it?
 Link?
-</div>
+:::
 
 ## AWS
 
-<div class="notes">
+::: notes
 What is it?
 Link?
-</div>
-
-
-
-
-
+:::
 
 
 #
 ## How this class works
+
 ## Syllabus
 
-  ```
-  https://github.com/mids-w205-martin-mims/course-content
-  ```
+```
+https://github.com/mids-w205-martin-mims/course-content
+```
 
-
-<div class="notes">
+::: notes
 Prereqs
 Video links
 Readings
-</div>
+:::
 
 ## Asyncronous Content
 
-  ```
-  https://github.com/mids-w205-martin-mims/course-content/ \
-  blob/master/01-Introduction/async-videos.md
-  ```
+```
+https://github.com/mids-w205-martin-mims/course-content/ \
+blob/master/01-Introduction/async-videos.md
+```
 
 - Same as in ISVC, but you can access it all in one place here.
 
 ## Readings
 
-> - No one textbook available for this course.
-> - Using subscription service to cover the range of topics.
-> - `https://www.safaribooksonline.com/pricing/`
-> - Two Options:
-> - Individual option: $39/month (can stop whenever you want)
-> - Team option: (up to 25 people) - 1 year subscription for $399
-> - Quick note: Get the mobile apps.
+- No one textbook available for this course.
+- Using subscription service to cover the range of topics.
+- `https://www.safaribooksonline.com/pricing/`
+- Two Options:
+- Individual option: $39/month (can stop whenever you want)
+- Team option: (up to 25 people) - 1 year subscription for $399
+- Quick note: Get the mobile apps.
 
 ## Prerequisites
 
-> - Resources listed under prereqs
-> - Safari has tons of other materials you can help yourself with.
+- Resources listed under prereqs
+- Safari has tons of other materials you can help yourself with.
 
 ## Course Outline
 
-> - 4 sections:  
-> - 3-week Introduction
-> - 5-week Basics section 
-> - 4-week Streaming Data section
-> - Putting it All Together
+- 4 sections:  
+- 3-week Introduction
+- 5-week Basics section 
+- 4-week Streaming Data section
+- Putting it All Together
 
 
-<div class="notes">
+::: notes
 - 3-week Introduction covers the basics of storage and retrieval concepts and tools
 - 5-week Basics section  provides a deeper exploration of working with data and data pipelines
 - 4-week section that focuses on Streaming Data; and a 
 - 1-week wrapup, Putting it All Together, integrates concepts and skills from the entire course into a cohesive model of the data pipeline.
-</div>
+:::
 
 ## Class flow
 
-<div class="notes">
+::: notes
 This section is a walk through of how we will iterate through assignments.
-</div>
+:::
 
 ## Class 1
 
-> - Preview, discussion, walkthrough set up for github for Assignment 1
+- Preview, discussion, walkthrough set up for github for Assignment 1
 
 ## Between Class 1 & Class 2
 
-> - async material for Week 1
-> - Readings for Week 1
-> - Assignment 01
-
+- async material for Week 1
+- Readings for Week 1
+- Assignment 01
 
 ## Class 2
 
-> - Review Assignment 01, questions, where did you hit a wall?
-> - Some lectur-ish stuff on this week's topic
-> - Preview Query Project (spans Assignments 2-5)
-> - Preview, discussion, SQL query activities to prepare for Assignment 2
-> - Final Assignment 01 due on Friday
+- Review Assignment 01, questions, where did you hit a wall?
+- Some lectur-ish stuff on this week's topic
+- Preview Query Project (spans Assignments 2-5)
+- Preview, discussion, SQL query activities to prepare for Assignment 2
+- Final Assignment 01 due on Friday
 
 ## Between Class 2 & Class 3
 
-> - async material for Week 2
-> - Readings for Week 2
-> - Assignment 02
-
+- async material for Week 2
+- Readings for Week 2
+- Assignment 02
 
 ## Class 3
 
-> - Review Assignment 02, questions, where did you hit a wall?
-> - Some lectur-ish stuff on this week's topic
-> - Preview, discussion, do google cloud platform setup and sql statements for Assignment 03
-> - Final Assignment 02 due on Friday
+- Review Assignment 02, questions, where did you hit a wall?
+- Some lectur-ish stuff on this week's topic
+- Preview, discussion, do google cloud platform setup and sql statements for Assignment 03
+- Final Assignment 02 due on Friday
 
 
 #
@@ -398,22 +379,18 @@ This section is a walk through of how we will iterate through assignments.
 2. Tracking User Activity
 3. Understanding User Behavior
 
-## Pipeline
+## { data-background="images/pipeline-overall.svg" } 
 
-![](images/pipeline-overall.svg)
-
-
-<div class="notes">
+::: notes
 Back to the pipeline - What part are we in?
-</div>
-
+:::
 
 ## Querying Data
 
 - Use existing tools/pipeline/dataset
 - Answer basic business questions
 
-<div class="notes">
+::: notes
 data-driven business decisions
 
 prompt/reinforce the connection
@@ -421,7 +398,7 @@ prompt/reinforce the connection
 validation/testing?  (how good are our results?)
 
 (intro to model management?)
-</div>
+:::
 
 ## Tracking User Activity
 
@@ -431,7 +408,7 @@ validation/testing?  (how good are our results?)
 - Bonus:
     - Trigger notifications
 
-<div class="notes">
+::: notes
 "Catching and Transforming Data using plumbing that's provided"
 
 Catching Data
@@ -441,7 +418,7 @@ Filtering/Sorting/Grouping
 Transforming Data
 
 Storing Data
-</div>
+:::
 
 ## Understanding User Behavior
 
@@ -451,7 +428,7 @@ Storing Data
 - Bonus:
     - Manage sessionization / state
 
-<div class="notes">
+::: notes
 end-to-end pipeline for understanding behavior
 
 you assemble the plumbing
@@ -459,29 +436,14 @@ you assemble the plumbing
 baseline: queries to answer questions about the user activity
 
 bonuses as above
-</div>
-
+:::
 
 ## Levels of Expertise
-<div class="notes">
+::: notes
 If you're brand new to something, you'll get it taken care of. If you've nailed it, get creative
 talk about survey results?
-</div>
+:::
+
 
 #
-## 
-<div class="notes">
-</div>
-#
-## 
-<div class="notes">
-</div>
-#
-## 
-<div class="notes">
-</div>
-
-#
-
-<img class="logo" src="images/berkeley-school-of-information-logo.png"/>
-
+![](images/berkeley-school-of-information-logo.png){.logo}
