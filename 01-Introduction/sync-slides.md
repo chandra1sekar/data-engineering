@@ -216,7 +216,7 @@ git clone https://github.com/mids-w205-<instructor-last-name>/signup-<git-user-n
 - `ctrl-o`
 - return
 - `ctrl-x`
-- Now you're out of nano, but still in the container.
+- Now you're out of nano.
 
 ::: notes
 Or just use whatever text editor you have, these are basically directions for doing this in the container.
