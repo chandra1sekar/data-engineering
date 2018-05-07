@@ -55,9 +55,9 @@
 <section id="in-this-class-you-will" class="level2">
 <h2>In this class, you will</h2>
 <ul>
-<li class="fragment">Gain exposure to basic problems associated with data and data-driven decision-making</li>
-<li class="fragment">Develop a working knowledge of some tools/techniques used to solve these problems</li>
-<li class="fragment">Learn where to go for help and more info</li>
+<li>Gain exposure to basic problems associated with data and data-driven decision-making</li>
+<li>Develop a working knowledge of some tools/techniques used to solve these problems</li>
+<li>Learn where to go for help and more info</li>
 </ul>
 <aside class="notes">
 
@@ -69,9 +69,8 @@
 <p>You’ll hear this over and over, but basics of worldview …</p>
 </aside>
 </section>
-<section id="pipeline-contextual-anchor" class="level2">
-<h2>Pipeline: Contextual Anchor</h2>
-<p><img data-src="images/pipeline-overall.svg" /></p>
+<section id="section-1" class="level2" data-background="images/pipeline-overall.svg">
+<h2></h2>
 <aside class="notes">
 <p>This pipeline is your anchor, basically where are we and how does here relate to the rest of the class</p>
 </aside>
@@ -79,22 +78,15 @@
 <section id="processprocedures" class="level2">
 <h2>Process/Procedures</h2>
 <ul>
-<li class="fragment">Good practices</li>
-<li class="fragment">Appropriate tools</li>
-<li class="fragment">Getting used to</li>
+<li>Good practices</li>
+<li>Appropriate tools</li>
+<li>Getting used to</li>
 </ul>
 <aside class="notes">
-<p>For your other classes, they may use a variety of ways to get content, turn in assignments etc. Here, we’re trying to follow good practices for data engineering and use appropriate tools. this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)</p>
+<p>For your other classes, they may use a variety of ways to get content, turn in assignments etc.</p>
+<p>Here, we’re trying to follow good practices for data engineering and use appropriate tools.</p>
+<p>this will probably take some getting used to at first (unless you already use git all day every day, which is great, help your friends)</p>
 </aside>
-</section>
-<section id="approach" class="level2">
-<h2>Approach</h2>
-<ul>
-<li class="fragment">Github-centric content</li>
-<li class="fragment">Cloud accounts</li>
-<li class="fragment">Dockerhub</li>
-<li class="fragment">Activity submissions</li>
-</ul>
 </section>
 <section id="activities" class="level2">
 <h2>Activities</h2>
@@ -102,42 +94,68 @@
 <li>Let’s get going!</li>
 </ul>
 <aside class="notes">
-<p>With all of that in mind, let’s get going! (Cloud accounts is covered in the what is Data Engineering section)</p>
+<p>With all of that in mind, let’s get going!</p>
 </aside>
 </section>
 </section>
-<section id="section-1" class="slide level1">
+<section id="section-2" class="slide level1">
+<h1></h1>
+<section id="slack" class="level2">
+<h2>Slack</h2>
+<aside class="notes">
+<p>We’re using slack for this class</p>
+<p>Instructors specify each section’s slack channel</p>
+</aside>
+</section>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<section id="cloud-instances" class="level2">
+<h2>Cloud Instances</h2>
+<aside class="notes">
+<p>We’ll be working from cloud instances (“Droplets”) in this class</p>
+</aside>
+</section>
+<section id="access" class="level2">
+<h2>Access</h2>
+<ul>
+<li><p>URL:</p>
+<pre><code>http://&lt;ip_address&gt;:8000/</code></pre></li>
+<li><p>Login: <code>science</code></p></li>
+<li><p>Password: (provided over slack)</p></li>
+</ul>
+<aside class="notes">
+<p>Instructors hand out ip addresses and passwords</p>
+<p>Students familiar with SecureShell can ssh directly to the droplets</p>
+</aside>
+</section>
+<section id="jupyterhub-terminal" class="level2">
+<h2>JupyterHub Terminal</h2>
+<aside class="notes">
+<p>copy/paste files via the jupyterhub file browser</p>
+<p>We’ll use SecureShell for this in the future</p>
+</aside>
+</section>
+</section>
+<section id="section-4" class="slide level1">
 <h1></h1>
 <section id="docker" class="level2">
 <h2>Docker</h2>
-<ul>
-<li>What is docker?</li>
-</ul>
 <aside class="notes">
 <p>What is docker? Very brief version</p>
 </aside>
 </section>
-<section id="install-docker" class="level2">
-<h2>Install docker</h2>
-<ul>
-<li><p>Windows</p>
-<p>https://store.docker.com/editions/community/docker-ce-desktop-windows</p></li>
-<li><p>Mac</p>
-<p>https://store.docker.com/editions/community/docker-ce-desktop-mac</p></li>
-</ul>
-<aside class="notes">
-<p>Send this out on wall notice ahead, but just in case.</p>
-</aside>
-</section>
-<section id="section-2" class="level2">
+<section id="section-5" class="level2">
 <h2></h2>
 <p><img data-src="images/dontpanic.jpeg" /></p>
 <aside class="notes">
-<p>These commands will look gnarly. Don’t worry about it, we will review….blah, blah, For now, just follow along</p>
+<p>These commands will look gnarly.</p>
+<p>Don’t worry about it, we will review….blah, blah,</p>
+<p>For now, just follow along</p>
 </aside>
 </section>
-<section id="docker-set-up-from-a-terminal" class="level2">
-<h2>Docker set up (from a terminal)</h2>
+<section id="section-6" class="level2">
+<h2></h2>
 <ul>
 <li><p>pull the image:</p>
 <pre><code>docker pull midsw205/base</code></pre></li>
@@ -147,62 +165,70 @@
 <pre><code>docker run \
   -it \
   --rm \
-  -v /Users/&lt;user&gt;/w205:/w205 \
+  -v /home/science/w205:/w205 \
   midsw205/base:latest \
   bash</code></pre></li>
 <li><p><code>exit</code> (or <code>ctrl-d</code>)</p></li>
 </ul>
 <aside class="notes">
 <p>Like we said, we’ll get into what all those options mean etc, just keep track for now</p>
+<pre><code>docker run -it --rm -v /home/science/w205:/w205 midsw205/base:latest bash</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-3" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="git" class="level2">
-<h2>git</h2>
-<ul>
-<li>What is git?</li>
-</ul>
+<h2>Git</h2>
 <aside class="notes">
-<p>We’ll go over set up of folders, install git if needed, show git hub…</p>
+<p>What is git?</p>
+<p>go over set up of folders, show git hub…</p>
 </aside>
 </section>
 <section id="git-set-up" class="level2">
 <h2>Git set up</h2>
 </section>
-<section id="get-started" class="level2">
-<h2>Get started</h2>
+<section id="clone-the-course-content-repo" class="level2">
+<h2>Clone the <code>course-content</code> repo</h2>
 <ul>
-<li>If working on Mac or Linux, or have git installed, go to w205 folder.</li>
-<li><p>If windows or no git,</p>
-<pre><code>docker run \
-  -it \
-  --rm \
-  -v /Users/&lt;user&gt;/w205:/w205 \
-  midsw205/base:latest \
-  bash</code></pre></li>
+<li><code>cd w205</code></li>
+<li>Clone the <code>course-content</code> repo into your mids-w205 workspace:</li>
 </ul>
+<pre><code>git clone https://github.com/mids-w205- \
+  &lt;instructor-last-name&gt;/course-content</code></pre>
+<aside class="notes">
+<pre><code>git clone https://github.com/mids-w205-&lt;instructor-last-name&gt;/course-content</code></pre>
+<p>You can copy/paste complex commands from the markdown version of these lecture notes in the course-content repo</p>
+</aside>
+</section>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="signup-assignment" class="level2">
+<h2>Signup Assignment</h2>
 </section>
 <section id="clone-the-repo" class="level2">
 <h2>Clone the repo</h2>
 <ul>
 <li><code>cd w205</code></li>
-<li><p>Clone the repo into your mids-w205 workspace:</p>
+<li>Clone the repo into your mids-w205 workspace:</li>
+</ul>
 <pre><code>git clone https://github.com/mids-w205- \
   &lt;instructor-last-name&gt;/ \
-  signup-&lt;git-user-name&gt;</code></pre></li>
-</ul>
+  signup-&lt;git-user-name&gt;</code></pre>
+<aside class="notes">
+<pre><code>git clone https://github.com/mids-w205-&lt;instructor-last-name&gt;/signup-&lt;git-user-name&gt;</code></pre>
+</aside>
 </section>
 <section id="open-change-close-readme.md" class="level2">
 <h2>Open, Change, Close <code>README.md</code></h2>
 <ul>
-<li class="fragment"><code>nano README.md</code></li>
-<li class="fragment">change line</li>
-<li class="fragment"><code>ctrl-o</code></li>
-<li class="fragment">return</li>
-<li class="fragment"><code>ctrl-x</code></li>
-<li class="fragment">Now you’re out of nano, but still in the container.</li>
+<li><code>nano README.md</code></li>
+<li>change line</li>
+<li><code>ctrl-o</code></li>
+<li>return</li>
+<li><code>ctrl-x</code></li>
+<li>Now you’re out of nano, but still in the container.</li>
 </ul>
 <aside class="notes">
 <p>Or just use whatever text editor you have, these are basically directions for doing this in the container.</p>
@@ -220,21 +246,6 @@
 <li><code>git commit -m 'my new readme'</code></li>
 <li><p><code>git push</code></p></li>
 </ul>
-</section>
-<section id="after-all-that" class="level2">
-<h2>After all that,</h2>
-<ul>
-<li>Mac &amp; Linux users</li>
-<li>Windows users</li>
-<li>for today, you used docker,</li>
-<li>What do we need to do going forward…</li>
-</ul>
-<aside class="notes">
-<ul>
-<li>What do windows users need to do?</li>
-<li>Will have droplet for web login if nothing else works (which we will slack to other instructors)</li>
-</ul>
-</aside>
 </section>
 <section id="git-submit-a-pr" class="level2">
 <h2>Git: submit a PR</h2>
@@ -255,58 +266,7 @@
 </aside>
 </section>
 </section>
-<section id="section-4" class="slide level1">
-<h1></h1>
-<section id="what-is-data-engineering" class="level2">
-<h2>What is Data Engineering?</h2>
-</section>
-<section id="things-are-changing-quickly" class="level2">
-<h2>Things are changing quickly</h2>
-<pre><code>https://www.coursera.org/learn/gcp-big-data-ml-fundamentals</code></pre>
-<aside class="notes">
-<p>Watch the preview video for Google’s Coursera course as a group</p>
-<ul>
-<li>What surprised you about the points made?</li>
-<li>Slides on gcp, DO, &amp; aws</li>
-<li>What they will set up for gcp???</li>
-</ul>
-</aside>
-</section>
-<section id="what-surprised-you-about-the-points-made" class="level2">
-<h2>What surprised you about the points made?</h2>
-<ul>
-<li>Enter 2 things on chat that you noticed.</li>
-</ul>
-</section>
-<section id="virtualization" class="level2">
-<h2>Virtualization</h2>
-<aside class="notes">
-<ul>
-<li>We’ll talk a lot about virtualization later, but important to understand that many orgs are going totally this way</li>
-<li>You will use accts for all of these, but what set up today?</li>
-</ul>
-</aside>
-</section>
-<section id="gcp" class="level2">
-<h2>GCP</h2>
-<aside class="notes">
-<p>What is it? Link?</p>
-</aside>
-</section>
-<section id="do" class="level2">
-<h2>DO</h2>
-<aside class="notes">
-<p>What is it? Link?</p>
-</aside>
-</section>
-<section id="aws" class="level2">
-<h2>AWS</h2>
-<aside class="notes">
-<p>What is it? Link?</p>
-</aside>
-</section>
-</section>
-<section id="section-5" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="how-this-class-works" class="level2">
 <h2>How this class works</h2>
@@ -329,31 +289,29 @@ blob/master/01-Introduction/async-videos.md</code></pre>
 <section id="readings" class="level2">
 <h2>Readings</h2>
 <ul>
-<li class="fragment">No one textbook available for this course.</li>
-<li class="fragment">Using subscription service to cover the range of topics.</li>
-<li class="fragment"><code>https://www.safaribooksonline.com/pricing/</code></li>
-<li class="fragment">Two Options:</li>
-<li class="fragment">Individual option: $39/month (can stop whenever you want)</li>
-<li class="fragment">Team option: (up to 25 people) - 1 year subscription for $399</li>
-<li class="fragment">Quick note: Get the mobile apps.</li>
+<li>No one textbook available for this course.</li>
+<li>Using subscription service to cover the range of topics.</li>
+<li><code>https://www.safaribooksonline.com/pricing/</code></li>
+<li>Individual option: $39/month (can stop whenever you want)</li>
+<li>Quick note: Get the mobile apps.</li>
 </ul>
 </section>
 <section id="prerequisites" class="level2">
 <h2>Prerequisites</h2>
 <ul>
-<li class="fragment">Resources listed under prereqs</li>
-<li class="fragment">Safari has tons of other materials you can help yourself with.</li>
+<li>Resources listed under prereqs</li>
+<li>Safari has tons of other materials you can help yourself with.</li>
 </ul>
 </section>
 <section id="course-outline" class="level2">
 <h2>Course Outline</h2>
 <ul>
-<li class="fragment">4 sections:<br />
+<li>4 sections:<br />
 </li>
-<li class="fragment">3-week Introduction</li>
-<li class="fragment">5-week Basics section</li>
-<li class="fragment">4-week Streaming Data section</li>
-<li class="fragment">Putting it All Together</li>
+<li>3-week Introduction</li>
+<li>5-week Basics section</li>
+<li>4-week Streaming Data section</li>
+<li>Putting it All Together</li>
 </ul>
 <aside class="notes">
 <ul>
@@ -373,46 +331,44 @@ blob/master/01-Introduction/async-videos.md</code></pre>
 <section id="class-1" class="level2">
 <h2>Class 1</h2>
 <ul>
-<li class="fragment">Preview, discussion, walkthrough set up for github for Assignment 1</li>
+<li>Preview, discussion, walkthrough set up for github for Assignment 1</li>
 </ul>
 </section>
 <section id="between-class-1-class-2" class="level2">
 <h2>Between Class 1 &amp; Class 2</h2>
 <ul>
-<li class="fragment">async material for Week 1</li>
-<li class="fragment">Readings for Week 1</li>
-<li class="fragment">Assignment 01</li>
+<li>async material for Week 1</li>
+<li>Readings for Week 1</li>
+<li>Turn in Assignment 01</li>
 </ul>
 </section>
 <section id="class-2" class="level2">
 <h2>Class 2</h2>
 <ul>
-<li class="fragment">Review Assignment 01, questions, where did you hit a wall?</li>
-<li class="fragment">Some lectur-ish stuff on this week’s topic</li>
-<li class="fragment">Preview Query Project (spans Assignments 2-5)</li>
-<li class="fragment">Preview, discussion, SQL query activities to prepare for Assignment 2</li>
-<li class="fragment">Final Assignment 01 due on Friday</li>
+<li>Groups share Assignment 01</li>
+<li>Preview Query Project</li>
+<li>Preview, discussion, SQL query activities to prepare for Assignment 2</li>
+<li>Can revise Assignment 01 &amp; turn in morning after Class 2</li>
 </ul>
 </section>
 <section id="between-class-2-class-3" class="level2">
 <h2>Between Class 2 &amp; Class 3</h2>
 <ul>
-<li class="fragment">async material for Week 2</li>
-<li class="fragment">Readings for Week 2</li>
-<li class="fragment">Assignment 02</li>
+<li>async material for Week 2</li>
+<li>Readings for Week 2</li>
+<li>Turn in Assignment 02</li>
 </ul>
 </section>
 <section id="class-3" class="level2">
 <h2>Class 3</h2>
 <ul>
-<li class="fragment">Review Assignment 02, questions, where did you hit a wall?</li>
-<li class="fragment">Some lectur-ish stuff on this week’s topic</li>
-<li class="fragment">Preview, discussion, do google cloud platform setup and sql statements for Assignment 03</li>
-<li class="fragment">Final Assignment 02 due on Friday</li>
+<li>Groups share Assignment 02</li>
+<li>Preview, discussion, do google cloud platform setup and sql statements for Assignment 03</li>
+<li>Can revise Assignment 02 &amp; turn in morning after Class 3</li>
 </ul>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
 <section id="student-projects" class="level2">
 <h2>Student Projects</h2>
@@ -425,9 +381,8 @@ blob/master/01-Introduction/async-videos.md</code></pre>
 <li>Understanding User Behavior</li>
 </ol>
 </section>
-<section id="pipeline" class="level2">
-<h2>Pipeline</h2>
-<p><img data-src="images/pipeline-overall.svg" /></p>
+<section id="section-11" class="level2" data-background="images/pipeline-overall.svg">
+<h2></h2>
 <aside class="notes">
 <p>Back to the pipeline - What part are we in?</p>
 </aside>
@@ -488,36 +443,9 @@ blob/master/01-Introduction/async-videos.md</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
-<section id="section-8" class="level2">
-<h2></h2>
-<aside class="notes">
-
-</aside>
-</section>
-</section>
-<section id="section-9" class="slide level1">
-<h1></h1>
-<section id="section-10" class="level2">
-<h2></h2>
-<aside class="notes">
-
-</aside>
-</section>
-</section>
-<section id="section-11" class="slide level1">
-<h1></h1>
-<section id="section-12" class="level2">
-<h2></h2>
-<aside class="notes">
-
-</aside>
-</section>
-</section>
-<section id="section-13" class="slide level1">
-<h1></h1>
-<p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
+<p><img data-src="images/berkeley-school-of-information-logo.png" class="logo" /></p>
 </section>
     </div>
   </div>

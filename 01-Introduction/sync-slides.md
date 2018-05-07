@@ -286,7 +286,6 @@ blob/master/01-Introduction/async-videos.md
 - No one textbook available for this course.
 - Using subscription service to cover the range of topics.
 - `https://www.safaribooksonline.com/pricing/`
-- Two Options:
 - Individual option: $39/month (can stop whenever you want)
 - Quick note: Get the mobile apps.
 
@@ -325,28 +324,26 @@ This section is a walk through of how we will iterate through assignments.
 
 - async material for Week 1
 - Readings for Week 1
-- Assignment 01
+- Turn in Assignment 01
 
 ## Class 2
 
-- Review Assignment 01, questions, where did you hit a wall?
-- Some lectur-ish stuff on this week's topic
-- Preview Query Project (spans Assignments 2-5)
+- Groups share Assignment 01
+- Preview Query Project
 - Preview, discussion, SQL query activities to prepare for Assignment 2
-- Final Assignment 01 due on Friday
+- Can revise Assignment 01 & turn in morning after Class 2
 
 ## Between Class 2 & Class 3
 
 - async material for Week 2
 - Readings for Week 2
-- Assignment 02
+- Turn in Assignment 02
 
 ## Class 3
 
-- Review Assignment 02, questions, where did you hit a wall?
-- Some lectur-ish stuff on this week's topic
+- Groups share Assignment 02
 - Preview, discussion, do google cloud platform setup and sql statements for Assignment 03
-- Final Assignment 02 due on Friday
+- Can revise Assignment 02 & turn in morning after Class 3
 
 
 #
