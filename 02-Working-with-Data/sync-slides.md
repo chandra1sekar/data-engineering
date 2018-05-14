@@ -9,14 +9,11 @@ author: Week 02 - sync session
 
 ## Assignment 1
 
-## Your laptop set up
+## Your droplet set up
 
-- git installed
 - repos cloned:
     - `course-content`
     - `assignment-01-<user-name>`
-- docker installed
-- shell 
 
 ## How to do a PR
 
