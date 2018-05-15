@@ -8,6 +8,8 @@ author: Week 02 - sync session
 # 
 
 ## Assignment 1
+- We will usually do a breakout to share solutions and ask questions, but this week's was pretty straightforward.
+- Questions on process?
 
 ## Your droplet set up
 
@@ -23,7 +25,7 @@ author: Week 02 - sync session
 we defer cli-support for this until next week
 :::
 
-## Due Friday, remember do a PR
+## Due tomorrow morning
 
 
 # 
@@ -374,15 +376,6 @@ Rotate between groups to see what folks are coming up with.
 
 
 # 
-## Summary
-
-- Business questions
-- Answered using empirical data
-- By running queries against (raw?) events
-- Need a pipeline in place to capture these raw events
-
-
-# 
 ## SecureShell (SSH)
 
 #
@@ -432,6 +425,15 @@ copying files from the instance to your laptop
 note the period!
 :::
 
+
+# 
+## Summary
+
+- Business questions
+- Answered using empirical data
+- By running queries against (raw?) events
+- Need a pipeline in place to capture these raw events
+- SSH
 
 #
 
