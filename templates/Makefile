@@ -19,7 +19,7 @@ pdfs: $(slides:.md=.pdf)
 
 %.pdf : %.html
 	@echo "---" $@ "---"
-	phantomjs ~/lib/decktape/decktape.js $< $@
+	docker run --rm -t -v `pwd`:/slides -v $(readlink -f images):/slides/images -v $(readlink -f reveal.js):/slides/reveal.js astefanutti/decktape -s '1920x1080' $< $@
 
 clean:
 	rm -f *.html
