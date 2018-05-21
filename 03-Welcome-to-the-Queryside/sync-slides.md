@@ -61,11 +61,11 @@ breakout
 
 ## Due Friday (PR)
 
+
+#
 ## Housekeeping
 
 - Channel etiquette
-
-# 
 
 ## Activities: async content
 
@@ -74,6 +74,8 @@ breakout
 - You got started with lots of stuff this week
 - Working with files: json, csv etc
 
+
+#
 ## Finding stuff out about your data
 
 ## Download Datasets
