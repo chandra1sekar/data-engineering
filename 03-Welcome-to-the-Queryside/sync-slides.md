@@ -10,7 +10,7 @@ author: Week 03 - sync session
 ## Overview
 - Go over Assignment 2 results
 - Dive into command line tools for figuring out what you have in datasets
-- Docker for setting up BigQuery from the command line
+- Setting up BigQuery from the command line
 - What's up next?
 
 # 
@@ -76,29 +76,19 @@ breakout
 
 ## Finding stuff out about your data
 
-## Start a container
-```
-docker run -it --rm -v ~/w205:/w205 midsw205/base bash
-```
-
-::: notes
-- the volume option works as-is on mac/linux, but might need to be adjusted
-  for windows depending on which shell they're using
-- can also run this from a student droplet if students are still having docker
-  issues
-:::
-
 ## Download Datasets
 
 Save data into your `w205` directory
 ```
-curl -L -o annot_fpid.json https://goo.gl/Acndkc
-curl -L -o lp_data.csv https://goo.gl/Noxx26
+cd ~/w205
+curl -L -o annot_fpid.json https://goo.gl/rcickz
+curl -L -o lp_data.csv https://goo.gl/rks6h3
 ```
 
 ::: notes
-make sure they go into `~/w205` on the laptop
-(equivalently `/w205` in a container)
+make sure they go into `~/w205` on your droplet.
+
+i.e., `cd w205` first
 :::
 
 ## What's in this file?
@@ -272,7 +262,7 @@ Descending
 
 ## setup
 
-(from your mids container)
+(from your mids droplet)
 
 - auth the GCP client
   ```
@@ -287,9 +277,7 @@ Descending
   and select project if asked
 
 ::: notes
-- The `gcloud` and `bq` cli tools are already installed in the `midsw205/base`
-  docker image
-- `gcloud init` will print an oauth link that needs to be copied over to a browser
+`gcloud init` will print an oauth link that needs to be copied over to a browser
 :::
 
 ##
@@ -359,7 +347,6 @@ Answer: something like 75
 ## Summary
 - Command line tools and jq to dive into your data
 - BigQuery from the command line
-- Idiomatic docker (1st pass)
 
 
 
