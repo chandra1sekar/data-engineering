@@ -57,9 +57,7 @@ breakout
     SELECT count(distinct bike_number)
     FROM `bigquery-public-data.san_francisco.bikeshare_trips`
 
-
-
-## Due Friday (PR)
+## Due tomorrow morning
 
 
 #
