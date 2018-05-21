@@ -282,29 +282,39 @@ Descending
 
 ##
 
-    bq query --use_legacy_sql=false '
-    SELECT count(*)
-    FROM `bigquery-public-data.san_francisco.bikeshare_status`'
-
-
+```
+bq query --use_legacy_sql=false '
+SELECT count(*)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
 
 ::: notes
 107,501,619
 
 The point: you can use `select *` to actually answer questions.
+
+```
+bq query --use_legacy_sql=false 'SELECT count(*) FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
 :::
 
 ## How many stations are there?
 
 ##
 
-    bq query --use_legacy_sql=false '
-    SELECT count(distinct station_id)
-    FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
+bq query --use_legacy_sql=false '
+SELECT count(distinct station_id)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
 
 ::: notes
 The point: how to count unique
 Answer: something like 75
+
+```
+bq query --use_legacy_sql=false 'SELECT count(distinct station_id) FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
 :::
 
 
@@ -312,14 +322,20 @@ Answer: something like 75
 
 ##
 
-    bq query --use_legacy_sql=false '
-    SELECT min(time), max(time)
-    FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
+bq query --use_legacy_sql=false '
+SELECT min(time), max(time)
+FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
 
 
 ::: notes
 - 2013-08-29 12:06:01.000 UTC   
 - 2016-08-31 23:58:59.000 UTC   
+
+```
+bq query --use_legacy_sql=false 'SELECT min(time), max(time) FROM `bigquery-public-data.san_francisco.bikeshare_status`'
+```
 :::
 
 
@@ -349,8 +365,6 @@ Answer: something like 75
 - BigQuery from the command line
 
 
-
-
 #
 ## Extras
 
@@ -362,20 +376,25 @@ Answer: something like 75
 
 ## sed and awk
 
-http://www.catonmat.net/blog/awk-one-liners-explained-part-one/
-http://www.catonmat.net/blog/sed-one-liners-explained-part-one/
+<http://www.catonmat.net/blog/awk-one-liners-explained-part-one/>
+<http://www.catonmat.net/blog/sed-one-liners-explained-part-one/>
 
 ## jq
 
-https://stedolan.github.io/jq/tutorial/
+<https://stedolan.github.io/jq/tutorial/>
 
 ## Advanced options 
 
 ## Sort by 'product_name'
 
-`cat lp_data.csv | awk -F',' '{ print $2,$1 }' | sort`
+```
+cat lp_data.csv | awk -F',' '{ print $2,$1 }' | sort
+```
 
 ::: notes
+```
+cat lp_data.csv | awk -F',' '{ print $2,$1 }' | sort
+```
 
 - Put in extras for add ons or activities if folks finish early
 
@@ -386,9 +405,14 @@ https://stedolan.github.io/jq/tutorial/
 
 ## Fix the ""s issue
 
-`cat lp_data.csv  | awk -F',' '{ print $2,$1 }' | sed 's/"//' | sort | less`
+```
+cat lp_data.csv  | awk -F',' '{ print $2,$1 }' | sed 's/"//' | sort | less
+```
 
 ::: notes
+```
+cat lp_data.csv  | awk -F',' '{ print $2,$1 }' | sed 's/"//' | sort | less
+```
 
 - the sed part here takes out the "" 
 - and then we sort based on title
