@@ -83,8 +83,8 @@ FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
 SELECT count(distinct bike_number)
 FROM `bigquery-public-data.san_francisco.bikeshare_trips`</code></pre>
 </section>
-<section id="due-friday-pr" class="level2">
-<h2>Due Friday (PR)</h2>
+<section id="due-tomorrow-morning" class="level2">
+<h2>Due tomorrow morning</h2>
 </section>
 </section>
 <section id="section-2" class="slide level1">
@@ -301,6 +301,7 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <aside class="notes">
 <p>107,501,619</p>
 <p>The point: you can use <code>select *</code> to actually answer questions.</p>
+<pre><code>bq query --use_legacy_sql=false &#39;SELECT count(*) FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </aside>
 </section>
 <section id="how-many-stations-are-there" class="level2">
@@ -313,6 +314,7 @@ SELECT count(distinct station_id)
 FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <aside class="notes">
 <p>The point: how to count unique Answer: something like 75</p>
+<pre><code>bq query --use_legacy_sql=false &#39;SELECT count(distinct station_id) FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </aside>
 </section>
 <section id="how-long-a-time-period-do-these-data-cover" class="level2">
@@ -327,9 +329,9 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 <ul>
 <li>2013-08-29 12:06:01.000 UTC<br />
 </li>
-<li>2016-08-31 23:58:59.000 UTC<br />
-</li>
+<li>2016-08-31 23:58:59.000 UTC</li>
 </ul>
+<pre><code>bq query --use_legacy_sql=false &#39;SELECT min(time), max(time) FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </aside>
 </section>
 </section>
@@ -390,19 +392,20 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </section>
 <section id="sed-and-awk" class="level2">
 <h2>sed and awk</h2>
-<p>http://www.catonmat.net/blog/awk-one-liners-explained-part-one/ http://www.catonmat.net/blog/sed-one-liners-explained-part-one/</p>
+<p><a href="http://www.catonmat.net/blog/awk-one-liners-explained-part-one/" class="uri">http://www.catonmat.net/blog/awk-one-liners-explained-part-one/</a> <a href="http://www.catonmat.net/blog/sed-one-liners-explained-part-one/" class="uri">http://www.catonmat.net/blog/sed-one-liners-explained-part-one/</a></p>
 </section>
 <section id="jq" class="level2">
 <h2>jq</h2>
-<p>https://stedolan.github.io/jq/tutorial/</p>
+<p><a href="https://stedolan.github.io/jq/tutorial/" class="uri">https://stedolan.github.io/jq/tutorial/</a></p>
 </section>
 <section id="advanced-options" class="level2">
 <h2>Advanced options</h2>
 </section>
 <section id="sort-by-product_name" class="level2">
 <h2>Sort by ‘product_name’</h2>
-<p><code>cat lp_data.csv | awk -F',' '{ print $2,$1 }' | sort</code></p>
+<pre><code>cat lp_data.csv | awk -F&#39;,&#39; &#39;{ print $2,$1 }&#39; | sort</code></pre>
 <aside class="notes">
+<pre><code>cat lp_data.csv | awk -F&#39;,&#39; &#39;{ print $2,$1 }&#39; | sort</code></pre>
 <ul>
 <li><p>Put in extras for add ons or activities if folks finish early</p></li>
 <li>This switches the columns and sorts on LP title</li>
@@ -412,8 +415,9 @@ FROM `bigquery-public-data.san_francisco.bikeshare_status`&#39;</code></pre>
 </section>
 <section id="fix-the-s-issue" class="level2">
 <h2>Fix the “”s issue</h2>
-<p><code>cat lp_data.csv  | awk -F',' '{ print $2,$1 }' | sed 's/&quot;//' | sort | less</code></p>
+<pre><code>cat lp_data.csv  | awk -F&#39;,&#39; &#39;{ print $2,$1 }&#39; | sed &#39;s/&quot;//&#39; | sort | less</code></pre>
 <aside class="notes">
+<pre><code>cat lp_data.csv  | awk -F&#39;,&#39; &#39;{ print $2,$1 }&#39; | sed &#39;s/&quot;//&#39; | sort | less</code></pre>
 <ul>
 <li>the sed part here takes out the “”</li>
 <li>and then we sort based on title</li>
