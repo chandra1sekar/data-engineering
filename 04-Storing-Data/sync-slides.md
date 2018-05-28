@@ -23,7 +23,7 @@ Breakout at about 5 after the hour:
 ## Overview
 - Go over Assignment 3 results
 - PRs from the command line
-- Docker compose, beginning
+- Docker & Docker compose, beginning
 
 
 # 
@@ -40,11 +40,7 @@ Breakout at about 5 after the hour:
   * Write a query to determine if a trip happens from 7-9 am or 4-7 pm. (or how many trips do...)
 :::
 
-
-## Due Friday (PR)
-
-
-
+## Due Tomorrow (PR)
 
 ## Housekeeping
 
@@ -59,31 +55,31 @@ Breakout at about 5 after the hour:
 > - async material in Week 3 syllabus
 > - Readings in Week 3 syllabus
 > - Assignment 03
-> - Final Assignment 02 was due last Friday
+> - Final Assignment 02 was due last week
 
 
 ## Class 4 (i.e., today)
 
 > - Groupwork & present Assignment 03
 > - Activities Week 3 async topic
-> - Review Query Project (spans Assignments 2-5)
-> - Activities for Assignment 04 (refining and answering your project questions)
+> - Review Query Project (spans Assignments 2-4)
+> - Activities for Assignment 04 (writing up your project questions)
 
 ## Between Class 4 & Class 5
 
 > - async material in Week 4 syllabus (RDBs & NoSQL)
 > - Readings in Week 4 syllabus
 > - Assignment 04
-> - Final Assignment 03 due on Friday
+> - Final Assignment 03 due this week
 
 
 ## Where are we in the Query Project?
 
-- Assignment 4: Answer your Project Questions
-- Assignment 5: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.
+- Assignment 3: Answer your Project Questions
+- Assignment 4: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.
 
 ::: notes
-use bigquery or bq cli for assignment 4
+use bigquery or bq cli for assignment 3
 :::
 
 
@@ -140,15 +136,11 @@ git clone \
 - Submit
 
 
-
-
-
-
 #
 ## Docker: Where am I?
 
-- We've worked with Docker
-- We've explore cli ways to find out what's up with data
+- Working with Docker
+- Use it to explore cli ways to find out what's up with data
 - How do we find our way around with Docker?
 
 ::: notes
@@ -188,9 +180,6 @@ docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 
 - e.g., `midsw205/base:latest`
 
-
-
-
 ## Clean up containers
 
 `docker rm -f <name-of-container>`
@@ -211,9 +200,6 @@ docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 docker run -it --rm -v ~/w205:/w205 midsw205/base pwd
 ```
  
-
-
-
 ::: notes
 I hope some of this simplifies when we start using the containers to _just_ run a command... i.e.,
 `docker run [<opts>] <image> [<command>]`
@@ -225,86 +211,11 @@ in one go (edited)
 then they're only "in" one place
 :::
 
-#
-## Docker compose
-
-- What is docker compose?
-
-## Update your course content repo in w205
-
-```
-cd ~/w205/course-content
-git pull --all
-```
-
-## Docker compose .yml file
-
-- `cd w205`
-- `mkdir kafka`
-- save `docker-compose.yml` from recently pulled `~/w205/course-content` to
-  recently created `~/w205/kafka` directory
-
-
-::: notes
-
-Save the following snippet as `~/w205/kafka/docker-compose.yml` on your host
-filesystem
-
-    ---
-    version: '2'
-    services:
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        network_mode: host
-        environment:
-          ZOOKEEPER_CLIENT_PORT: 32181
-          ZOOKEEPER_TICK_TIME: 2000
-        extra_hosts:
-          - "moby:127.0.0.1"
-
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        network_mode: host
-        depends_on:
-          - zookeeper
-        environment:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        extra_hosts:
-          - "moby:127.0.0.1"
-
-:::
-
-
-
-
-## Docker compose spin things up
-
-- `cd ~/w205/kafka`
-- `docker-compose up -d`
-- `docker-compose ps`
-
-::: notes
-- This is the start of spinning up things that will lead to projects 2&3
-- Have them go through on command line, talk about what is happening.
-:::
-
-## Clean up
-
-`docker-compose down`
-
-- Can check with:
-- `docker-compose ps`
-
 
 #
 ## Summary
 - git branching
-- where are we with Docker?
-- Idiomatic Docker
-- docker-compose
+- using docker
 
 ##
 
@@ -315,20 +226,9 @@ docker-compose is for this
 :::
 
 
-#
-
-## 
-
-
-::: notes
-md works here
-:::
-
 # 
 
 ## Extras
-
-
 
 
 #
