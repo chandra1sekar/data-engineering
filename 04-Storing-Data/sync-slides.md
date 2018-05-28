@@ -141,16 +141,17 @@ git clone \
 - Use it to explore cli ways to find out what's up with data
 - How do we find our way around with Docker?
 
-::: notes
-docker run -it --rm -v ~/w205:/w205 midsw205/base bash
-
-:::
-
 ## Run the regular container
 
 ```
 docker run -it --rm -v ~/w205:/w205 midsw205/base bash
 ```
+
+::: notes
+```
+docker run -it --rm -v ~/w205:/w205 midsw205/base bash
+```
+:::
 
 ## What containers are running right now?
 
