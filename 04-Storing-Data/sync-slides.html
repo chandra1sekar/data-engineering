@@ -53,7 +53,7 @@
 <ul>
 <li>Go over Assignment 3 results</li>
 <li>PRs from the command line</li>
-<li>Docker compose, beginning</li>
+<li>Intro Docker</li>
 </ul>
 </section>
 </section>
@@ -77,9 +77,6 @@
 </ul>
 </aside>
 </section>
-<section id="due-friday-pr" class="level2">
-<h2>Due Friday (PR)</h2>
-</section>
 <section id="housekeeping" class="level2">
 <h2>Housekeeping</h2>
 <ul>
@@ -94,38 +91,38 @@
 <section id="between-class-3-class-4" class="level2">
 <h2>Between Class 3 &amp; Class 4</h2>
 <ul>
-<li class="fragment">async material in Week 3 syllabus</li>
-<li class="fragment">Readings in Week 3 syllabus</li>
-<li class="fragment">Assignment 03</li>
-<li class="fragment">Final Assignment 02 was due last Friday</li>
+<li>async material in Week 3 syllabus</li>
+<li>Readings in Week 3 syllabus</li>
+<li>Assignment 03</li>
+<li>Final Assignment 02 was due last week</li>
 </ul>
 </section>
 <section id="class-4-i.e.-today" class="level2">
 <h2>Class 4 (i.e., today)</h2>
 <ul>
-<li class="fragment">Groupwork &amp; present Assignment 03</li>
-<li class="fragment">Activities Week 3 async topic</li>
-<li class="fragment">Review Query Project (spans Assignments 2-5)</li>
-<li class="fragment">Activities for Assignment 04 (refining and answering your project questions)</li>
+<li>Groupwork &amp; present Assignment 03</li>
+<li>Activities Week 3 async topic</li>
+<li>Review Query Project (spans Assignments 2-4)</li>
+<li>Activities for Assignment 04 (writing up project questions and answers)</li>
 </ul>
 </section>
 <section id="between-class-4-class-5" class="level2">
 <h2>Between Class 4 &amp; Class 5</h2>
 <ul>
-<li class="fragment">async material in Week 4 syllabus (RDBs &amp; NoSQL)</li>
-<li class="fragment">Readings in Week 4 syllabus</li>
-<li class="fragment">Assignment 04</li>
-<li class="fragment">Final Assignment 03 due on Friday</li>
+<li>async material in Week 4 syllabus (RDBs &amp; NoSQL)</li>
+<li>Readings in Week 4 syllabus</li>
+<li>Assignment 04</li>
+<li>Final Assignment 03 due this week</li>
 </ul>
 </section>
 <section id="where-are-we-in-the-query-project" class="level2">
 <h2>Where are we in the Query Project?</h2>
 <ul>
-<li>Assignment 4: Answer your Project Questions</li>
-<li>Assignment 5: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.</li>
+<li>Assignment 3: Answer your Project Questions</li>
+<li>Assignment 4: Use Jupyter Notebook to do some visualizations and write up your reasoning for the recommendations you choose to make.</li>
 </ul>
 <aside class="notes">
-<p>use bigquery or bq cli for assignment 4</p>
+<p>use bigquery or bq cli for assignment 3</p>
 </aside>
 </section>
 </section>
@@ -189,17 +186,17 @@
 <section id="docker-where-am-i" class="level2">
 <h2>Docker: Where am I?</h2>
 <ul>
-<li>We’ve worked with Docker</li>
-<li>We’ve explore cli ways to find out what’s up with data</li>
+<li>Working with Docker</li>
+<li>Use it to explore cli ways to find out what’s up with data</li>
 <li>How do we find our way around with Docker?</li>
 </ul>
-<aside class="notes">
-<p>docker run -it –rm -v ~/w205:/w205 midsw205/base bash</p>
-</aside>
 </section>
 <section id="run-the-regular-container" class="level2">
 <h2>Run the regular container</h2>
 <pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base bash</code></pre>
+<aside class="notes">
+<pre><code>docker run -it --rm -v ~/w205:/w205 midsw205/base bash</code></pre>
+</aside>
 </section>
 <section id="what-containers-are-running-right-now" class="level2">
 <h2>What containers are running right now?</h2>
@@ -261,87 +258,14 @@
 </section>
 <section id="section-6" class="slide level1">
 <h1></h1>
-<section id="docker-compose" class="level2">
-<h2>Docker compose</h2>
-<ul>
-<li>What is docker compose?</li>
-</ul>
-</section>
-<section id="update-your-course-content-repo-in-w205" class="level2">
-<h2>Update your course content repo in w205</h2>
-<pre><code>cd ~/w205/course-content
-git pull --all</code></pre>
-</section>
-<section id="docker-compose-.yml-file" class="level2">
-<h2>Docker compose .yml file</h2>
-<ul>
-<li><code>cd w205</code></li>
-<li><code>mkdir kafka</code></li>
-<li>save <code>docker-compose.yml</code> from recently pulled <code>~/w205/course-content</code> to recently created <code>~/w205/kafka</code> directory</li>
-</ul>
-<aside class="notes">
-<p>Save the following snippet as <code>~/w205/kafka/docker-compose.yml</code> on your host filesystem</p>
-<pre><code>---
-version: &#39;2&#39;
-services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    network_mode: host
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    network_mode: host
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
-</aside>
-</section>
-<section id="docker-compose-spin-things-up" class="level2">
-<h2>Docker compose spin things up</h2>
-<ul>
-<li><code>cd ~/w205/kafka</code></li>
-<li><code>docker-compose up -d</code></li>
-<li><code>docker-compose ps</code></li>
-</ul>
-<aside class="notes">
-<ul>
-<li>This is the start of spinning up things that will lead to projects 2&amp;3</li>
-<li>Have them go through on command line, talk about what is happening.</li>
-</ul>
-</aside>
-</section>
-<section id="clean-up" class="level2">
-<h2>Clean up</h2>
-<p><code>docker-compose down</code></p>
-<ul>
-<li>Can check with:</li>
-<li><code>docker-compose ps</code></li>
-</ul>
-</section>
-</section>
-<section id="section-7" class="slide level1">
-<h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
 <ul>
 <li>git branching</li>
-<li>where are we with Docker?</li>
-<li>Idiomatic Docker</li>
-<li>docker-compose</li>
+<li>using docker</li>
 </ul>
 </section>
-<section id="section-8" class="level2">
+<section id="section-7" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-overall.svg" /></p>
 <aside class="notes">
@@ -349,22 +273,13 @@ services:
 </aside>
 </section>
 </section>
-<section id="section-9" class="slide level1">
-<h1></h1>
-<section id="section-10" class="level2">
-<h2></h2>
-<aside class="notes">
-<p>md works here</p>
-</aside>
-</section>
-</section>
-<section id="section-11" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="extras" class="level2">
 <h2>Extras</h2>
 </section>
 </section>
-<section id="section-12" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
