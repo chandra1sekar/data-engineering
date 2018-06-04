@@ -45,9 +45,6 @@
 <p>Breakout at about 5 after the hour: - Check in with each group on their solution to the assignment - Answer questions as people have them on what they had trouble with - Have 3-4 people present</p>
 </aside>
 </section>
-<section id="due-friday-pr" class="level2">
-<h2>Due Friday (PR)</h2>
-</section>
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
@@ -57,7 +54,7 @@
 <section id="today" class="level2">
 <h2>Today</h2>
 <ul>
-<li>Assignment 04</li>
+<li>Assignment 04 wraps up the Query Project</li>
 <li>Creating basic <code>docker-compose</code> clusters</li>
 <li>NoSQL stores with <code>docker-compose</code></li>
 </ul>
@@ -75,15 +72,13 @@
 <ul>
 <li>async material in Week 5 syllabus (Virtualization, Hadoop)</li>
 <li>Readings in Week 5 syllabus</li>
-<li>Assignment 05 (notebook to present)</li>
-<li>Final Assignment 04 due on Friday</li>
+<li>Assignment 05</li>
 </ul>
 </section>
 <section id="class-6" class="level2">
 <h2>Class 6</h2>
 <ul>
-<li>Final presentations of Query Project Notebooks/Recommendations</li>
-<li>Tracking User Activity Project (spans Assignments 6-8)</li>
+<li>Start “Tracking User Activity” Project (spans Assignments 6-8)</li>
 </ul>
 </section>
 </section>
@@ -92,45 +87,94 @@
 <section id="where-are-we-in-the-pipeline" class="level2">
 <h2>Where are we in the pipeline?</h2>
 </section>
-<section id="section-3" class="level2">
+<section id="section-3" class="level2" data-background="images/pipeline-overall.svg">
 <h2></h2>
-<p><img data-src="images/pipeline-overall.svg" /></p>
+<aside class="notes">
+<p>we’re orchestrating pipeline components</p>
+<p>this is tough, so let’s take it one step at a time</p>
+</aside>
 </section>
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
-<section id="docker-compose-with-redis" class="level2">
-<h2>Docker-compose with Redis</h2>
+<section id="docker" class="level2">
+<h2>Docker</h2>
+</section>
+<section id="docker-1" class="level2">
+<h2>Docker</h2>
+<p>Let’s play with Redis</p>
 <aside class="notes">
-<p>something about what we’re going to do</p>
+<p>redis is a nosql key-value store</p>
 </aside>
 </section>
-<section id="setup" class="level2">
-<h2>Setup</h2>
+<section id="spin-it-up" class="level2">
+<h2>spin it up</h2>
+<pre><code>docker run redis</code></pre>
+<aside class="notes">
+<p>this is lame: - ties up a terminal - named strangely - tough to connect</p>
+<p>ctrl-c to exit</p>
+</aside>
 </section>
-<section id="create-a-workspace-for-this-example" class="level2">
-<h2>Create a workspace for this example</h2>
-<pre><code>mkdir ~/w205/redis
-cd ~/w205/redis</code></pre>
+<section id="section-5" class="level2">
+<h2></h2>
+<pre><code>docker run -d redis</code></pre>
+<aside class="notes">
+<p>lame: - named strangely - tough to connect</p>
+</aside>
 </section>
-<section id="save-the-following-to-docker-compose.yml-in-that-directory" class="level2">
-<h2>Save the following to <code>docker-compose.yml</code> in that directory</h2>
+<section id="section-6" class="level2">
+<h2></h2>
+<pre><code>docker run -d --name redis redis</code></pre>
+<aside class="notes">
+<p>still need to connect</p>
+</aside>
+</section>
+<section id="section-7" class="level2">
+<h2></h2>
+<pre><code>docker run -d --name redis -p 6379:6379 redis</code></pre>
+<aside class="notes">
+<p>This still sucks though… imagine doing that for: - flask - kafka - spark - hdfs - presto - etc</p>
+<p>let’s simplify</p>
+</aside>
+</section>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<section id="docker-compose" class="level2">
+<h2>Docker compose</h2>
+</section>
+<section id="section-9" class="level2">
+<h2></h2>
+<ul>
+<li>helps manage options easily</li>
+<li>manage multiple containers at once</li>
+</ul>
+<aside class="notes">
+<p>let’s look at an example</p>
+</aside>
+</section>
+<section id="update-your-course-content-repo-in-w205" class="level2">
+<h2>Update your course content repo in w205</h2>
+<pre><code>cd ~/w205/course-content
+git pull --all</code></pre>
+</section>
+<section id="docker-compose-.yml-file" class="level2">
+<h2>Docker compose .yml file</h2>
+<pre><code>mkdir ~/w205/redis-standalone
+cd ~/w205/redis-standalone
+cp ../course-content/05-Storing-Data-II/example-0-docker-compose.yml docker-compose.yml</code></pre>
+</section>
+<section id="i.e." class="level2">
+<h2>i.e.,</h2>
 <pre><code>---
 version: &#39;2&#39;
 services:
   redis:
-    image: redis:latest
+    image: redis
     expose:
       - &quot;6379&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
-
-  mids:
-    image: midsw205/base:latest
-    stdin_open: true
-    tty: true
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+    ports:
+      - &quot;6379:6379&quot;</code></pre>
 </section>
 <section id="spinup" class="level2">
 <h2>Spinup</h2>
@@ -140,13 +184,6 @@ services:
 <section id="check-stuff" class="level2">
 <h2>Check stuff</h2>
 <pre><code>docker-compose ps</code></pre>
-</section>
-<section id="should-see" class="level2">
-<h2>Should see</h2>
-<pre><code>         Name                        Command               State    Ports     
----------------------------------------------------------------------------
-redisexample_midsbase_1   /bin/bash                        Up      8888/tcp 
-redisexample_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp </code></pre>
 </section>
 <section id="peek-at-the-logs" class="level2">
 <h2>Peek at the logs</h2>
@@ -158,23 +195,14 @@ redisexample_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp </co
 </section>
 <section id="run-stuff" class="level2">
 <h2>Run stuff</h2>
-<p>Connect to the mids container</p>
-<pre><code>docker-compose exec mids bash</code></pre>
-</section>
-<section id="at-the-prompt-run" class="level2">
-<h2>At the prompt, run</h2>
 <pre><code>ipython</code></pre>
 </section>
 <section id="try-out-redis" class="level2">
 <h2>Try out redis</h2>
 <pre><code>import redis
-r = redis.Redis(host=&#39;redis&#39;, port=&#39;6379&#39;)
+r = redis.Redis(host=&#39;localhost&#39;, port=&#39;6379&#39;)
 r.keys()
 exit</code></pre>
-</section>
-<section id="exit-that-container" class="level2">
-<h2>Exit that container</h2>
-<pre><code>exit</code></pre>
 </section>
 <section id="tear-down-your-stack" class="level2">
 <h2>Tear down your stack</h2>
@@ -185,7 +213,89 @@ exit</code></pre>
 <pre><code>docker-compose ps</code></pre>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-10" class="slide level1">
+<h1></h1>
+<section id="more-docker-compose-with-redis" class="level2">
+<h2>More docker-compose with Redis</h2>
+</section>
+<section id="setup" class="level2">
+<h2>Setup</h2>
+</section>
+<section id="create-a-workspace-for-this-other-example" class="level2">
+<h2>Create a workspace for this other example</h2>
+<pre><code>mkdir ~/w205/redis-cluster
+cd ~/w205/redis-cluster
+cp ../course-content/05-Storing-Data-II/example-1-docker-compose.yml docker-compose.yml</code></pre>
+</section>
+<section id="save-the-following-to-docker-compose.yml-in-that-directory" class="level2">
+<h2>Save the following to <code>docker-compose.yml</code> in that directory</h2>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - &quot;6379&quot;
+
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true</code></pre>
+</section>
+<section id="spinup-1" class="level2">
+<h2>Spinup</h2>
+<p>Start up the cluster</p>
+<pre><code>docker-compose up -d</code></pre>
+</section>
+<section id="check-stuff-1" class="level2">
+<h2>Check stuff</h2>
+<pre><code>docker-compose ps</code></pre>
+</section>
+<section id="should-see" class="level2">
+<h2>Should see</h2>
+<pre><code>         Name                        Command               State    Ports     
+---------------------------------------------------------------------------
+redisexample_midsbase_1   /bin/bash                        Up      8888/tcp 
+redisexample_redis_1      docker-entrypoint.sh redis ...   Up      6379/tcp </code></pre>
+</section>
+<section id="peek-at-the-logs-1" class="level2">
+<h2>Peek at the logs</h2>
+<pre><code>docker-compose logs redis</code></pre>
+</section>
+<section id="should-see-log-output-ending-in-1" class="level2">
+<h2>Should see log output ending in</h2>
+<pre><code>Ready to accept connections</code></pre>
+</section>
+<section id="run-stuff-1" class="level2">
+<h2>Run stuff</h2>
+<p>Connect to the mids container</p>
+<pre><code>docker-compose exec mids bash</code></pre>
+</section>
+<section id="at-the-prompt-run" class="level2">
+<h2>At the prompt, run</h2>
+<pre><code>ipython</code></pre>
+</section>
+<section id="try-out-redis-1" class="level2">
+<h2>Try out redis</h2>
+<pre><code>import redis
+r = redis.Redis(host=&#39;redis&#39;, port=&#39;6379&#39;)
+r.keys()
+exit</code></pre>
+</section>
+<section id="exit-that-container" class="level2">
+<h2>Exit that container</h2>
+<pre><code>exit</code></pre>
+</section>
+<section id="tear-down-your-stack-1" class="level2">
+<h2>Tear down your stack</h2>
+<pre><code>docker-compose down</code></pre>
+</section>
+<section id="verify-1" class="level2">
+<h2>Verify</h2>
+<pre><code>docker-compose ps</code></pre>
+</section>
+</section>
+<section id="section-11" class="slide level1">
 <h1></h1>
 <section id="jupyter-notebooks" class="level2">
 <h2>Jupyter Notebooks</h2>
@@ -199,8 +309,6 @@ services:
     image: redis:latest
     expose:
       - &quot;6379&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   mids:
     image: midsw205/base:latest
@@ -209,9 +317,7 @@ services:
     expose:
       - &quot;8888&quot;
     ports:
-      - &quot;8888:8888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+      - &quot;8888:8888&quot;</code></pre>
 <aside class="notes">
 <ul>
 <li>Add a port for the <code>mids</code> service</li>
@@ -248,12 +354,12 @@ services:
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
 <section id="automate-notebook-startup" class="level2">
 <h2>Automate notebook startup</h2>
 </section>
-<section id="section-7" class="level2">
+<section id="section-13" class="level2">
 <h2></h2>
 <p>Just for fun,</p>
 <pre><code>---
@@ -263,8 +369,6 @@ services:
     image: redis:latest
     expose:
       - &quot;6379&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   mids:
     image: midsw205/base:latest
@@ -274,8 +378,6 @@ services:
       - &quot;8888&quot;
     ports:
       - &quot;8888:8888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
     command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root</code></pre>
 </section>
 <section id="test-it-out" class="level2">
@@ -310,8 +412,11 @@ print(value)</code></pre>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-14" class="slide level1">
 <h1></h1>
+<section id="extras" class="level2">
+<h2>Extras</h2>
+</section>
 <section id="redis-to-track-state" class="level2">
 <h2>Redis to track state</h2>
 <aside class="notes">
@@ -322,7 +427,7 @@ print(value)</code></pre>
 <h2>Setup</h2>
 <p>Download data:</p>
 <pre><code>cd ~/w205/
-curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
+curl -L -o trips.csv goo.gl/XygbZp</code></pre>
 </section>
 <section id="setup-2" class="level2">
 <h2>Setup</h2>
@@ -330,7 +435,7 @@ curl -L -o trips.csv https://goo.gl/MVNVhW</code></pre>
 <pre><code>volumes:
   - ~/w205:/w205</code></pre>
 </section>
-<section id="section-9" class="level2">
+<section id="section-15" class="level2">
 <h2></h2>
 <pre><code>---
 version: &#39;2&#39;
@@ -339,8 +444,6 @@ services:
     image: redis:latest
     expose:
       - &quot;6379&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   mids:
     image: midsw205/base:latest
@@ -352,8 +455,6 @@ services:
       - &quot;8888&quot;
     ports:
       - &quot;8888:8888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
     command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root</code></pre>
 </section>
 <section id="spin-up-cluster" class="level2">
@@ -371,12 +472,12 @@ services:
 <section id="open-new-python3-notebook-1" class="level2">
 <h2>Open New Python3 Notebook</h2>
 </section>
-<section id="section-10" class="level2">
+<section id="section-16" class="level2">
 <h2></h2>
 <pre><code>import redis
 import pandas as pd</code></pre>
 </section>
-<section id="section-11" class="level2">
+<section id="section-17" class="level2">
 <h2></h2>
 <pre><code>trips=pd.read_csv(&#39;trips.csv&#39;)
 
@@ -384,7 +485,7 @@ date_sorted_trips = trips.sort_values(by=&#39;end_date&#39;)
 
 date_sorted_trips.head()</code></pre>
 </section>
-<section id="section-12" class="level2">
+<section id="section-18" class="level2">
 <h2></h2>
 <pre><code>for trip in date_sorted_trips.itertuples():
   print(trip.end_date, &#39;&#39;, trip.bike_number, &#39;&#39;, trip.end_station_name)</code></pre>
@@ -392,7 +493,7 @@ date_sorted_trips.head()</code></pre>
 <p>print date sorted list of where all bikes are</p>
 </aside>
 </section>
-<section id="section-13" class="level2">
+<section id="section-19" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations = redis.Redis(host=&#39;redis&#39;, port=&#39;6379&#39;)
 current_bike_locations.keys()</code></pre>
@@ -402,7 +503,7 @@ current_bike_locations.keys()</code></pre>
 <pre><code>for trip in date_sorted_trips.itertuples():
   current_bike_locations.set(trip.bike_number, trip.end_station_name)</code></pre>
 </section>
-<section id="section-14" class="level2">
+<section id="section-20" class="level2">
 <h2></h2>
 <pre><code>current_bike_locations.keys()</code></pre>
 </section>
@@ -415,28 +516,19 @@ current_bike_locations.keys()</code></pre>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-15" class="slide level1">
+<section id="section-21" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
+</section>
+<section id="section-22" class="level2" data-background="images/pipeline-overall.svg">
+<h2></h2>
 <aside class="notes">
 <p>Using docker compose Assembled a set of services running a query within that</p>
 </aside>
 </section>
 </section>
-<section id="section-16" class="slide level1">
-<h1></h1>
-<section id="extras" class="level2">
-<h2>Extras</h2>
-</section>
-<section id="athena-aws-cli-tool-aws" class="level2">
-<h2>Athena &amp; AWS cli tool (aws)</h2>
-<aside class="notes">
-<p>if we need to fill time, do some queries wtih ebl data</p>
-</aside>
-</section>
-</section>
-<section id="section-17" class="slide level1">
+<section id="section-23" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
