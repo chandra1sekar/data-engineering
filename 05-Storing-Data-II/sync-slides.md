@@ -64,6 +64,8 @@ this is tough, so let's take it one step at a time
 #
 ## Docker
 
+## Docker
+
 Let's play with Redis
 
 ::: notes
@@ -129,7 +131,6 @@ let's simplify
 # 
 ## Docker compose
 
-- What is docker compose?
 
 ##
 
