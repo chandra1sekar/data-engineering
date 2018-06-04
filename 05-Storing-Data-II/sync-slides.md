@@ -58,42 +58,190 @@ Breakout at about 5 after the hour:
 ##
 ![](images/pipeline-overall.svg)
 
+::: notes
+we're orchestrating pipeline components
 
-# 
-## Docker-compose with Redis
+this is tough, so let's take it one step at a time
+:::
+
+
+#
+## Docker
+
+Let's play with Redis
 
 ::: notes
-something about what we're going to do
+redis is a nosql key-value store
 :::
+
+## spin it up
+
+```
+docker run redis
+```
+
+::: notes
+this is lame:
+- ties up a terminal
+- named strangely
+- tough to connect
+
+ctrl-c to exit
+:::
+
+## 
+
+```
+docker run -d redis
+```
+
+::: notes
+lame:
+- named strangely
+- tough to connect
+:::
+
+## 
+
+```
+docker run -d --name redis redis
+```
+
+::: notes
+still need to connect
+:::
+
+## 
+
+```
+docker run -d --name redis -p 6379:6379 redis
+```
+
+::: notes
+This still sucks though...  imagine doing that for:
+- flask
+- kafka
+- spark
+- hdfs
+- presto
+- etc
+
+let's simplify
+:::
+
+
+# 
+## Docker compose
+
+- What is docker compose?
+
+##
+
+- helps manage options easily
+- manage multiple containers at once
+
+::: notes
+let's look at an example
+:::
+
+## Update your course content repo in w205
+
+```
+cd ~/w205/course-content
+git pull --all
+```
+
+## Docker compose .yml file
+
+```
+cd ~/w205
+mkdir redis-standalone
+cd redis-standalone
+cp ../course-content/05-Storing-Data-II/docker-compose.yml .
+```
+
+
+## i.e., 
+
+```
+---
+version: '2'
+services:
+  redis:
+    image: redis
+    expose:
+      - "6379"
+    ports:
+      - "6379:6379"
+```
+
+## Spinup
+
+Start up the cluster
+
+    docker-compose up -d
+
+
+## Check stuff
+
+    docker-compose ps
+
+
+## Peek at the logs
+
+    docker-compose logs redis
+
+## Should see log output ending in
+
+    Ready to accept connections
+
+## Run stuff
+
+    ipython
+
+## Try out redis
+
+    import redis
+    r = redis.Redis(host='localhost', port='6379')
+    r.keys()
+    exit
+
+## Tear down your stack
+
+    docker-compose down
+
+## Verify 
+
+    docker-compose ps
+
+
+#
+## More docker-compose with Redis
 
 ## Setup
 
-## Create a workspace for this example
+## Create a workspace for this other example
 
-    mkdir ~/w205/redis
-    cd ~/w205/redis
+    mkdir ~/w205/redis-cluster
+    cd ~/w205/redis-cluster
 
 
 ## Save the following to `docker-compose.yml` in that directory
 
-    ---
-    version: '2'
-    services:
-      redis:
-        image: redis:latest
-        expose:
-          - "6379"
-        extra_hosts:
-          - "moby:127.0.0.1"
+```
+---
+version: '2'
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - "6379"
 
-      mids:
-        image: midsw205/base:latest
-        stdin_open: true
-        tty: true
-        extra_hosts:
-          - "moby:127.0.0.1"
-
-
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+```
 
 
 ## Spinup
@@ -165,8 +313,6 @@ Connect to the mids container
         image: redis:latest
         expose:
           - "6379"
-        extra_hosts:
-          - "moby:127.0.0.1"
 
       mids:
         image: midsw205/base:latest
@@ -176,8 +322,6 @@ Connect to the mids container
           - "8888"
         ports:
           - "8888:8888"
-        extra_hosts:
-          - "moby:127.0.0.1"
 
 ::: notes
 - Add a port for the `mids` service
@@ -226,8 +370,6 @@ Just for fun,
         image: redis:latest
         expose:
           - "6379"
-        extra_hosts:
-          - "moby:127.0.0.1"
 
       mids:
         image: midsw205/base:latest
@@ -237,8 +379,6 @@ Just for fun,
           - "8888"
         ports:
           - "8888:8888"
-        extra_hosts:
-          - "moby:127.0.0.1"
         command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root
 
 ## Test it out
@@ -273,6 +413,8 @@ Just for fun,
 
 
 #
+## Extras
+
 ## Redis to track state
 
 ::: notes
@@ -284,7 +426,7 @@ See nosql-kv-stores-video-hd1080-h264-30fps.mp4
 Download data:
 
     cd ~/w205/
-    curl -L -o trips.csv https://goo.gl/MVNVhW
+    curl -L -o trips.csv goo.gl/XygbZp
 
 ## Setup
 
@@ -303,8 +445,6 @@ Add volumes to your `docker-compose.yml`:
         image: redis:latest
         expose:
           - "6379"
-        extra_hosts:
-          - "moby:127.0.0.1"
 
       mids:
         image: midsw205/base:latest
@@ -316,8 +456,6 @@ Add volumes to your `docker-compose.yml`:
           - "8888"
         ports:
           - "8888:8888"
-        extra_hosts:
-          - "moby:127.0.0.1"
         command: jupyter notebook --no-browser --port 8888 --ip 0.0.0.0 --allow-root
 
 
@@ -384,20 +522,13 @@ print date sorted list of where all bikes are
 #
 ## Summary
 
+##
+![](images/pipeline-overall.svg)
+
 ::: notes
 Using docker compose
 Assembled a set of services
 running a query within that
-:::
-
-
-#
-## Extras
-
-## Athena & AWS cli tool (aws) 
-
-::: notes
-if we need to fill time, do some queries wtih ebl data
 :::
 
 
