@@ -21,7 +21,6 @@ Breakout at about 5 after the hour:
 - Have 3-4 people present
 :::
 
-## Due Friday (PR)
 
 #
 ## Where are we?
@@ -43,13 +42,11 @@ Breakout at about 5 after the hour:
 
 - async material in Week 5 syllabus (Virtualization, Hadoop)
 - Readings in Week 5 syllabus
-- Assignment 05 (notebook to present)
-- Final Assignment 04 due on Friday
+- Assignment 05
 
 
 ## Class 6
-- Final presentations of Query Project Notebooks/Recommendations 
-- Tracking User Activity Project (spans Assignments 6-8)
+- Start "Tracking User Activity" Project (spans Assignments 6-8)
 
 
 # 
