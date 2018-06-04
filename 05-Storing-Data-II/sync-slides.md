@@ -26,7 +26,7 @@ Breakout at about 5 after the hour:
 ## Where are we?
 
 ## Today
-- Assignment 04
+- Assignment 04 wraps up the Query Project
 - Creating basic `docker-compose` clusters
 - NoSQL stores with `docker-compose`
 
