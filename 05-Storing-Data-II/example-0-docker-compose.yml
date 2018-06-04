@@ -5,8 +5,5 @@ services:
     image: redis:latest
     expose:
       - "6379"
-
-  mids:
-    image: midsw205/base:latest
-    stdin_open: true
-    tty: true
+    ports:
+      - "6379:6379"

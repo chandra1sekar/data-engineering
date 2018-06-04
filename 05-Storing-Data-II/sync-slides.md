@@ -52,8 +52,7 @@ Breakout at about 5 after the hour:
 # 
 ## Where are we in the pipeline?
 
-##
-![](images/pipeline-overall.svg)
+## { data-background="images/pipeline-overall.svg" }
 
 ::: notes
 we're orchestrating pipeline components
@@ -151,10 +150,9 @@ git pull --all
 ## Docker compose .yml file
 
 ```
-cd ~/w205
-mkdir redis-standalone
-cd redis-standalone
-cp ../course-content/05-Storing-Data-II/docker-compose.yml .
+mkdir ~/w205/redis-standalone
+cd ~/w205/redis-standalone
+cp ../course-content/05-Storing-Data-II/example-0-docker-compose.yml docker-compose.yml
 ```
 
 
@@ -221,6 +219,7 @@ Start up the cluster
 
     mkdir ~/w205/redis-cluster
     cd ~/w205/redis-cluster
+    cp ../course-content/05-Storing-Data-II/example-1-docker-compose.yml docker-compose.yml
 
 
 ## Save the following to `docker-compose.yml` in that directory
@@ -519,8 +518,7 @@ print date sorted list of where all bikes are
 #
 ## Summary
 
-##
-![](images/pipeline-overall.svg)
+## { data-background="images/pipeline-overall.svg" }
 
 ::: notes
 Using docker compose
