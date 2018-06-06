@@ -39,6 +39,6 @@
 
 
 #### Due Friday after Week 6 Synchronous Session: 
-- Assignment 05 - Employ notebooks to synthesize query project results (Query Project)
+- Assignment 05 - Use a python redis client library to connect to the redis server on a cluster.
 
 
