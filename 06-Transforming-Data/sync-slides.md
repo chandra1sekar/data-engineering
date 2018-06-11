@@ -12,15 +12,8 @@ author: Week 06 - sync session
 - Review your Assignment 05
 - Get ready to share
 
-::: notes
-Breakout at about 5 after the hour:
-- Check in with each group 
-- Choose 4-5 people with different approaches to present
-- Usually takes 10-20 minutes
-:::
-
-
 ## Groups present notebooks
+
 ::: notes
 do nb and make recommendations
 :::
@@ -30,7 +23,6 @@ do nb and make recommendations
 
 # 
 ## Pipes 
-
 
 ```
 cat junk.csv | sort | uniq | wc -l
@@ -80,13 +72,11 @@ Classes 6-8
 
 ![](images/streaming-bare.svg){style="border:0;box-shadow:none"}
 
-
 ::: notes
 - Will take a built pipeline,
 - Manage data within it
 - Using kafka, spark and hdfs
 :::
-
 
 
 #
@@ -106,41 +96,34 @@ git pull --all
 - save `docker-compose.yml` from recently pulled `~/w205/course-content` to
   recently created `~/w205/kafka` directory
 
-
 ::: notes
 
 Save the following snippet as `~/w205/kafka/docker-compose.yml` on your host
 filesystem
 
-    ---
-    version: '2'
-    services:
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        network_mode: host
-        environment:
-          ZOOKEEPER_CLIENT_PORT: 32181
-          ZOOKEEPER_TICK_TIME: 2000
-        extra_hosts:
-          - "moby:127.0.0.1"
+```
+---
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    network_mode: host
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
 
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        network_mode: host
-        depends_on:
-          - zookeeper
-        environment:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        extra_hosts:
-          - "moby:127.0.0.1"
-
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    network_mode: host
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+```
 :::
-
-
-
 
 ## Docker compose spin things up
 
@@ -220,7 +203,9 @@ docker-compose exec kafka \
 ```
 
 ::: notes
+```
 docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
+```
 :::
 
 ## Should see something like
@@ -242,8 +227,9 @@ docker-compose exec kafka \
 ::: notes
 Use the kafka console producer to publish some test messages to that topic
 
+```
 docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo && echo 'Produced 42 messages.'"
-
+```
 :::
 
 ## Should see something like
@@ -266,8 +252,9 @@ docker-compose exec kafka \
 ::: notes
 Start a consumer to read from that topic
 
+```
 docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42
-
+```
 :::
 
 ## Should see something like
@@ -307,50 +294,43 @@ omg, check out <https://explainshell.com/explain?cmd=tar%20xzvf%20archive.tar.gz
 
 ## docker-compose.yml file
 
+```
+---
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - "2181"
+      - "2888"
+      - "32181"
+      - "3888"
 
-    ---
-    version: '2'
-    services:
-      zookeeper:
-        image: confluentinc/cp-zookeeper:latest
-        environment:
-          ZOOKEEPER_CLIENT_PORT: 32181
-          ZOOKEEPER_TICK_TIME: 2000
-        expose:
-          - "2181"
-          - "2888"
-          - "32181"
-          - "3888"
-        #ports:
-          #- "32181:32181"
-        extra_hosts:
-          - "moby:127.0.0.1"
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "9092"
+      - "29092"
 
-      kafka:
-        image: confluentinc/cp-kafka:latest
-        depends_on:
-          - zookeeper
-        environment:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
-          KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        volumes:
-          - ~/w205:/w205
-        expose:
-          - "9092"
-          - "29092"
-        extra_hosts:
-          - "moby:127.0.0.1"
-
-      mids:
-        image: midsw205/base:latest
-        stdin_open: true
-        tty: true
-        volumes:
-          - ~/w205:/w205
-        extra_hosts:
-          - "moby:127.0.0.1"
+  mids:
+    image: midsw205/base:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ~/w205:/w205
+```
 
 ::: notes
 Create a `docker-compose.yml` with the following
@@ -358,9 +338,9 @@ Create a `docker-compose.yml` with the following
 
 ## Pull data
 
-
-    curl -L -o github-example-large.json https://goo.gl/WewtYn
-
+```
+curl -L -o github-example-large.json https://goo.gl/2Z2fPw
+```
 
 ## Spin up the cluster
 
@@ -394,7 +374,9 @@ when this looks like it's done, detach
 ```
 
 ::: notes
+```
 docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
 :::
 
 ## Should see something like
@@ -412,7 +394,9 @@ docker-compose exec kafka \
 ```
 
 ::: notes
+```
 docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+```
 :::
 ## Should see something like
 
@@ -442,7 +426,9 @@ docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]'
 ```
 
 ::: notes
+```
 docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+```
 :::
 
 ## Should see something like
@@ -464,7 +450,9 @@ docker-compose exec kafka \
 ```
 
 ::: notes
+```
 docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42
+```
 ::::
 
 ## or 
@@ -474,7 +462,9 @@ docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning
 ```
 
 ::: notes
+```
 docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e"
+```
 :::
 
 ## and maybe
@@ -483,7 +473,9 @@ docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning
 ```
 
 ::: notes
+```
 docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning -e" | wc -l
+```
 :::
 
 ## Down
@@ -494,7 +486,7 @@ docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning
 ## Assignment 06
 - Step through this process using the Project 2 data
 - What you turn in:
-- In your `/assignment-05-<user-name>` repo:
+- In your `/assignment-06-<user-name>` repo:
   * your `docker-compose.yml` 
   * once you've run the example on your terminal
     * Run `history > <user-name>-history.txt`
@@ -508,19 +500,13 @@ docker-compose exec mids bash -c "kafkacat -C -b kafka:29092 -t foo -o beginning
 - Prep for assignment
 
 
-
-
-
 #
-
 <img class="logo" src="images/berkeley-school-of-information-logo.png"/>
-
 
 
 #
 ##
 ![](images/pipeline-overall.svg){style="border:0;box-shadow:none"}
-
 
 
 #
