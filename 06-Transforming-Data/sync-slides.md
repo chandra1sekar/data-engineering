@@ -107,21 +107,29 @@ version: '2'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
-    network_mode: host
     environment:
       ZOOKEEPER_CLIENT_PORT: 32181
       ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - "2181"
+      - "2888"
+      - "32181"
+      - "3888"
 
   kafka:
     image: confluentinc/cp-kafka:latest
-    network_mode: host
     depends_on:
       - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "9092"
+      - "29092"
 ```
 :::
 
@@ -184,9 +192,14 @@ docker-compose exec kafka \
     --partitions 1 \
     --replication-factor 1 \
     --if-not-exists \
-    --zookeeper localhost:32181
+    --zookeeper zookeeper:32181
 ```
 
+::: notes
+```
+docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
+:::
 
 ## Should see something like
 
@@ -199,12 +212,12 @@ docker-compose exec kafka \
   kafka-topics \
     --describe \
     --topic foo \
-    --zookeeper localhost:32181
+    --zookeeper zookeeper:32181
 ```
 
 ::: notes
 ```
-docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper localhost:32181
+docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
 ```
 :::
 
