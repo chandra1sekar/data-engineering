@@ -111,8 +111,8 @@
 </section>
 <section id="section-4" class="slide level1">
 <h1></h1>
-<section id="stand-alone-kafka" class="level2">
-<h2>Stand alone kafka</h2>
+<section id="kafka" class="level2">
+<h2>Kafka</h2>
 </section>
 <section id="update-your-course-content-repo-in-w205" class="level2">
 <h2>Update your course content repo in w205</h2>
@@ -126,6 +126,37 @@ git pull --all</code></pre>
 <li><code>mkdir kafka</code></li>
 <li>save <code>docker-compose.yml</code> from recently pulled <code>~/w205/course-content</code> to recently created <code>~/w205/kafka</code> directory</li>
 </ul>
+</section>
+<section id="section-5" class="level2">
+<h2></h2>
+<pre><code>---
+version: &#39;2&#39;
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - &quot;2181&quot;
+      - &quot;2888&quot;
+      - &quot;32181&quot;
+      - &quot;3888&quot;
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;9092&quot;
+      - &quot;29092&quot;</code></pre>
 <aside class="notes">
 <p>Save the following snippet as <code>~/w205/kafka/docker-compose.yml</code> on your host filesystem</p>
 <pre><code>---
@@ -206,7 +237,7 @@ kafka_1      | [2017-08-31 00:31:40,436] INFO [Partition state machine on Contro
 kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.server.KafkaServer)</code></pre>
 </section>
 </section>
-<section id="section-5" class="slide level1">
+<section id="section-6" class="slide level1">
 <h1></h1>
 <section id="create-a-topic-foo" class="level2">
 <h2>Create a Topic <code>foo</code></h2>
@@ -243,7 +274,7 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
 Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 </section>
-<section id="section-6" class="slide level1">
+<section id="section-7" class="slide level1">
 <h1></h1>
 <section id="publish-messages" class="level2">
 <h2>Publish Messages</h2>
@@ -262,7 +293,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <pre><code>Produced 42 messages.</code></pre>
 </section>
 </section>
-<section id="section-7" class="slide level1">
+<section id="section-8" class="slide level1">
 <h1></h1>
 <section id="consume-messages" class="level2">
 <h2>Consume Messages</h2>
@@ -288,14 +319,14 @@ Processed a total of 42 messages</code></pre>
 </aside>
 </section>
 </section>
-<section id="section-8" class="slide level1">
+<section id="section-9" class="slide level1">
 <h1></h1>
 <section id="tearing-things-down" class="level2">
 <h2>Tearing things down</h2>
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-9" class="slide level1">
+<section id="section-10" class="slide level1">
 <h1></h1>
 <section id="kafka-with-real-messages" class="level2">
 <h2>Kafka with “real” messages</h2>
@@ -312,7 +343,7 @@ Processed a total of 42 messages</code></pre>
 <section id="kafkacat" class="level2">
 <h2>kafkacat</h2>
 </section>
-<section id="section-10" class="level2">
+<section id="section-11" class="level2">
 <h2></h2>
 <p><img data-src="images/kafkacat-syntax.svg" style="border:0;box-shadow:none" /></p>
 <aside class="notes">
@@ -417,7 +448,7 @@ services:
 Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 </section>
-<section id="section-11" class="slide level1">
+<section id="section-12" class="slide level1">
 <h1></h1>
 <section id="publish-some-stuff-to-kafka" class="level2">
 <h2>Publish some stuff to kafka</h2>
@@ -443,7 +474,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>Produced 100 messages.</code></pre>
 </section>
 </section>
-<section id="section-12" class="slide level1">
+<section id="section-13" class="slide level1">
 <h1></h1>
 <section id="consume-the-messages" class="level2">
 <h2>Consume the messages</h2>
@@ -479,7 +510,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>docker-compose down</code></pre>
 </section>
 </section>
-<section id="section-13" class="slide level1">
+<section id="section-14" class="slide level1">
 <h1></h1>
 <section id="assignment-06" class="level2">
 <h2>Assignment 06</h2>
@@ -499,7 +530,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </ul>
 </section>
 </section>
-<section id="section-14" class="slide level1">
+<section id="section-15" class="slide level1">
 <h1></h1>
 <section id="summary" class="level2">
 <h2>Summary</h2>
@@ -510,39 +541,39 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 </ul>
 </section>
 </section>
-<section id="section-15" class="slide level1">
+<section id="section-16" class="slide level1">
 <h1></h1>
 <p><img class="logo" src="images/berkeley-school-of-information-logo.png"/></p>
 </section>
-<section id="section-16" class="slide level1">
+<section id="section-17" class="slide level1">
 <h1></h1>
-<section id="section-17" class="level2">
+<section id="section-18" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-overall.svg" style="border:0;box-shadow:none" /></p>
 </section>
 </section>
-<section id="section-18" class="slide level1">
+<section id="section-19" class="slide level1">
 <h1></h1>
 <section id="cool-pics" class="level2">
 <h2>cool pics</h2>
 </section>
-<section id="section-19" class="level2">
+<section id="section-20" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-ingestion-sourcing.svg" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="section-20" class="level2">
+<section id="section-21" class="level2">
 <h2></h2>
 <p><img data-src="images/queue-selected.svg" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="section-21" class="level2">
+<section id="section-22" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-ingestion-sourcing-focus.svg" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="section-22" class="level2">
+<section id="section-23" class="level2">
 <h2></h2>
 <p><img data-src="images/pipeline-ingestion-from-files.svg" style="border:0;box-shadow:none" /></p>
 </section>
-<section id="section-23" class="level2">
+<section id="section-24" class="level2">
 <h2></h2>
 <p><img data-src="images/streaming-bare.svg" style="border:0;box-shadow:none" /></p>
 </section>
