@@ -80,7 +80,7 @@ Classes 6-8
 
 
 #
-## Stand alone kafka
+## Kafka
 
 ## Update your course content repo in w205
 
@@ -95,6 +95,40 @@ git pull --all
 - `mkdir kafka`
 - save `docker-compose.yml` from recently pulled `~/w205/course-content` to
   recently created `~/w205/kafka` directory
+
+
+## 
+
+```
+---
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    expose:
+      - "2181"
+      - "2888"
+      - "32181"
+      - "3888"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - "9092"
+      - "29092"
+```
 
 ::: notes
 
