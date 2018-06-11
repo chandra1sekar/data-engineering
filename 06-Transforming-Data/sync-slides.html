@@ -41,9 +41,6 @@
 <li>Review your Assignment 05</li>
 <li>Get ready to share</li>
 </ul>
-<aside class="notes">
-<p>Breakout at about 5 after the hour: - Check in with each group - Choose 4-5 people with different approaches to present - Usually takes 10-20 minutes</p>
-</aside>
 </section>
 <section id="groups-present-notebooks" class="level2">
 <h2>Groups present notebooks</h2>
@@ -136,25 +133,29 @@ version: &#39;2&#39;
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
-    network_mode: host
     environment:
       ZOOKEEPER_CLIENT_PORT: 32181
       ZOOKEEPER_TICK_TIME: 2000
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
+    expose:
+      - &quot;2181&quot;
+      - &quot;2888&quot;
+      - &quot;32181&quot;
+      - &quot;3888&quot;
 
   kafka:
     image: confluentinc/cp-kafka:latest
-    network_mode: host
     depends_on:
       - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: localhost:32181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+    volumes:
+      - ~/w205:/w205
+    expose:
+      - &quot;9092&quot;
+      - &quot;29092&quot;</code></pre>
 </aside>
 </section>
 <section id="docker-compose-spin-things-up" class="level2">
@@ -216,7 +217,10 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
     --partitions 1 \
     --replication-factor 1 \
     --if-not-exists \
-    --zookeeper localhost:32181</code></pre>
+    --zookeeper zookeeper:32181</code></pre>
+<aside class="notes">
+<pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
+</aside>
 </section>
 <section id="should-see-something-like-3" class="level2">
 <h2>Should see something like</h2>
@@ -228,9 +232,9 @@ kafka_1      | [2017-08-31 00:31:40,540] INFO [Kafka Server 1], started (kafka.s
   kafka-topics \
     --describe \
     --topic foo \
-    --zookeeper localhost:32181</code></pre>
+    --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
-<p>docker-compose exec kafka kafka-topics –describe –topic foo –zookeeper localhost:32181</p>
+<pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-4" class="level2">
@@ -250,7 +254,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
     --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
 <aside class="notes">
 <p>Use the kafka console producer to publish some test messages to that topic</p>
-<p>docker-compose exec kafka bash -c “seq 42 | kafka-console-producer –request-required-acks 1 –broker-list localhost:29092 –topic foo &amp;&amp; echo ‘Produced 42 messages.’”</p>
+<pre><code>docker-compose exec kafka bash -c &quot;seq 42 | kafka-console-producer --request-required-acks 1 --broker-list localhost:29092 --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-5" class="level2">
@@ -270,7 +274,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
     --max-messages 42</code></pre>
 <aside class="notes">
 <p>Start a consumer to read from that topic</p>
-<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server localhost:29092 –topic foo –from-beginning –max-messages 42</p>
+<pre><code>docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic foo --from-beginning --max-messages 42</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-6" class="level2">
@@ -330,10 +334,6 @@ services:
       - &quot;2888&quot;
       - &quot;32181&quot;
       - &quot;3888&quot;
-    #ports:
-      #- &quot;32181:32181&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -349,24 +349,20 @@ services:
     expose:
       - &quot;9092&quot;
       - &quot;29092&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   mids:
     image: midsw205/base:latest
     stdin_open: true
     tty: true
     volumes:
-      - ~/w205:/w205
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+      - ~/w205:/w205</code></pre>
 <aside class="notes">
 <p>Create a <code>docker-compose.yml</code> with the following</p>
 </aside>
 </section>
 <section id="pull-data" class="level2">
 <h2>Pull data</h2>
-<pre><code>curl -L -o github-example-large.json https://goo.gl/WewtYn</code></pre>
+<pre><code>curl -L -o github-example-large.json https://goo.gl/2Z2fPw</code></pre>
 </section>
 <section id="spin-up-the-cluster" class="level2">
 <h2>Spin up the cluster</h2>
@@ -397,7 +393,7 @@ services:
       --if-not-exists \
       --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
-<p>docker-compose exec kafka kafka-topics –create –topic foo –partitions 1 –replication-factor 1 –if-not-exists –zookeeper zookeeper:32181</p>
+<pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-7" class="level2">
@@ -412,7 +408,7 @@ services:
     --topic foo \
     --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
-<p>docker-compose exec kafka kafka-topics –describe –topic foo –zookeeper zookeeper:32181</p>
+<pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-8" class="level2">
@@ -439,7 +435,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <h2>Publish some test messages to that topic with the kafka console producer</h2>
 <pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
 <aside class="notes">
-<p>docker-compose exec mids bash -c “cat /w205/github-example-large.json | jq ‘.<a href="#/section-23"></a>’ -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo ‘Produced 100 messages.’”</p>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-9" class="level2">
@@ -461,21 +457,21 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
     --from-beginning \
     --max-messages 42</code></pre>
 <aside class="notes">
-<p>docker-compose exec kafka kafka-console-consumer –bootstrap-server kafka:29092 –topic foo –from-beginning –max-messages 42</p>
+<pre><code>docker-compose exec kafka kafka-console-consumer --bootstrap-server kafka:29092 --topic foo --from-beginning --max-messages 42</code></pre>
 </aside>
 </section>
 <section id="or" class="level2">
 <h2>or</h2>
 <pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
 <aside class="notes">
-<p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e”</p>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot;</code></pre>
 </aside>
 </section>
 <section id="and-maybe" class="level2">
 <h2>and maybe</h2>
 <pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; | wc -l</code></pre>
 <aside class="notes">
-<p>docker-compose exec mids bash -c “kafkacat -C -b kafka:29092 -t foo -o beginning -e” | wc -l</p>
+<pre><code>docker-compose exec mids bash -c &quot;kafkacat -C -b kafka:29092 -t foo -o beginning -e&quot; | wc -l</code></pre>
 </aside>
 </section>
 <section id="down" class="level2">
@@ -490,7 +486,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <ul>
 <li>Step through this process using the Project 2 data</li>
 <li>What you turn in:</li>
-<li>In your <code>/assignment-05-&lt;user-name&gt;</code> repo:
+<li>In your <code>/assignment-06-&lt;user-name&gt;</code> repo:
 <ul>
 <li>your <code>docker-compose.yml</code></li>
 <li>once you’ve run the example on your terminal
