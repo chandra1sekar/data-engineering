@@ -393,7 +393,8 @@ services:
 </section>
 <section id="pull-data" class="level2">
 <h2>Pull data</h2>
-<pre><code>curl -L -o github-example-large.json https://goo.gl/2Z2fPw</code></pre>
+<pre><code>cd ~/w205/kafka/
+curl -L -o github-example-large.json https://goo.gl/2Z2fPw</code></pre>
 </section>
 <section id="spin-up-the-cluster" class="level2">
 <h2>Spin up the cluster</h2>
@@ -455,18 +456,18 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 <section id="check-out-our-messages" class="level2">
 <h2>Check out our messages</h2>
-<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json&quot;
-docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.&#39;&quot;
-docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/kafka/github-example-large.json&quot;
+docker-compose exec mids bash -c &quot;cat /w205/kafka/github-example-large.json | jq &#39;.&#39;&quot;
+docker-compose exec mids bash -c &quot;cat /w205/kafka/github-example-large.json | jq &#39;.[]&#39; -c&quot;</code></pre>
 <aside class="notes">
 <p>Go over | jq stuff</p>
 </aside>
 </section>
 <section id="publish-some-test-messages-to-that-topic-with-the-kafka-console-producer" class="level2">
 <h2>Publish some test messages to that topic with the kafka console producer</h2>
-<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/kafka/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
 <aside class="notes">
-<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/kafka/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t foo &amp;&amp; echo &#39;Produced 100 messages.&#39;&quot;</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-9" class="level2">
