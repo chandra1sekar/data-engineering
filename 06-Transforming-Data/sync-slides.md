@@ -457,9 +457,9 @@ docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookee
 ## Check out our messages
 
 ```
-docker-compose exec mids bash -c "cat /w205/github-example-large.json"
-docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.'"
-docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c"
+docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json"
+docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.'"
+docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c"
 ```
 
 ::: notes
@@ -469,12 +469,12 @@ Go over | jq stuff
 ## Publish some test messages to that topic with the kafka console producer
 
 ```
-docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
 ```
 
 ::: notes
 ```
-docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
+docker-compose exec mids bash -c "cat /w205/kafka/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t foo && echo 'Produced 100 messages.'"
 ```
 :::
 
