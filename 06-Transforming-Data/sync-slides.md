@@ -386,6 +386,7 @@ Create a `docker-compose.yml` with the following
 ## Pull data
 
 ```
+cd ~/w205/kafka/
 curl -L -o github-example-large.json https://goo.gl/2Z2fPw
 ```
 
