@@ -423,7 +423,7 @@ See nosql-kv-stores-video-hd1080-h264-30fps.mp4
 Download data:
 
     cd ~/w205/
-    curl -L -o trips.csv goo.gl/XygbZp
+    curl -L -o trips.csv https://goo.gl/GgZ3T2
 
 ## Setup
 
