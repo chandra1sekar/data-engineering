@@ -25,8 +25,6 @@ Breakout at about 5 after the hour:
 :::
 
 
-## Due Friday (PR)
- 
 #
 ## 
 
@@ -45,11 +43,11 @@ Breakout at about 5 after the hour:
 
 ## Setup
 
-`mkdir ~/w205/spark-with-kafka`
-
-`cd ~/w205/spark-with-kafka`
-
-`cp ~/w205/course-content/07-Sourcing-Data/docker-compose.yml .`
+```
+mkdir ~/w205/spark-with-kafka
+cd ~/w205/spark-with-kafka
+cp ../course-content/07-Sourcing-Data/docker-compose.yml .
+```
 
 
 
@@ -69,8 +67,6 @@ services:
       - "2888"
       - "32181"
       - "3888"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -86,8 +82,6 @@ services:
     expose:
       - "9092"
       - "29092"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   spark:
     image: midsw205/spark-python:0.0.5
@@ -96,8 +90,6 @@ services:
     volumes:
       - ~/w205:/w205
     command: bash
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   mids:
     image: midsw205/base:latest
@@ -105,8 +97,6 @@ services:
     tty: true
     volumes:
       - ~/w205:/w205
-    extra_hosts:
-      - "moby:127.0.0.1"
 ```
 
 ::: notes
@@ -155,7 +145,9 @@ docker-compose exec kafka \
 ::: notes
 First, create a topic `foo`
 
+```
 docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
 :::
 
 ## Should show
@@ -171,6 +163,12 @@ docker-compose exec kafka \
   --topic foo \
   --zookeeper zookeeper:32181
 ```
+
+::: notes
+```
+docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+```
+:::
 
 ## Should show
 
@@ -192,8 +190,9 @@ docker-compose exec kafka \
 ::: notes
 Use the kafka console producer to publish some test messages to that topic
 
+```
 docker-compose exec kafka bash -c "seq 42 | kafka-console-producer --request-required-acks 1 --broker-list kafka:29092 --topic foo && echo 'Produced 42 messages.'"
-
+```
 :::
 
 ## Should show
@@ -236,6 +235,7 @@ At the pyspark prompt,
 
 read from kafka
 
+```
 numbers = spark \
   .read \
   .format("kafka") \
@@ -244,7 +244,7 @@ numbers = spark \
   .option("startingOffsets", "earliest") \
   .option("endingOffsets", "latest") \
   .load() 
-
+```
 :::
 
 ## See the schema
@@ -262,7 +262,9 @@ numbers_as_strings=numbers.selectExpr("CAST(key AS STRING)", "CAST(value AS STRI
 ::: notes
 cast it as strings (you can totally use `INT`s if you'd like)
 
+```
 numbers_as_strings=numbers.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+```
 :::
 
 ## Take a look
@@ -280,10 +282,10 @@ numbers_as_strings.count()
 ::: notes
 then you can exit pyspark using either `ctrl-d` or `exit()`.
 
-`numbers_as_strings.show()`
-
+```
+numbers_as_strings.show()
 numbers_as_strings.printSchema()
-
+```
 :::
 
 
@@ -313,8 +315,12 @@ docker-compose down
 ## Pull data
 
 ```
-curl -L -o github-example-large.json https://goo.gl/Hr6erG
+curl -L -o github-example-large.json https://goo.gl/2Z2fPw
 ```
+
+::: notes
+or copy (the same dataset) over from last week
+:::
 
 ## Spin up the cluster & check
 
@@ -345,7 +351,9 @@ docker-compose exec kafka \
 ```
 
 ::: notes
+```
 docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181
+```
 :::
 
 ## Should see something like
@@ -364,8 +372,11 @@ docker-compose exec kafka \
 ```
 
 ::: notes
+```
 docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181
+```
 :::
+
 ## Should see something like
 
     Topic:foo   PartitionCount:1    ReplicationFactor:1 Configs:
@@ -374,7 +385,7 @@ docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookee
 
 
 #
-## Publish some stuff to kafka
+## Publish real data to kafka
 
 ## Check out our messages
 
@@ -397,9 +408,11 @@ docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]'
 
 ::: notes
 Go over | jq stuff
+
+take time to go over jsonlines (Show examples from jsonlines.org)
 :::
 
-## Publish some test messages to that topic with the kafka console producer
+## Publish some test messages to that topic with kafkacat
 
 ```
 docker-compose exec mids \
@@ -455,6 +468,7 @@ At the pyspark prompt,
 
 read from kafka
 
+```
 messages = spark \
   .read \
   .format("kafka") \
@@ -463,6 +477,7 @@ messages = spark \
   .option("startingOffsets", "earliest") \
   .option("endingOffsets", "latest") \
   .load() 
+```
 
 :::
 
@@ -488,7 +503,9 @@ messages_as_strings=messages.selectExpr("CAST(key AS STRING)", "CAST(value AS ST
 ::: notes
 cast it as strings (you can totally use `INT`s if you'd like)
 
+```
 messages_as_strings=messages.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+```
 :::
 
 ## Take a look
@@ -508,11 +525,11 @@ messages_as_strings.count()
 ::: notes
 then you can exit pyspark using either `ctrl-d` or `exit()`.
 
-`messages_as_strings.show()`
-
+```
+messages_as_strings.show()
 messages_as_strings.printSchema()
-
 messages_as_strings.count()
+```
 :::
 
 ## Unrolling json
@@ -541,14 +558,15 @@ print(first_message['commit']['committer']['name'])
 ```
 
 ::: notes
+```
 messages_as_strings.select('value').take(1)
-
 messages_as_strings.select('value').take(1)[0].value
 >>> import json
 >>> first_message=json.loads(messages_as_strings.select('value').take(1)[0].value)
 >>> first_message
 >>> print(first_message['commit']['committer']['name'])
 Nico Williams
+```
 :::
 
 ## Breakout
@@ -562,7 +580,8 @@ Nico Williams
 
 #
 ## Assignment 07
-- Step through this process using the Project 2 data
+- Use Project 2 data
+- Step through this process (use spark to read from kafka)
 - What you turn in:
 - In your `/assignment-07-<user-name>` repo:
   * your `docker-compose.yml` 

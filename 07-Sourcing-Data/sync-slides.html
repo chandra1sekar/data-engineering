@@ -52,9 +52,6 @@
 <p>Breakout at about 5 after the hour: - Check in with each group - have students share screen</p>
 </aside>
 </section>
-<section id="due-friday-pr" class="level2">
-<h2>Due Friday (PR)</h2>
-</section>
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
@@ -77,9 +74,9 @@
 </section>
 <section id="setup" class="level2">
 <h2>Setup</h2>
-<p><code>mkdir ~/w205/spark-with-kafka</code></p>
-<p><code>cd ~/w205/spark-with-kafka</code></p>
-<p><code>cp ~/w205/course-content/07-Sourcing-Data/docker-compose.yml .</code></p>
+<pre><code>mkdir ~/w205/spark-with-kafka
+cd ~/w205/spark-with-kafka
+cp ../course-content/07-Sourcing-Data/docker-compose.yml .</code></pre>
 </section>
 <section id="docker-compose.yml" class="level2">
 <h2><code>docker-compose.yml</code></h2>
@@ -96,8 +93,6 @@ services:
       - &quot;2888&quot;
       - &quot;32181&quot;
       - &quot;3888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -113,8 +108,6 @@ services:
     expose:
       - &quot;9092&quot;
       - &quot;29092&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   spark:
     image: midsw205/spark-python:0.0.5
@@ -123,17 +116,13 @@ services:
     volumes:
       - ~/w205:/w205
     command: bash
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   mids:
     image: midsw205/base:latest
     stdin_open: true
     tty: true
     volumes:
-      - ~/w205:/w205
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+      - ~/w205:/w205</code></pre>
 <aside class="notes">
 <p>and save as data file.</p>
 </aside>
@@ -162,7 +151,7 @@ services:
     --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
 <p>First, create a topic <code>foo</code></p>
-<p>docker-compose exec kafka kafka-topics –create –topic foo –partitions 1 –replication-factor 1 –if-not-exists –zookeeper zookeeper:32181</p>
+<pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
 </aside>
 </section>
 <section id="should-show" class="level2">
@@ -176,6 +165,9 @@ services:
   --describe \
   --topic foo \
   --zookeeper zookeeper:32181</code></pre>
+<aside class="notes">
+<pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181</code></pre>
+</aside>
 </section>
 <section id="should-show-1" class="level2">
 <h2>Should show</h2>
@@ -191,7 +183,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
     --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
 <aside class="notes">
 <p>Use the kafka console producer to publish some test messages to that topic</p>
-<p>docker-compose exec kafka bash -c “seq 42 | kafka-console-producer –request-required-acks 1 –broker-list kafka:29092 –topic foo &amp;&amp; echo ‘Produced 42 messages.’”</p>
+<pre><code>docker-compose exec kafka bash -c &quot;seq 42 | kafka-console-producer --request-required-acks 1 --broker-list kafka:29092 --topic foo &amp;&amp; echo &#39;Produced 42 messages.&#39;&quot;</code></pre>
 </aside>
 </section>
 <section id="should-show-2" class="level2">
@@ -224,14 +216,14 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <aside class="notes">
 <p>At the pyspark prompt,</p>
 <p>read from kafka</p>
-<p>numbers = spark<br />
-.read<br />
-.format(“kafka”)<br />
-.option(“kafka.bootstrap.servers”, “kafka:29092”)<br />
-.option(“subscribe”,“foo”)<br />
-.option(“startingOffsets”, “earliest”)<br />
-.option(“endingOffsets”, “latest”)<br />
-.load()</p>
+<pre><code>numbers = spark \
+  .read \
+  .format(&quot;kafka&quot;) \
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;) \
+  .option(&quot;subscribe&quot;,&quot;foo&quot;) \
+  .option(&quot;startingOffsets&quot;, &quot;earliest&quot;) \
+  .option(&quot;endingOffsets&quot;, &quot;latest&quot;) \
+  .load() </code></pre>
 </aside>
 </section>
 <section id="see-the-schema" class="level2">
@@ -243,7 +235,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <pre><code>numbers_as_strings=numbers.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)</code></pre>
 <aside class="notes">
 <p>cast it as strings (you can totally use <code>INT</code>s if you’d like)</p>
-<p>numbers_as_strings=numbers.selectExpr(“CAST(key AS STRING)”, “CAST(value AS STRING)”)</p>
+<pre><code>numbers_as_strings=numbers.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)</code></pre>
 </aside>
 </section>
 <section id="take-a-look" class="level2">
@@ -253,8 +245,8 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 <pre><code>numbers_as_strings.count()</code></pre>
 <aside class="notes">
 <p>then you can exit pyspark using either <code>ctrl-d</code> or <code>exit()</code>.</p>
-<p><code>numbers_as_strings.show()</code></p>
-<p>numbers_as_strings.printSchema()</p>
+<pre><code>numbers_as_strings.show()
+numbers_as_strings.printSchema()</code></pre>
 </aside>
 </section>
 <section id="down" class="level2">
@@ -284,7 +276,10 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 <section id="pull-data" class="level2">
 <h2>Pull data</h2>
-<pre><code>curl -L -o github-example-large.json https://goo.gl/Hr6erG</code></pre>
+<pre><code>curl -L -o github-example-large.json https://goo.gl/2Z2fPw</code></pre>
+<aside class="notes">
+<p>or copy (the same dataset) over from last week</p>
+</aside>
 </section>
 <section id="spin-up-the-cluster-check" class="level2">
 <h2>Spin up the cluster &amp; check</h2>
@@ -305,7 +300,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
       --if-not-exists \
       --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
-<p>docker-compose exec kafka kafka-topics –create –topic foo –partitions 1 –replication-factor 1 –if-not-exists –zookeeper zookeeper:32181</p>
+<pre><code>docker-compose exec kafka kafka-topics --create --topic foo --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:32181</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like" class="level2">
@@ -320,7 +315,7 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
     --topic foo \
     --zookeeper zookeeper:32181</code></pre>
 <aside class="notes">
-<p>docker-compose exec kafka kafka-topics –describe –topic foo –zookeeper zookeeper:32181</p>
+<pre><code>docker-compose exec kafka kafka-topics --describe --topic foo --zookeeper zookeeper:32181</code></pre>
 </aside>
 </section>
 <section id="should-see-something-like-1" class="level2">
@@ -331,8 +326,8 @@ Topic: foo  Partition: 0    Leader: 1    Replicas: 1  Isr: 1</code></pre>
 </section>
 <section id="section-6" class="slide level1">
 <h1></h1>
-<section id="publish-some-stuff-to-kafka-1" class="level2">
-<h2>Publish some stuff to kafka</h2>
+<section id="publish-real-data-to-kafka" class="level2">
+<h2>Publish real data to kafka</h2>
 </section>
 <section id="check-out-our-messages" class="level2">
 <h2>Check out our messages</h2>
@@ -347,10 +342,11 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c&quot;</code></pre>
 <aside class="notes">
 <p>Go over | jq stuff</p>
+<p>take time to go over jsonlines (Show examples from jsonlines.org)</p>
 </aside>
 </section>
-<section id="publish-some-test-messages-to-that-topic-with-the-kafka-console-producer" class="level2">
-<h2>Publish some test messages to that topic with the kafka console producer</h2>
+<section id="publish-some-test-messages-to-that-topic-with-kafkacat" class="level2">
+<h2>Publish some test messages to that topic with kafkacat</h2>
 <pre><code>docker-compose exec mids \
   bash -c &quot;cat /w205/github-example-large.json \
     | jq &#39;.[]&#39; -c \
@@ -389,14 +385,14 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <aside class="notes">
 <p>At the pyspark prompt,</p>
 <p>read from kafka</p>
-<p>messages = spark<br />
-.read<br />
-.format(“kafka”)<br />
-.option(“kafka.bootstrap.servers”, “kafka:29092”)<br />
-.option(“subscribe”,“foo”)<br />
-.option(“startingOffsets”, “earliest”)<br />
-.option(“endingOffsets”, “latest”)<br />
-.load()</p>
+<pre><code>messages = spark \
+  .read \
+  .format(&quot;kafka&quot;) \
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;kafka:29092&quot;) \
+  .option(&quot;subscribe&quot;,&quot;foo&quot;) \
+  .option(&quot;startingOffsets&quot;, &quot;earliest&quot;) \
+  .option(&quot;endingOffsets&quot;, &quot;latest&quot;) \
+  .load() </code></pre>
 </aside>
 </section>
 <section id="see-the-schema-1" class="level2">
@@ -412,7 +408,7 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>messages_as_strings=messages.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)</code></pre>
 <aside class="notes">
 <p>cast it as strings (you can totally use <code>INT</code>s if you’d like)</p>
-<p>messages_as_strings=messages.selectExpr(“CAST(key AS STRING)”, “CAST(value AS STRING)”)</p>
+<pre><code>messages_as_strings=messages.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)</code></pre>
 </aside>
 </section>
 <section id="take-a-look-1" class="level2">
@@ -422,9 +418,9 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>messages_as_strings.count()</code></pre>
 <aside class="notes">
 <p>then you can exit pyspark using either <code>ctrl-d</code> or <code>exit()</code>.</p>
-<p><code>messages_as_strings.show()</code></p>
-<p>messages_as_strings.printSchema()</p>
-<p>messages_as_strings.count()</p>
+<pre><code>messages_as_strings.show()
+messages_as_strings.printSchema()
+messages_as_strings.count()</code></pre>
 </aside>
 </section>
 <section id="unrolling-json" class="level2">
@@ -436,8 +432,13 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <pre><code>first_message</code></pre>
 <pre><code>print(first_message[&#39;commit&#39;][&#39;committer&#39;][&#39;name&#39;])</code></pre>
 <aside class="notes">
-<p>messages_as_strings.select(‘value’).take(1)</p>
-<p>messages_as_strings.select(‘value’).take(1)[0].value &gt;&gt;&gt; import json &gt;&gt;&gt; first_message=json.loads(messages_as_strings.select(‘value’).take(1)[0].value) &gt;&gt;&gt; first_message &gt;&gt;&gt; print(first_message[‘commit’][‘committer’][‘name’]) Nico Williams</p>
+<pre><code>messages_as_strings.select(&#39;value&#39;).take(1)
+messages_as_strings.select(&#39;value&#39;).take(1)[0].value
+&gt;&gt;&gt; import json
+&gt;&gt;&gt; first_message=json.loads(messages_as_strings.select(&#39;value&#39;).take(1)[0].value)
+&gt;&gt;&gt; first_message
+&gt;&gt;&gt; print(first_message[&#39;commit&#39;][&#39;committer&#39;][&#39;name&#39;])
+Nico Williams</code></pre>
 </aside>
 </section>
 <section id="breakout" class="level2">
@@ -456,7 +457,8 @@ docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq 
 <section id="assignment-07" class="level2">
 <h2>Assignment 07</h2>
 <ul>
-<li>Step through this process using the Project 2 data</li>
+<li>Use Project 2 data</li>
+<li>Step through this process (use spark to read from kafka)</li>
 <li>What you turn in:</li>
 <li>In your <code>/assignment-07-&lt;user-name&gt;</code> repo:
 <ul>
