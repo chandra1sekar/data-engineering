@@ -11,8 +11,6 @@ services:
       - "2888"
       - "32181"
       - "3888"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -26,8 +24,6 @@ services:
     expose:
       - "9092"
       - "29092"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   cloudera:
     image: midsw205/cdh-minimal:latest
@@ -37,8 +33,6 @@ services:
       - "8888" # hue
     #ports:
     #- "8888:8888"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   spark:
     image: midsw205/spark-python:0.0.5
@@ -51,8 +45,6 @@ services:
       - cloudera
     environment:
       HADOOP_NAMENODE: cloudera
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   mids:
     image: midsw205/base:latest
@@ -60,5 +52,3 @@ services:
     tty: true
     volumes:
       - ~/w205:/w205
-    extra_hosts:
-      - "moby:127.0.0.1"
