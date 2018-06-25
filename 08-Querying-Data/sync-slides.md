@@ -17,8 +17,6 @@ Breakout at about 5 after the hour:
 :::
 
 
-## Due Friday (PR)
-
 #
 ## { data-background="images/streaming-bare.svg" } 
 
@@ -134,18 +132,20 @@ docker-compose exec kafka kafka-topics --create --topic players --partitions 1 -
 - In `~/w205/`
 
 ```
-curl -L -o players.json https://goo.gl/jSVrAe
+curl -L -o players.json https://goo.gl/d8U3Yw
 ```
 
 ::: notes
 easier than github dataset b/c it's flat
+
+really could be `~/w205/<your_workspace>` for this week!
 :::
 
 ## Use kafkacat to produce test messages to the `players` topic
 
 ```
 docker-compose exec mids \
-  bash -c "cat /w205/players.json \
+  bash -c "cat /w205/<your_workspace>/players.json \
     | jq '.[]' -c \
     | kafkacat -P -b kafka:29092 -t players"
 ```
@@ -153,7 +153,7 @@ docker-compose exec mids \
 
 ::: notes
 ```
-docker-compose exec mids bash -c "cat /w205/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
+docker-compose exec mids bash -c "cat /w205/<your_workspace>/players.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t players"
 ```
 :::
 
@@ -400,14 +400,14 @@ docker-compose exec kafka kafka-topics --create --topic commits --partitions 1 -
 
 ## Download the dataset for github commits
 ```
-curl -L -o github-example-large.json https://goo.gl/Hr6erG
+curl -L -o github-example-large.json https://goo.gl/2Z2fPw
 ```
 
 ## Publish some stuff to kafka
 
 ```
 docker-compose exec mids \
-  bash -c "cat /w205/github-example-large.json \
+  bash -c "cat /w205/<your_workspace>/github-example-large.json \
     | jq '.[]' -c \
     | kafkacat -P -b kafka:29092 -t commits"
 ```
@@ -416,7 +416,7 @@ docker-compose exec mids \
 Use kafkacat to produce test messages to the `commits` topic
 
 ```
-docker-compose exec mids bash -c "cat /w205/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
+docker-compose exec mids bash -c "cat /w205/<your_workspace>/github-example-large.json | jq '.[]' -c | kafkacat -P -b kafka:29092 -t commits"
 ```
 :::
 

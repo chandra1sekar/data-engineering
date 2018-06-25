@@ -45,9 +45,6 @@
 <p>Breakout at about 5 after the hour: - Check in with each group - have students share screen</p>
 </aside>
 </section>
-<section id="due-friday-pr" class="level2">
-<h2>Due Friday (PR)</h2>
-</section>
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
@@ -142,19 +139,20 @@ drwx-wx-wx   - root   supergroup          0 2018-02-20 22:31 /tmp/hive</code></p
 <ul>
 <li>In <code>~/w205/</code></li>
 </ul>
-<pre><code>curl -L -o players.json https://goo.gl/jSVrAe</code></pre>
+<pre><code>curl -L -o players.json https://goo.gl/d8U3Yw</code></pre>
 <aside class="notes">
 <p>easier than github dataset b/c it’s flat</p>
+<p>really could be <code>~/w205/&lt;your_workspace&gt;</code> for this week!</p>
 </aside>
 </section>
 <section id="use-kafkacat-to-produce-test-messages-to-the-players-topic" class="level2">
 <h2>Use kafkacat to produce test messages to the <code>players</code> topic</h2>
 <pre><code>docker-compose exec mids \
-  bash -c &quot;cat /w205/players.json \
+  bash -c &quot;cat /w205/&lt;your_workspace&gt;/players.json \
     | jq &#39;.[]&#39; -c \
     | kafkacat -P -b kafka:29092 -t players&quot;</code></pre>
 <aside class="notes">
-<pre><code>docker-compose exec mids bash -c &quot;cat /w205/players.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t players&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/&lt;your_workspace&gt;/players.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t players&quot;</code></pre>
 </aside>
 </section>
 </section>
@@ -371,17 +369,17 @@ Created topic “commits”.</li>
 </section>
 <section id="download-the-dataset-for-github-commits" class="level2">
 <h2>Download the dataset for github commits</h2>
-<pre><code>curl -L -o github-example-large.json https://goo.gl/Hr6erG</code></pre>
+<pre><code>curl -L -o github-example-large.json https://goo.gl/2Z2fPw</code></pre>
 </section>
 <section id="publish-some-stuff-to-kafka" class="level2">
 <h2>Publish some stuff to kafka</h2>
 <pre><code>docker-compose exec mids \
-  bash -c &quot;cat /w205/github-example-large.json \
+  bash -c &quot;cat /w205/&lt;your_workspace&gt;/github-example-large.json \
     | jq &#39;.[]&#39; -c \
     | kafkacat -P -b kafka:29092 -t commits&quot;</code></pre>
 <aside class="notes">
 <p>Use kafkacat to produce test messages to the <code>commits</code> topic</p>
-<pre><code>docker-compose exec mids bash -c &quot;cat /w205/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t commits&quot;</code></pre>
+<pre><code>docker-compose exec mids bash -c &quot;cat /w205/&lt;your_workspace&gt;/github-example-large.json | jq &#39;.[]&#39; -c | kafkacat -P -b kafka:29092 -t commits&quot;</code></pre>
 </aside>
 </section>
 <section id="spin-up-a-pyspark-process-using-the-spark-container-1" class="level2">
