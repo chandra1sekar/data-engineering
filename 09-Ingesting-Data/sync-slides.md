@@ -19,8 +19,6 @@ Breakout at about 5 after the hour:
 :::
 
 
-## Due Friday (PR)
-
 #
 
 ## Project Transition
@@ -110,8 +108,6 @@ services:
       - "2888"
       - "32181"
       - "3888"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -125,8 +121,6 @@ services:
     expose:
       - "9092"
       - "29092"
-    extra_hosts:
-      - "moby:127.0.0.1"
 
   mids:
     image: midsw205/base:0.1.8
@@ -138,8 +132,6 @@ services:
       - "5000"
     ports:
       - "5000:5000"
-    extra_hosts:
-      - "moby:127.0.0.1"
 ```
 
 ::: notes

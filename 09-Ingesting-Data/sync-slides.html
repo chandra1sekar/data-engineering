@@ -110,9 +110,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Breakout at about 5 after the hour: - Check in with each group - have students share screen</p>
 </aside>
 </section>
-<section id="due-friday-pr" class="level2">
-<h2>Due Friday (PR)</h2>
-</section>
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
@@ -197,8 +194,6 @@ services:
       - &quot;2888&quot;
       - &quot;32181&quot;
       - &quot;3888&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -212,8 +207,6 @@ services:
     expose:
       - &quot;9092&quot;
       - &quot;29092&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;
 
   mids:
     image: midsw205/base:0.1.8
@@ -224,9 +217,7 @@ services:
     expose:
       - &quot;5000&quot;
     ports:
-      - &quot;5000:5000&quot;
-    extra_hosts:
-      - &quot;moby:127.0.0.1&quot;</code></pre>
+      - &quot;5000:5000&quot;</code></pre>
 <aside class="notes">
 <p>We’re <em>generating</em> the data, so there’s no need for a datafile on this one.</p>
 </aside>
