@@ -23,8 +23,6 @@ author: Week 10 - sync session
 :::
 
 
-## Due Friday (PR)
-
 #
 ## { data-background="images/pipeline-simple-steel-thread.svg" } 
 
