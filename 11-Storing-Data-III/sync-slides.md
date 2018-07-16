@@ -22,7 +22,6 @@ author: Week 11 - sync session
 :::
 
 
-## Due Friday (PR)
 
 #
 
