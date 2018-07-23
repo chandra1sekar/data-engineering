@@ -21,8 +21,6 @@ author: Week 12 - sync session
 :::
 
 
-## Due Friday (PR)
-
 #
 
 
